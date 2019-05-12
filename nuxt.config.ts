@@ -1,7 +1,8 @@
-const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
-const pkg = require('./package')
+import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin';
+import pkg from './package.json';
+import NuxtConfiguration from '@nuxt/config'
 
-module.exports = {
+const config: NuxtConfiguration = {
   mode: 'spa',
 
   /*
@@ -67,9 +68,9 @@ module.exports = {
     },
     /*
      ** You can extend webpack config here
-     */
-    extend(config, ctx) {
-      // Run ESLint on save
+     -- work in progress --
+     extend(config, ctx) {
+      // TODO: Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -79,5 +80,8 @@ module.exports = {
         })
       }
     }
+     */
   }
 }
+
+export default config
