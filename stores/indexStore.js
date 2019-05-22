@@ -1,5 +1,4 @@
 import { observable, action } from "mobx"
-import { messaging } from "firebase"
 
 const msg = ["nice to have you here", "i love you", "hehe", "haha"]
 
