@@ -3,6 +3,9 @@ import initStore from "../stores/indexStore"
 import { Provider } from "mobx-react"
 import TestHello from '../components/testHello'
 
+import styled from 'styled-components';
+
+
 
 export default class Home extends Component {
     constructor(props) {
@@ -13,8 +16,15 @@ export default class Home extends Component {
     render() {
         return (
             <Provider BaseStore={this.store}>
+              <div>
+                <Title> Hello </Title>
                 <TestHello />
+                </div>
             </Provider>
         )
     }
 }
+
+const Title = styled.h1`
+  color: red;
+`;
