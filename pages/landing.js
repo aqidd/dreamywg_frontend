@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Layout } from 'antd'
 import CustomHeader from '../components/customHeader'
-import LandingContent from '../components/landingContent'
+import LandingContent from '../components/presentation/landing/landingContent'
+import CustomFooter from '../components/customFooter'
+import 'antd/dist/antd.css'
 
 const { Header, Footer, Content } = Layout
 
@@ -15,10 +17,12 @@ export default class LandingScreen extends Component {
         <Header>
           <CustomHeader />
         </Header>
-        <Content>
+        
           <LandingContent />
-        </Content>
-        <Footer>Footer</Footer>
+        
+        <Footer>
+          <CustomFooter />
+        </Footer>
       </Layout>
     </div>
   )
