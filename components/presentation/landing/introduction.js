@@ -5,16 +5,16 @@ const { Meta } = Card
 
 const Introduction = () => (
   <div style={ContainerStyle}>
-    <Row style={{ alignItems: 'center' }} type="flex">
-      <Col span={3} />
-      <Col span={9}>
+    <Row justify={'center'} type="flex">
+      <Col sm={2} md={2} lg={2} xl={5} />
+      <Col sm={9} md={10} lg={10} xl={7}>
         <Row>
           <Title style={{ fontSize: 'calc(1em + 2.5vw)' }} level={1}>
             Essential Mobile App Landing for Workspaces
           </Title>
         </Row>
         <Row>
-          <Paragraph>
+          <Paragraph style={{ fontSize: 16 }}>
             A mobile app landing page is important and essential for right
             amount of information about your product. Start increasing your user
             base upon the launch of your product.
@@ -33,10 +33,11 @@ const Introduction = () => (
           </Col>
         </Row>
       </Col>
-      <Col span={9}>
+      <Col sm={1} md={1} lg={1} xl={1} />
+      <Col sm={9} md={9} lg={9} xl={6}>
         <LandingDemo />
       </Col>
-      <Col span={3} />
+      <Col sm={2} md={2} lg={2} xl={5} />
     </Row>
   </div>
 )
