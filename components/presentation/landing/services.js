@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col, Typography, Card, Icon } from 'antd'
+import TitleContent from '../../common/titlecontent'
 const { Title, Text } = Typography
 const { Meta } = Card
 
@@ -15,7 +16,10 @@ const Services = () => (
   <div style={{ textAlign: 'center' }}>
     <Row>
       <Row>
-        <ServiceTitle />
+        <TitleContent
+          subtitle="Our Services"
+          title=" Featured Service that We Provide"
+        />
       </Row>
       <Row type="flex" justify="center" gutter={16}>
         <ServiceCard />
@@ -24,17 +28,6 @@ const Services = () => (
       </Row>
     </Row>
   </div>
-)
-
-const ServiceTitle = () => (
-  <Row>
-    <Row>
-      <Text> Our Services</Text>
-    </Row>
-    <Row>
-      <Title level={3}> Featured Service that We Provide </Title>
-    </Row>
-  </Row>
 )
 
 const ServiceCard = data => (
