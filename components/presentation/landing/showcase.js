@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Typography } from 'antd'
+import { Row, Col, Typography, Button } from 'antd'
 import Image from '../../common/Image'
 import TitleContent from '../../common/titlecontent'
 import chatDemoImg from '../../../resources/chat-demo.png'
@@ -8,12 +8,12 @@ const { Paragraph } = Typography
 
 const Showcase = () => (
   <div style={{ marginTop: '5vh' }}>
-    <Row type="flex" justify="space-between" gutter={64}>
-      <Col xs={0} sm={12} md={12} lg={12}>
+    <Row type="flex" style={{ alignItems: 'center' }} gutter={64}>
+      <Col xs={2} sm={2} md={12} lg={12}>
         <Image img={chatDemoImg} />
       </Col>
-      <Col xs={20} sm={10} md={10} lg={7}>
-        <Row>
+      <Col xs={20} sm={20} md={10} lg={7}>
+        <Row style={{ marginTop: '-5vh' }}>
           <Row>
             <TitleContent
               flex
@@ -27,6 +27,11 @@ const Showcase = () => (
               amount of information about your product. Start increasing your
               user base upon the launch of your product.
             </Paragraph>
+          </Row>
+          <Row>
+            <Button size="large" type="primary">
+              Get Started for free
+            </Button>
           </Row>
         </Row>
       </Col>

@@ -13,7 +13,7 @@ const dataService = [
 ]
 
 const Services = () => (
-  <div style={{ textAlign: 'center' }}>
+  <div style={{ textAlign: 'center', marginTop: '16vh', marginBottom: '16vh' }}>
     <Row>
       <Row>
         <TitleContent

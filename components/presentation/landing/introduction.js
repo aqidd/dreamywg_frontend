@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Row, Col, Typography, Button } from 'antd'
+import { Row, Col, Typography, Button, Card } from 'antd'
 const { Title, Paragraph, Text } = Typography
 import img from '../../../resources/about-demo3.png'
 import Image from '../../common/Image'
+import VersionCard from './versionCard'
 
 const Introduction = () => (
   <div style={ContainerStyle}>
@@ -47,20 +48,5 @@ const ContainerStyle = {
   margin: 'auto',
   marginTop: '16vh'
 }
-
-const VersionCard = () => (
-  <Row type="flex" justify="start" gutter={16} style={{ textAlign: 'center' }}>
-    <Col>
-      <Button type="primary" shape="round">
-        Beta
-      </Button>
-    </Col>
-    <Col>
-      <div style={{ marginTop: 5 }}>
-        <Text> Version 0.0.1 is Available</Text>
-      </div>
-    </Col>
-  </Row>
-)
 
 export default Introduction
