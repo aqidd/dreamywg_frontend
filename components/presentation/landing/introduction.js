@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Row, Col, Typography, Button, Card } from 'antd'
+import { Row, Col, Typography, Button } from 'antd'
 const { Title, Paragraph, Text } = Typography
-const { Meta } = Card
+import img from '../../../resources/about-demo3.png'
+import Image from '../../common/Image'
 
 const Introduction = () => (
   <div style={ContainerStyle}>
@@ -11,7 +12,7 @@ const Introduction = () => (
         <VersionCard />
         <Row>
           <Title style={{ fontSize: 'calc(1em + 2.5vw)' }} level={1}>
-            Connect a perfect roommate together
+            Connect a perfect flatmate together
           </Title>
         </Row>
         <Row>
@@ -35,8 +36,8 @@ const Introduction = () => (
         </Row>
       </Col>
       <Col xs={2} sm={2} md={1} lg={1} xl={1} />
-      <Col xs={0} sm={0} md={11} lg={11} xl={11}>
-        <LandingDemo />
+      <Col style={{ marginTop: '-5vh' }} xs={0} sm={0} md={11} lg={11} xl={11}>
+        <Image img={img} />
       </Col>
     </Row>
   </div>
@@ -46,16 +47,6 @@ const ContainerStyle = {
   margin: 'auto',
   marginTop: '16vh'
 }
-
-const LandingDemo = source => (
-  <Card
-    style={{ marginTop: '-5vh' }}
-    bordered={false}
-    cover={
-      <img alt="example" src={require('../../../resources/about-demo3.png')} />
-    }
-  />
-)
 
 const VersionCard = () => (
   <Row type="flex" justify="start" gutter={16} style={{ textAlign: 'center' }}>

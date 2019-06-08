@@ -17,9 +17,7 @@ export default class LandingScreen extends Component {
         <Header>
           <CustomHeader />
         </Header>
-        
           <LandingContent />
-        
         <Footer>
           <CustomFooter />
         </Footer>
