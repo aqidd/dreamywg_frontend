@@ -10,7 +10,7 @@ const TitleContent = ({ subtitle, title, flex }) => (
     <Row>
       {flex ? (
         <Title style={{ fontSize: 'calc(2em + 2.0vw)' }} level={1}>
-          {title}{' '}
+          {title}
         </Title>
       ) : (
         <Title level={3}>{title} </Title>

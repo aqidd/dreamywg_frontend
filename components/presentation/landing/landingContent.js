@@ -20,8 +20,7 @@ const LandingContent = ({ onGetStartedClicked }) => (
 )
 
 const SectionStyle = {
-  margin: 'auto',
-  
+  margin: 'auto'
 }
 
 export default LandingContent
