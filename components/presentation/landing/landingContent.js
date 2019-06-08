@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-import { Row, Col, Typography, Button, Card, Layout } from 'antd'
+import { Layout } from 'antd'
 import Introduction from './introduction'
-const { Title, Text, Paragraph } = Typography
-const { Meta } = Card
+import Services from './services'
 
 const LandingContent = ({ onGetStartedClicked }) => (
   <Layout.Content style={{ backgroundColor: 'white' }}>
     <section style={SectionStyle}>
       <Introduction />
+    </section>
+    <section style={SectionStyle}>
+      <Services />
     </section>
   </Layout.Content>
 )
@@ -15,7 +17,7 @@ const LandingContent = ({ onGetStartedClicked }) => (
 const SectionStyle = {
   margin: 'auto',
   overflow: 'auto',
-  height: '80vh'
+  
 }
 
 export default LandingContent
