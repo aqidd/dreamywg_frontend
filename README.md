@@ -1,25 +1,12 @@
-# seba-frontend
+# seba_sose2019_frontend
 
-> frontend project for seba course
+## installation
+`npm install`
 
-## Build Setup
+## to run
+`npm run dev`
 
-``` bash
-# install dependencies
-$ npm install
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+## note for vscode user
+make sure you disable transform decorator in vscode to prevent decorator warning
 
-# serve with hot reload at localhost:3000 - automatically open browser
-$ npx nuxt dev -o
-
-# build for production and launch server
-$ npm run build
-$ npm start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
