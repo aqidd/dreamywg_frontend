@@ -4,7 +4,7 @@ import Image from '../../common/Image'
 import VersionCard from './versionCard'
 import styled from 'styled-components'
 
-const Introduction = () => (
+const Introduction = ({  }) => (
   <StyledContainer>
     <Row>
       <Col xs={2} sm={2} md={2} lg={2} xl={5} />

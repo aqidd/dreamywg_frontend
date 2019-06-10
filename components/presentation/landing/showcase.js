@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import { Row, Col, Typography, Button } from 'antd'
+import { Row, Col, Button } from 'antd'
 import Image from '../../common/Image'
 import TitleContent from '../../common/titlecontent'
 import chatDemoImg from '../../../resources/chat-demo.png'
 import styled from 'styled-components'
-
-const { Paragraph } = Typography
 
 const Showcase = () => (
   <Container>
@@ -46,6 +44,11 @@ const Container = styled.div`
 `
 const RowScaler = styled(Row)`
   margin-top: -5vh;
+`
+
+const Paragraph = styled.p`
+  margin-top: -3vh;
+  font-weight: normal;
 `
 
 export default Showcase

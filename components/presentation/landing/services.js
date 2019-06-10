@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Row, Col, Typography, Card, Icon } from 'antd'
 import TitleContent from '../../common/titlecontent'
-import styled from 'styled-components'
-const { Title, Text } = Typography
+import styled, { ThemeProvider } from 'styled-components'
+import theme from 'styled-theming'
 const { Meta } = Card
 
 const dataService = [
@@ -52,7 +52,7 @@ const Services = () => (
 
 const ServiceCard = ({ title, subtitle, icon }) => (
   <Col span={5}>
-    <Card hoverable bordered={false}>
+    <CardContainer hoverable bordered={false}>
       <Icon
         style={{
           fontSize: 86,
@@ -60,11 +60,38 @@ const ServiceCard = ({ title, subtitle, icon }) => (
         }}
         type={icon}
       />
-      <Meta title={title} description={subtitle} />
-    </Card>
+      <Title style={{ fontSize: 16 }}> {title} </Title>
+      <Subtitle> {subtitle} </Subtitle>
+    </CardContainer>
   </Col>
 )
 export default Services
+
+const cardColor = theme('mode', {
+  light: '#FFF',
+  dark: '#111'
+})
+
+const textColor = theme('mode', {
+  light: '#000',
+  dark: '#DDD'
+})
+
+const Title = styled.p`
+  font-weight: bold;
+`
+const Subtitle = styled.p`
+  font-weight: normal;
+`
+
+const CardContainer = styled(Card)`
+  background-color: ${cardColor};
+  color: ${textColor};
+`
+
+const StyledMeta = styled(Meta)`
+  color: ${textColor};
+`
 
 const Container = styled.div`
   text-align: center;

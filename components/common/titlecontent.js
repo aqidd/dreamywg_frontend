@@ -1,6 +1,5 @@
-import { Row, Col, Typography } from 'antd'
-
-const { Text, Title } = Typography
+import { Row } from 'antd'
+import styled from 'styled-components'
 
 const TitleContent = ({ subtitle, title, flex }) => (
   <Row>
@@ -18,5 +17,15 @@ const TitleContent = ({ subtitle, title, flex }) => (
     </Row>
   </Row>
 )
+
+const Title = styled.p`
+  margin-top: -2vh;
+  font-size: calc(0.25em + 2.5vw);
+  font-weight: bold;
+`
+
+const Text = styled.p`
+  font-weight: normal;
+`
 
 export default TitleContent

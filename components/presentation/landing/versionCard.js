@@ -1,7 +1,6 @@
-import { Row, Col, Button, Typography } from 'antd'
+import { Row, Col, Button } from 'antd'
 import styled from 'styled-components'
 
-const { Text } = Typography
 
 const VersionCard = () => (
   <Row type="flex" justify="start" gutter={16}>
@@ -12,7 +11,7 @@ const VersionCard = () => (
     </Col>
     <Col>
       <VersionContainer>
-        <Text> Version 0.0.1 is Available </Text>
+        <p> Version 0.0.1 is Available </p>
       </VersionContainer>
     </Col>
   </Row>
