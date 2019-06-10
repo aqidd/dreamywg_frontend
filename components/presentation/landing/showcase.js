@@ -3,17 +3,18 @@ import { Row, Col, Typography, Button } from 'antd'
 import Image from '../../common/Image'
 import TitleContent from '../../common/titlecontent'
 import chatDemoImg from '../../../resources/chat-demo.png'
+import styled from 'styled-components'
 
 const { Paragraph } = Typography
 
 const Showcase = () => (
-  <div style={{ marginTop: '5vh' }}>
+  <Container>
     <Row type="flex" style={{ alignItems: 'center' }} gutter={64}>
       <Col xs={2} sm={2} md={12} lg={12}>
         <Image img={chatDemoImg} />
       </Col>
       <Col xs={20} sm={20} md={10} lg={7}>
-        <Row style={{ marginTop: '-5vh' }}>
+        <RowScaler>
           <Row>
             <TitleContent
               flex
@@ -33,11 +34,18 @@ const Showcase = () => (
               Get Started for free
             </Button>
           </Row>
-        </Row>
+        </RowScaler>
       </Col>
       <Col xs={2} sm={2} md={2} lg={2} xl={5} />
     </Row>
-  </div>
+  </Container>
 )
+
+const Container = styled.div`
+  margin-top: 5vh;
+`
+const RowScaler = styled(Row)`
+  margin-top: -5vh;
+`
 
 export default Showcase

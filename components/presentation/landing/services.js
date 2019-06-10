@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Col, Typography, Card, Icon } from 'antd'
 import TitleContent from '../../common/titlecontent'
+import styled from 'styled-components'
 const { Title, Text } = Typography
 const { Meta } = Card
 
@@ -23,7 +24,7 @@ const dataService = [
 ]
 
 const Services = () => (
-  <div style={{ textAlign: 'center', marginTop: '16vh', marginBottom: '16vh' }}>
+  <Container>
     <Row>
       <Row>
         <TitleContent
@@ -31,7 +32,7 @@ const Services = () => (
           title=" Featured Service that We Provide"
         />
       </Row>
-      <Row
+      <CardRow
         type="flex"
         justify="center"
         gutter={16}
@@ -44,9 +45,9 @@ const Services = () => (
             subtitle={data.content}
           />
         ))}
-      </Row>
+      </CardRow>
     </Row>
-  </div>
+  </Container>
 )
 
 const ServiceCard = ({ title, subtitle, icon }) => (
@@ -64,3 +65,13 @@ const ServiceCard = ({ title, subtitle, icon }) => (
   </Col>
 )
 export default Services
+
+const Container = styled.div`
+  text-align: center;
+  margin-top: 10vh;
+  margin-bottom: 16vh;
+`
+
+const CardRow = styled(Row)`
+  margin-top: 2vh;
+`

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Layout } from 'antd'
-import CustomHeader from '../components/customHeader'
-import LandingContent from '../components/presentation/landing/landingContent'
-import CustomFooter from '../components/customFooter'
+import CustomHeader from '../components/container/customHeader'
+import LandingContent from '../components/container/landingContent'
+import CustomFooter from '../components/container/customFooter'
 import 'antd/dist/antd.css'
+import styled from 'styled-components'
 
-const { Header, Footer, Content } = Layout
+const { Header, Footer } = Layout
 
 export default class LandingScreen extends Component {
   constructor(props) {
@@ -14,10 +15,10 @@ export default class LandingScreen extends Component {
   render = () => (
     <div>
       <Layout>
-        <Header>
+        <StyledHeader>
           <CustomHeader />
-        </Header>
-          <LandingContent />
+        </StyledHeader>
+        <LandingContent theme="white" />
         <Footer>
           <CustomFooter />
         </Footer>
@@ -25,3 +26,7 @@ export default class LandingScreen extends Component {
     </div>
   )
 }
+
+const StyledHeader = styled(Header)`
+  background-color: white;
+`
