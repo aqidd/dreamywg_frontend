@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import { Button, Input } from 'antd';
+import { Button, Input, Form } from 'antd';
 
 @inject('BaseStore')
 @observer
@@ -12,33 +12,36 @@ export default class GeneralInfo extends Component {
         // this.props.BaseStore.stop()
     }
 
+    handleSubmit = event => {
+        event.preventDefault();
+        
+    };
+
     render() {
         return (
-            <form>
-                <div>
-                    <label>First Name</label>
+            <Form onSubmit={this.handleSubmit}>
+                <Form.Item label="First Name">
                     <Input></Input>
-                </div>
-                <div>
-                    <label>Last Name</label>
+                </Form.Item>
+                <Form.Item label="Last Name">
                     <Input></Input>
-                </div>
-                <div>
-                    <label>Phone</label>
+                </Form.Item>
+                <Form.Item label="Phone">
                     <Input></Input>
-                </div>
-                <div>
-                    <label>Gender</label>
+                </Form.Item>
+                <Form.Item label="Gender">
+                    {/* todo : should be dropdown */}
                     <Input></Input>
-                </div>
-                <div>
-                    <label>Date of Birth</label>
+                </Form.Item>
+                <Form.Item label="Date of Birth">
                     <Input></Input>
-                </div>
-                <div>
-                    <Button>Submit</Button>
-                </div>
-            </form>
+                </Form.Item>
+                <Form.Item>
+                    <Button type="primary" htmlType="submit">
+                        Submit
+                    </Button>
+                </Form.Item>
+            </Form>
         );
     }
 }
