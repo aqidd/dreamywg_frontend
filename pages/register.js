@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import initStore from '../stores/registerStore'
 import { Provider } from 'mobx-react'
-import GeneralInfo from '../components/register/generalInfo';
+import GeneralInfo from '../components/presentation/register/generalInfo'
 import styled from 'styled-components'
+import { Layout } from 'antd';
+import CustomHeader from '../components/container/customHeader';
+import CustomFooter from '../components/container/customFooter';
+import BaseLayout from '../components/presentation/baseLayout';
 
 export default class Register extends Component {
     constructor(props) {
@@ -12,9 +16,13 @@ export default class Register extends Component {
 
     render() {
         return (
-            <Provider BaseStore={this.store}>
-                <GeneralInfo></GeneralInfo>
-            </Provider>
+            <BaseLayout>
+                <CustomHeader></CustomHeader>
+                <Provider BaseStore={this.store}>
+                    <GeneralInfo></GeneralInfo>
+                </Provider>
+                <CustomFooter></CustomFooter>
+            </BaseLayout>
         );
     }
 }
