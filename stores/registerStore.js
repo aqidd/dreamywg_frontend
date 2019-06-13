@@ -1,10 +1,22 @@
+import {observable} from 'mobx-react'
+import axios from 'axios'
 
 class Store {
-    constructor() {
+    @observable user = null
+    constructor(initialData = {}) {
+        this.user = initialData;
+    }
 
+    async register(userData) {
+        const response = await axios.post('');
+        this.setUser(response);
+    }
+
+    @action setUser(userData) {
+        this.user = userData;
     }
 }
 
-const initStore = () => new Store()
+const registerStore = () => new Store()
 
-export default initStore
+export default registerStore
