@@ -5,23 +5,31 @@ import LandingContent from '../components/container/landingContent'
 import CustomFooter from '../components/container/customFooter'
 import 'antd/dist/antd.css'
 import styled, { ThemeProvider } from 'styled-components'
-const { Header, Footer } = Layout
+import Router from 'next/router'
 
-const theme = 'dark'
+const { Header, Footer } = Layout
+const theme = 'light'
 
 export default class LandingScreen extends Component {
   constructor(props) {
     super(props)
+    this.onGetStarted.bind(this)
   }
+
+  onGetStarted = () => Router.push('/register')
+
+  onLogin = () => Router.push('/login')
+
   render = () => (
     <div>
       <Layout>
-        <StyledHeader
-          style={{ backgroundColor: theme === 'dark' ? '#222' : 'white' }}
-        >
-          <CustomHeader theme={theme} />
+        <StyledHeader>
+          <CustomHeader theme={theme} onLogin={() => this.onLogin()} />
         </StyledHeader>
-        <LandingContent theme={theme} />
+        <LandingContent
+          theme={theme}
+          onGetStarted={() => this.onGetStarted()}
+        />
         <StyledFooter>
           <CustomFooter />
         </StyledFooter>

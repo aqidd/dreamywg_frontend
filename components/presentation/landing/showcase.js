@@ -5,7 +5,7 @@ import TitleContent from '../../common/titlecontent'
 import chatDemoImg from '../../../resources/chat-demo.png'
 import styled from 'styled-components'
 
-const Showcase = () => (
+const Showcase = ({ onGetStarted }) => (
   <Container>
     <Row type="flex" style={{ alignItems: 'center' }} gutter={64}>
       <Col xs={2} sm={2} md={12} lg={12}>
@@ -28,7 +28,7 @@ const Showcase = () => (
             </Paragraph>
           </Row>
           <Row>
-            <Button size="large" type="primary">
+            <Button size="large" type="primary" onClick={() => onGetStarted()}>
               Get Started for free
             </Button>
           </Row>
