@@ -1,6 +1,6 @@
 import {action, observable} from "mobx"
-import axios from "axios";
 import Router from "next/dist/client/router";
+import network from '../util/network';
 
 class Store {
   @observable confirmationResult = {msg: "", status: true};
@@ -11,7 +11,7 @@ class Store {
   }
 
   @action verify = () => {
-    axios.get(`http://localhost:4005/confirmation/${Router.query.token}`)
+    network.confirmation(Router.query.token)
       .then((response) => {
         this.confirmationResult.msg = response.data;
         this.confirmationResult.status = true;
