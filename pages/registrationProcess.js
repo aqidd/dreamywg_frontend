@@ -1,20 +1,24 @@
 import React, {Component} from 'react'
-import { Steps, Button, message } from 'antd';
-import { Provider } from 'mobx-react'
+import {Steps} from 'antd';
+import {Provider} from 'mobx-react'
 import 'antd/dist/antd.css'
 import RegistrationStepStore from '../stores/registrationStepStore'
-import RegistrationSteps from '../components/container/registrationSteps'
-const { Step } = Steps;
+import RegistrationFlatmatePreferences from "../components/container/registrationFlatmatePreferences";
+import RegistrationFlatDetails from "../components/container/registrationFlatDetails";
+import RegistrationFlatmates from "../components/container/registrationFlatmates";
+
+const {Step} = Steps;
 
 
 export default class RegistrationProcess extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.store = RegistrationStepStore()
-  
+
   }
+
   render() {
-    const stepsComponent = steps.map(item => <Step key={item.title} title={item.title} />)
+    const stepsComponent = steps.map(item => <Step key={item.title} title={item.title}/>);
     return (
       <Provider store={this.store}>
         <div>
@@ -36,16 +40,20 @@ export default class RegistrationProcess extends Component {
 
 const steps = [
   {
-    title: 'Your Profile',
+    title: 'General Information',
+    content: <div>step 0</div>
+  }, {
+    title: 'Offerer or seeker?',
     content: <div>step 1</div>
   }, {
-    title: 'Who are you?',
-    content: <div>step 2</div>
+    title: 'Flat details',
+    content: <RegistrationFlatDetails/>
   }, {
-    title: 'Flat preferences',
-    content: <RegistrationSteps/>
-  }, {
-    title: 'Completed',
-    content: <div> final step </div>
+    title: 'Flatmates',
+    content: <RegistrationFlatmates/>
+  },
+  {
+    title: 'Flatmate preferences',
+    content: <RegistrationFlatmatePreferences/>
   }
-]
+];
