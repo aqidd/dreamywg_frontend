@@ -32,34 +32,34 @@ const steps = [
     title: 'General Information',
     content: <div>step 0</div>,
     next: 'Next',
-    back: null
+    back: 'Back'
   },
   {
     title: 'Offerer or seeker?',
-    content: <ChoiceContainer />,
-    next: null,
-    back: null
+    content: <ChoiceContainer/>,
+    next: 'Next',
+    back: 'Back'
   },
   {
     title: 'Flat details',
-    content: <RegistrationFlatDetails />,
+    content: <RegistrationFlatDetails/>,
     next: 'Next',
     back: 'Back'
   },
   {
     title: 'Flatmates',
-    content: <RegistrationFlatmates />,
+    content: <RegistrationFlatmates/>,
     next: 'Next',
     back: 'Back'
   },
   {
     title: 'Flatmate preferences',
-    content: <RegistrationFlatmatePreferences />,
-    next: 'Done',
+    content: <RegistrationFlatmatePreferences/>,
+    next: 'Next',
     back: 'Back'
-  },   {
+  }, {
     title: 'Summary',
-    content: <RegistrationSummary/>
+    content: <RegistrationSummary/>,
     next: 'Done',
     back: 'Back'
   }

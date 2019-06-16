@@ -26,7 +26,7 @@ class RegistrationFlatmatePreferences extends Component {
         this.props.store.FlatmatePreferencesFlatshareActivities = values.FlatmatePreferencesFlatshareActivities;
         this.props.store.FlatmatePreferencesSmoker = values.FlatmatePreferencesSmoker;
         this.props.store.FlatmatePreferencesPetsAllowed = values.FlatmatePreferencesPetsAllowed;
-        this.props.store.nextStep()
+        this.props.store.nextStep();
       }
     });
   };

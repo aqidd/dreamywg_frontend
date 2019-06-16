@@ -23,9 +23,9 @@ class Store {
   isMin = () => this.currentSteps === 0;
   isMax = () => this.currentSteps === this.maxSteps;
 
-  @action nextStep = () => !this.isMax() && (this.currentSteps = this.currentSteps + 1);
+  @action nextStep = () => !this.isMax() && (this.currentSteps += 1);
 
-  @action prevStep = () => !this.isMin() && (this.currentSteps = this.currentSteps - 1);
+  @action prevStep = () => !this.isMin() && (this.currentSteps -= 1);
 }
 
 const RegistrationStepStore = () => new Store();
