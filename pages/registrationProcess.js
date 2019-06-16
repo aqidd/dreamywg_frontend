@@ -40,7 +40,7 @@ const steps = [
   },
   {
     title: 'Flat details',
-    content: <RegistrationFlatDetails />,
+    content: <RegistrationFlatDetails/>,
     next: 'Next',
     back: 'Back'
   },

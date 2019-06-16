@@ -35,10 +35,14 @@ export default class StepsContentContainer extends Component {
     type === 'Next' ? this.props.store.nextStep() : this.props.store.prevStep()
     this.forceUpdate()
   }
+  onSubmit = () => {
+    
+  }
 
   render = () => {
     const { currentSteps } = this.props.store
     const { data } = this.props
+    const Content = data[currentSteps].content
     return (
       <StepContainer>
         <Row>
@@ -51,7 +55,7 @@ export default class StepsContentContainer extends Component {
                 ))}
               </Steps>
               <div className="steps-content">
-                <Row>{data[currentSteps].content}</Row>
+                <Row> {data[currentSteps].content} </Row>
               </div>
             </Row>
             <Row>
