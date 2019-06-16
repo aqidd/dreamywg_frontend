@@ -10,7 +10,7 @@ let config = {
 
 const Api = {
   login: (username, password) => axios.post(serverUrl + "", {username, password}, config),
-  register: (registerForm) => axios.post(serverUrl + "", registerForm, config),
+  register: (userData) => axios.post(`${serverUrl}/users`, userData, config),
   confirmation: (token) => axios.get(`${serverUrl}/confirmation/${token}`)
 };
 
