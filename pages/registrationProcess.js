@@ -3,10 +3,10 @@ import { Layout } from 'antd'
 import { Provider } from 'mobx-react'
 import 'antd/dist/antd.css'
 import RegistrationStepStore from '../stores/registrationStepStore'
-import RegistrationFlatmatePreferences from '../components/container/registrationFlatmatePreferences'
-import RegistrationFlatDetails from '../components/container/registrationFlatDetails'
-import RegistrationFlatmates from '../components/container/registrationFlatmates'
-import StepsContentContainer from '../components/container/StepsContainer'
+import RegistrationFlatmatePreferences from '../components/container/Registrations/registrationFlatmatePreferences'
+import RegistrationFlatDetails from '../components/container/Registrations/registrationFlatDetails'
+import RegistrationFlatmates from '../components/container/Registrations/registrationFlatmates'
+import StepsContentContainer from '../components/container/Registrations/StepsContainer'
 
 
 export default class RegistrationProcess extends Component {
