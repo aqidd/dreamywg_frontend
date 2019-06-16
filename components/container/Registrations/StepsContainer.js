@@ -5,15 +5,23 @@ import styled from 'styled-components'
 
 const { Step } = Steps
 
-const ControlButton = ({ click, current, length }) => (
+const ControlButton = ({ click, current, length, next, back }) => (
   <div className="steps-action">
-    {current != 0 ? (
-      <Button onClick={() => click('prev')} type="default">
-        Back
+    {back != null ? (
+      <Button onClick={() => click(back)} type="default">
+        {back}
       </Button>
     ) : (
       <div />
     )}
+    {next === null ? (
+    <div />
+  ) : (
+    <Button onClick={() => click(next)} type="primary">
+      {next}
+    </Button>
+  )}
+
     <Button onClick={() => click('next')} type="primary">
       {current === length - 1 ? 'Done' : 'Next'}
     </Button>
@@ -28,7 +36,7 @@ export default class StepsContentContainer extends Component {
   }
 
   handleClick = type => {
-    type === 'next' ? this.props.store.nextStep() : this.props.store.prevStep()
+    type === 'Next' ? this.props.store.nextStep() : this.props.store.prevStep()
     this.forceUpdate()
   }
 
@@ -52,6 +60,8 @@ export default class StepsContentContainer extends Component {
             </Row>
             <Row>
               <ControlButton
+                next={data[currentSteps].next}
+                back={data[currentSteps].back}
                 click={value => this.handleClick(value)}
                 current={currentSteps}
                 length={data.length}

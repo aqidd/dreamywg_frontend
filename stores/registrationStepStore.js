@@ -14,7 +14,7 @@ class Store {
   @observable FlatmatePreferencesSmoker;
   @observable FlatmatePreferencesPetsAllowed;
 
-  @observable currentSteps = 0;
+  @observable currentSteps = 1;
   @observable maxSteps = 0;
 
   constructor() {
