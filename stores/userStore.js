@@ -11,7 +11,6 @@ class UserStore {
     }
 
     initData() {
-        console.log('initial data')
         this.user = {
             firstName: ''
         };

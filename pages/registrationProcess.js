@@ -32,7 +32,7 @@ export default class RegistrationProcess extends Component {
 const steps = [
   {
     title: 'General Information',
-    content: <GeneralInfo/>,
+    content: GeneralInfo,
     next: 'Next',
     back: 'Back'
   },
