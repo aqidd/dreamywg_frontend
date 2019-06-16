@@ -1,27 +1,29 @@
 import React, {Component} from 'react'
 import {Provider} from 'mobx-react'
 import 'antd/dist/antd.css'
-import RegistrationStepStore from '../stores/registrationStepStore'
+import RegistrationRootStore from '../stores/registrationRootStore'
+import GeneralInfo from '../components/presentation/register/generalInfo'
 import RegistrationFlatmatePreferences from '../components/container/Registrations/registrationFlatmatePreferences'
 import RegistrationFlatDetails from '../components/container/Registrations/registrationFlatDetails'
 import RegistrationFlatmates from '../components/container/Registrations/registrationFlatmates'
 import StepsContentContainer from '../components/container/Registrations/StepsContainer'
-
 import RegistrationSummary from "../components/container/registrationSummary";
-
 import ChoiceContainer from '../components/presentation/registration/ChoiceContainer'
+import BaseLayout from '../components/presentation/baseLayout';
 
 export default class RegistrationProcess extends Component {
   constructor(props) {
     super(props);
-    this.store = RegistrationStepStore()
+    this.store = RegistrationRootStore()
   }
 
   render() {
     this.store.maxSteps = steps.length - 1;
     return (
       <Provider store={this.store}>
-        <StepsContentContainer data={steps}/>
+        <BaseLayout>
+          <StepsContentContainer data={steps}/>
+        </BaseLayout>
       </Provider>
     )
   }
@@ -30,7 +32,7 @@ export default class RegistrationProcess extends Component {
 const steps = [
   {
     title: 'General Information',
-    content: <div>step 0</div>,
+    content: <GeneralInfo/>,
     next: 'Next',
     back: 'Back'
   },

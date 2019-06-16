@@ -2,13 +2,16 @@ import {action, observable} from 'mobx'
 import axios from 'axios'
 import network from '../util/network'
 
-class Store {
+class UserStore {
     @observable user = null
-    @observable currentSteps = 0
 
-    constructor() {
+    constructor(rootStore) {
+        this.rootStore = rootStore
+        this.initData();
+    }
+
+    initData() {
         console.log('initial data')
-        this.currentSteps = 0
         this.user = {
             firstName: ''
         };
@@ -34,17 +37,6 @@ class Store {
         }
         return response;
     }
-
-    @action getCurrentSteps() {
-        return this.currentSteps;
-    }
-
-    @action stepForward() {
-        this.currentSteps++;
-        console.log(this.currentSteps)
-    }
 }
 
-const registerStore = () => new Store();
-
-export default registerStore
+export default UserStore

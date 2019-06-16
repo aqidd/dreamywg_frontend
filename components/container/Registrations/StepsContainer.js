@@ -35,12 +35,13 @@ export default class StepsContentContainer extends Component {
   }
 
   handleClick = type => {
-    type === 'Next' ? this.props.store.nextStep() : this.props.store.prevStep()
+    type === 'Next' ? this.props.store.registrationStepStore.nextStep() : 
+                      this.props.store.registrationStepStore.prevStep()
     this.forceUpdate()
   }
 
   render = () => {
-    const { currentSteps } = this.props.store
+    const { currentSteps } = this.props.store.registrationStepStore
     const { data } = this.props
     return (
       <StepContainer>
