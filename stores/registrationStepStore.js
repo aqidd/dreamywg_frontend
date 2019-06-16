@@ -1,23 +1,25 @@
-import {observable} from "mobx"
-
+import { observable, action } from 'mobx'
 
 class Store {
+  @observable currentSteps = 0
+  @observable maxSteps = 0
 
-  @observable currentSteps = 4;
+  constructor() {}
 
+  isMin = () => this.currentSteps === 0
+  isMax = () => this.currentSteps === this.maxSteps
 
-  constructor() {
+  @action nextStep = () =>
+    this.isMax()
+      ? (this.currentSteps = this.currentSteps)
+      : (this.currentSteps = this.currentSteps + 1)
 
-  }
-
-
-  nextStep = () => this.currentSteps += 1;
-
-  prevStep = () => this.currentSteps -= 1
-
-
+  @action prevStep = () =>
+    this.isMin()
+      ? (this.currentSteps = this.currentSteps)
+      : (this.currentSteps = this.currentSteps - 1)
 }
 
-const RegistrationStepStore = () => new Store();
+const RegistrationStepStore = () => new Store()
 
 export default RegistrationStepStore
