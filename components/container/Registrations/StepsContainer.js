@@ -7,9 +7,6 @@ const { Step } = Steps
 
 const ControlButton = ({ click, current, length }) => (
   <div className="steps-action">
-    <Button onClick={() => click('next')} type="primary">
-      {current === length - 1 ? 'Done' : 'Next'}
-    </Button>
     {current != 0 ? (
       <Button onClick={() => click('prev')} type="default">
         Back
@@ -17,6 +14,9 @@ const ControlButton = ({ click, current, length }) => (
     ) : (
       <div />
     )}
+    <Button onClick={() => click('next')} type="primary">
+      {current === length - 1 ? 'Done' : 'Next'}
+    </Button>
   </div>
 )
 
