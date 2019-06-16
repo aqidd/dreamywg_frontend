@@ -19,9 +19,12 @@ export default class GeneralInfo extends Component {
 
     render() {
         return (
+            <div>
+            <p>{this.props.BaseStore.user.firstName}</p>
             <Form onSubmit={this.handleSubmit}>
                 <Form.Item label="First Name">
-                    <Input></Input>
+                    <Input value={this.props.BaseStore.user.firstName} 
+                    onChange={this.props.BaseStore.user.firstName = target.value}></Input>
                 </Form.Item>
                 <Form.Item label="Last Name">
                     <Input></Input>
@@ -42,6 +45,7 @@ export default class GeneralInfo extends Component {
                     </Button>
                 </Form.Item>
             </Form>
+            </div>
         );
     }
 }

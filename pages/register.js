@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import initStore from '../stores/registerStore'
+import registerStore from '../stores/registerStore'
 import { Provider } from 'mobx-react'
 import GeneralInfo from '../components/presentation/register/generalInfo'
 import styled from 'styled-components'
@@ -11,7 +11,7 @@ import BaseLayout from '../components/presentation/baseLayout';
 export default class Register extends Component {
     constructor(props) {
         super(props);
-        this.store = initStore();
+        this.store = registerStore();
     }
 
     render() {

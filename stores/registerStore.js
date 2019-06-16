@@ -1,4 +1,4 @@
-import {observable} from 'mobx-react'
+import {action, observable} from 'mobx'
 import axios from 'axios'
 
 class Store {
