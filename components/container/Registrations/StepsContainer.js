@@ -21,6 +21,9 @@ const ControlButton = ({ click, current, length, next, back }) => (
     ) : (
       <div />
     )}
+    <Button onClick={() => click('next')} type="primary">
+      {current === length - 1 ? 'Done' : 'Next'}
+    </Button>
   </div>
 )
 
