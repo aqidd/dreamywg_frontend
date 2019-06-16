@@ -8,10 +8,12 @@ let config = {
   }
 };
 
+const currentURL = URL.devUrl
+
 const Api = {
-  login: (username, password) => axios.post(serverUrl + "", {username, password}, config),
-  register: (userData) => axios.post(`${serverUrl}/users`, userData, config),
-  confirmation: (token) => axios.get(`${serverUrl}/confirmation/${token}`)
+  login: (username, password) => axios.post(currentUrl + "", {username, password}, config),
+  register: (userData) => axios.post(`${currentUrl}/users`, userData, config),
+  confirmation: (token) => axios.get(`${currentUrl}/confirmation/${token}`)
 };
 
 
