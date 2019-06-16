@@ -7,7 +7,7 @@ import RegistrationFlatmatePreferences from '../components/container/Registratio
 import RegistrationFlatDetails from '../components/container/Registrations/registrationFlatDetails'
 import RegistrationFlatmates from '../components/container/Registrations/registrationFlatmates'
 import StepsContentContainer from '../components/container/Registrations/StepsContainer'
-
+import ChoiceContainer from '../components/presentation/registration/ChoiceContainer'
 
 export default class RegistrationProcess extends Component {
   constructor(props) {
@@ -28,22 +28,32 @@ export default class RegistrationProcess extends Component {
 const steps = [
   {
     title: 'General Information',
-    content: <div>step 0</div>
+    content: <div>step 0</div>,
+    next: 'Next',
+    back: null
   },
   {
     title: 'Offerer or seeker?',
-    content: <div>step 1</div>
+    content: <ChoiceContainer />,
+    next: null,
+    back: null
   },
   {
     title: 'Flat details',
-    content: <RegistrationFlatDetails />
+    content: <RegistrationFlatDetails />,
+    next: 'Next',
+    back: 'Back'
   },
   {
     title: 'Flatmates',
-    content: <RegistrationFlatmates />
+    content: <RegistrationFlatmates />,
+    next: 'Next',
+    back: 'Back'
   },
   {
     title: 'Flatmate preferences',
-    content: <RegistrationFlatmatePreferences />
+    content: <RegistrationFlatmatePreferences />,
+    next: 'Done',
+    back: 'Back'
   }
 ]
