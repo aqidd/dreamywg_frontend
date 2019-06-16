@@ -1,62 +1,95 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Form, Input, Select, DatePicker, Switch } from 'antd'
+import { Form, Input, Select, DatePicker, Switch, Row, Col, Button } from 'antd'
 
 const { Option } = Select
 
-const RegistrationFlatDetails = () => (
-  <Container>
-    <Title>Your Flat details</Title>
-    <Form layout="vertical" onSubmit={() => {}}>
-      <Item>
-        <Input placeholder="Location" />
-      </Item>
-      <Item>
-        <RentTypeSelect value={['limited', 'unlimited']} />
-      </Item>
-      <Item>
-        <RentTypeSelect value={['student only', 'male only', 'female only']} />
-      </Item>
-      <Item>
-        <Input addonAfter="Square Meter" placeholder="size" />
-      </Item>
-      <Item>
-        <Input addonAfter="month" placeholder="Minimum" />
-      </Item>
-      <Item label="Data available">
-        <DatePicker />
-      </Item>
-      <Item label="furnished">
-        <Switch defaultChecked />
-      </Item>
-      <Item label="Nearby station/store">
-        <RentTypeSelect
-          type="tags"
-          value={[
-            'Bus',
-            'S-Bahn Station',
-            'U-Bahn Station',
-            'Tram',
-            'Supermarket',
-            'Department Store'
-          ]}
-        />
-      </Item>
-    </Form>
-  </Container>
-)
+class FlatDetails extends Component {
+  constructor(props) {
+    super(props)
+  }
+  handleResult = (type, result) => {
+    result.preventDefault()
+    this.props.form.validateFields((error, values) => {
+      if (error) {
+        console.error(error)
+      } else {
+        console.log(values)
+      }
+    })
+  }
+  render() {
+    return (
+      <Container>
+        <Title>Your Flat details</Title>
+        <Form
+          layout="vertical"
+          onSubmit={e => {
+            console.log(e)
+          }}
+        >
+          <Item>
+            <Input placeholder="Location" />
+          </Item>
+          <Item>
+            <Selections value={['limited', 'unlimited']} />
+          </Item>
+          <Item>
+            <Selections value={['student only', 'male only', 'female only']} />
+          </Item>
+          <Input.Group>
+            <Row gutter={5}>
+              <Col span={12}>
+                <Item>
+                  <Input addonAfter="Square Meter" placeholder="size" />
+                </Item>
+              </Col>
+              <Col span={12}>
+                <Item>
+                  <Input addonAfter="month" placeholder="Minimum" />
+                </Item>
+              </Col>
+            </Row>
+          </Input.Group>
+          <Item label="Date available">
+            <DatePicker />
+          </Item>
 
-const RentTypeSelect = ({ style, value, type = 'default' }) => (
-  <Select
-    style={style}
-    mode={type}
-    defaultValue={value[0]}
-    onChange={data => {
-      console.log(data)
-    }}
-  >
-    {value.map(val => (
-      <Option value={val}>{val}</Option>
+          <Item label="furnished">
+            <Switch defaultChecked />
+          </Item>
+          <Item label="Nearby station/store">
+            <Selections
+              type="tags"
+              value={[
+                'Bus',
+                'S-Bahn Station',
+                'U-Bahn Station',
+                'Tram',
+                'Supermarket',
+                'Department Store'
+              ]}
+            />
+          </Item>
+          <Button
+            htmlType="submit"
+            onClick={result => this.handleResult('Next', result)}
+            type="primary"
+          >
+            Next
+          </Button>
+        </Form>
+      </Container>
+    )
+  }
+}
+
+const Selections = ({ style, value, type = 'default' }) => (
+  <Select style={style} mode={type} defaultValue={value[0]}>
+    {value.map((val, index) => (
+      <Option key={index} value={val}>
+        {val}
+      </Option>
     ))}
   </Select>
 )
@@ -69,5 +102,9 @@ const Title = styled.p`
 const Container = styled.div`
   margin-top: 5vh;
 `
+
+const RegistrationFlatDetails = Form.create({
+  name: 'registration-flat-detail'
+})(FlatDetails)
 
 export default RegistrationFlatDetails

@@ -13,9 +13,11 @@ let config = {
      }
 }
 
+const currentURL = URL.devUrl
+
 const Api = {
-     login =  (username, password) => axios.post(devUrl + "", {username, password}, config),
-     register = (registerForm) => axios.post(devUrl + "", registerForm, config)
+     login =  (username, password) => axios.post(currentURL + "", {username, password}, config),
+     register = (registerForm) => axios.post(currentURL + "", registerForm, config)
 }
 
 
