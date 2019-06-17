@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import styled from 'styled-components'
-import { Form, Input, Select, DatePicker, Switch, Row, Col, Button } from 'antd'
+import { DatePicker, Switch, Row, Col, Button, Select, Form } from 'antd'
 import Title from '../../common/title'
 const { Option } = Select
+import {Item, WrappedInput, WrappedOthersInput, Selections, Container} from '../../common/Form'
 
 @inject('store')
 @observer
@@ -14,7 +14,7 @@ class FlatDetails extends Component {
   handleResult = (type, result) => {
     result.preventDefault()
     this.props.form.validateFields((error, values) => {
-      error && type != 'Back'
+      error && type !== 'Back'
         ? this.displayError(error)
         : type === 'Next'
         ? this.props.onNext(values)
@@ -164,36 +164,6 @@ class FlatDetails extends Component {
     )
   }
 }
-
-const WrappedInput = ({ type, dec, objName, placeHolder, suffix }) =>
-  dec(objName, {
-    rules: [{ required: true, message: 'Please complete this field!' }]
-  })(<Input type={type} addonAfter={suffix} placeholder={placeHolder} />)
-
-const WrappedOthersInput = ({ tag, dec, objName }) =>
-  dec(objName, {
-    rules: [{ required: true, message: 'Please complete this field!' }]
-  })(tag)
-
-const Selections = ({ dec, objName, placeHolder, value, type = 'default' }) =>
-  dec(objName, {
-    rules: [{ required: true, message: 'Please complete this field!' }]
-  })(
-    <Select mode={type} placeholder={placeHolder}>
-      {value.map((val, index) => (
-        <Option key={index} value={val}>
-          {val}
-        </Option>
-      ))}
-    </Select>
-  )
-
-const Item = props => <Form.Item {...props}>{props.children}</Form.Item>
-
-const Container = styled.div`
-  margin-top: 5vh;
-`
-
 const RegistrationFlatDetails = Form.create({
   name: 'registration-flat-detail'
 })(FlatDetails)

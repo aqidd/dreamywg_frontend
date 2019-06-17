@@ -1,92 +1,48 @@
-import React, { Component } from 'react'
-import { inject, observer } from 'mobx-react'
+import React, {Component} from 'react'
+import {inject, observer} from 'mobx-react'
 import store from '../../../stores/registrationStepStore'
-import { Button, Form, Input, InputNumber, Select, Switch } from 'antd'
+import {Button, Form, Input, InputNumber, Select, Switch} from 'antd'
 import Title from '../../common/title'
-import styled from 'styled-components'
+import {Container, Item, Selections, WrappedOthersInput} from '../../common/Form'
 
-const InputGroup = Input.Group
+const InputGroup = Input.Group;
 
-const { Option } = Select
+const {Option} = Select;
 
 @inject('store')
 @observer
 class RegistrationFlatmatePreferences extends Component {
-  handleSubmit = e => {
-    e.preventDefault()
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        console.log(values)
-        this.props.store.FlatmatePreferencesAgeFrom =
-          values.FlatmatePreferencesAgeFrom
-        this.props.store.FlatmatePreferencesAgeTo =
-          values.FlatmatePreferencesAgeTo
-        this.props.store.FlatmatePreferencesGender =
-          values.FlatmatePreferencesGender
-        this.props.store.FlatmatePreferencesOccupations =
-          values.FlatmatePreferencesOccupations
-        this.props.store.FlatmatePreferencesFlatshareExperience =
-          values.FlatmatePreferencesFlatshareExperience
-        this.props.store.FlatmatePreferencesPracticeOfAbstaining =
-          values.FlatmatePreferencesPracticeOfAbstaining
-        this.props.store.FlatmatePreferencesCleanliness =
-          values.FlatmatePreferencesCleanliness
-        this.props.store.FlatmatePreferencesCleaningSchedule =
-          values.FlatmatePreferencesCleaningSchedule
-        this.props.store.FlatmatePreferencesFlatshareActivities =
-          values.FlatmatePreferencesFlatshareActivities
-        this.props.store.FlatmatePreferencesSmoker =
-          values.FlatmatePreferencesSmoker
-        this.props.store.FlatmatePreferencesPetsAllowed =
-          values.FlatmatePreferencesPetsAllowed
-        this.props.store.registrationStepStore.nextStep()
-      }
+  handleResult = (type, result) => {
+    result.preventDefault();
+    this.props.form.validateFields((error, values) => {
+      error && type !== 'Back'
+        ? this.displayError(error)
+        : type === 'Next'
+        ? this.props.onNext(values)
+        : this.props.onBack(values)
     })
-  }
+  };
 
   render() {
-    const { getFieldDecorator } = this.props.form
-    const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 8 }
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 16 }
-      }
-    }
-    const tailFormItemLayout = {
-      wrapperCol: {
-        xs: {
-          span: 24,
-          offset: 0
-        },
-        sm: {
-          span: 16,
-          offset: 8
-        }
-      }
-    }
+    const {getFieldDecorator} = this.props.form;
 
     return (
       <Container>
         <Title> Flat Preferences </Title>
-        <Form layout={'vertical'} onSubmit={this.handleSubmit}>
-          <Form.Item label="Gender">
-            {getFieldDecorator('FlatmatePreferencesGender')(
-              <Select placeholder="Please select">
-                <Option value="Female">Females only</Option>
-                <Option value="Male">Male only</Option>
-                <Option value="Non">Both</Option>
-              </Select>
-            )}
-          </Form.Item>
+        <Form layout={'vertical'}>
+          <Item label="Gender">
+            <Selections
+              placeHolder="Please select"
+              dec={getFieldDecorator}
+              objName="gender"
+              value={['Females only', 'Male only', 'Both']}
+            />
+          </Item>
 
-          <Form.Item label="Age">
+          <Item label="Age">
             <InputGroup compact>
               {getFieldDecorator('FlatmatePreferencesAgeFrom')(
-                <InputNumber style={{ width: 70, textAlign: 'center' }} />
+                <InputNumber style={{width: 70, textAlign: 'center'}}/>
               )}
               <Input
                 style={{
@@ -100,24 +56,24 @@ class RegistrationFlatmatePreferences extends Component {
               />
               {getFieldDecorator('FlatmatePreferencesAgeTo')(
                 <InputNumber
-                  style={{ width: 70, textAlign: 'center', borderLeft: 0 }}
+                  style={{width: 70, textAlign: 'center', borderLeft: 0}}
                 />
               )}
             </InputGroup>
-          </Form.Item>
+          </Item>
 
-          <Form.Item label="Occupations">
-            {getFieldDecorator('FlatmatePreferencesOccupations')(
-              <Select mode="multiple" placeholder="Please select">
-                <Option value="Student">Student</Option>
-                <Option value="Working">Working</Option>
-                <Option value="On Vacation">On Vacation</Option>
-              </Select>
-            )}
-          </Form.Item>
+          <Item label="Occupations">
+            <Selections
+              placeHolder="Add nearby station"
+              type="multiple"
+              dec={getFieldDecorator}
+              objName="occupations"
+              value={['Student', 'Working', 'On Vacation']}
+            />
+          </Item>
 
-          <Form.Item label="Required flatshare experience">
-            {getFieldDecorator('FlatmatePreferencesFlatshareExperience')(
+          <Item label="Required flatshare experience">
+            {getFieldDecorator('flatshareExperience')(
               <Select placeholder="Please select">
                 <Option value="0">None</Option>
                 <Option value="1">&lt; 1 year</Option>
@@ -125,53 +81,42 @@ class RegistrationFlatmatePreferences extends Component {
                 <Option value="3">&gt; 2 years</Option>
               </Select>
             )}
-          </Form.Item>
+          </Item>
 
-          <Form.Item label="Accepted Practices of Abstaining">
-            {getFieldDecorator('FlatmatePreferencesPracticeOfAbstaining')(
-              <Select mode="multiple" placeholder="Please select">
-                <Option value="Vegan">Vegan</Option>
-                <Option value="Vegetarian">Vegetarian</Option>
-                <Option value="Paleo">Paleo</Option>
-              </Select>
-            )}
-          </Form.Item>
+          <Item label="Accepted Practices of Abstaining">
+            <Selections
+              placeHolder="Please select"
+              type="multiple"
+              dec={getFieldDecorator}
+              objName="practiceOfAbstaining"
+              value={['Vegan', 'Vegetarian', 'Paleo']}
+            />
+          </Item>
 
-          <Form.Item label="Expected Cleanliness">
-            {getFieldDecorator('FlatmatePreferencesCleanliness')(
-              <Select placeholder="Please select">
-                <Option value="0">We don't care</Option>
-                <Option value="1">
-                  Common rooms should be tidied up regularly
-                </Option>
-                <Option value="2">Common rooms must always be clean</Option>
-              </Select>
-            )}
-          </Form.Item>
+          <Item label="Expected Cleanliness">
+            <Selections
+              placeHolder="Please select"
+              dec={getFieldDecorator}
+              objName="cleanliness"
+              value={['We don\'t care', 'Common rooms should be tidied up regularly', 'Common rooms must always be clean']}
+            />
+          </Item>
 
-          <Form.Item label="Cleaning schedule">
-            {getFieldDecorator('FlatmatePreferencesCleaningSchedule')(
-              <Select placeholder="Please select">
-                <Option value="0">None</Option>
-                <Option value="1">
-                  Whole appartment cleand by one flatmate; (bi-)weekly &
-                  rotating
-                </Option>
-                <Option value="2">
-                  Each flatmate cleans 1-2 rooms; (bi-)weekly & rotating
-                </Option>
-                <Option value="3">Cleaningstaff</Option>
-                <Option value="4">Others</Option>
-              </Select>
-            )}
-          </Form.Item>
+          <Item label="Cleaning schedule">
+            <Selections
+              placeHolder="Please select"
+              dec={getFieldDecorator}
+              objName="cleaningSchedule"
+              value={['None', 'Whole appartment cleand by one flatmate; (bi-)weekly &rotating', 'Each flatmate cleans 1-2 rooms; (bi-)weekly & rotating', 'Cleaningstaff', 'Others']}
+            />
+          </Item>
 
           <Form.Item label="Flatshare activities">
             {getFieldDecorator('FlatmatePreferencesFlatshareActivities')(
               <Select
                 mode="tags"
                 placeholder="Please select"
-                style={{ width: '100%' }}
+                style={{width: '100%'}}
                 tokenSeparators={[',']}
               >
                 {['Cooking', 'Partying', 'Drinking Wine/Beer', 'Sport'].map(
@@ -185,30 +130,41 @@ class RegistrationFlatmatePreferences extends Component {
             )}
           </Form.Item>
 
-          <Form.Item label="Smokers">
-            {getFieldDecorator('FlatmatePreferencesSmoker')(<Switch />)}
-          </Form.Item>
+          <Item label="Smokers">
+            <WrappedOthersInput
+              tag={<Switch defaultChecked={false}/>}
+              dec={getFieldDecorator}
+              objName="smokersAllowed"
+            />
+          </Item>
 
-          <Form.Item label="Pets">
-            {getFieldDecorator('FlatmatePreferencesPetsAllowed')(<Switch />)}
-          </Form.Item>
+          <Item label="Pets">
+            <WrappedOthersInput
+              tag={<Switch defaultChecked={false}/>}
+              dec={getFieldDecorator}
+              objName="petsAllowed"
+            />
+          </Item>
 
-          <NextButton type="primary" htmlType="submit">
+          <Button
+            style={{float: 'right'}}
+            htmlType="submit"
+            onClick={result => this.handleResult('Next', result)}
+            type="primary"
+          >
             Next
-          </NextButton>
+          </Button>
+          <Button
+            htmlType="submit"
+            onClick={result => this.handleResult('Back', result)}
+          >
+            Back
+          </Button>
         </Form>
       </Container>
     )
   }
 }
-
-const Container = styled.div`
-  margin-top: 5vh;
-`
-
-const NextButton = styled(Button)`
-  float: right;
-`
 
 
 export default Form.create()(RegistrationFlatmatePreferences)
