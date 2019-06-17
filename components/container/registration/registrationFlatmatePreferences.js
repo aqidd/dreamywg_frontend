@@ -1,19 +1,21 @@
-import React, {Component} from 'react'
-import {inject, observer} from 'mobx-react'
-import store from '../../../stores/registrationStepStore'
-import {Button, Form, Input, InputNumber, Select, Switch} from 'antd'
+import React, { Component } from 'react'
+import { inject, observer } from 'mobx-react'
+import { Button, Form, Input, InputNumber, Select, Switch } from 'antd'
 import Title from '../../common/title'
-import {Container, Item, Selections, WrappedOthersInput} from '../../common/Form'
+import Container from '../../common/form/container'
+import WrappedSelection from '../../common/form/wrappedSelection'
+import WrappedAnyInput from '../../common/form/wrappedAnyInput'
 
-const InputGroup = Input.Group;
+const Item = Form.Item
+const InputGroup = Input.Group
 
-const {Option} = Select;
+const { Option } = Select
 
 @inject('store')
 @observer
 class RegistrationFlatmatePreferences extends Component {
   handleResult = (type, result) => {
-    result.preventDefault();
+    result.preventDefault()
     this.props.form.validateFields((error, values) => {
       error && type !== 'Back'
         ? this.displayError(error)
@@ -21,17 +23,17 @@ class RegistrationFlatmatePreferences extends Component {
         ? this.props.onNext(values)
         : this.props.onBack(values)
     })
-  };
+  }
 
   render() {
-    const {getFieldDecorator} = this.props.form;
+    const { getFieldDecorator } = this.props.form
 
     return (
       <Container>
         <Title> Flat Preferences </Title>
         <Form layout={'vertical'}>
           <Item label="Gender">
-            <Selections
+            <WrappedSelection
               placeHolder="Please select"
               dec={getFieldDecorator}
               objName="gender"
@@ -42,7 +44,7 @@ class RegistrationFlatmatePreferences extends Component {
           <Item label="Age">
             <InputGroup compact>
               {getFieldDecorator('FlatmatePreferencesAgeFrom')(
-                <InputNumber style={{width: 70, textAlign: 'center'}}/>
+                <InputNumber style={{ width: 70, textAlign: 'center' }} />
               )}
               <Input
                 style={{
@@ -56,14 +58,14 @@ class RegistrationFlatmatePreferences extends Component {
               />
               {getFieldDecorator('FlatmatePreferencesAgeTo')(
                 <InputNumber
-                  style={{width: 70, textAlign: 'center', borderLeft: 0}}
+                  style={{ width: 70, textAlign: 'center', borderLeft: 0 }}
                 />
               )}
             </InputGroup>
           </Item>
 
           <Item label="Occupations">
-            <Selections
+            <WrappedSelection
               placeHolder="Add nearby station"
               type="multiple"
               dec={getFieldDecorator}
@@ -84,7 +86,7 @@ class RegistrationFlatmatePreferences extends Component {
           </Item>
 
           <Item label="Accepted Practices of Abstaining">
-            <Selections
+            <WrappedSelection
               placeHolder="Please select"
               type="multiple"
               dec={getFieldDecorator}
@@ -94,20 +96,30 @@ class RegistrationFlatmatePreferences extends Component {
           </Item>
 
           <Item label="Expected Cleanliness">
-            <Selections
+            <WrappedSelection
               placeHolder="Please select"
               dec={getFieldDecorator}
               objName="cleanliness"
-              value={['We don\'t care', 'Common rooms should be tidied up regularly', 'Common rooms must always be clean']}
+              value={[
+                "We don't care",
+                'Common rooms should be tidied up regularly',
+                'Common rooms must always be clean'
+              ]}
             />
           </Item>
 
           <Item label="Cleaning schedule">
-            <Selections
+            <WrappedSelection
               placeHolder="Please select"
               dec={getFieldDecorator}
               objName="cleaningSchedule"
-              value={['None', 'Whole appartment cleand by one flatmate; (bi-)weekly &rotating', 'Each flatmate cleans 1-2 rooms; (bi-)weekly & rotating', 'Cleaningstaff', 'Others']}
+              value={[
+                'None',
+                'Whole appartment cleand by one flatmate; (bi-)weekly &rotating',
+                'Each flatmate cleans 1-2 rooms; (bi-)weekly & rotating',
+                'Cleaningstaff',
+                'Others'
+              ]}
             />
           </Item>
 
@@ -116,7 +128,7 @@ class RegistrationFlatmatePreferences extends Component {
               <Select
                 mode="tags"
                 placeholder="Please select"
-                style={{width: '100%'}}
+                style={{ width: '100%' }}
                 tokenSeparators={[',']}
               >
                 {['Cooking', 'Partying', 'Drinking Wine/Beer', 'Sport'].map(
@@ -131,23 +143,23 @@ class RegistrationFlatmatePreferences extends Component {
           </Form.Item>
 
           <Item label="Smokers">
-            <WrappedOthersInput
-              tag={<Switch defaultChecked={false}/>}
+            <WrappedAnyInput
+              tag={<Switch defaultChecked={false} />}
               dec={getFieldDecorator}
               objName="smokersAllowed"
             />
           </Item>
 
           <Item label="Pets">
-            <WrappedOthersInput
-              tag={<Switch defaultChecked={false}/>}
+            <WrappedAnyInput
+              tag={<Switch defaultChecked={false} />}
               dec={getFieldDecorator}
               objName="petsAllowed"
             />
           </Item>
 
           <Button
-            style={{float: 'right'}}
+            style={{ float: 'right' }}
             htmlType="submit"
             onClick={result => this.handleResult('Next', result)}
             type="primary"
@@ -165,6 +177,5 @@ class RegistrationFlatmatePreferences extends Component {
     )
   }
 }
-
 
 export default Form.create()(RegistrationFlatmatePreferences)

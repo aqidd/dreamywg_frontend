@@ -1,17 +1,13 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import styled from 'styled-components'
-import { Form, Input, Select, DatePicker, Switch, Row, Col, Button } from 'antd'
+import { Form } from 'antd'
 import Title from '../../common/title'
-import WrappedInput from '../../common/form/warppedInput'
-import WrappedAnyInput from '../../common/form/wrappedAnyInput'
-import ValueGroup from '../../presentation/registration/form/valueGroup'
+import ValueGroup from '../../presentation/registration/FlatDetails/valueGroup'
 import ControlButton from '../../common/form/controlButtons'
-import SwitchGroup from '../../presentation/registration/form/switchGroup'
-import SelectGroup from '../../presentation/registration/form/selectGroup'
-import LocationGroup from '../../presentation/registration/form/locationGroup'
-
-const Item = props => <Form.Item {...props}>{props.children}</Form.Item>
+import SwitchGroup from '../../presentation/registration/FlatDetails/switchGroup'
+import SelectGroup from '../../presentation/registration/FlatDetails/selectGroup'
+import LocationGroup from '../../presentation/registration/FlatDetails/locationGroup'
+import Container from '../../common/form/container'
 
 @inject('store')
 @observer
@@ -54,10 +50,6 @@ class FlatDetails extends Component {
     )
   }
 }
-
-const Container = styled.div`
-  margin-top: 5vh;
-`
 
 const RegistrationFlatDetails = Form.create({
   name: 'registration-flat-detail'

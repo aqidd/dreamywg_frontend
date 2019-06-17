@@ -13,7 +13,7 @@ class Store {
   @observable FlatmatePreferencesSmoker
   @observable FlatmatePreferencesPetsAllowed
 
-  @observable currentSteps = 4
+  @observable currentSteps = 2
   @observable maxSteps = 5
 
   @observable flatInfo = {}
