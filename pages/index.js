@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import initStore from "../stores/indexStore"
 import { Provider } from "mobx-react"
-import TestHello from '../components/testHello'
+import TestHello from '../components/container/testHello'
 
 import styled from 'styled-components';
 
