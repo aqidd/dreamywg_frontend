@@ -42,13 +42,14 @@ export default class StepsContentContainer extends Component {
     super(props)
   }
 
-  saveFormRef = formRef => (this.formRef = formRef)
-
   handleClick = (type, result) => {
-    console.log(this.formRef)
+    console.log('this is result : ')
     console.log(result)
-    type === 'Next' ? this.props.store.registrationStepStore.nextStep() 
-                    : this.props.store.registrationStepStore.prevStep()
+    this.props.store.registrationStepStore.updateFlatInfo(result)
+    console.log(this.props.store.registrationStepStore.flatInfo)
+    type === 'Next'
+      ? this.props.store.registrationStepStore.nextStep()
+      : this.props.store.registrationStepStore.prevStep()
     this.forceUpdate()
   }
   onSubmit = () => {}
@@ -72,9 +73,8 @@ export default class StepsContentContainer extends Component {
               <div className="steps-content">
                 <Row>
                   <Content
-                    ref={this.saveFormRef}
-                    onNext={(data) => this.handleClick('Next', data)}
-                    onPrev={(data) => this.handleClick('Back', data)}
+                    onNext={data => this.handleClick('Next', data)}
+                    onPrev={data => this.handleClick('Back', data)}
                   />
                 </Row>
               </div>

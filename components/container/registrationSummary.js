@@ -5,5 +5,4 @@ const RegistrationSummary = () => (
   <div> Summary </div>
 );
 
-
 export default RegistrationSummary

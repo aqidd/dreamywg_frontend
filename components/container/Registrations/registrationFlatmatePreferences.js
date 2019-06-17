@@ -15,6 +15,7 @@ class RegistrationFlatmatePreferences extends Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
+        console.log(values)
         this.props.store.FlatmatePreferencesAgeFrom = values.FlatmatePreferencesAgeFrom;
         this.props.store.FlatmatePreferencesAgeTo = values.FlatmatePreferencesAgeTo;
         this.props.store.FlatmatePreferencesGender = values.FlatmatePreferencesGender;

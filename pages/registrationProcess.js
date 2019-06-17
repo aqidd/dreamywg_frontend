@@ -31,19 +31,19 @@ export default class RegistrationProcess extends Component {
 
 const steps = [
   {
-    title: 'General Information',
+    title: 'Profile',
     content: GeneralInfo,
     next: 'Next',
     back: 'Back'
   },
   {
-    title: 'Offerer or seeker?',
+    title: 'Role?',
     content: ChoiceContainer,
     next: 'Next',
     back: 'Back'
   },
   {
-    title: 'Flat details',
+    title: 'Flat',
     content: RegistrationFlatDetails,
     next: 'Next',
     back: 'Back'
@@ -55,7 +55,7 @@ const steps = [
     back: 'Back'
   },
   {
-    title: 'Flatmate preferences',
+    title: 'Preferences',
     content: RegistrationFlatmatePreferences,
     next: 'Next',
     back: 'Back'
