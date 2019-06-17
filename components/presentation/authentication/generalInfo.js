@@ -5,6 +5,7 @@ import { Button, Input, Form } from 'antd';
 @inject('store')
 @observer
 export default class GeneralInfo extends Component {
+    // todo move to container
     // handleSubmit = event => {
     //     this.props.store.registrationStepStore.nextStep();
     //     event.preventDefault();
