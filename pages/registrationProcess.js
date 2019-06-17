@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Provider } from 'mobx-react'
 import 'antd/dist/antd.css'
 import RegistrationRootStore from '../stores/registrationRootStore'
-import GeneralInfo from '../components/presentation/register/generalInfo'
 import RegistrationFlatmatePreferences from '../components/container/registration/registrationFlatmatePreferences'
 import RegistrationFlatDetails from '../components/container/registration/registrationFlatDetails'
 import RegistrationFlatmates from '../components/container/registration/registrationFlatmates'
@@ -30,10 +29,6 @@ export default class RegistrationProcess extends Component {
 }
 
 const steps = [
-  {
-    title: 'Profile',
-    content: GeneralInfo
-  },
   {
     title: 'Role?',
     content: ChoiceContainer

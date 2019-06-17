@@ -30,6 +30,7 @@ class FlatDetails extends Component {
     const errorValue = Object.keys(obj).reduce((a, b) => a + ' ' + b)
     alert('Please complete the following field : ' + errorValue)
   }
+  
   render() {
     const { getFieldDecorator } = this.props.form
     return (
