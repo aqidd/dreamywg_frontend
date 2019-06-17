@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import 'antd/dist/antd.css'
-import TitleContent from '../common/titlecontent'
-import Title from '../common/title'
+import Title from '../../common/title'
 import styled from 'styled-components'
+
+import 'antd/dist/antd.css'
 
 @inject('ConfirmationStore')
 @observer

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Layout } from 'antd'
-import CustomHeader from '../components/container/customHeader'
-import LandingContent from '../components/container/landingContent'
-import CustomFooter from '../components/container/customFooter'
-import 'antd/dist/antd.css'
-import styled, { ThemeProvider } from 'styled-components'
+import CustomHeader from '../components/common/customHeader'
+import LandingContent from '../components/container/landing/landingContent'
+import CustomFooter from '../components/common/customFooter'
+import styled from 'styled-components'
 import Router from 'next/router'
+
+import 'antd/dist/antd.css'
 
 const { Header, Footer } = Layout
 const theme = 'light'

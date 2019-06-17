@@ -2,7 +2,7 @@ import { Menu, Row, Col, Icon } from 'antd'
 import styled, { ThemeProvider } from 'styled-components'
 import theme from 'styled-theming'
 import img from '../../resources/logo.png'
-import Image from '../common/Image'
+import Image from './Image'
 
 const CustomHeader = ({ theme }) => (
   <ThemeProvider theme={{ mode: theme }}>
