@@ -26,9 +26,7 @@ export default class ConfirmationScreen extends Component {
               <CustomHeader/>
             </StyledHeader>
             <ConfirmationContent/>
-            <Footer>
-              <CustomFooter/>
-            </Footer>
+    
           </Layout>
         </div>
       </Provider>

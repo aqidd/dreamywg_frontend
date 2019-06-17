@@ -18,8 +18,7 @@ class Store {
       })
       .catch((err) => {
         this.confirmationResult.status = false;
-
-        if (!err) this.confirmationResult.status = "Server unavailable. Maybe try it later";
+        if (err) this.confirmationResult.status = "Server unavailable. Maybe try it later";
         else this.confirmationResult.status = err.response.data
       })
   }

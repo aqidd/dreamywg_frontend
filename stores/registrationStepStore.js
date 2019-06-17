@@ -29,7 +29,7 @@ class Store {
 
   @action prevStep = () => !this.isMin() && (this.currentSteps -= 1)
 
-  @action updateFlatInfo = data => this.flatInfo = data
+  @action updateFlatInfo = data => (this.flatInfo = data)
 }
 
 export default Store

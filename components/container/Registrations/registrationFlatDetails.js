@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import styled from 'styled-components'
 import { Form, Input, Select, DatePicker, Switch, Row, Col, Button } from 'antd'
+import Title from '../../common/title'
 const { Option } = Select
 
 @inject('store')
@@ -13,7 +14,7 @@ class FlatDetails extends Component {
   handleResult = (type, result) => {
     result.preventDefault()
     this.props.form.validateFields((error, values) => {
-      error
+      error && type != 'Back'
         ? this.displayError(error)
         : type === 'Next'
         ? this.props.onNext(values)
@@ -56,29 +57,46 @@ class FlatDetails extends Component {
               placeHolder="Select your flat type"
               dec={getFieldDecorator}
               objName="flat-type"
-              value={['student only', 'male only', 'female only']}
+              value={[
+                'student only',
+                'work only',
+                'female only',
+                'male only',
+                'mixed'
+              ]}
             />
           </Item>
           <Input.Group>
             <Row gutter={5}>
-              <Col span={12}>
+              <Col span={8}>
                 <Item label="Flat">
                   <WrappedInput
                     dec={getFieldDecorator}
-                    objName="size"
-                    placeHolder="Size"
+                    objName="apartment-size"
+                    placeHolder="Apartment"
                     suffix="Square Meter"
                     type="number"
                   />
                 </Item>
               </Col>
-              <Col span={12}>
+              <Col span={8}>
+                <Item label="Room">
+                  <WrappedInput
+                    dec={getFieldDecorator}
+                    objName="room-size"
+                    placeHolder="Room"
+                    suffix="Square Meter"
+                    type="number"
+                  />
+                </Item>
+              </Col>
+              <Col span={8}>
                 <Item label="Minimum rent">
                   <WrappedInput
                     dec={getFieldDecorator}
                     objName="month"
                     placeHolder="Month"
-                    suffix="Month"
+                    suffix=" ‎€/Month"
                     type="number"
                   />
                 </Item>
@@ -100,28 +118,46 @@ class FlatDetails extends Component {
               objName="furnished"
             />
           </Item>
-          <Item label="Nearby station/store">
+
+          <Item label="Parking lot">
+            <WrappedOthersInput
+              tag={<Switch defaultChecked={false} />}
+              dec={getFieldDecorator}
+              objName="parking-lot"
+            />
+          </Item>
+          <Item label="Nearby station">
             <Selections
-              placeHolder="Add nearby station/store"
+              placeHolder="Add nearby station"
               type="tags"
               dec={getFieldDecorator}
-              objName="nearby"
-              value={[
-                'Bus',
-                'S-Bahn Station',
-                'U-Bahn Station',
-                'Tram',
-                'Supermarket',
-                'Department Store'
-              ]}
+              objName="nearby-station"
+              value={['Bus', 'S-Bahn Station', 'U-Bahn Station', 'Tram']}
+            />
+          </Item>
+
+          <Item label="Nearby store">
+            <Selections
+              placeHolder="Add nearby store"
+              type="tags"
+              dec={getFieldDecorator}
+              objName="nearby-store"
+              value={['Supermarket', 'Department Store']}
             />
           </Item>
           <Button
+            style={{ float: 'right' }}
             htmlType="submit"
             onClick={result => this.handleResult('Next', result)}
             type="primary"
           >
             Next
+          </Button>
+          <Button
+            htmlType="submit"
+            onClick={result => this.handleResult('Back', result)}
+          >
+            Back
           </Button>
         </Form>
       </Container>
@@ -154,9 +190,6 @@ const Selections = ({ dec, objName, placeHolder, value, type = 'default' }) =>
 
 const Item = props => <Form.Item {...props}>{props.children}</Form.Item>
 
-const Title = styled.p`
-  font-size: 3em;
-`
 const Container = styled.div`
   margin-top: 5vh;
 `

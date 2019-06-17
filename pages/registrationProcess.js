@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {Provider} from 'mobx-react'
+import React, { Component } from 'react'
+import { Provider } from 'mobx-react'
 import 'antd/dist/antd.css'
 import RegistrationRootStore from '../stores/registrationRootStore'
 import GeneralInfo from '../components/presentation/register/generalInfo'
@@ -7,22 +7,22 @@ import RegistrationFlatmatePreferences from '../components/container/Registratio
 import RegistrationFlatDetails from '../components/container/Registrations/registrationFlatDetails'
 import RegistrationFlatmates from '../components/container/Registrations/registrationFlatmates'
 import StepsContentContainer from '../components/container/Registrations/StepsContainer'
-import RegistrationSummary from "../components/container/registrationSummary";
+import RegistrationSummary from '../components/container/registrationSummary'
 import ChoiceContainer from '../components/presentation/registration/ChoiceContainer'
-import BaseLayout from '../components/presentation/baseLayout';
+import BaseLayout from '../components/presentation/baseLayout'
 
 export default class RegistrationProcess extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.store = RegistrationRootStore()
   }
 
   render() {
-    this.store.maxSteps = steps.length - 1;
+    this.store.maxSteps = steps.length - 1
     return (
       <Provider store={this.store}>
         <BaseLayout>
-          <StepsContentContainer data={steps}/>
+          <StepsContentContainer data={steps} />
         </BaseLayout>
       </Provider>
     )
@@ -55,14 +55,15 @@ const steps = [
     back: 'Back'
   },
   {
-    title: 'Preferences',
+    title: 'Prefs',
     content: RegistrationFlatmatePreferences,
     next: 'Next',
     back: 'Back'
-  }, {
+  },
+  {
     title: 'Summary',
     content: RegistrationSummary,
     next: 'Done',
     back: 'Back'
   }
-];
+]
