@@ -13,19 +13,16 @@ class Store {
   @observable FlatmatePreferencesSmoker
   @observable FlatmatePreferencesPetsAllowed
 
-  @observable currentSteps = 2
-  @observable maxSteps = 0
+  @observable currentSteps = 0;
+  @observable maxSteps = 5;
 
-  constructor() {}
-
-  isMin = () => this.currentSteps === 0
-  isMax = () => this.currentSteps === this.maxSteps
+  constructor(rootStore) {
+    this.rootStore = rootStore
+  }
 
   @action nextStep = () => !this.isMax() && (this.currentSteps += 1)
 
   @action prevStep = () => !this.isMin() && (this.currentSteps -= 1)
 }
 
-const RegistrationStepStore = () => new Store()
-
-export default RegistrationStepStore
+export default Store

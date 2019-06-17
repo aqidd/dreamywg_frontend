@@ -12,9 +12,9 @@ const BaseLayout = ({ children }) => (
             defaultSelectedKeys={['2']}
             style={{ lineHeight: '64px' }}
         >
-            <Menu.Item key="1">nav 1</Menu.Item>
-            <Menu.Item key="2">nav 2</Menu.Item>
-            <Menu.Item key="3">nav 3</Menu.Item>
+            <Menu.Item key="1">Home</Menu.Item>
+            <Menu.Item key="2">Nav 2</Menu.Item>
+            <Menu.Item key="3">Nav 3</Menu.Item>
         </Menu>
         </Header>
         <Content style={{ padding: '0 50px' }}>
@@ -25,7 +25,7 @@ const BaseLayout = ({ children }) => (
         </Breadcrumb>
         { children }
         </Content>
-        <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+        <Footer style={{ textAlign: 'center' }}>Custom Footer Here</Footer>
     </Layout>
 )
 

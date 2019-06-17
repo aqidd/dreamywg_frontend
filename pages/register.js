@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import initStore from '../stores/registerStore'
+import userStore from '../stores/userStore'
 import { Provider } from 'mobx-react'
 import GeneralInfo from '../components/presentation/register/generalInfo'
-import styled from 'styled-components'
-import { Layout } from 'antd';
 import CustomHeader from '../components/container/customHeader';
 import CustomFooter from '../components/container/customFooter';
 import BaseLayout from '../components/presentation/baseLayout';
@@ -11,14 +9,14 @@ import BaseLayout from '../components/presentation/baseLayout';
 export default class Register extends Component {
     constructor(props) {
         super(props);
-        this.store = initStore();
+        this.store = userStore();
     }
 
     render() {
         return (
             <BaseLayout>
                 <CustomHeader></CustomHeader>
-                <Provider BaseStore={this.store}>
+                <Provider UserStore={this.store}>
                     <GeneralInfo></GeneralInfo>
                 </Provider>
                 <CustomFooter></CustomFooter>

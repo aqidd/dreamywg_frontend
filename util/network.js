@@ -1,24 +1,20 @@
 import axios from 'axios'
 
-
-const URL = {
-     baseUrl: "",
-     devUrl: "",
-}
-
+const serverUrl = "http://localhost:4005";
 
 let config = {
-     headers: {
-          authentication : "",
-     }
-}
+  headers: {
+    authentication: "",
+  }
+};
 
 const currentURL = URL.devUrl
 
 const Api = {
-     login =  (username, password) => axios.post(currentURL + "", {username, password}, config),
-     register = (registerForm) => axios.post(currentURL + "", registerForm, config)
-}
+  login: (username, password) => axios.post(currentUrl + "", {username, password}, config),
+  register: (userData) => axios.post(`${currentUrl}/users`, userData, config),
+  confirmation: (token) => axios.get(`${currentUrl}/confirmation/${token}`)
+};
 
 
 export default Api

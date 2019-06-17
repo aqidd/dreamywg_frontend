@@ -47,13 +47,14 @@ export default class StepsContentContainer extends Component {
   handleClick = (type, result) => {
     console.log(this.formRef)
     console.log(result)
-    type === 'Next' ? this.props.store.nextStep() : this.props.store.prevStep()
+    type === 'Next' ? this.props.store.registrationStepStore.nextStep() 
+                    : this.props.store.registrationStepStore.prevStep()
     this.forceUpdate()
   }
   onSubmit = () => {}
 
   render = () => {
-    const { currentSteps } = this.props.store
+    const { currentSteps } = this.props.store.registrationStepStore
     const { data } = this.props
     const Content = data[currentSteps].content
 
