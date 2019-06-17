@@ -1,6 +1,7 @@
 import {action, observable} from 'mobx'
 import axios from 'axios'
 import network from '../util/network'
+import {merge} from 'lodash'
 
 class UserStore {
     @observable user = null
@@ -18,11 +19,14 @@ class UserStore {
 
     @action register = async (userData) => {
         const response = await network.register(this.user);
-        console.log(response)
     }
 
-    @action setUserData = (userData) => {
+    @action setUserFormData = (userData) => {
         this.user[userData.target.name] = userData.target.value
+    }
+
+    @action saveUserData = (userData) => {
+        this.user = merge(this.user, userData);
     }
 
     @action async registerUser() {

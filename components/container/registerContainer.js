@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Steps, Row, Col, Button, Form } from 'antd'
-import { inject, observer } from 'mobx-react'
+import { inject, observer, Provider } from 'mobx-react'
 import GeneralInfo from './../presentation/authentication/generalInfo'
 import CredentialForm from './../presentation/authentication/credentialForm'
 import styled from 'styled-components'
@@ -44,16 +44,31 @@ export default class RegisterContainer extends Component {
     super(props)
   }
 
-  handleClick = (type, result) => {
-    type === 'Next'
-      ? this.props.RegisterStore.registerStepStore.nextStep()
-      : this.props.RegisterStore.registerStepStore.prevStep()
+  handleClick = (name,data) => {
+    switch(name) {
+      case 'credential-form':
+        this.props.RegisterStore.userStore.saveUserData({
+          username: data.username,
+          password: data.password
+        })
+        this.props.RegisterStore.step.nextStep()
+        break;
+      case 'general-info-form':
+        this.props.RegisterStore.userStore.saveUserData(data)
+        this.props.RegisterStore.userStore.registerUser();
+        break;
+      default:
+        console.log('default')
+    }
+    // type === 'Next'
+    //   ? this.props.RegisterStore.step.nextStep()
+    //   : this.props.RegisterStore.step.prevStep()
     this.forceUpdate()
   }
   onSubmit = () => {}
 
   render = () => {
-    const { currentSteps } = this.props.RegisterStore.registerStepStore
+    const { currentSteps } = this.props.RegisterStore.step
     const data = steps
     const Content = data[currentSteps].content
 
@@ -70,10 +85,11 @@ export default class RegisterContainer extends Component {
               </Steps>
               <div className="steps-content">
                 <Row>
-                  <Content
-                    onNext={data => this.handleClick('Next', data)}
-                    onPrev={data => this.handleClick('Back', data)}
-                  />
+                  <Provider store={this.props.RegisterStore}>
+                    <Content
+                      processData={(name,data) => this.handleClick(name, data)}
+                    />
+                  </Provider>
                 </Row>
               </div>
             </Row>
@@ -89,7 +105,6 @@ export default class RegisterContainer extends Component {
 const StepContainer = styled.div`
   margin-top: 5vh;
   margin-bottom: 5vh;`
-
 
 const steps = [
     {
