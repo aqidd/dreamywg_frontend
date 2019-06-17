@@ -5,35 +5,6 @@ import styled from 'styled-components'
 
 const { Step } = Steps
 
-const ControlButton = ({ click, next, back }) => {
-  return (
-    <div className="steps-action">
-      {next === null ? (
-        <div />
-      ) : (
-        <Button
-          htmlType="submit"
-          onClick={result => click(next, result)}
-          type="primary"
-        >
-          {next}
-        </Button>
-      )}
-      {back != null ? (
-        <Button
-          htmlType="submit"
-          onClick={result => click(back, result)}
-          type="default"
-        >
-          {back}
-        </Button>
-      ) : (
-        <div />
-      )}
-    </div>
-  )
-}
-
 @inject('store')
 @observer
 export default class StepsContentContainer extends Component {
@@ -43,16 +14,12 @@ export default class StepsContentContainer extends Component {
   }
 
   handleClick = (type, result) => {
-    console.log('this is result : ')
-    console.log(result)
     this.props.store.registrationStepStore.updateFlatInfo(result)
-    console.log(this.props.store.registrationStepStore.flatInfo)
     type === 'Next'
       ? this.props.store.registrationStepStore.nextStep()
       : this.props.store.registrationStepStore.prevStep()
     this.forceUpdate()
   }
-  onSubmit = () => {}
 
   render = () => {
     const { currentSteps } = this.props.store.registrationStepStore

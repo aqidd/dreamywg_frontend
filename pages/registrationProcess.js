@@ -3,11 +3,11 @@ import { Provider } from 'mobx-react'
 import 'antd/dist/antd.css'
 import RegistrationRootStore from '../stores/registrationRootStore'
 import GeneralInfo from '../components/presentation/register/generalInfo'
-import RegistrationFlatmatePreferences from '../components/container/Registrations/registrationFlatmatePreferences'
-import RegistrationFlatDetails from '../components/container/Registrations/registrationFlatDetails'
-import RegistrationFlatmates from '../components/container/Registrations/registrationFlatmates'
-import StepsContentContainer from '../components/container/Registrations/StepsContainer'
-import RegistrationSummary from '../components/container/registrationSummary'
+import RegistrationFlatmatePreferences from '../components/container/registration/registrationFlatmatePreferences'
+import RegistrationFlatDetails from '../components/container/registration/registrationFlatDetails'
+import RegistrationFlatmates from '../components/container/registration/registrationFlatmates'
+import StepsContentContainer from '../components/container/registration/StepsContainer'
+import RegistrationSummary from '../components/container/registration/registrationSummary'
 import ChoiceContainer from '../components/presentation/registration/ChoiceContainer'
 import BaseLayout from '../components/presentation/baseLayout'
 
@@ -32,38 +32,26 @@ export default class RegistrationProcess extends Component {
 const steps = [
   {
     title: 'Profile',
-    content: GeneralInfo,
-    next: 'Next',
-    back: 'Back'
+    content: GeneralInfo
   },
   {
     title: 'Role?',
-    content: ChoiceContainer,
-    next: 'Next',
-    back: 'Back'
+    content: ChoiceContainer
   },
   {
     title: 'Flat',
-    content: RegistrationFlatDetails,
-    next: 'Next',
-    back: 'Back'
+    content: RegistrationFlatDetails
   },
   {
     title: 'Flatmates',
-    content: RegistrationFlatmates,
-    next: 'Next',
-    back: 'Back'
+    content: RegistrationFlatmates
   },
   {
     title: 'Prefs',
-    content: RegistrationFlatmatePreferences,
-    next: 'Next',
-    back: 'Back'
+    content: RegistrationFlatmatePreferences
   },
   {
     title: 'Summary',
-    content: RegistrationSummary,
-    next: 'Done',
-    back: 'Back'
+    content: RegistrationSummary
   }
 ]

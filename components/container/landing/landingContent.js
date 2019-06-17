@@ -1,23 +1,24 @@
 import React, { Component } from 'react'
 import { Layout } from 'antd'
-import Introduction from '../presentation/landing/introduction'
-import Services from '../presentation/landing/services'
-import Showcase from '../presentation/landing/showcase'
+import Introduction from '../../presentation/landing/introduction'
+import Services from '../../presentation/landing/services'
+import Showcase from '../../presentation/landing/showcase'
 import styled, { ThemeProvider } from 'styled-components'
+import RiseupSection from '../../common/RiseupSection'
 import theme from 'styled-theming'
 
 const LandingContent = props => (
   <ThemeProvider theme={{ mode: props.theme }}>
     <StyledContent>
-      <StyledSection>
+      <RiseupSection>
         <Introduction onGetStarted={props.onGetStarted} />
-      </StyledSection>
-      <StyledSection>
+      </RiseupSection>
+      <RiseupSection>
         <Services />
-      </StyledSection>
-      <StyledSection>
+      </RiseupSection>
+      <RiseupSection>
         <Showcase onGetStarted={props.onGetStarted} />
-      </StyledSection>
+      </RiseupSection>
     </StyledContent>
   </ThemeProvider>
 )
@@ -31,20 +32,6 @@ const textColor = theme('mode', {
   light: '#000',
   dark: '#fff'
 })
-
-const StyledSection = styled.section`
-  -webkit-animation: fade-in-right 2s;
-  @keyframes fade-in-right {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-`
 
 const StyledContent = styled(Layout.Content)`
   background-color: ${backgroundColor};
