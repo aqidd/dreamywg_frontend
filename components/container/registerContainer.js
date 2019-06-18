@@ -60,9 +60,6 @@ export default class RegisterContainer extends Component {
       default:
         console.log('default')
     }
-    // type === 'Next'
-    //   ? this.props.RegisterStore.step.nextStep()
-    //   : this.props.RegisterStore.step.prevStep()
     this.forceUpdate()
   }
   onSubmit = () => {}
