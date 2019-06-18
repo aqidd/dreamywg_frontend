@@ -38,7 +38,7 @@ const ControlButton = ({ click, next, back }) => {
 
 @inject('RegisterStore')
 @observer
-export default class RegisterContainer extends Component {
+export default class ProfileSetupContainer extends Component {
   formRef = null
   constructor(props) {
     super(props)
@@ -105,4 +105,3 @@ const steps = [
       back: 'Back'
     }
 ]
-  

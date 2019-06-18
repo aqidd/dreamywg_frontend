@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { Form } from 'antd'
 import Title from '../../common/title'
-import ValueGroup from '../../presentation/registration/FlatDetails/valueGroup'
+import ValueGroup from '../../presentation/profile-setup/FlatDetails/valueGroup'
 import ControlButton from '../../common/form/controlButtons'
-import SwitchGroup from '../../presentation/registration/FlatDetails/switchGroup'
-import SelectGroup from '../../presentation/registration/FlatDetails/selectGroup'
-import LocationGroup from '../../presentation/registration/FlatDetails/locationGroup'
+import SwitchGroup from '../../presentation/profile-setup/FlatDetails/switchGroup'
+import SelectGroup from '../../presentation/profile-setup/FlatDetails/selectGroup'
+import LocationGroup from '../../presentation/profile-setup/FlatDetails/locationGroup'
 import Container from '../../common/form/container'
 
 @inject('store')
@@ -52,8 +52,5 @@ class FlatDetails extends Component {
   }
 }
 
-const RegistrationFlatDetails = Form.create({
-  name: 'registration-flat-detail'
-})(FlatDetails)
+export default Form.create()(FlatDetails)
 
-export default RegistrationFlatDetails

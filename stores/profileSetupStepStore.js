@@ -2,7 +2,7 @@ import { action, observable } from 'mobx'
 
 class Store {
 
-  @observable currentSteps = 4
+  @observable currentSteps = 0
   @observable maxSteps = 5
 
   @observable flatInfo = {}

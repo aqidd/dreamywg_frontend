@@ -13,7 +13,7 @@ const { Option } = Select
 
 @inject('store')
 @observer
-class RegistrationFlatmatePreferences extends Component {
+class FlatmatePreferences extends Component {
   handleResult = (type, result) => {
     result.preventDefault();
     this.props.form.validateFields((error, values) => {
@@ -181,4 +181,4 @@ class RegistrationFlatmatePreferences extends Component {
   }
 }
 
-export default Form.create()(RegistrationFlatmatePreferences)
+export default Form.create()(FlatmatePreferences)
