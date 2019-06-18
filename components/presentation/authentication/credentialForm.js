@@ -1,4 +1,4 @@
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Row, Col } from 'antd';
 import { inject } from 'mobx-react';
 import ReactDOM from 'react-dom';
 
@@ -39,17 +39,27 @@ class CredentialForm extends React.Component {
           )}
         </Form.Item>
         <Form.Item>
-          {getFieldDecorator('remember', {
-            valuePropName: 'checked',
-            initialValue: true,
-          })(<Checkbox>Remember me</Checkbox>)}
-          <a className="credential-form-forgot" href="">
-            Forgot password
-          </a>
-          <Button type="primary" htmlType="submit" className="credential-form-button">
-            Submit
-          </Button>
-          Or <a href="">register now!</a>
+          <Row>
+            <Col span={4}>
+              {getFieldDecorator('remember', {
+                valuePropName: 'checked',
+                initialValue: true,
+              })(<Checkbox>Remember me</Checkbox>)}
+            </Col>
+            <Col span={4}>
+              <a className="credential-form-forgot" href="">
+                Forgot password
+              </a>
+            </Col>
+            <Col span={4}>
+              <Button type="primary" htmlType="submit" className="credential-form-button">
+                Submit
+              </Button>
+              <br/>
+              Or <a href="">register now!</a>
+            </Col>
+          </Row>
+          
         </Form.Item>
       </Form>
     );
@@ -59,4 +69,3 @@ class CredentialForm extends React.Component {
 const WrappedCredentialForm = Form.create({ name: 'credential_info' })(CredentialForm);
 
 export default WrappedCredentialForm
-// ReactDOM.render(<WrappedCredentialForm />, document.querySelector('#root'));
