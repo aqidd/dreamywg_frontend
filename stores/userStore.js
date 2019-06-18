@@ -35,7 +35,6 @@ class UserStore {
         try {
             response = await network.register(this.user);
         } catch (e) {
-            console.log(e);
             response = '{status: error}'
         }
         return response;

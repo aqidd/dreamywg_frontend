@@ -4,6 +4,7 @@ import { inject, observer, Provider } from 'mobx-react'
 import GeneralInfo from './../presentation/authentication/generalInfo'
 import CredentialForm from './../presentation/authentication/credentialForm'
 import styled from 'styled-components'
+import Router from 'next/router'
 
 const { Step } = Steps
 
@@ -44,7 +45,7 @@ export default class RegisterContainer extends Component {
     super(props)
   }
 
-  handleClick = (name,data) => {
+  handleClick = async (name,data) => {
     switch(name) {
       case 'credential-form':
         this.props.RegisterStore.userStore.saveUserData({
@@ -55,7 +56,9 @@ export default class RegisterContainer extends Component {
         break;
       case 'general-info-form':
         this.props.RegisterStore.userStore.saveUserData(data)
-        this.props.RegisterStore.userStore.registerUser();
+        const response = await this.props.RegisterStore.userStore.registerUser();
+        console.log(response)
+        Router.push('/')
         break;
       default:
         console.log('default')

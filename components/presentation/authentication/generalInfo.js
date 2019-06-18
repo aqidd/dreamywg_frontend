@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, DatePicker } from 'antd';
 
 @inject('store')
 @observer
@@ -57,10 +57,7 @@ class GeneralInfo extends Component {
                     {getFieldDecorator('dateOfBirth', {
                         rules: [{ required: true, message: 'Please input your dateOfBirth!' }],
                     })(
-                        <Input
-                        prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                        placeholder="dateOfBirth"
-                        />,
+                        <DatePicker></DatePicker>,
                     )}
                 </Form.Item>
                 <Form.Item>
