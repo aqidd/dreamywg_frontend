@@ -15,7 +15,7 @@ const { Option } = Select
 @observer
 class RegistrationFlatmatePreferences extends Component {
   handleResult = (type, result) => {
-    result.preventDefault()
+    result.preventDefault();
     this.props.form.validateFields((error, values) => {
       error && type !== 'Back'
         ? this.displayError(error)
@@ -23,6 +23,10 @@ class RegistrationFlatmatePreferences extends Component {
         ? this.props.onNext(values)
         : this.props.onBack(values)
     })
+  }
+  displayError = obj => {
+    const errorValue = Object.keys(obj).reduce((a, b) => a + ' ' + b)
+    alert('Please complete the following field : ' + errorValue)
   }
 
   render() {
@@ -75,14 +79,13 @@ class RegistrationFlatmatePreferences extends Component {
           </Item>
 
           <Item label="Required flatshare experience">
-            {getFieldDecorator('flatshareExperience')(
-              <Select placeholder="Please select">
-                <Option value="0">None</Option>
-                <Option value="1">&lt; 1 year</Option>
-                <Option value="2">&gt; 1 year</Option>
-                <Option value="3">&gt; 2 years</Option>
-              </Select>
-            )}
+            <WrappedSelection
+              required
+              placeHolder="Please select"
+              dec={getFieldDecorator}
+              objName="flatshareExperience"
+              value={['None', '≤ 1 year', '> 1 year', '> 2 year']}
+            />
           </Item>
 
           <Item label="Accepted Practices of Abstaining">

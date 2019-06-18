@@ -1,17 +1,6 @@
 import { action, observable } from 'mobx'
 
 class Store {
-  @observable FlatmatePreferencesAgeFrom
-  @observable FlatmatePreferencesAgeTo
-  @observable FlatmatePreferencesGender
-  @observable FlatmatePreferencesOccupations
-  @observable FlatmatePreferencesFlatshareExperience
-  @observable FlatmatePreferencesPracticeOfAbstaining
-  @observable FlatmatePreferencesCleanliness
-  @observable FlatmatePreferencesCleaningSchedule
-  @observable FlatmatePreferencesFlatshareActivities
-  @observable FlatmatePreferencesSmoker
-  @observable FlatmatePreferencesPetsAllowed
 
   @observable currentSteps = 4
   @observable maxSteps = 5
