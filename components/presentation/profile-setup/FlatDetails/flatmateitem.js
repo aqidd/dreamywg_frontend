@@ -11,7 +11,6 @@ const FlatmateItem = ({ index, decorator }) => (
         <Col span={6}>
           <Form.Item label="Nationality">
             <WrappedInput
-              required
               dec={decorator}
               objName={'nationality' + index}
               placeHolder="Nationality"
@@ -21,7 +20,6 @@ const FlatmateItem = ({ index, decorator }) => (
         <Col span={6}>
           <Form.Item label="Age">
             <WrappedInput
-              required
               dec={decorator}
               objName={'age' + +index}
               placeHolder="Age"
@@ -34,7 +32,6 @@ const FlatmateItem = ({ index, decorator }) => (
         <Col span={12}>
           <Form.Item label="Occupation">
             <WrappedInput
-              required
               dec={decorator}
               objName={'occupation' + index}
               placeHolder="Occupation"
