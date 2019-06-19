@@ -1,7 +1,7 @@
-import { action, observable, toJS } from 'mobx'
+import { action, observable } from 'mobx'
 
 class Store {
-  @observable currentSteps = 0
+  @observable currentSteps = 1
   @observable maxSteps = 5
   @observable images = []
   @observable imagePreview = {
@@ -48,7 +48,7 @@ class Store {
 
   @action prevStep = () => !this.isMin() && (this.currentSteps -= 1)
 
-  @action updateFlatInfo = data => (this.flatInfo = data)
+  @action updateFlatInfo = data => (this.flatInfo = {...this.flatInfo, ...data})
 }
 
 export default Store

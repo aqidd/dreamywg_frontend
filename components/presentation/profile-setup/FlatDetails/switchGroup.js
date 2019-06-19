@@ -62,11 +62,11 @@ const SwitchGroup = ({ decorator }) => (
         </Item>
       </Col>
       <Col span={8}>
-        <Item label="Heater">
+        <Item label="Kitchen">
           <WrappedAnyInput
             tag={<Switch defaultChecked={false} />}
             dec={decorator}
-            objName="heater"
+            objName="kitchen"
           />
         </Item>
       </Col>
