@@ -8,6 +8,7 @@ import SwitchGroup from '../../presentation/profile-setup/FlatDetails/switchGrou
 import SelectGroup from '../../presentation/profile-setup/FlatDetails/selectGroup'
 import LocationGroup from '../../presentation/profile-setup/FlatDetails/locationGroup'
 import Container from '../../common/form/container'
+import PictureUpload from '../../common/form/pictureUpload'
 
 @inject('store')
 @observer
@@ -30,9 +31,16 @@ class FlatDetails extends Component {
     const errorValue = Object.keys(obj).reduce((a, b) => a + ' ' + b)
     alert('Please complete the following field : ' + errorValue)
   }
-  
+
   render() {
     const { getFieldDecorator } = this.props.form
+    const {
+      images,
+      imagePreview,
+      setImages,
+      toggleImagePreview,
+      onPreviewCancel
+    } = this.props.store.profileSetupStepStore
     return (
       <Container>
         <Title>Your Flat details</Title>
@@ -41,6 +49,24 @@ class FlatDetails extends Component {
           <ValueGroup decorator={getFieldDecorator} />
           <SelectGroup decorator={getFieldDecorator} />
           <SwitchGroup decorator={getFieldDecorator} />
+          <Form.Item label="Upload">
+            <PictureUpload
+              onCancel={() => {
+                onPreviewCancel()
+                this.forceUpdate()
+              }}
+              fileList={images}
+              preview={imagePreview}
+              handleChange={data => {
+                setImages(data)
+                this.forceUpdate()
+              }}
+              handlePreview={file => {
+                toggleImagePreview(file)
+                this.forceUpdate()
+              }}
+            />
+          </Form.Item>
           <ControlButton
             onClick={(type, result) => this.handleResult(type, result)}
             next="Next"
@@ -53,4 +79,3 @@ class FlatDetails extends Component {
 }
 
 export default Form.create()(FlatDetails)
-

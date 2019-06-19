@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {Provider} from 'mobx-react'
+import React, { Component } from 'react'
+import { Provider } from 'mobx-react'
 import 'antd/dist/antd.css'
 import RegistrationRootStore from '../stores/registrationRootStore'
 import FlatDetails from '../components/container/profile-setup/flatDetails'
@@ -10,16 +10,16 @@ import BaseLayout from '../components/presentation/baseLayout'
 
 export default class ProfileSetupOfferer extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.store = RegistrationRootStore()
   }
 
   render() {
-    this.store.maxSteps = steps.length - 1;
+    this.store.maxSteps = steps.length - 1
     return (
       <Provider store={this.store}>
         <BaseLayout>
-          <StepsContentContainer data={steps}/>
+          <StepsContentContainer data={steps} />
         </BaseLayout>
       </Provider>
     )
@@ -38,5 +38,5 @@ const steps = [
   {
     title: 'Prefs',
     content: FlatmatePreferences
-  },
-];
+  }
+]
