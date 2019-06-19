@@ -54,6 +54,47 @@ const SelectGroup = ({ decorator }) => (
         value={['Supermarket', 'Department Store']}
       />
     </Item>
+    <Row gutter={5}>
+      <Col span={12}>
+        <Item label="Miscellaneous">
+          <WrappedSelection
+            placeHolder="Add miscellaneous"
+            type="tags"
+            dec={decorator}
+            objName="miscellaneous"
+            value={[
+              'Washing machine',
+              'Dishwasher',
+              'Terrace',
+              'Balcony',
+              'Garden',
+              'Basement,cellar',
+              'Elevator',
+              'Bicycle storage'
+            ]}
+          />
+        </Item>
+      </Col>
+      <Col span={12}>
+        <Item label="Flooring">
+          <WrappedSelection
+            placeHolder="Add flooring"
+            type="tags"
+            dec={decorator}
+            objName="miscellaneous"
+            value={[
+              'Floorboards',
+              'Parquet',
+              'Laminate',
+              'Carpet',
+              'Tilling',
+              'PVC',
+              'Underfloor heating'
+            ]}
+          />
+        </Item>
+      </Col>
+    </Row>
   </Input.Group>
 )
 

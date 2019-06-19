@@ -1,6 +1,11 @@
-import { Upload, Modal } from 'antd'
+import { Upload, Modal, Icon } from 'antd'
 
-const UploadButton = () => <div> button </div>
+const UploadButton = () => (
+  <div>
+    <Icon type="plus" />
+    <div>Upload</div>
+  </div>
+)
 
 const PictureUpload = ({
   fileList,
@@ -16,7 +21,7 @@ const PictureUpload = ({
       onPreview={file => handlePreview(file)}
       onChange={data => handleChange(data)}
     >
-      {fileList.length >= 10 ? null : UploadButton}
+      {fileList.length >= 10 ? null : <UploadButton />}
     </Upload>
     <Modal visible={preview.show} footer={null} onCancel={() => onCancel()}>
       <img

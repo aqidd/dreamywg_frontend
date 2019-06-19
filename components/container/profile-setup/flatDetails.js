@@ -49,7 +49,7 @@ class FlatDetails extends Component {
           <ValueGroup decorator={getFieldDecorator} />
           <SelectGroup decorator={getFieldDecorator} />
           <SwitchGroup decorator={getFieldDecorator} />
-          <Form.Item label="Upload">
+          <Form.Item label="Images">
             <PictureUpload
               onCancel={() => {
                 onPreviewCancel()
