@@ -41,7 +41,7 @@ export default class StepsContentContainer extends Component {
                 <Row>
                   <Content
                     onNext={data => this.handleClick('Next', data)}
-                    onPrev={data => this.handleClick('Back', data)}
+                    onBack={data => this.handleClick('Back', data)}
                   />
                 </Row>
               </div>
