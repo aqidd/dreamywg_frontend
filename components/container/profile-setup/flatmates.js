@@ -65,7 +65,7 @@ class Flatmates extends Component {
           <RowContainer>
             <Col span={12}>
               <Button type="dashed" onClick={() => this.add()} block>
-                <Icon type="plus" /> Add field
+                <Icon type="plus" /> Click here to add roommate
               </Button>
             </Col>
           </RowContainer>
