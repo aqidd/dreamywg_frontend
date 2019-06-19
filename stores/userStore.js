@@ -30,7 +30,6 @@ class UserStore {
     }
 
     @action async registerUser() {
-        console.log('starting to register user')
         let response = ''
         try {
             response = await network.register(this.user);

@@ -41,22 +41,9 @@ class CredentialForm extends React.Component {
         <Form.Item>
           <Row>
             <Col span={4}>
-              {getFieldDecorator('remember', {
-                valuePropName: 'checked',
-                initialValue: true,
-              })(<Checkbox>Remember me</Checkbox>)}
-            </Col>
-            <Col span={4}>
-              <a className="credential-form-forgot" href="">
-                Forgot password
-              </a>
-            </Col>
-            <Col span={4}>
               <Button type="primary" htmlType="submit" className="credential-form-button">
                 Submit
               </Button>
-              <br/>
-              Or <a href="">register now!</a>
             </Col>
           </Row>
           

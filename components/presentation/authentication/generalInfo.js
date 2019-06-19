@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import { Form, Icon, Input, Button, Checkbox, DatePicker } from 'antd';
+import { Form, Icon, Input, Button, DatePicker, Select } from 'antd';
 
 @inject('store')
 @observer
@@ -50,8 +50,15 @@ class GeneralInfo extends Component {
                     )}
                 </Form.Item>
                 <Form.Item label="Gender">
-                    {/* todo : should be dropdown */}
-                    <Input></Input>
+                    {getFieldDecorator('gender', {
+                        rules: [{ required: true, message: 'Please input your gender!' }],
+                    })(
+                        <Select placeholder="Gender">
+                            <Option value="M">Male</Option>
+                            <Option value="F">Female</Option>
+                            <Option value="O">Others</Option>
+                        </Select>,
+                    )}
                 </Form.Item>
                 <Form.Item label="Date of Birth">
                     {getFieldDecorator('dateOfBirth', {

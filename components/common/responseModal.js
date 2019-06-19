@@ -1,17 +1,23 @@
 import { Modal } from 'antd'
+import { Component } from 'react';
 
-const ResponseModal = ({response, visible}) => {
-    return (
-        <Modal
-        visible={visible}
-        onOk={() => visible=false}
-        onCancel={() => visible=false}
-        >
-            <div>
-                {JSON.stringify(response)}
-            </div>
-        </Modal>
-    );
+export default class ResponseModal extends Component {
+
+    constructor(props) {
+        super(props)
+    }
+
+    render = () => {
+        return (
+            <Modal
+            visible={this.props.visible}
+            onOk={() => this.props.hideModal()}
+            onCancel={() => this.props.hideModal()}
+            >
+                <div>
+                    {JSON.stringify(this.props.response)}
+                </div>
+            </Modal>
+        )
+    }
 }
-
-export default ResponseModal

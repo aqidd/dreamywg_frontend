@@ -9,6 +9,22 @@ import ResponseModal from '../common/responseModal';
 
 const { Step } = Steps
 
+const steps = [
+  {
+    title: 'Credentials',
+    content: CredentialForm,
+    next: 'Next',
+    back: 'Back'
+  },
+  {
+    title: 'General Info',
+    content: GeneralInfo,
+    next: 'Next',
+    back: 'Back'
+  }
+]
+
+
 @inject('RegisterStore')
 @observer
 export default class RegisterContainer extends Component {
@@ -31,9 +47,18 @@ export default class RegisterContainer extends Component {
   }
 
   updateFormResponse = (response) => {
+    // TODO: message should be moved to constant
+    let message = ''; 
+    // success responses. lol 
+    if(parseInt(response.status / 100) === 2 ) { 
+      message = 'Registration success. Please check your email'
+    } else {
+      message = `Registration error. Code ${response.status}`
+    }
     this.setState({
-      formResponse: response
+      formResponse: message
     })
+    
   }
 
   handleClick = async (name,data) => {
@@ -70,12 +95,12 @@ export default class RegisterContainer extends Component {
             <Col xl={5} lg={2} md={2} sm={2} xs={2} />
             <Col xl={14} lg={20} md={20} sm={20} xs={20}>
               <Row>
-                <Steps current={currentSteps}>
+                <Steps progressDot current={currentSteps}>
                   {data.map((value, index) => (
                     <Step key={index} title={value.title} />
                   ))}
                 </Steps>
-                <div className="steps-content">
+                <div style={stepsContent}>
                   <Row>
                     <Provider store={this.props.RegisterStore}>
                       <Content
@@ -92,29 +117,18 @@ export default class RegisterContainer extends Component {
         </StepContainer>
         <ResponseModal 
           response={this.state.formResponse} 
-          visible={this.state.visible}>  
+          visible={this.state.visible}
+          hideModal={this.dismissModal}>  
         </ResponseModal>
       </div>
     )
   }
 }
 
+const stepsContent = {
+  marginTop: '5vh'
+};
+
 const StepContainer = styled.div`
   margin-top: 5vh;
   margin-bottom: 5vh;`
-
-const steps = [
-    {
-      title: 'Account Credential',
-      content: CredentialForm,
-      next: 'Next',
-      back: 'Back'
-    },
-    {
-      title: 'General Info',
-      content: GeneralInfo,
-      next: 'Next',
-      back: 'Back'
-    }
-]
-  
