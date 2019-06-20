@@ -6,7 +6,7 @@ import CustomHeader from '../components/common/customHeader';
 import CustomFooter from '../components/common/customFooter';
 import BaseLayout from '../components/presentation/baseLayout';
 
-export default class Register extends Component {
+export default class Login extends Component {
     constructor(props) {
         super(props);
         this.store = AuthStore();

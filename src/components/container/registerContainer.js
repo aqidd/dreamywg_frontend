@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { Steps, Row, Col, Button, Form, Modal } from 'antd'
 import { inject, observer, Provider } from 'mobx-react'
-import GeneralInfo from './../presentation/authentication/generalInfo'
-import CredentialForm from './../presentation/authentication/credentialForm'
+import GeneralInfo from '../presentation/authentication/generalInfo'
+import CredentialForm from '../presentation/authentication/credentialForm'
 import styled from 'styled-components'
-import Router from 'next/router'
-import ResponseModal from '../common/responseModal';
+import ResponseModal from '../common/responseModal'
 
 const { Step } = Steps
 
@@ -27,7 +26,7 @@ const steps = [
 
 @inject('RegisterStore')
 @observer
-export default class ProfileSetupContainer extends Component {
+export default class RegisterContainer extends Component {
   formRef = null
   state = {visible: false, formResponse: ''}
   constructor(props) {

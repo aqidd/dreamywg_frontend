@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
 import { Modal } from 'antd'
+import { Component } from 'react';
 
 export default class ResponseModal extends Component {
 

@@ -46,7 +46,6 @@ class CredentialForm extends React.Component {
               </Button>
             </Col>
           </Row>
-          
         </Form.Item>
       </Form>
     );

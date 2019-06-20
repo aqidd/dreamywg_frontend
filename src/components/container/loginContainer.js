@@ -6,18 +6,17 @@ import 'antd/dist/antd.css'
 @inject('AuthStore')
 @observer
 export default class LoginContainer extends Component {
-  componentDidMount() {
-    this.props.BaseStore.start()
-  }
-  componentWillMount() {
-    this.props.BaseStore.stop()
+  
+  onSubmit = (data) => {
+    this.props.AuthStore.login(data)
   }
 
   render() {
     return (
       <div>
         <Provider AuthStore='AuthStore'>
-            <CredentialForm></CredentialForm>
+            <CredentialForm
+                processData={(name,data) => this.onSubmit(data)}/>
         </Provider>
       </div>
     )
