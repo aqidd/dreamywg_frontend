@@ -5,6 +5,7 @@ import RoleSelection from '../components/container/roleSelection'
 import CustomFooter from '../components/container/customFooter'
 import 'antd/dist/antd.css'
 import styled, { ThemeProvider } from 'styled-components'
+import { Provider } from "mobx-react"
 const { Header, Footer } = Layout
 
 const theme = 'dark'
@@ -12,8 +13,10 @@ const theme = 'dark'
 export default class RoleSelectionScreen extends Component {
   constructor(props) {
     super(props)
+    this.store = initStore()
   }
   render = () => (
+    <Provider RoleSelectionStore={this.store}>
     <div>
       <Layout>
         <StyledHeader
@@ -27,6 +30,7 @@ export default class RoleSelectionScreen extends Component {
         </StyledFooter>
       </Layout>
     </div>
+    </Provider>
   )
 }
 

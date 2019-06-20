@@ -12,6 +12,7 @@ class Store {
 
   @action setRole = (role) => {
   	console.log("setrole", role)
+    this.selection.role = role;
 
   }
 
