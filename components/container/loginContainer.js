@@ -8,13 +8,13 @@ import 'antd/dist/antd.css'
 export default class LoginContainer extends Component {
 
   onSubmit = (data) => {
-    console.log(data)
+    this.props.AuthStore.login(data)
   }
 
   render() {
     return (
       <div>
-        <Provider AuthStore='AuthStore'>
+        <Provider store='AuthStore'>
             <CredentialForm
                 processData={(name,data) => this.onSubmit(data)}/>
         </Provider>

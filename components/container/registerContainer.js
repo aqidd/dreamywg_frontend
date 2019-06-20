@@ -65,7 +65,7 @@ export default class RegisterContainer extends Component {
     switch(name) {
       case 'credential-form':
         this.props.RegisterStore.userStore.saveUserData({
-          username: data.username,
+          email: data.email,
           password: data.password
         })
         this.props.RegisterStore.step.nextStep()
