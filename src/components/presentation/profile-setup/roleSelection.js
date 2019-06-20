@@ -4,9 +4,9 @@ import TitleContent from '../../common/titlecontent'
 import styled from 'styled-components'
 import Link from 'next/link';
 
-const ChoiceContainer = () => (
+const RoleSelection = () => (
   <Container>
-    <TitleContent flex title="Who are you?"/>
+    <TitleContent flex title="What would you like to do?"/>
     <SeekerCard/>
     <OffererCard/>
 
@@ -27,7 +27,7 @@ const SeekerCard = () => (
       </Row>
       <Row>
         <Link href="/profileSetupSeeker">
-          <Button type="primary" block>
+          <Button type="primary" block onClick={this.props.RoleSelectionStore.setRole.bind(this, "seeker")}>
             <p>Continue</p>
           </Button>
         </Link>
@@ -50,7 +50,7 @@ const OffererCard = () => (
         </Row>
         <Row>
           <Link href="/profileSetupOfferer">
-            <Button type="primary" block>
+            <Button type="primary" block onClick={this.props.RoleSelectionStore.setRole.bind(this, "offerer")}>
             <p>Continue</p>
             </Button>
           </Link>
@@ -92,4 +92,4 @@ const Description = styled.p`
   font-weight: bold;
 `;
 
-export default ChoiceContainer
+export default RoleSelection
