@@ -4,7 +4,7 @@ import Image from '../../common/Image'
 import VersionCard from './versionCard'
 import styled from 'styled-components'
 
-const Introduction = ({  }) => (
+const Introduction = ({ onGetStarted }) => (
   <StyledContainer>
     <Row>
       <Col xs={2} sm={2} md={2} lg={2} xl={5} />
@@ -23,7 +23,12 @@ const Introduction = ({  }) => (
           </Row>
           <CenteredRow type="flex">
             <Col span={8}>
-              <Button block size={'large'} type={'primary'}>
+              <Button
+                block
+                size={'large'}
+                type={'primary'}
+                onClick={() => onGetStarted()}
+              >
                 Get Started
               </Button>
             </Col>
