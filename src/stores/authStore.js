@@ -21,10 +21,7 @@ class AuthStore {
     }
 
     @action login =  async(credentials) => {
-        console.log('start logging in')
-        const response = await network.login(credentials);
-        console.log(response);
-        return response;
+        return network.login(credentials);
     }
 }
 
