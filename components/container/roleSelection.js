@@ -16,12 +16,12 @@ export default class RoleSelection extends Component{
   render () {
     return (
         <ThemeProvider theme={{ mode: this.props.theme }}>
-    <StyledContent>
+    <StyledContent style={{height:"100vh"}}>
     <Container>
     <Row>
       What would you like to do?
     </Row>
-      <Button.Group size={size}>
+      <Button.Group size={size} style={{ margin: '30px 0 10px 0' }} >
           <Button type="primary" onClick={this.props.RoleSelectionStore.setRole.bind(this, "seeker")}>
             Search for a room
           </Button> 
