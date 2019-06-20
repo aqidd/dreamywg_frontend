@@ -1,11 +1,12 @@
 import { Card } from 'antd'
 const { Meta } = Card
 
-const Image = ({ img }) => {
+const Image = (props) => {
   return (
     <Card
+      {...props}
       bordered={false}
-      cover={<img alt="example" src={img} />}
+      cover={<img alt="example" src={props.img} />}
     />
   )
 }

@@ -1,7 +1,6 @@
 import { Row, Col, Button } from 'antd'
 import styled from 'styled-components'
 
-
 const VersionCard = () => (
   <Row type="flex" justify="start" gutter={16}>
     <Col>
