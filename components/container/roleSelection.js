@@ -10,22 +10,22 @@ import {inject, observer} from 'mobx-react'
 @observer
 export default class RoleSelection extends Component{
   componentDidMount() {
-          
+      this.props.RoleSelectionStore.setRole.bind("");
   }
 
   render () {
     return (
-        <ThemeProvider theme={{ mode: props.theme }}>
+        <ThemeProvider theme={{ mode: this.props.theme }}>
     <StyledContent>
     <Container>
     <Row>
       What would you like to do?
     </Row>
       <Button.Group size={size}>
-          <Button type="primary" onClick={this.props.RoleSelectionStore.setRole("seeker")}>
+          <Button type="primary" onClick={this.props.RoleSelectionStore.setRole.bind(this, "seeker")}>
             Search for a room
           </Button> 
-          <Button type="primary" onClick={this.props.RoleSelectionStore.setRole("offerer")}>
+          <Button type="primary" onClick={this.props.RoleSelectionStore.setRole.bind(this, "offerer")}>
             Offer a room
           </Button>
         </Button.Group>

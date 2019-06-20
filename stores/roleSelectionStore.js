@@ -17,7 +17,6 @@ class Store {
   }
 
 
-
 }
 
 const initStore = () => new Store();

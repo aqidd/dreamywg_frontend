@@ -7,6 +7,8 @@ import 'antd/dist/antd.css'
 import styled, { ThemeProvider } from 'styled-components'
 import { Provider } from "mobx-react"
 const { Header, Footer } = Layout
+import initStore from "../stores/roleSelectionStore";
+
 
 const theme = 'dark'
 
