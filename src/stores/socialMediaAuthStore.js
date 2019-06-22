@@ -1,7 +1,7 @@
 import {action, observable} from "mobx"
 
 class Store {
-  @observable authenticationResult = {isAuthenticated: false, userId: '', token: '', name: '', email: ''};
+  @observable authenticationResult = {isAuthenticated: false, userId: '', token: '', name: '', email: '', linkedincode:''};
 
   constructor() {
     this.authenticationResult.isAuthenticated = false;
@@ -9,12 +9,18 @@ class Store {
     this.authenticationResult.token = '';
     this.authenticationResult.name = '';
     this.authenticationResult.email = '';
+    this.authenticationResult.linkedincode = '';
   }
 
-  @action linkedInResponse = (response) => {
-  	console.log("linkedin response", response)
-  	
-
+  @action linkedInResponse = (error, code, redirectUri) => {
+    if (error) {
+      console.log("linkedin login failed")
+      // signin failed
+    } else {
+      console.log("linkedin login success", code)
+      this.authenticationResult.isAuthenticated = true;
+      this.authenticationResult.linkedincode = code;
+    }
   }
 
   @action facebookResponse = (response) => {
