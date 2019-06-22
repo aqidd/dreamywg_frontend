@@ -25,8 +25,9 @@ export default class SocialMediaAuthContent extends Component{
                                     <LinkedInLogin
                                               clientId="78guq2rtxaouam"
                                               onFailure={this.props.SocialMediaAuthStore.onFailure}
-                                              onSuccess={this.props.SocialMediaAuthStore.linkedInResponse}
+                                              callback={this.props.SocialMediaAuthStore.linkedInResponse}
                                               redirectUri="http://localhost:3000/socialmediaauth/signin-linkedin"
+                                              className={linkedin}
                                             />
                                     
                                   </div> 
@@ -76,4 +77,13 @@ const textColor = theme('mode', {
 const StyledContent = styled(Layout.Content)`
   background-color: ${backgroundColor};
   color: ${textColor};
+  min-height: 100vh;
+`
+const linkedin = styled.button`
+  background-color: "#4CAF50"; /* Green */
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
 `
