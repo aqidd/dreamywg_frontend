@@ -2,7 +2,9 @@ import React from 'react'
 import {Card, Col, Icon, Row, Button} from 'antd'
 import TitleContent from '../../common/titlecontent'
 import styled from 'styled-components'
-import Link from 'next/link';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import ProfileSetupSeeker from '../../../pages/profileSetupSeeker';
+import ProfileSetupOfferer from '../../../pages/profileSetupOfferer';
 
 const RoleSelection = () => (
   <Container>
@@ -14,6 +16,7 @@ const RoleSelection = () => (
 );
 
 const SeekerCard = () => (
+<Router>
   <StyledCard>
     <Col span={5}>
       <StyledIconOfferer type="team"/>
@@ -26,16 +29,19 @@ const SeekerCard = () => (
         <Description> You are looking for place to live. </Description>
       </Row>
       <Row>
-        <Link href="/profileSetupSeeker">
-          <Button type="primary" block onClick={this.props.RoleSelectionStore.setRole.bind(this, "seeker")}>
+        <Link to="/profileSetupSeeker">
+          <Button type="primary" block>
             <p>Continue</p>
           </Button>
         </Link>
       </Row>
     </Col>
   </StyledCard>
+  <Route exact path="/profileSetupSeeker" component={ProfileSetupSeeker} />
+</Router>
 );
 const OffererCard = () => (
+<Router>
   <StyledCard>
     <Row>
       <Col span={5}>
@@ -49,8 +55,8 @@ const OffererCard = () => (
           <Description> you are offering a place. </Description>
         </Row>
         <Row>
-          <Link href="/profileSetupOfferer">
-            <Button type="primary" block onClick={this.props.RoleSelectionStore.setRole.bind(this, "offerer")}>
+          <Link to="/profileSetupOfferer">
+            <Button type="primary" block>
             <p>Continue</p>
             </Button>
           </Link>
@@ -58,6 +64,8 @@ const OffererCard = () => (
       </Col>
     </Row>
   </StyledCard>
+  <Route exact path="/profileSetupOfferer" component={ProfileSetupOfferer} />
+</Router>
 );
 
 const Container = styled.div`
