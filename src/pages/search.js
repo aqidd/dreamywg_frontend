@@ -1,31 +1,42 @@
 import React, { Component } from 'react'
-import { Layout, Menu, Breadcrumb, Row, Col } from 'antd'
+import { Layout, Menu, Icon, Row, Col } from 'antd'
 import CustomHeader from '../components/common/customHeader'
 import SearchContainer from '../components/container/search/searchContainer'
 import styled from 'styled-components'
 
 const { SubMenu } = Menu
-const { Header, Content, Sider } = Layout
+const { Header, Sider, Content } = Layout
 
 export default class SearchScreen extends Component {
   render() {
     return (
       <Layout>
-        <Header style={{ backgroundColor: 'white' }} />
-        <StyledRow>
+        <Header
+          style={{
+            backgroundColor: 'white',
+            border: 'solid',
+            borderColor: 'lightgray',
+            borderWidth: '1px'
+          }}
+        />
+        <Layout>
+          <StyledSider
+            breakpoint="xl"
+            collapsedWidth={0}
+            width={400}
+            theme="light"
+          />
+          <Content style={{ backgroundColor: 'white' }}>
             <SearchContainer />
-        </StyledRow>
+          </Content>
+        </Layout>
       </Layout>
     )
   }
 }
 
-const StyledHeader = styled(Header)`
-  background-color: white;
-`
-
 const StyledSider = styled(Sider)`
-  background: white;
+  border-right: 1px solid lightgray;
 `
 
 const StyledRow = styled(Row)`
