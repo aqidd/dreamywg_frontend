@@ -6,21 +6,21 @@ const { Meta, Grid } = Card
 
 const CustomCard = () => (
   <CardContainer>
-    <Row>
-      <Col md={13} lg={12} xl={8}>
-        <img
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-        />
-      </Col>
-      <Col md={11} lg={12} xl={16}>
-        <ContentContainer>content</ContentContainer>
-      </Col>
-    </Row>
+    <StyledImage
+      alt="example"
+      src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+    />
+
+    <ContentContainer>
+      <Title>Novum Hotel München – Am Hauptbahnhof</Title>
+    </ContentContainer>
   </CardContainer>
 )
 
 const CardContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 170px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   &:hover ${CardContainer} {
@@ -28,10 +28,19 @@ const CardContainer = styled.div`
   }
 `
 const ContentContainer = styled.div`
-  margin-top: 2vh;
+  margin-top: 1vh;
+  margin-left: 2vh;
+  margin-right: 2vh;
 `
 
-const Title = styled.p``
+const StyledImage = styled.img`
+  max-width: 250px;
+`
+
+const Title = styled.p`
+  font-weight: bold;
+  font-size: 1.2em;
+`
 
 const ImgContainer = {
   width: '30%',
