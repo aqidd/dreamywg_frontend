@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import FilterBar from '../../presentation/search/filterBar'
 import { observer, inject } from 'mobx-react'
 import { Row, Col, Pagination, Empty } from 'antd'
+import Title from '../../common/title'
 
 @inject('store')
 @observer
@@ -18,12 +19,20 @@ export default class SearchContainer extends Component {
           <Row>
             <Col xl={18} lg={24} md={24} sm={24} xs={24}>
               <Row>
-                <FilterBar handleChange={data => store.sortData(data)} />
+                <TitleContainer>
+                  <Title>{store.getIntroTitle} </Title>
+                  <FilterBar
+                    defaultVal={store.filters[0]}
+                    filter={store.filters}
+                    handleChange={data => store.sortData(data)}
+                  />
+                </TitleContainer>
               </Row>
               <Row>
                 <CardContainer>
                   {store.data.map((element, index) => (
                     <CustomCard
+                      ready={store.ready}
                       key={index}
                       sponsor={element.sponsored}
                       img={element.img}
@@ -70,12 +79,31 @@ const Container = styled.div`
 const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
+  -webkit-animation: fade-in-right 1.5s;
+  @keyframes fade-in-right {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `
 
 const PaginationContainer = styled.div`
-  margin-top: 5vh;
+  margin-top: 2vh;
   text-align: center;
 `
 const NotFound = styled(Empty)`
   margin-top: 5vh;
+`
+
+const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 5vh;
+  text-align: center;
 `

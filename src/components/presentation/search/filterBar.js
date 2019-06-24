@@ -5,21 +5,16 @@ import { Select } from 'antd'
 
 const { Option } = Select
 
-const FilterBar = ({ handleChange }) => (
+const FilterBar = ({ handleChange, filter, defaultVal }) => (
   <FilterContainer>
-    <StyledSelect defaultValue="Recommendation" onChange={handleChange}>
-      <Option value="recommendation">Recommendation</Option>
-      <Option value="price">Price</Option>
-      <Option value="name">Name</Option>
-      <Option value="rating">Rating</Option>
+    <StyledSelect defaultValue={defaultVal} onChange={handleChange}>
+         { filter.map( val => <Option value={val.toLowerCase()}>{val}</Option>)}
     </StyledSelect>
   </FilterContainer>
 )
 
 const FilterContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  margin-top: 2vh;
 `
 
 const StyledSelect = styled(Select)`

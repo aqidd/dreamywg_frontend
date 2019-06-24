@@ -41,6 +41,8 @@ class Store {
   @observable currentStep = 1
   @observable totalFound = 100
   @observable ready = true
+  @observable filters = ['Matched', 'Price', 'Name', 'Rating']
+  @observable sortBy = 'Matched'
 
   constructor() {
     this.initData()
@@ -53,6 +55,10 @@ class Store {
   @computed get getTotalPage() {
     console.log(Math.round(this.totalFound / 3))
     return Math.round(this.totalFound / 3)
+  }
+
+  @computed get getIntroTitle() {
+    return 'Our suggest by ' + this.sortBy.toLowerCase()
   }
 
   @action switchPage = newPage => {
@@ -70,13 +76,13 @@ class Store {
   }
 
   @action sortData(type) {
-    const determiner = type === 'recommendation' ? -1 : 1
+    const determiner = type === this.filters[0].toLowerCase() ? -1 : 1
     const invert = determiner * -1
     const temp = toJS(this.data)
     temp.sort((a, b) =>
       a[type] == b[type] ? 0 : a[type] > b[type] ? determiner : invert
     )
-    console.log(temp)
+    this.sortBy = type
     this.data = temp
   }
 }

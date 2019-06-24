@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'antd'
+import { Button, Skeleton } from 'antd'
 import styled from 'styled-components'
 
 const CustomCard = ({
@@ -9,33 +9,37 @@ const CustomCard = ({
   description,
   recommendation,
   location,
-  price
-}) => (
-  <CardContainer onClick={() => alert('work wa')}>
-    <StyledImage alt="example" src={img} />
+  price,
+  ready
+}) =>
+  ready ? (
+    <CardContainer onClick={() => alert('work wa')}>
+      <StyledImage alt="example" src={img} />
 
-    <ContentContainer>
-      <TitleContainer>
-        <Title>{name}</Title>
-        <Button type={sponsor ? 'primary' : 'danger'} shape="round">
-          {sponsor ? 'Sponsored' : recommendation + '% Matched'}
-        </Button>
-      </TitleContainer>
-      <DescriptionContainer>
-        <p>{description}</p>
-      </DescriptionContainer>
+      <ContentContainer>
+        <TitleContainer>
+          <Title>{name}</Title>
+          <Button type={sponsor ? 'primary' : 'danger'} shape="round">
+            {sponsor ? 'Sponsored' : recommendation + '% Matched'}
+          </Button>
+        </TitleContainer>
+        <DescriptionContainer>
+          <p>{description}</p>
+        </DescriptionContainer>
 
-      <FooterContainer>
-        <AddressContainer>
-          <p>
-            <strong>{location}</strong>
-          </p>
-        </AddressContainer>
-        <Price> {'€' + price} </Price>
-      </FooterContainer>
-    </ContentContainer>
-  </CardContainer>
-)
+        <FooterContainer>
+          <AddressContainer>
+            <p>
+              <strong>{location}</strong>
+            </p>
+          </AddressContainer>
+          <Price> {'€' + price} </Price>
+        </FooterContainer>
+      </ContentContainer>
+    </CardContainer>
+  ) : (
+    <Skeleton active />
+  )
 
 const CardContainer = styled.div`
   margin-top: 2vh;
