@@ -2,42 +2,44 @@ import React from 'react'
 import { Button } from 'antd'
 import styled from 'styled-components'
 
-const CustomCard = ({ sponsor }) => (
+const CustomCard = ({
+  sponsor,
+  img,
+  name,
+  description,
+  recommendation,
+  location,
+  price
+}) => (
   <CardContainer onClick={() => alert('work wa')}>
-    <StyledImage
-      alt="example"
-      src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-    />
+    <StyledImage alt="example" src={img} />
 
     <ContentContainer>
       <TitleContainer>
-        <Title>Novum Hotel München – Am Hauptbahnhof</Title>
+        <Title>{name}</Title>
         <Button type={sponsor ? 'primary' : 'danger'} shape="round">
-          {sponsor ? 'Sponsored' : '95% Matched'}
+          {sponsor ? 'Sponsored' : recommendation + '% Matched'}
         </Button>
       </TitleContainer>
       <DescriptionContainer>
-        <p>
-          It is a long established fact that a reader will be distracted by the
-          readable content of a page when looking at its layout.
-        </p>
+        <p>{description}</p>
       </DescriptionContainer>
 
       <FooterContainer>
         <AddressContainer>
           <p>
-            <strong>Oberschleißheim</strong>
+            <strong>{location}</strong>
           </p>
         </AddressContainer>
-        <Price> €540 </Price>
+        <Price> {'€' + price} </Price>
       </FooterContainer>
     </ContentContainer>
   </CardContainer>
 )
 
 const CardContainer = styled.div`
-  margin-top: 3vh;
-  margin-bottom: 3vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
   display: flex;
   flex-direction: row;
   height: 170px;

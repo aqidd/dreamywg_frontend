@@ -1,44 +1,56 @@
 import React, { Component } from 'react'
-import { Layout, Menu, Icon, Row, Col } from 'antd'
-import CustomHeader from '../components/common/customHeader'
+import { Layout, Pagination } from 'antd'
 import SearchContainer from '../components/container/search/searchContainer'
 import styled from 'styled-components'
+import FilterGroup from '../components/presentation/search/filterGroup'
+import InsystemHeader from '../components/common/InsystemHeader'
+import { Provider } from 'mobx-react'
+import SearchStore from '../stores/searchStore'
 
-const { SubMenu } = Menu
-const { Header, Sider, Content } = Layout
+const { Sider, Content } = Layout
 
 export default class SearchScreen extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      priceRange: [0, 10000]
+    }
+  }
   render() {
     return (
-      <Layout>
-        <Header
-          style={{
-            backgroundColor: 'white',
-            border: 'solid',
-            borderColor: 'lightgray',
-            borderWidth: '1px'
-          }}
-        />
+      <Provider store={SearchStore}>
         <Layout>
-          <StyledSider
-            breakpoint="xl"
-            collapsedWidth={0}
-            width={400}
-            theme="light"
-          />
-          <Content style={{ backgroundColor: 'white' }}>
-            <SearchContainer />
-          </Content>
+          <InsystemHeader />
+          <Layout>
+            <StyledSider
+              breakpoint="lg"
+              collapsedWidth={0}
+              width={400}
+              theme="light"
+            >
+              <FilterGroup
+                priceRange={[100, 10000]}
+                sliderChange={value => console.log(value)}
+              />
+            </StyledSider>
+            <StyledContent>
+              <SearchContainer />
+            </StyledContent>
+          </Layout>
         </Layout>
-      </Layout>
+      </Provider>
     )
   }
 }
 
 const StyledSider = styled(Sider)`
-  border-right: 1px solid lightgray;
+  display: flex;
+  margin-top: 7vh;
+  position: fixed;
+  left: 0;
 `
 
-const StyledRow = styled(Row)`
+const StyledContent = styled(Content)`
   background-color: white;
+  overflow: auto;
 `
