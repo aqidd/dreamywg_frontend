@@ -1,11 +1,12 @@
 import React from 'react'
-import { List, Avatar, Button, Skeleton } from 'antd';
+import { Row, Col, Button, Card } from 'antd';
 import axios from 'axios'
 
+const {Meta} = Card;
 const count = 3;
 const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat&noinfo`;
 
-class RoomListContainer extends React.Component {
+class RoomGridContainer extends React.Component {
   state = {
     initLoading: true,
     loading: false,
@@ -67,31 +68,44 @@ class RoomListContainer extends React.Component {
       ) : null;
 
     return (
-      <List
-        className="demo-loadmore-list"
-        loading={initLoading}
-        itemLayout="horizontal"
-        loadMore={loadMore}
-        dataSource={list}
-        renderItem={item => (
-          <List.Item actions={[<a>edit</a>, <a>more</a>]}>
-            <Skeleton avatar title={false} loading={item.loading} active>
-              <List.Item.Meta
-                avatar={
-                  <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                }
-                title={<a href="https://ant.design">{item.name.last}</a>}
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-              />
-              <div>content</div>
-            </Skeleton>
-          </List.Item>
-        )}
-      />
+        <Row>
+            <Col span={6}>
+                <Card
+                hoverable
+                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+                >
+                    <Meta title="Photo and desc" description="www.instagram.com" />
+                </Card>
+            </Col>
+            <Col span={6}>
+                <Card
+                hoverable
+                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+                >
+                    <Meta title="Photo and desc" description="www.instagram.com" />
+                </Card>
+            </Col>
+            <Col span={6}>
+                <Card
+                hoverable
+                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+                >
+                    <Meta title="Photo and desc" description="www.instagram.com" />
+                </Card>
+            </Col>
+            <Col span={6}>
+                <Card
+                hoverable
+                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+                >
+                    <Meta title="Photo and desc" description="www.instagram.com" />
+                </Card>
+            </Col>
+        </Row>
     );
   }
 }
 
-const roomList = () => new RoomListContainer();
+const roomList = () => new RoomGridContainer();
 
 export default roomList
