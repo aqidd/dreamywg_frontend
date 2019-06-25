@@ -19,9 +19,8 @@ export default class SocialMediaAuthContent extends Component{
              <ThemeProvider theme={{ mode: this.props.theme }}>
                 <StyledContent>
                     <Col span={12} offset={6}>
-                        <Card title="REGISTRATION" bordered={false}>
+                        <Card title="REGISTRATION" bordered={false} type="flex" justify="center" gutter={16} style={{ marginTop: '30vh' }}>
                                 <Col span={12} offset={6}>
-                                  <div style={{display: 'flex', marginTop: '10px'}}>
                                     <LinkedInLogin
                                               clientId="78guq2rtxaouam"
                                               onFailure={this.props.SocialMediaAuthStore.onFailure}
@@ -29,9 +28,7 @@ export default class SocialMediaAuthContent extends Component{
                                               redirectUri="http://localhost:3000/socialmediaauth/signin-linkedin"
                                               className={linkedin}
                                             />
-                                    
-                                  </div> 
-                                  
+
 
                                          <FacebookLogin
                                             appId="595941830904271"
@@ -44,7 +41,7 @@ export default class SocialMediaAuthContent extends Component{
 
                                     <Input.Password placeholder="input password" style={{ margin: '0 0 10px 0' }}/>
                                     <Col span={12} offset={6}>
-                                    <Button type="primary" shape="round">
+                                    <Button type="primary" shape="round" justify="center">
                                       Register
                                     </Button>
                                     </Col>
@@ -77,13 +74,13 @@ const textColor = theme('mode', {
 const StyledContent = styled(Layout.Content)`
   background-color: ${backgroundColor};
   color: ${textColor};
-  min-height: 100vh;
+  height: 100vh;
 `
-const linkedin = styled.button`
-  background-color: "#4CAF50"; /* Green */
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid palevioletred;
-  border-radius: 3px;
-`
+const linkedin =  {
+  backgroundColor: "#4CAF50", /* Green */
+  fontSize: "10px",
+  width: "70px",
+  height: "30px"
+
+
+};
