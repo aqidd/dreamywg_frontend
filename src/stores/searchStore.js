@@ -10,7 +10,7 @@ class Store {
       name: 'Novum Hotel München – Am Hauptbahnhof',
       description:
         'It is a long established fact that a reader will be distracted by the readable content of a page when.',
-      recommendation: 95,
+      matched: 95,
       location: 'Oberschleißheim',
       price: 540,
       sponsored: true
@@ -21,7 +21,7 @@ class Store {
       name: 'Novum Hotel München – Am Hauptbahnhof',
       description:
         'It is a long established fact that a reader will be distracted by the readable content of a page when.',
-      recommendation: 72,
+      matched: 72,
       location: 'Oberschleißheim',
       price: 240,
       sponsored: false
@@ -32,7 +32,7 @@ class Store {
       name: 'Novum Hotel München – Am Hauptbahnhof',
       description:
         'It is a long established fact that a reader will be distracted by the readable content of a page when.',
-      recommendation: 84,
+      matched: 84,
       location: 'Oberschleißheim',
       price: 740,
       sponsored: false
@@ -78,12 +78,15 @@ class Store {
   @action sortData(type) {
     const determiner = type === this.filters[0].toLowerCase() ? -1 : 1
     const invert = determiner * -1
-    const temp = toJS(this.data)
+
+    const notSponsored = this.data.filter(element => !element.sponsored)
+    const sponsored = this.data.filter(element => element.sponsored)
+    const temp = toJS(notSponsored)
     temp.sort((a, b) =>
       a[type] == b[type] ? 0 : a[type] > b[type] ? determiner : invert
     )
     this.sortBy = type
-    this.data = temp
+    this.data = sponsored.concat(temp)
   }
 }
 

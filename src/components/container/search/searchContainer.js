@@ -38,7 +38,7 @@ export default class SearchContainer extends Component {
                       img={element.img}
                       name={element.name}
                       description={element.description}
-                      recommendation={element.recommendation}
+                      recommendation={element.matched}
                       location={element.location}
                       price={element.price}
                     />
@@ -72,6 +72,7 @@ const Container = styled.div`
   margin-left: 5vh;
   margin-right: 5vh;
   margin-top: 10vh;
+  margin-bottom: 10vh;
   display: flex;
   flex-direction: column;
 `
@@ -79,6 +80,7 @@ const Container = styled.div`
 const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: -2vh;
   -webkit-animation: fade-in-right 1.5s;
   @keyframes fade-in-right {
     from {

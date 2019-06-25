@@ -143,7 +143,7 @@ class FilterGroup extends Component {
 
 const Border = styled.div`
   border-right: 1px solid lightgray;
-  height: 78vh;
+  height: 80vh;
 `
 
 const Container = styled.div`
