@@ -82,5 +82,4 @@ const linkedin =  {
   width: "70px",
   height: "30px"
 
-
 };

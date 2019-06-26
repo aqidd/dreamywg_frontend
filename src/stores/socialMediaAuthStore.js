@@ -20,6 +20,7 @@ class Store {
       console.log("linkedin login success", code)
       this.authenticationResult.isAuthenticated = true;
       this.authenticationResult.linkedincode = code;
+      
     }
   }
 
