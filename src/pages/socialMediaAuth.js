@@ -10,7 +10,7 @@ import 'antd/dist/antd.css'
 const { Header, Footer } = Layout
 
 
-const theme = 'dark'
+const theme = 'light'
 
 
 export default class Home extends Component {
