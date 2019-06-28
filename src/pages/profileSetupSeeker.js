@@ -7,7 +7,7 @@ import BaseLayout from '../components/presentation/baseLayout'
 import PersonalInformation from "../components/container/profile-setup/personalInformation";
 import FlatsharePreferences from "../components/container/profile-setup/flatsharePreferences";
 
-export default class PreferencesSetupOfferer extends Component {
+export default class PreferencesSetupSeeker extends Component {
   constructor(props) {
     super(props);
     this.store = RegistrationRootStore()

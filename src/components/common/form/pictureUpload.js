@@ -13,7 +13,8 @@ const PictureUpload = ({
   onCancel,
   preview,
   handlePreview,
-  handleChange
+  handleChange,
+  limit
 }) => (
   <div>
     <Upload
@@ -22,7 +23,7 @@ const PictureUpload = ({
       onPreview={file => handlePreview(file)}
       onChange={data => handleChange(data)}
     >
-      {fileList.length >= 10 ? null : <UploadButton />}
+      {fileList.length >= limit ? null : <UploadButton />}
     </Upload>
     <Modal visible={preview.show} footer={null} onCancel={() => onCancel()}>
       <img

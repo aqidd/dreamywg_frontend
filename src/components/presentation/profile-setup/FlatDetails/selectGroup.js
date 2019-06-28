@@ -1,6 +1,7 @@
 import React from 'react'
 import { Input, Form, Row, Col } from 'antd'
 import WrappedSelection from '../../../common/form/wrappedSelection'
+import stores from "../../../../util/stores";
 
 const { Item } = Form
 
@@ -42,7 +43,7 @@ const SelectGroup = ({ decorator }) => (
         type="tags"
         dec={decorator}
         objName="nearby-station"
-        value={['Bus', 'S-Bahn Station', 'U-Bahn Station', 'Tram']}
+        value={stations}
       />
     </Item>
 
@@ -52,7 +53,7 @@ const SelectGroup = ({ decorator }) => (
         type="tags"
         dec={decorator}
         objName="nearby-store"
-        value={['Supermarket', 'Department Store']}
+        value={stores}
       />
     </Item>
     <Row gutter={5}>

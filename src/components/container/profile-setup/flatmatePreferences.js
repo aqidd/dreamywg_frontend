@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { inject, observer } from 'mobx-react'
-import { Button, Form, Input, InputNumber, Select, Switch } from 'antd'
+import React, {Component} from 'react'
+import {inject, observer} from 'mobx-react'
+import {Button, Form, Input, InputNumber, Select, Switch} from 'antd'
 import Title from '../../common/title'
 import Container from '../../common/form/container'
 import WrappedSelection from '../../common/form/wrappedSelection'
@@ -9,7 +9,7 @@ import WrappedAnyInput from '../../common/form/wrappedAnyInput'
 const Item = Form.Item
 const InputGroup = Input.Group
 
-const { Option } = Select
+const {Option} = Select
 
 @inject('store')
 @observer
@@ -30,7 +30,7 @@ class FlatmatePreferences extends Component {
   }
 
   render() {
-    const { getFieldDecorator } = this.props.form
+    const {getFieldDecorator} = this.props.form;
 
     return (
       <Container>
@@ -47,9 +47,11 @@ class FlatmatePreferences extends Component {
 
           <Item label="Age">
             <InputGroup compact>
-              {getFieldDecorator('FlatmatePreferencesAgeFrom')(
-                <InputNumber style={{ width: 70, textAlign: 'center' }} />
-              )}
+              <WrappedAnyInput
+                tag={<InputNumber style={{width: 70, textAlign: 'center'}}/>}
+                dec={getFieldDecorator}
+                objName="ageFrom"
+              />
               <Input
                 style={{
                   width: 30,
@@ -60,11 +62,11 @@ class FlatmatePreferences extends Component {
                 placeholder="-"
                 disabled
               />
-              {getFieldDecorator('FlatmatePreferencesAgeTo')(
-                <InputNumber
-                  style={{ width: 70, textAlign: 'center', borderLeft: 0 }}
-                />
-              )}
+              <WrappedAnyInput
+                tag={<InputNumber style={{width: 70, textAlign: 'center'}}/>}
+                dec={getFieldDecorator}
+                objName="ageTo"
+              />
             </InputGroup>
           </Item>
 
@@ -131,7 +133,7 @@ class FlatmatePreferences extends Component {
               <Select
                 mode="tags"
                 placeholder="Please select"
-                style={{ width: '100%' }}
+                style={{width: '100%'}}
                 tokenSeparators={[',']}
               >
                 {['Cooking', 'Partying', 'Drinking Wine/Beer', 'Sport'].map(
@@ -147,7 +149,7 @@ class FlatmatePreferences extends Component {
 
           <Item label="Smokers">
             <WrappedAnyInput
-              tag={<Switch defaultChecked={false} />}
+              tag={<Switch defaultChecked={false}/>}
               dec={getFieldDecorator}
               objName="smokersAllowed"
             />
@@ -155,19 +157,28 @@ class FlatmatePreferences extends Component {
 
           <Item label="Pets">
             <WrappedAnyInput
-              tag={<Switch defaultChecked={false} />}
+              tag={<Switch defaultChecked={false}/>}
               dec={getFieldDecorator}
               objName="petsAllowed"
             />
           </Item>
 
+          <Item label="Weekend Absent">
+            <WrappedAnyInput
+              tag={<Switch defaultChecked={false}/>}
+              dec={getFieldDecorator}
+              objName="weekendAbsent"
+            />
+          </Item>
+
+
           <Button
-            style={{ float: 'right' }}
+            style={{float: 'right'}}
             htmlType="submit"
             onClick={result => this.handleResult('Next', result)}
             type="primary"
           >
-            Next
+            Submit
           </Button>
           <Button
             htmlType="submit"

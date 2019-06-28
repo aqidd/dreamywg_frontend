@@ -6,14 +6,14 @@ const Item = Form.Item
 
 const ValueGroup = ({ decorator }) => (
   <Input.Group>
-    <Row gutter={5}>
+    <Row gutter={42}>
       <Col span={8}>
         <Item label="Flat">
           <WrappedInput
             dec={decorator}
             objName="apartment-size"
             placeHolder="Apartment"
-            suffix="Square Meter"
+            suffix="m&sup2;"
             type="number"
           />
         </Item>
@@ -24,16 +24,16 @@ const ValueGroup = ({ decorator }) => (
             dec={decorator}
             objName="room-size"
             placeHolder="Room"
-            suffix="Square Meter"
+            suffix="m&sup2;"
             type="number"
           />
         </Item>
       </Col>
       <Col span={8}>
-        <Item label="Minimum rent">
+        <Item label="Rent">
           <WrappedInput
             dec={decorator}
-            objName="month"
+            objName="rent"
             placeHolder="Month"
             suffix=" ‎€/Month"
             type="number"

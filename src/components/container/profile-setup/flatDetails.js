@@ -65,6 +65,7 @@ class FlatDetails extends Component {
                 toggleImagePreview(file)
                 this.forceUpdate()
               }}
+              limit={10}
             />
           </Form.Item>
           <ControlButton

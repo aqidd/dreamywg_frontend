@@ -34,25 +34,45 @@ const SwitchGroup = ({ decorator }) => (
         </Item>
       </Col>
       <Col span={8}>
-        <Item label="Television">
+        <Item label="Separate living room">
           <WrappedAnyInput
             tag={<Switch defaultChecked={false} />}
             dec={decorator}
-            objName="television"
+            objName="livingroom"
           />
         </Item>
       </Col>
     </Row>
     <Row>
       <Col span={8}>
-        <Item label="Private Shower">
+        <Item label="Shower">
           <WrappedAnyInput
             tag={<Switch defaultChecked={false} />}
             dec={decorator}
-            objName="private-shower"
+            objName="shower"
           />
         </Item>
       </Col>
+      <Col span={8}>
+        <Item label="Bathtub">
+          <WrappedAnyInput
+            tag={<Switch defaultChecked={false} />}
+            dec={decorator}
+            objName="bathtub"
+          />
+        </Item>
+      </Col>
+      <Col span={8}>
+        <Item label="Kitchen">
+          <WrappedAnyInput
+            tag={<Switch defaultChecked={false} />}
+            dec={decorator}
+            objName="kitchen"
+          />
+        </Item>
+      </Col>
+    </Row>
+    <Row>
       <Col span={8}>
         <Item label="Internet">
           <WrappedAnyInput
@@ -63,11 +83,49 @@ const SwitchGroup = ({ decorator }) => (
         </Item>
       </Col>
       <Col span={8}>
-        <Item label="Kitchen">
+        <Item label="Balcony">
           <WrappedAnyInput
             tag={<Switch defaultChecked={false} />}
             dec={decorator}
-            objName="kitchen"
+            objName="balcony"
+          />
+        </Item>
+      </Col>
+      <Col span={8}>
+        <Item label="Terrace">
+          <WrappedAnyInput
+            tag={<Switch defaultChecked={false} />}
+            dec={decorator}
+            objName="terrace"
+          />
+        </Item>
+      </Col>
+    </Row>
+    <Row>
+      <Col span={8}>
+        <Item label="Garden">
+          <WrappedAnyInput
+            tag={<Switch defaultChecked={false} />}
+            dec={decorator}
+            objName="garden"
+          />
+        </Item>
+      </Col>
+      <Col span={8}>
+        <Item label="Washing machine">
+          <WrappedAnyInput
+            tag={<Switch defaultChecked={false} />}
+            dec={decorator}
+            objName="washingMachine"
+          />
+        </Item>
+      </Col>
+      <Col span={8}>
+        <Item label="Dishwasher">
+          <WrappedAnyInput
+            tag={<Switch defaultChecked={false} />}
+            dec={decorator}
+            objName="dishwasher"
           />
         </Item>
       </Col>

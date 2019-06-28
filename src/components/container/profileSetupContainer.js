@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
-import { Steps, Row, Col, Button, Form } from 'antd'
-import { inject, observer } from 'mobx-react'
+import React, {Component} from 'react'
+import {Button, Col, Row, Steps} from 'antd'
+import {inject, observer} from 'mobx-react'
 import GeneralInfo from './../presentation/authentication/generalInfo'
 import CredentialForm from './../presentation/authentication/credentialForm'
 import styled from 'styled-components'
 
-const { Step } = Steps
+const {Step} = Steps;
 
-const ControlButton = ({ click, next, back }) => {
+const ControlButton = ({click, next, back}) => {
   return (
     <div className="steps-action">
       {next === null ? (
-        <div />
+        <div/>
       ) : (
         <Button
           htmlType="submit"
@@ -30,16 +30,17 @@ const ControlButton = ({ click, next, back }) => {
           {back}
         </Button>
       ) : (
-        <div />
+        <div/>
       )}
     </div>
   )
-}
+};
 
 @inject('RegisterStore')
 @observer
 export default class ProfileSetupContainer extends Component {
-  formRef = null
+  formRef = null;
+
   constructor(props) {
     super(props)
   }
@@ -47,25 +48,26 @@ export default class ProfileSetupContainer extends Component {
   handleClick = (type, result) => {
     type === 'Next'
       ? this.props.RegisterStore.registerStepStore.nextStep()
-      : this.props.RegisterStore.registerStepStore.prevStep()
+      : this.props.RegisterStore.registerStepStore.prevStep();
     this.forceUpdate()
-  }
-  onSubmit = () => {}
+  };
+  onSubmit = () => {
+  };
 
   render = () => {
-    const { currentSteps } = this.props.RegisterStore.registerStepStore
-    const data = steps
-    const Content = data[currentSteps].content
+    const {currentSteps} = this.props.RegisterStore.registerStepStore;
+    const data = steps;
+    const Content = data[currentSteps].content;
 
     return (
       <StepContainer>
         <Row>
-          <Col xl={5} lg={2} md={2} sm={2} xs={2} />
+          <Col xl={5} lg={2} md={2} sm={2} xs={2}/>
           <Col xl={14} lg={20} md={20} sm={20} xs={20}>
             <Row>
               <Steps current={currentSteps}>
                 {data.map((value, index) => (
-                  <Step key={index} title={value.title} />
+                  <Step key={index} title={value.title}/>
                 ))}
               </Steps>
               <div className="steps-content">
@@ -77,9 +79,9 @@ export default class ProfileSetupContainer extends Component {
                 </Row>
               </div>
             </Row>
-            <Row />
+            <Row/>
           </Col>
-          <Col xl={5} lg={2} md={2} sm={2} xs={2} />
+          <Col xl={5} lg={2} md={2} sm={2} xs={2}/>
         </Row>
       </StepContainer>
     )
@@ -88,20 +90,20 @@ export default class ProfileSetupContainer extends Component {
 
 const StepContainer = styled.div`
   margin-top: 5vh;
-  margin-bottom: 5vh;`
+  margin-bottom: 5vh;`;
 
 
 const steps = [
-    {
-      title: 'Profile',
-      content: CredentialForm,
-      next: 'Next',
-      back: 'Back'
-    },
-    {
-      title: 'Role?',
-      content: GeneralInfo,
-      next: 'Next',
-      back: 'Back'
-    }
-]
+  {
+    title: 'Profile',
+    content: CredentialForm,
+    next: 'Next',
+    back: 'Back'
+  },
+  {
+    title: 'Role?',
+    content: GeneralInfo,
+    next: 'Next',
+    back: 'Back'
+  }
+];
