@@ -6,6 +6,7 @@ import ProfileSetupSeeker from './pages/profileSetupSeeker'
 import Register from './pages/register'
 import ConfirmationScreen from "./pages/confirmation";
 import RoleSelection from "./pages/roleSelection";
+import Login from './pages/login'
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Route exact path="/" component={LandingScreen} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/roleselection" component={RoleSelection} />
+      <Route exact path="/login" component={Login} />
       <Route exact path="/setupofferer" component={ProfileSetupOfferer} />
       <Route exact path="/setupseeker" component={ProfileSetupSeeker} />
       <Route exact path="/confirmation/:token" component={ConfirmationScreen} />

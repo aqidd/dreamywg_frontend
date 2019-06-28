@@ -1,42 +1,82 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import { Button, Input, Form } from 'antd';
+import { Form, Icon, Input, Button, DatePicker, Select } from 'antd';
 
 @inject('store')
 @observer
-export default class GeneralInfo extends Component {
-    // todo move to container
-    // handleSubmit = event => {
-    //     this.props.store.registrationStepStore.nextStep();
-    //     event.preventDefault();
-    //     // this.props.store.userStore.register();
-    // };
+class GeneralInfo extends Component {
+    
+    handleSubmit = e => {
+        e.preventDefault();
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
+                this.props.processData(e.target.name, values)
+            }
+        });
+    };
 
     render() {
+        const { getFieldDecorator } = this.props.form;
         return (
-            <Form>
+            <Form name="general-info-form" onSubmit={this.handleSubmit}>
                 <Form.Item label="First Name">
-                    <Input name="firstName" value={this.props.store.userStore.user.firstName} onChange={this.props.store.userStore.setUserData}></Input>
+                    {getFieldDecorator('firstName', {
+                        rules: [{ required: true, message: 'Please input your firstName!' }],
+                    })(
+                        <Input
+                        prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                        placeholder="firstName"
+                        />,
+                    )}
                 </Form.Item>
                 <Form.Item label="Last Name">
-                <Input name="lastName" value={this.props.store.userStore.user.lastName} onChange={this.props.store.userStore.setUserData}></Input>
+                    {getFieldDecorator('lastName', {
+                        rules: [{ required: true, message: 'Please input your lastName!' }],
+                    })(
+                        <Input
+                        prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                        placeholder="lastName"
+                        />,
+                    )}
                 </Form.Item>
                 <Form.Item label="Phone">
-                <Input name="phone" value={this.props.store.userStore.user.phone} onChange={this.props.store.userStore.setUserData}></Input>
+                    {getFieldDecorator('phoneNumber', {
+                        rules: [{ required: true, message: 'Please input your phoneNumber!' }],
+                    })(
+                        <Input
+                        prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                        placeholder="phoneNumber"
+                        />,
+                    )}
                 </Form.Item>
                 <Form.Item label="Gender">
-                    {/* todo : should be dropdown */}
-                    <Input></Input>
+                    {getFieldDecorator('gender', {
+                        rules: [{ required: true, message: 'Please input your gender!' }],
+                    })(
+                        <Select placeholder="Gender">
+                            <Option value="M">Male</Option>
+                            <Option value="F">Female</Option>
+                            <Option value="O">Others</Option>
+                        </Select>,
+                    )}
                 </Form.Item>
                 <Form.Item label="Date of Birth">
-                <Input name="dateOfBirth" value={this.props.store.userStore.user.dateOfBirth} onChange={this.props.store.userStore.setUserData}></Input>
+                    {getFieldDecorator('dateOfBirth', {
+                        rules: [{ required: true, message: 'Please input your dateOfBirth!' }],
+                    })(
+                        <DatePicker></DatePicker>,
+                    )}
                 </Form.Item>
-                {/* <Form.Item>
+                <Form.Item>
                     <Button type="primary" htmlType="submit">
                         Submit
                     </Button>
-                </Form.Item> */}
+                </Form.Item>
             </Form>
         );
     }
 }
+
+const WrappedGeneralInfo = Form.create({ name: 'general_info' })(GeneralInfo);
+
+export default WrappedGeneralInfo
