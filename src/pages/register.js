@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import RegisterRootStore from "../stores/registerRootStore"
 import { Provider } from "mobx-react"
-import ProfileSetupContainer from "../components/container/profileSetupContainer"
+import RegisterContainer from "../components/container/registerContainer"
 import CustomHeader from "../components/common/customHeader"
 import CustomFooter from "../components/common/customFooter"
 import BaseLayout from "../components/presentation/baseLayout"
@@ -17,7 +17,7 @@ export default class Register extends Component {
                <BaseLayout>
                     <CustomHeader />
                     <Provider RegisterStore={this.store}>
-                         <ProfileSetupContainer />
+                         <RegisterContainer />
                     </Provider>
                     <CustomFooter />
                </BaseLayout>
