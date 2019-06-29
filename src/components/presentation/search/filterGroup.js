@@ -4,6 +4,8 @@ import { Form, Input, Row, Col, Switch, DatePicker, Button } from 'antd'
 import WrappedInput from '../../common/form/warppedInput'
 import WrappedSelection from '../../common/form/wrappedSelection'
 import WrappedAnyInput from '../../common/form/wrappedAnyInput'
+import WrappedAutoComplete from '../../common/form/wrappedAutoComplete'
+import regions from '../../../util/regions'
 
 const { Item } = Form
 const { RangePicker } = DatePicker
@@ -11,7 +13,19 @@ const { RangePicker } = DatePicker
 class FilterGroup extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      data: regions
+    }
+    this.handleSearch = this.handleSearch.bind(this)
   }
+
+  handleSearch = value =>
+    this.setState({
+      data: regions.filter(
+        element => element.toLowerCase().indexOf(value.toLowerCase()) != -1
+      )
+    })
+
   componentDidMount = () => {
     const { setFieldsValue } = this.props.form
     setFieldsValue({
@@ -25,17 +39,46 @@ class FilterGroup extends Component {
         <Container>
           <Form layout="vertical">
             <Row>
-              <Item label="location">
-                <WrappedInput
+              <Item label="Regions">
+                <WrappedAutoComplete
+                  objName="regions"
                   dec={getFieldDecorator}
-                  objName={'location'}
-                  placeHolder="Location"
+                  data={this.state.data}
+                  placeHolder="Regions in Munich"
+                  handleSearch={value => this.handleSearch(value)}
                 />
               </Item>
 
+              <Input.Group>
+                <Row gutter={16}>
+                  <Col span={12}>
+                    <Item label="Flat">
+                      <WrappedInput
+                        dec={getFieldDecorator}
+                        objName="apartment-size"
+                        placeHolder="Apartment"
+                        suffix="m&sup2;"
+                        type="number"
+                      />
+                    </Item>
+                  </Col>
+                  <Col span={12}>
+                    <Item label="Room">
+                      <WrappedInput
+                        dec={getFieldDecorator}
+                        objName="room-size"
+                        placeHolder="Room"
+                        suffix="m&sup2;"
+                        type="number"
+                      />
+                    </Item>
+                  </Col>
+                </Row>
+              </Input.Group>
+
               <Item label="Price">
                 <Input.Group>
-                  <Row gutter={5}>
+                  <Row gutter={16}>
                     <Col span={12}>
                       <WrappedInput
                         dec={getFieldDecorator}

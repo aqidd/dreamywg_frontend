@@ -32,8 +32,12 @@ class FlatDetails extends Component {
     alert('Please complete the following field : ' + errorValue)
   }
 
+  componentDidMount = () => {
+
+  }
+
   render() {
-    const { getFieldDecorator } = this.props.form
+    const { getFieldDecorator, getFieldValue } = this.props.form
     const {
       images,
       imagePreview,
@@ -48,7 +52,7 @@ class FlatDetails extends Component {
           <LocationGroup decorator={getFieldDecorator} />
           <ValueGroup decorator={getFieldDecorator} />
           <SelectGroup decorator={getFieldDecorator} />
-          <SwitchGroup decorator={getFieldDecorator} />
+          <SwitchGroup decorator={getFieldDecorator} showDuration={getFieldValue("rent-type") === "limited"} />
           <Form.Item label="Images">
             <PictureUpload
               onCancel={() => {

@@ -6,7 +6,7 @@ const Item = Form.Item
 
 const ValueGroup = ({ decorator }) => (
   <Input.Group>
-    <Row gutter={42}>
+    <Row gutter={16}>
       <Col span={8}>
         <Item label="Flat">
           <WrappedInput

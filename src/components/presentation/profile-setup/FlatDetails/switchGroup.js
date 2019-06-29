@@ -3,13 +3,14 @@ import { Input, Form, DatePicker, Switch, Row, Col } from 'antd'
 import WrappedAnyInput from '../../../common/form/wrappedAnyInput'
 
 const { Item } = Form
+const { RangePicker } = DatePicker
 
-const SwitchGroup = ({ decorator }) => (
+const SwitchGroup = ({ decorator, showDuration }) => (
   <Input.Group>
     <Item label="Date available">
       <WrappedAnyInput
         required
-        tag={<DatePicker />}
+        tag={showDuration ? <RangePicker /> : <DatePicker />}
         dec={decorator}
         objName="date-available"
       />

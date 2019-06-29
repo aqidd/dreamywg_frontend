@@ -1,14 +1,14 @@
 import React from 'react'
 import { Input, Form, Row, Col } from 'antd'
 import WrappedSelection from '../../../common/form/wrappedSelection'
-import stores from '../../../../util/stores'
-import stations from '../../../../util/shortStations'
+import stores from "../../../../util/stores";
+import stations from "../../../../util/shortStations";
 
 const { Item } = Form
 
 const SelectGroup = ({ decorator }) => (
   <Input.Group>
-    <Row gutter={5}>
+    <Row gutter={16}>
       <Col span={12}>
         <Item label="Rental type">
           <WrappedSelection
@@ -57,7 +57,7 @@ const SelectGroup = ({ decorator }) => (
         value={stores}
       />
     </Item>
-    <Row gutter={5}>
+    <Row gutter={16}>
       <Col span={12}>
         <Item label="Miscellaneous">
           <WrappedSelection
@@ -84,7 +84,7 @@ const SelectGroup = ({ decorator }) => (
             placeHolder="Add flooring"
             type="tags"
             dec={decorator}
-            objName="flooring"
+            objName="miscellaneous"
             value={[
               'Floorboards',
               'Parquet',
