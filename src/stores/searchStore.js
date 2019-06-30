@@ -38,6 +38,8 @@ class Store {
       sponsored: false
     }
   ]
+
+  @observable searchItems = {}
   @observable currentStep = 1
   @observable totalFound = 100
   @observable ready = true
@@ -50,6 +52,12 @@ class Store {
 
   initData() {
     //create post request to get data from here
+  }
+
+  onSearch = (data) => {
+    //do api request 
+    console.log(data)
+    //and update data
   }
 
   @computed get getTotalPage() {

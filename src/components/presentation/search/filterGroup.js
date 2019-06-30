@@ -6,10 +6,13 @@ import WrappedSelection from '../../common/form/wrappedSelection'
 import WrappedAnyInput from '../../common/form/wrappedAnyInput'
 import WrappedAutoComplete from '../../common/form/wrappedAutoComplete'
 import regions from '../../../util/regions'
+import { inject, observer } from 'mobx-react'
 
 const { Item } = Form
 const { RangePicker } = DatePicker
 
+@inject('store')
+@observer
 class FilterGroup extends Component {
   constructor(props) {
     super(props)
@@ -25,6 +28,15 @@ class FilterGroup extends Component {
         element => element.toLowerCase().indexOf(value.toLowerCase()) != -1
       )
     })
+
+  handleResult = (type, result) => {
+    result.preventDefault()
+    this.props.form.validateFields((error, values) => {
+      error && type != 'Back'
+        ? this.displayError(error)
+        : this.props.store.onSearch(values)
+    })
+  }
 
   componentDidMount = () => {
     const { setFieldsValue } = this.props.form
@@ -55,7 +67,7 @@ class FilterGroup extends Component {
                     <Item label="Flat">
                       <WrappedInput
                         dec={getFieldDecorator}
-                        objName="apartment-size"
+                        objName="size"
                         placeHolder="Apartment"
                         suffix="m&sup2;"
                         type="number"
@@ -102,7 +114,7 @@ class FilterGroup extends Component {
                 <WrappedSelection
                   placeHolder="Select your rental type"
                   dec={getFieldDecorator}
-                  objName="rent-type"
+                  objName="rentType"
                   value={['limited', 'unlimited']}
                 />
               </Item>
@@ -110,7 +122,7 @@ class FilterGroup extends Component {
                 <WrappedSelection
                   placeHolder="Select flat type"
                   dec={getFieldDecorator}
-                  objName="rent-type"
+                  objName="flatType"
                   value={[
                     'student only',
                     'work only',
@@ -173,7 +185,13 @@ class FilterGroup extends Component {
               </Row>
             </Row>
             <Footer>
-              <Button size="large" htmlType="submit" block type="primary">
+              <Button
+                onClick={data => this.handleResult(0, data)}
+                size="large"
+                htmlType="submit"
+                block
+                type="primary"
+              >
                 Search
               </Button>
             </Footer>
