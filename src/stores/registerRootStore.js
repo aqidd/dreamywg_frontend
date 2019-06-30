@@ -4,7 +4,7 @@ import RegisterStepStore from './registerStepStore'
 class RegisterRootStore {
     constructor() {
         this.userStore = new UserStore(this)
-        this.registerStepStore = new RegisterStepStore(this)
+        this.step = new RegisterStepStore(this)
     }
 }
 

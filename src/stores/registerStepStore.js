@@ -1,7 +1,7 @@
 import { action, observable } from 'mobx'
 
 class RegisterStepStore {
-  @observable currentSteps = 1
+  @observable currentSteps = 0
   @observable maxSteps = 2
 
   constructor(rootStore) {
