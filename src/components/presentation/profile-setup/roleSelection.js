@@ -85,7 +85,8 @@ const StyledIconSeeker = styled(StyledIcon)`
 `;
 
 const StyledCard = styled(Card)`
-  height: 20vh;
+  margin-bottom: 5vh;
+  height: 30vh;
 `;
 
 const Title = styled.p`
