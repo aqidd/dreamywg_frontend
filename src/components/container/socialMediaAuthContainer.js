@@ -30,33 +30,19 @@ export default class SocialMediaAuthContent extends Component{
                     <Col span={12} offset={6}>
                         <Card title="" bordered={false} type="flex" justify="center" gutter={16} style={{ marginTop: '30vh' }}>
                                 <Col span={12} offset={6}>
-                                    <LinkedInLogin
-                                              clientId="78guq2rtxaouam"
-                                              onFailure={this.props.SocialMediaAuthStore.onFailure}
-                                              callback={this.props.SocialMediaAuthStore.linkedInResponse}
-                                              redirectUri="http://localhost:3000/socialmediaauth/signin-linkedin"
-                                              className={linkedin}
-                                            />
-
-
-                                         <FacebookLogin
-                                            appId="595941830904271"
-                                            fields="name,email,picture"
-                                            callback={this.props.SocialMediaAuthStore.facebookResponse} 
-                                            render={renderProps => (
-                                            <Button type="primary" block icon="facebook" style={{ margin: '0 0 10px 0' }} onClick={renderProps.onClick}>Register via Facebook</Button>)}/>
-                                   
-                                    <Input placeholder="Basic usage" style={{ margin: '0 0 10px 0' }}/>
-
-                                    <Input.Password placeholder="input password" style={{ margin: '0 0 10px 0' }}/>
-                                    <Col span={12} offset={6}>
-                                    <Button type="primary" shape="round" justify="center">
-                                      Register
-                                    </Button>
-                                    </Col>
+                               
+                                        <Row>
+                                          <Button type="primary" onClick={() => {this.facebook()}} block icon="facebook" style={{ margin: '0 0 10px 0' }}>
+                                            Register via Facebook
+                                          </Button> 
+                                        </Row>   
+                                        <Row>
+                                          <Button type="primary" onClick={() => {this.linkedin()}} block icon="linkedin" style={{ margin: '0 0 10px 0' }}>
+                                            Register via LinkedIn
+                                          </Button> 
+                                        </Row>    
                                 </Col>
-                                                       
-                        
+
                         </Card>
                     </Col>
                     
@@ -90,5 +76,5 @@ const linkedin =  {
   fontSize: "10px",
   width: "70px",
   height: "30px"
-
 };
+
