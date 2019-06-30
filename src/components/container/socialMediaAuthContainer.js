@@ -15,19 +15,19 @@ export default class SocialMediaAuthContent extends Component{
     }
 
     linkedin(){
-      window.location.href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=78guq2rtxaouam&redirect_uri=http%3A%2F%2Flocalhost%3A4005%2Fsocialmediaauth%2Flinkedin&scope=r_liteprofile&state=assfasfasdfsa";
+      window.location.href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=78guq2rtxaouam&redirect_uri=http://03440e01.ngrok.io/socialmediaauth/linkedin&scope=r_liteprofile&state=assfasfasdfsa";
     }
     facebook(){
       console.log("wewww")
-      window.location.href="https://www.facebook.com/v3.3/dialog/oauth?response_type=code&client_id=595941830904271&redirect_uri=http%3A%2F%2Flocalhost%3A4005%2Fsocialmediaauth%2Ffacebook&state=assfasfasdfsa";
-       //window.location.href="https://www.facebook.com/v3.3/dialog/oauth?client_id=78guq2rtxaouam&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fsocialmediaauth%2Flinkedin";
+      window.location.href="https://www.facebook.com/v3.3/dialog/oauth?response_type=code&client_id=595941830904271&redirect_uri=https://98229c38.ngrok.io/socialmediaauth/facebook&state=assfasfasdfsa";
+       
     }
     render() {
         return (
              <ThemeProvider theme={{ mode: this.props.theme }}>
                 <StyledContent>
                     <Col span={12} offset={6}>
-                        <Card title="REGISTRATION" bordered={false} type="flex" justify="center" gutter={16} style={{ marginTop: '30vh' }}>
+                        <Card title="" bordered={false} type="flex" justify="center" gutter={16} style={{ marginTop: '30vh' }}>
                                 <Col span={12} offset={6}>
                                
                                         <Row>
@@ -76,6 +76,4 @@ const linkedin =  {
   height: "30px"
 
 };
-
-const authurl = "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=78guq2rtxaouam&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fsocialmediaauth";
 
