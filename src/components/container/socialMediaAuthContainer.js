@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import TwitterLogin from 'react-twitter-auth';
-import LinkedInLogin from 'linkedin-login-for-react';
 import styled, { ThemeProvider } from 'styled-components'
 import {inject, observer} from 'mobx-react'
 import theme from 'styled-theming'
