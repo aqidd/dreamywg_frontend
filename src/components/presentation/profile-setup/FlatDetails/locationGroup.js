@@ -8,7 +8,18 @@ const {Item} = Form
 
 const LocationGroup = ({decorator}) => (
   <Input.Group>
-    <Row gutter={5}>
+    <Row gutter={16}>
+    <Col span={12}>
+        <Item label="Region">
+          <WrappedSelection
+            required
+            placeHolder="Please select"
+            dec={decorator}
+            objName="regions"
+            value={Regions}
+          />
+        </Item>
+      </Col>
       <Col span={8}>
         <Item label="Street">
           <WrappedInput required dec={decorator} objName="street" placeHolder="Street"/>
@@ -20,22 +31,12 @@ const LocationGroup = ({decorator}) => (
             required
             dec={decorator}
             objName="houseNr"
-            placeHolder="House number"
+            placeHolder="number"
             type="number"
           />
         </Item>
       </Col>
-      <Col span={12}>
-        <Item label="Region">
-          <WrappedSelection
-            required
-            placeHolder="Please select"
-            dec={decorator}
-            objName="regions"
-            value={Regions}
-          />
-        </Item>
-      </Col>
+
     </Row>
   </Input.Group>
 )

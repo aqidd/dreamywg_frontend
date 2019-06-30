@@ -8,7 +8,7 @@ const FlatmateItem = ({ index, decorator }) => (
      <div style={{ marginBottom: "5vh" }}>
           <Subtitle> {"Roommate: " + (index + 1)} </Subtitle>
           <Input.Group>
-               <Row gutter={5}>
+               <Row gutter={16}>
                     <Col span={6}>
                          <Form.Item label="Nationality">
                               <WrappedInput
@@ -29,7 +29,7 @@ const FlatmateItem = ({ index, decorator }) => (
                          </Form.Item>
                     </Col>
                </Row>
-               <Row gutter={5}>
+               <Row gutter={16}>
                     <Col span={12}>
                          <Form.Item label="Occupation">
                               <WrappedInput
