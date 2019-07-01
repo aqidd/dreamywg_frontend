@@ -12,7 +12,8 @@ const Api = {
   login: (username, password) =>
     axios.post(serverUrl + '', { username, password }, config),
   register: userData => axios.post(`${serverUrl}/users`, userData, config),
-  confirmation: token => axios.get(`${serverUrl}/confirmation/${token}`)
+  confirmation: token => axios.get(`${serverUrl}/confirmation/${token}`),
+  profileOffer: data => axios.post(`${serverUrl}/offerer/`, data, config)
 }
 
 export default Api
