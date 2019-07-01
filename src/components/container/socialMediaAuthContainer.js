@@ -11,13 +11,15 @@ export default class SocialMediaAuthContent extends Component{
         //this.props.SocialMediaAuthStore.linkedInResponse();
     }
 
+    // todo put credentials in environment file
     linkedin(){
-      window.location.href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=78guq2rtxaouam&redirect_uri=http://03440e01.ngrok.io/socialmediaauth/linkedin&scope=r_liteprofile&state=assfasfasdfsa";
+      window.location.href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=78guq2rtxaouam&redirect_uri=http://localhost:4005/users/socialmediaauth/linkedin&scope=r_liteprofile&state=assfasfasdfsa";
     }
 
+    // todo put credentials in environment file
     facebook(){
       console.log("wewww")
-      window.location.href="https://www.facebook.com/v3.3/dialog/oauth?response_type=code&client_id=595941830904271&redirect_uri=https://98229c38.ngrok.io/socialmediaauth/facebook&state=assfasfasdfsa";
+      window.location.href="https://www.facebook.com/v3.3/dialog/oauth?response_type=code&client_id=595941830904271&redirect_uri=http://localhost:4005/users/socialmediaauth/facebook&state=assfasfasdfsa";
        
     }
     render() {
