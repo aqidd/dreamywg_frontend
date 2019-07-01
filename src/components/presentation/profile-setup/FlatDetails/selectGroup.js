@@ -1,8 +1,8 @@
 import React from 'react'
 import { Input, Form, Row, Col } from 'antd'
 import WrappedSelection from '../../../common/form/wrappedSelection'
-import stores from "../../../../util/stores";
-import stations from "../../../../util/shortStations";
+import stores from '../../../../util/stores'
+import stations from '../../../../util/shortStations'
 
 const { Item } = Form
 
@@ -84,7 +84,7 @@ const SelectGroup = ({ decorator }) => (
             placeHolder="Add flooring"
             type="tags"
             dec={decorator}
-            objName="miscellaneous"
+            objName="flooring"
             value={[
               'Floorboards',
               'Parquet',
