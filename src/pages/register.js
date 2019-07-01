@@ -10,6 +10,12 @@ export default class Register extends Component {
      constructor(props) {
           super(props)
           this.store = RegisterRootStore()
+          try {
+               this.userId = this.props.location.search.split('?uid=')[1]
+               this.store.userStore.setUserId(this.userId);
+          } catch (e) {
+               console.error(e);
+          }          
      }
 
      render() {
@@ -17,7 +23,7 @@ export default class Register extends Component {
                <BaseLayout>
                     <CustomHeader />
                     <Provider RegisterStore={this.store}>
-                         <RegisterContainer />
+                         <RegisterContainer/>
                     </Provider>
                     <CustomFooter />
                </BaseLayout>

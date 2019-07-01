@@ -29,10 +29,18 @@ class UserStore {
         this.user = merge(this.user, userData);
     }
 
+    @action setUserId = (userId) => {
+        this.user._id = userId;
+    }
+
     @action async registerUser() {
         let response = ''
         try {
-            response = await network.register(this.user);
+            if (this.user._id) {
+                response = await network.registerWithSocialMedia(this.user);
+            } else {
+                response = await network.register(this.user);
+            }
         } catch (e) {
             response = '{status: error}'
         }
