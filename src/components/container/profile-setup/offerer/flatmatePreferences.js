@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
 import {Button, Form, Input, InputNumber, Select, Switch} from 'antd'
-import Title from '../../common/title'
-import Container from '../../common/form/container'
-import WrappedSelection from '../../common/form/wrappedSelection'
-import WrappedAnyInput from '../../common/form/wrappedAnyInput'
+import Title from '../../../common/title'
+import Container from '../../../common/form/container'
+import WrappedSelection from '../../../common/form/wrappedSelection'
+import WrappedAnyInput from '../../../common/form/wrappedAnyInput'
 
 const Item = Form.Item
 const InputGroup = Input.Group

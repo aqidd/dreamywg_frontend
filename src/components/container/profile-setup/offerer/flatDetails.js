@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { Form } from 'antd'
-import Title from '../../common/title'
-import ValueGroup from '../../presentation/profile-setup/FlatDetails/valueGroup'
-import ControlButton from '../../common/form/controlButtons'
-import SwitchGroup from '../../presentation/profile-setup/FlatDetails/switchGroup'
-import SelectGroup from '../../presentation/profile-setup/FlatDetails/selectGroup'
-import LocationGroup from '../../presentation/profile-setup/FlatDetails/locationGroup'
-import Container from '../../common/form/container'
-import PictureUpload from '../../common/form/pictureUpload'
+import Title from '../../../common/title'
+import ValueGroup from '../../../presentation/profile-setup/FlatDetails/valueGroup'
+import ControlButton from '../../../common/form/controlButtons'
+import SwitchGroup from '../../../presentation/profile-setup/FlatDetails/switchGroup'
+import SelectGroup from '../../../presentation/profile-setup/FlatDetails/selectGroup'
+import LocationGroup from '../../../presentation/profile-setup/FlatDetails/locationGroup'
+import Container from '../../../common/form/container'
+import PictureUpload from '../../../common/form/pictureUpload'
 
 @inject('store')
 @observer

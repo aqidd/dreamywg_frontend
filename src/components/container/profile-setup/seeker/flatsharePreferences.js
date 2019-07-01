@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
 import {Button, Col, DatePicker, Form, Input, InputNumber, Row, Select, Switch} from 'antd'
-import Title from '../../common/title'
-import Container from '../../common/form/container'
-import WrappedSelection from '../../common/form/wrappedSelection'
-import WrappedAnyInput from '../../common/form/wrappedAnyInput'
-import Stations from "../../../util/shortStations";
-import Regions from "../../../util/regions";
-import stores from "../../../util/stores";
+import Title from '../../../common/title'
+import Container from '../../../common/form/container'
+import WrappedSelection from '../../../common/form/wrappedSelection'
+import WrappedAnyInput from '../../../common/form/wrappedAnyInput'
+import Stations from "../../../../util/shortStations";
+import Regions from "../../../../util/regions";
+import stores from "../../../../util/stores";
 
 const Item = Form.Item;
 const InputGroup = Input.Group;
@@ -348,7 +348,7 @@ class FlatsharePreferences extends Component {
             <Col span={8}>
               <Item label="Dishwasher">
                 <WrappedAnyInput
-                  tag={<Switch defaultChecked={false}/>}
+                  tag={<Switch checked={false}/>}
                   dec={decorator}
                   objName="dishwasher"
                 />
@@ -390,6 +390,7 @@ class FlatsharePreferences extends Component {
                 />
               </Item>
             </Col>
+            {/*TODO: Use Wrapper*/}
             <Col span={8}>
               <Item label="Flatshare activities">
                 {decorator('FlatmatePreferencesFlatshareActivities')(

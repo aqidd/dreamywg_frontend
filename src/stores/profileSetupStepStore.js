@@ -1,23 +1,21 @@
-import { action, observable, toJS } from 'mobx'
+import {action, observable, toJS} from 'mobx'
 
 import Api from '../util/network'
 
 class Store {
   @observable currentSteps = 0
-  @observable maxSteps = 5
   @observable images = []
-  @observable status = {
-    succeed: false,
-    error: false
-  }
+  @observable status
   @observable imagePreview = {
     show: false,
     url: ''
   }
-  @observable flatInfo = {}
+  @observable data = {}
 
-  constructor(rootStore) {
+  constructor(rootStore, isSeeker, maxSteps) {
     this.rootStore = rootStore
+    this.isSeeker = isSeeker
+    this.maxSteps = maxSteps
   }
 
   getBase64 = image => {
@@ -30,9 +28,9 @@ class Store {
   }
 
   isMax = () => this.currentSteps === this.maxSteps
-  isMin = () => this.currentSteps === 3
+  isMin = () => this.currentSteps === 0
 
-  @action setImages = ({ fileList }) => {
+  @action setImages = ({fileList}) => {
     this.images = fileList
   }
 
@@ -50,21 +48,35 @@ class Store {
     this.imagePreview.show = true
   }
 
-  @action nextStep = () => {
-    console.log(toJS(this.flatInfo))
-    if (!this.isMax()) this.currentSteps += 1
+  @action nextStep = async () => {
+    console.log(toJS(this.data))
+    if (!this.isMax())
+      this.currentSteps += 1
     else {
-      //todo: submit!
-      Api.profileOffer(this.flatInfo)
-        .then(response => (this.status.succeed = true))
-        .catch(error => (this.status.error = true))
+      if (this.isSeeker) {
+        let res;
+        try {
+          res = await Api.profileSeeker(this.data)
+          this.status = true
+        } catch (e) {
+          this.status = false
+        }
+      } else {
+        let res;
+        try {
+          res = await Api.profileOffer(this.data)
+          this.status = true
+        } catch (e) {
+          this.status = false
+        }
+      }
     }
   }
 
   @action prevStep = () => !this.isMin() && (this.currentSteps -= 1)
 
-  @action updateFlatInfo = data =>
-    (this.flatInfo = { ...this.flatInfo, ...data })
+  @action updateData = data =>
+    (this.data = {...this.data, ...data})
 }
 
 export default Store

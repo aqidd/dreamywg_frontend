@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
 import {Button, Col, Form, Input, Row, Select, Switch} from 'antd'
-import Title from '../../common/title'
-import Container from '../../common/form/container'
-import WrappedSelection from '../../common/form/wrappedSelection'
-import WrappedAnyInput from '../../common/form/wrappedAnyInput'
-import ControlButton from "../../common/form/controlButtons";
-import PictureUpload from "../../common/form/pictureUpload";
-import Languages from "../../../util/languages"
+import Title from '../../../common/title'
+import Container from '../../../common/form/container'
+import WrappedSelection from '../../../common/form/wrappedSelection'
+import WrappedAnyInput from '../../../common/form/wrappedAnyInput'
+import ControlButton from "../../../common/form/controlButtons";
+import PictureUpload from "../../../common/form/pictureUpload";
+import Languages from "../../../../util/languages"
 import styled from "styled-components";
 
 const Item = Form.Item;

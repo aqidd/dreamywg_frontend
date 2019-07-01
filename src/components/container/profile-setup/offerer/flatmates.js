@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { Form, Row, Col, Button, Icon } from 'antd'
-import Container from '../../common/form/container'
-import FlatmateItem from '../../presentation/profile-setup/FlatDetails/flatmateitem'
-import Title from '../../common/title'
-import ControlButton from '../../common/form/controlButtons'
+import Container from '../../../common/form/container'
+import FlatmateItem from '../../../presentation/profile-setup/FlatDetails/flatmateitem'
+import Title from '../../../common/title'
+import ControlButton from '../../../common/form/controlButtons'
 import styled from 'styled-components'
 
 let id = 0
