@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Col, Row, Steps} from 'antd'
+import {Col, Modal, Row, Steps} from 'antd'
 import {inject, observer, Provider} from 'mobx-react'
 import GeneralInfo from '../presentation/authentication/generalInfo'
 import CredentialForm from '../presentation/authentication/credentialForm'
@@ -12,34 +12,28 @@ const {Step} = Steps
 @inject('RegisterStore')
 @observer
 export default class RegisterContainer extends Component {
-  formRef = null
-  state = {visible: false, formResponse: ''}
-
   constructor(props) {
     super(props)
-  }
-
-  dismissModal = () => {
-    this.setState({
-      visible: false
-    })
-  }
-
-  showModal = () => {
-    this.setState({
-      visible: true
-    })
   }
 
   updateFormResponse = (response) => {
     if (response.status === 200) {
       this.props.RegisterStore.step.nextStep()
     } else {
-      this.setState({
-        formResponse: `Sorry, something went wrong. Please try again.`,
-        visible: true
-      })
+      this.showModal(`Sorry, something went wrong. Please try again.`)
     }
+  }
+
+  showModal = (message) => {
+    Modal.info({
+      content: (
+        <div>
+          {message}
+        </div>
+      ),
+      onOk() {
+      }
+    })
   }
 
   handleClick = async (name, data) => {
@@ -96,11 +90,6 @@ export default class RegisterContainer extends Component {
             <Col xl={5} lg={2} md={2} sm={2} xs={2}/>
           </Row>
         </StepContainer>
-        <ResponseModal
-          response={this.state.formResponse}
-          visible={this.state.visible}
-          hideModal={this.dismissModal}>
-        </ResponseModal>
       </div>
     )
   }
