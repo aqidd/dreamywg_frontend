@@ -5,23 +5,41 @@ import ProfileSetupOfferer from './pages/profileSetupOfferer'
 import ProfileSetupSeeker from './pages/profileSetupSeeker'
 import Register from './pages/register'
 import Login from './pages/login'
+import store from './stores/authStore'
 
 export default class App extends React.Component {
   constructor(props) {
     super(props)
   }
   render() {
+    const { hasToken } = store()
     return (
       <BrowserRouter>
         <Route exact path="/" component={LandingScreen} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/setupofferer" component={ProfileSetupOfferer} />
-        <Route exact path="/setupseeker" component={ProfileSetupSeeker} />
+        <ProtectedRoute
+          exact
+          path="/setupofferer"
+          component={ProfileSetupOfferer}
+          isAuth={hasToken()}
+        />
+        <ProtectedRoute
+          exact
+          path="/setupseeker"
+          component={ProfileSetupSeeker}
+          isAuth={hasToken()}
+        />
       </BrowserRouter>
     )
   }
 }
 
-const ProtectedRoute = ({ isAuth, ...others }) =>
-  isAuth ? <Route {...others} /> : <Redirect to="/login" />
+const ProtectedRoute = ({ isAuth, component, ...others }) => (
+  <Route
+    {...others}
+    render={props =>
+      isAuth ? <component {...props} /> : <Redirect to="/login" />
+    }
+  />
+)
