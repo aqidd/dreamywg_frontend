@@ -21,6 +21,7 @@ export default class App extends React.Component {
         <Route exact path="/" component={LandingScreen} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/confirmation/:token" component={ConfirmationScreen} />
         <ProtectedRoute
           exact
           path="/setupofferer"
@@ -33,9 +34,18 @@ export default class App extends React.Component {
           component={ProfileSetupSeeker}
           isAuth={hasToken()}
         />
-        <Route exact path="/roleselection" component={RoleSelection} />
-        <Route exact path="/confirmation/:token" component={ConfirmationScreen} />
-        <Route exact path="/search" component={SearchScreen}/>
+        <ProtectedRoute
+          exact
+          path="/roleselection"
+          component={RoleSelection}
+          isAuth={hasToken()}
+        />
+        <ProtectedRoute
+          exact
+          path="/search"
+          component={SearchScreen}
+          isAuth={hasToken()}
+        />
       </BrowserRouter>
     )
   }

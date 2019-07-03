@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
-import {Col, Modal, Row, Steps} from 'antd'
+import {Col, Row, Steps} from 'antd'
 import {inject, observer, Provider} from 'mobx-react'
 import GeneralInfo from '../presentation/authentication/generalInfo'
 import CredentialForm from '../presentation/authentication/credentialForm'
 import styled from 'styled-components'
-import ResponseModal from '../common/responseModal'
 import oAuth from "../presentation/authentication/oAuth";
+import WrappendModal from "../common/form/wrappendModal";
 
 const {Step} = Steps
 
@@ -20,20 +20,8 @@ export default class RegisterContainer extends Component {
     if (response.status === 200) {
       this.props.RegisterStore.step.nextStep()
     } else {
-      this.showModal(`Sorry, something went wrong. Please try again.`)
+      return WrappendModal(`Sorry, something went wrong. Please try again.`)
     }
-  }
-
-  showModal = (message) => {
-    Modal.info({
-      content: (
-        <div>
-          {message}
-        </div>
-      ),
-      onOk() {
-      }
-    })
   }
 
   handleClick = async (name, data) => {
@@ -54,8 +42,6 @@ export default class RegisterContainer extends Component {
         console.log('default')
     }
     this.forceUpdate()
-  }
-  onSubmit = () => {
   }
 
   render = () => {

@@ -3,7 +3,7 @@ import CredentialForm from './../presentation/authentication/credentialForm'
 import {inject, observer, Provider} from 'mobx-react'
 import 'antd/dist/antd.css'
 import {Redirect} from "react-router-dom";
-import {Modal} from "antd";
+import WrappendModal from "../common/form/wrappendModal";
 
 @inject('AuthStore')
 @observer
@@ -29,20 +29,8 @@ export default class LoginContainer extends Component {
         redirect: true
       })
     } else {
-      this.showModal(response.data.message)
+      return WrappendModal(response.data.message)
     }
-  }
-
-  showModal = (message) => {
-    Modal.info({
-      content: (
-        <div>
-          {message}
-        </div>
-      ),
-      onOk() {
-      }
-    })
   }
 
   render() {
