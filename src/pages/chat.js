@@ -3,7 +3,7 @@ import CustomHeader from '../components/common/customHeader'
 import CustomFooter from '../components/common/customFooter'
 import BaseLayout from '../components/presentation/baseLayout'
 import ChatContainer from "../components/container/chatContainer"
-import initStore from "../stores/roleSelectionStore"
+import initStore from "../stores/chatStore"
 import 'antd/dist/antd.css'
 import { Provider } from "mobx-react"
 

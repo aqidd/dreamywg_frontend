@@ -3,8 +3,8 @@ import styled, { ThemeProvider } from 'styled-components'
 import {inject, observer} from 'mobx-react'
 import theme from 'styled-theming'
 import { Layout, Card, Col, Row, Button, Input } from 'antd'
-import conversationSide from '../../presentation/chat/conversationSide'
-import personList from '../../presentation/chat/personList'
+import ConversationList from '../presentation/chat/conversationList'
+import ConversationSide from '../presentation/chat/conversationSide'
 
 @inject('ChatStore')
 @observer
@@ -19,12 +19,13 @@ export default class ChatContent extends Component{
                 <StyledContent>
                   <div>
                     <Row>
-                      <Col span={18} push={6}>
-                        col-18 col-push-6
+                      <Col span={16} push={8}>
+                        <ConversationSide />
                       </Col>
-                      <Col span={6} pull={18}>
-                        col-6 col-pull-18
+                      <Col span={8} pull={16}>
+                        <ConversationList />
                       </Col>
+
                     </Row>
                   </div>
                 </StyledContent>

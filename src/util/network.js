@@ -11,7 +11,8 @@ let config = {
 const Api = {
   login: credentials => axios.post(serverUrl + '/users/login', credentials, config),
   register: userData => axios.post(`${serverUrl}/users`, userData, config),
-  confirmation: token => axios.get(`${serverUrl}/confirmation/${token}`)
+  confirmation: token => axios.get(`${serverUrl}/confirmation/${token}`),
+  chat: userId => axios.get(`${serverUrl}/confirmation/${userId}`)
 }
 
 export default Api
