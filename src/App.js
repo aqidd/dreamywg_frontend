@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, BrowserRouter } from 'react-router-dom'
+import { Route, BrowserRouter, Redirect } from 'react-router-dom'
 import LandingScreen from './pages/landing'
 import ProfileSetupOfferer from './pages/profileSetupOfferer'
 import ProfileSetupSeeker from './pages/profileSetupSeeker'
@@ -8,20 +8,44 @@ import ConfirmationScreen from "./pages/confirmation"
 import RoleSelection from "./pages/roleSelection"
 import SearchScreen from './pages/search'
 import Login from './pages/login'
+import store from './stores/authStore'
 
-const App = () => {
-  return (
-    <BrowserRouter>
-      <Route exact path="/" component={LandingScreen} />
-      <Route exact path="/register" component={Register} />
-      <Route exact path="/roleselection" component={RoleSelection} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/setupofferer" component={ProfileSetupOfferer} />
-      <Route exact path="/setupseeker" component={ProfileSetupSeeker} />
-      <Route exact path="/confirmation/:token" component={ConfirmationScreen} />
-      <Route exact path="/search" component={SearchScreen}/>
-    </BrowserRouter>
-  )
+export default class App extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    const { hasToken } = store()
+    return (
+      <BrowserRouter>
+        <Route exact path="/" component={LandingScreen} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/login" component={Login} />
+        <ProtectedRoute
+          exact
+          path="/setupofferer"
+          component={ProfileSetupOfferer}
+          isAuth={hasToken()}
+        />
+        <ProtectedRoute
+          exact
+          path="/setupseeker"
+          component={ProfileSetupSeeker}
+          isAuth={hasToken()}
+        />
+        <Route exact path="/roleselection" component={RoleSelection} />
+        <Route exact path="/confirmation/:token" component={ConfirmationScreen} />
+        <Route exact path="/search" component={SearchScreen}/>
+      </BrowserRouter>
+    )
+  }
 }
 
-export default App
+const ProtectedRoute = ({ isAuth, component, ...others }) => (
+  <Route
+    {...others}
+    render={props =>
+      isAuth ? <component {...props} /> : <Redirect to="/login" />
+    }
+  />
+)
