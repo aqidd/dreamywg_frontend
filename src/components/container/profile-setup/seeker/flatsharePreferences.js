@@ -7,7 +7,15 @@ import WrappedSelection from '../../../common/form/wrappedSelection'
 import WrappedAnyInput from '../../../common/form/wrappedAnyInput'
 import Stations from "../../../../util/shortStations";
 import Regions from "../../../../util/regions";
-import stores from "../../../../util/stores";
+import {
+  activities,
+  cleaningSchedule,
+  cleanliness,
+  gender,
+  stores,
+  typeOfFlatshare,
+  typeOfRent
+} from "../../../../util/selections";
 
 const Item = Form.Item;
 const InputGroup = Input.Group;
@@ -58,19 +66,18 @@ class FlatsharePreferences extends Component {
                   placeHolder="Please select"
                   dec={decorator}
                   objName="typeOfRent"
-                  value={['limited', 'unlimited', 'don\'t care']}
+                  value={typeOfRent}
                 />
               </Item>
             </Col>
             <Col span={6}>
-
               <Item label="Type of flatshare">
                 <WrappedSelection
                   tag="multiple"
                   placeHolder="Please select"
                   dec={decorator}
                   objName="typeOfFlatshare"
-                  value={['students only', 'workers only', 'don\'t care']}
+                  value={typeOfFlatshare}
                 />
               </Item>
             </Col>
@@ -148,7 +155,7 @@ class FlatsharePreferences extends Component {
                   placeHolder="Please select"
                   dec={decorator}
                   objName="gender"
-                  value={['Females only', 'Male only', 'Mixed']}
+                  value={gender}
                 />
               </Item>
             </Col>
@@ -365,11 +372,7 @@ class FlatsharePreferences extends Component {
                   placeHolder="Please select"
                   dec={decorator}
                   objName="cleanliness"
-                  value={[
-                    "I don't care",
-                    'Common rooms should be tidied up regularly',
-                    'Common rooms must always be clean'
-                  ]}
+                  value={cleanliness}
                 />
               </Item>
             </Col>
@@ -380,35 +383,20 @@ class FlatsharePreferences extends Component {
                   placeHolder="Please select"
                   dec={decorator}
                   objName="cleaningSchedule"
-                  value={[
-                    'None',
-                    'Whole appartment cleand by one flatmate; (bi-)weekly &rotating',
-                    'Each flatmate cleans 1-2 rooms; (bi-)weekly & rotating',
-                    'Cleaningstaff',
-                    'Others'
-                  ]}
+                  value={cleaningSchedule}
                 />
               </Item>
             </Col>
-            {/*TODO: Use Wrapper*/}
             <Col span={8}>
               <Item label="Flatshare activities">
-                {decorator('FlatmatePreferencesFlatshareActivities')(
-                  <Select
-                    mode="tags"
-                    placeholder="Please select"
-                    style={{width: '100%'}}
-                    tokenSeparators={[',']}
-                  >
-                    {['Cooking', 'Partying', 'Drinking Wine/Beer', 'Sport'].map(
-                      item => (
-                        <Option key={item} value={item}>
-                          {item}
-                        </Option>
-                      )
-                    )}
-                  </Select>
-                )}
+                <WrappedSelection
+                  mode="tags"
+                  placeHolder="Please select"
+                  dec={decorator}
+                  tokenSeparators={[',']}
+                  objName="activities"
+                  value={activities}
+                />
               </Item>
             </Col>
           </Row>

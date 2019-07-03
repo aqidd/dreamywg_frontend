@@ -1,10 +1,19 @@
 import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
-import {Button, Form, Input, InputNumber, Select, Switch} from 'antd'
+import {Button, Col, Form, Input, InputNumber, Row, Select, Switch} from 'antd'
 import Title from '../../../common/title'
 import Container from '../../../common/form/container'
 import WrappedSelection from '../../../common/form/wrappedSelection'
 import WrappedAnyInput from '../../../common/form/wrappedAnyInput'
+import {
+  activities,
+  cleaningSchedule,
+  cleanliness,
+  flatshareExperience,
+  gender,
+  occupation,
+  practiceOfAbstaining
+} from "../../../../util/selections";
 
 const Item = Form.Item
 const InputGroup = Input.Group
@@ -36,141 +45,142 @@ class FlatmatePreferences extends Component {
       <Container>
         <Title> Flat Preferences </Title>
         <Form layout={'vertical'}>
-          <Item label="Gender">
-            <WrappedSelection
-              placeHolder="Please select"
-              dec={getFieldDecorator}
-              objName="gender"
-              value={['Females only', 'Male only', 'Both']}
-            />
-          </Item>
-
-          <Item label="Age">
-            <InputGroup compact>
-              <WrappedAnyInput
-                tag={<InputNumber style={{width: 70, textAlign: 'center'}}/>}
-                dec={getFieldDecorator}
-                objName="ageFrom"
-              />
-              <Input
-                style={{
-                  width: 30,
-                  borderLeft: 0,
-                  pointerEvents: 'none',
-                  backgroundColor: '#fff'
-                }}
-                placeholder="-"
-                disabled
-              />
-              <WrappedAnyInput
-                tag={<InputNumber style={{width: 70, textAlign: 'center'}}/>}
-                dec={getFieldDecorator}
-                objName="ageTo"
-              />
-            </InputGroup>
-          </Item>
-
-          <Item label="Occupations">
-            <WrappedSelection
-              placeHolder="Add nearby station"
-              type="multiple"
-              dec={getFieldDecorator}
-              objName="occupations"
-              value={['Student', 'Working', 'On Vacation']}
-            />
-          </Item>
-
-          <Item label="Required flatshare experience">
-            <WrappedSelection
-              required
-              placeHolder="Please select"
-              dec={getFieldDecorator}
-              objName="flatshareExperience"
-              value={['None', '≤ 1 year', '> 1 year', '> 2 year']}
-            />
-          </Item>
-
-          <Item label="Accepted Practices of Abstaining">
-            <WrappedSelection
-              placeHolder="Please select"
-              type="multiple"
-              dec={getFieldDecorator}
-              objName="practiceOfAbstaining"
-              value={['Vegan', 'Vegetarian', 'Paleo']}
-            />
-          </Item>
-
-          <Item label="Expected Cleanliness">
-            <WrappedSelection
-              placeHolder="Please select"
-              dec={getFieldDecorator}
-              objName="cleanliness"
-              value={[
-                "We don't care",
-                'Common rooms should be tidied up regularly',
-                'Common rooms must always be clean'
-              ]}
-            />
-          </Item>
-
-          <Item label="Cleaning schedule">
-            <WrappedSelection
-              placeHolder="Please select"
-              dec={getFieldDecorator}
-              objName="cleaningSchedule"
-              value={[
-                'None',
-                'Whole appartment cleand by one flatmate; (bi-)weekly &rotating',
-                'Each flatmate cleans 1-2 rooms; (bi-)weekly & rotating',
-                'Cleaningstaff',
-                'Others'
-              ]}
-            />
-          </Item>
-
-          <Form.Item label="Flatshare activities">
-            {getFieldDecorator('FlatmatePreferencesFlatshareActivities')(
-              <Select
-                mode="tags"
-                placeholder="Please select"
-                style={{width: '100%'}}
-                tokenSeparators={[',']}
-              >
-                {['Cooking', 'Partying', 'Drinking Wine/Beer', 'Sport'].map(
-                  item => (
-                    <Option key={item} value={item}>
-                      {item}
-                    </Option>
-                  )
-                )}
-              </Select>
-            )}
-          </Form.Item>
-
-          <Item label="Smokers">
-            <WrappedAnyInput
-              tag={<Switch defaultChecked={false}/>}
-              dec={getFieldDecorator}
-              objName="smokersAllowed"
-            />
-          </Item>
-
-          <Item label="Pets">
-            <WrappedAnyInput
-              tag={<Switch defaultChecked={false}/>}
-              dec={getFieldDecorator}
-              objName="petsAllowed"
-            />
-          </Item>
-
-          <Item label="Weekend Absent">
-            <WrappedAnyInput
-              tag={<Switch defaultChecked={false}/>}
-              dec={getFieldDecorator}
-              objName="weekendAbsent"
-            />
-          </Item>
-
+          <Row gutter={24}>
+            <Col span={8}>
+              <Item label="Gender">
+                <WrappedSelection
+                  placeHolder="Please select"
+                  dec={getFieldDecorator}
+                  objName="gender"
+                  value={gender}
+                />
+              </Item>
+            </Col>
+            <Col span={8}>
+              <Item label="Age">
+                <InputGroup compact>
+                  <WrappedAnyInput
+                    tag={<InputNumber style={{width: 70, textAlign: 'center'}}/>}
+                    dec={getFieldDecorator}
+                    objName="ageFrom"
+                  />
+                  <Input
+                    style={{
+                      width: 30,
+                      borderLeft: 0,
+                      pointerEvents: 'none',
+                      backgroundColor: '#fff'
+                    }}
+                    placeholder="-"
+                    disabled
+                  />
+                  <WrappedAnyInput
+                    tag={<InputNumber style={{width: "40%", textAlign: 'center', borderLeft: 0}}/>}
+                    dec={getFieldDecorator}
+                    objName="ageTo"
+                  />
+                </InputGroup>
+              </Item>
+            </Col>
+            <Col span={8}>
+              <Item label="Occupations">
+                <WrappedSelection
+                  placeHolder="Please select"
+                  type="multiple"
+                  dec={getFieldDecorator}
+                  objName="occupations"
+                  value={occupation}
+                />
+              </Item>
+            </Col>
+          </Row>
+          <Row gutter={24}>
+            <Col span={12}>
+              <Item label="Required flatshare experience">
+                <WrappedSelection
+                  required
+                  placeHolder="Please select"
+                  dec={getFieldDecorator}
+                  objName="flatshareExperience"
+                  value={flatshareExperience}
+                />
+              </Item>
+            </Col>
+            <Col span={12}>
+              <Item label="Accepted Practices of Abstaining">
+                <WrappedSelection
+                  placeHolder="Please select"
+                  type="multiple"
+                  dec={getFieldDecorator}
+                  objName="practiceOfAbstaining"
+                  value={practiceOfAbstaining}
+                />
+              </Item>
+            </Col>
+          </Row>
+          <Row gutter={24}>
+            <Col span={8}>
+              <Item label="Expected Cleanliness">
+                <WrappedSelection
+                  placeHolder="Please select"
+                  dec={getFieldDecorator}
+                  objName="cleanliness"
+                  value={cleanliness}
+                />
+              </Item>
+            </Col>
+            <Col span={8}>
+              <Item label="Cleaning schedule">
+                <WrappedSelection
+                  placeHolder="Please select"
+                  dec={getFieldDecorator}
+                  objName="cleaningSchedule"
+                  value={cleaningSchedule}
+                />
+              </Item>
+            </Col>
+            <Col span={8}>
+              <Item label="Flatshare activities">
+                <WrappedSelection
+                  mode="tags"
+                  placeHolder="Please select"
+                  dec={getFieldDecorator}
+                  tokenSeparators={[',']}
+                  objName="activities"
+                  value={activities}
+                />
+              </Item>
+            </Col>
+          </Row>
+          <Row gutter={24}>
+            <Col span={8}>
+              <Item label="Smokers">
+                <WrappedAnyInput
+                  tag={<Switch defaultChecked={false}/>}
+                  dec={getFieldDecorator}
+                  objName="smokersAllowed"
+                />
+              </Item>
+            </Col>
+            <Col span={8}>
+              <Item label="Pets">
+                <WrappedAnyInput
+                  tag={<Switch defaultChecked={false}/>}
+                  dec={getFieldDecorator}
+                  objName="petsAllowed"
+                />
+              </Item>
+            </Col>
+            <Col span={8}>
+              <Item label="Weekend Absent">
+                <WrappedAnyInput
+                  tag={<Switch defaultChecked={false}/>}
+                  dec={getFieldDecorator}
+                  objName="weekendAbsent"
+                />
+              </Item>
+            </Col>
+          </Row>
 
           <Button
             style={{float: 'right'}}

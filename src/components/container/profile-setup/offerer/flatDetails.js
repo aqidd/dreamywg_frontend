@@ -51,8 +51,8 @@ class FlatDetails extends Component {
         <Form layout="vertical">
           <LocationGroup decorator={getFieldDecorator} />
           <ValueGroup decorator={getFieldDecorator} />
-          <SelectGroup decorator={getFieldDecorator} />
-          <SwitchGroup decorator={getFieldDecorator} showDuration={getFieldValue("rent-type") === "limited"} />
+          <SelectGroup decorator={getFieldDecorator} fieldValue={getFieldValue}/>
+          <SwitchGroup decorator={getFieldDecorator}/>
           <Form.Item label="Images">
             <PictureUpload
               onCancel={() => {

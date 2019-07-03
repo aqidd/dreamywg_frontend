@@ -9,6 +9,7 @@ import ControlButton from "../../../common/form/controlButtons";
 import PictureUpload from "../../../common/form/pictureUpload";
 import Languages from "../../../../util/languages"
 import styled from "styled-components";
+import {field, flatshareExperience, hobbies, occupation, practiceOfAbstaining} from "../../../../util/selections";
 
 const Item = Form.Item;
 const InputGroup = Input.Group;
@@ -61,7 +62,7 @@ class PersonalInformation extends Component {
                       placeHolder="Please select"
                       dec={getFieldDecorator}
                       objName="occupation"
-                      value={['Student', 'Working', 'On Vacation', 'Others']}
+                      value={occupation}
                     />
                   </Item>
                 </Col>
@@ -71,7 +72,7 @@ class PersonalInformation extends Component {
                       placeHolder="Please select"
                       dec={getFieldDecorator}
                       objName="field"
-                      value={['IT', 'Medicine', 'Physics', 'Math']}
+                      value={field}
                     />
                   </Item>
                 </Col>
@@ -84,7 +85,7 @@ class PersonalInformation extends Component {
                       placeHolder="Please select"
                       dec={getFieldDecorator}
                       objName="flatshareExperience"
-                      value={['None', '≤ 1 year', '> 1 year', '> 2 year']}
+                      value={flatshareExperience}
                     />
                   </Item>
                 </Col>
@@ -107,7 +108,7 @@ class PersonalInformation extends Component {
                       type="multiple"
                       dec={getFieldDecorator}
                       objName="practiceOfAbstaining"
-                      value={['Vegan', 'Vegetarian', 'Paleo']}
+                      value={practiceOfAbstaining}
                     />
                   </Item>
                 </Col>
@@ -120,7 +121,7 @@ class PersonalInformation extends Component {
                       type="multiple"
                       dec={getFieldDecorator}
                       objName="hobbies"
-                      value={['Football', 'Volleyball', 'Soccer']}
+                      value={hobbies}
                     />
                   </Item>
                 </Col>

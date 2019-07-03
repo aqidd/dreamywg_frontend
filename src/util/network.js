@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-const serverUrl = 'http://localhost:4006'
+const serverUrl = 'http://localhost:4007'
 
 let config = {
   headers: {
-    authentication: ''
+    authentication: `${localStorage.getItem('token')}`
   }
 }
 

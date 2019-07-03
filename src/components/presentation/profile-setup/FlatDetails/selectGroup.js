@@ -1,104 +1,92 @@
 import React from 'react'
-import { Input, Form, Row, Col } from 'antd'
+import {Col, DatePicker, Form, Input, Row} from 'antd'
 import WrappedSelection from '../../../common/form/wrappedSelection'
-import stores from '../../../../util/stores'
 import stations from '../../../../util/shortStations'
+import {flooring, miscellaneous, stores, typeOfFlatshare, typeOfRent} from "../../../../util/selections";
+import WrappedAnyInput from "../../../common/form/wrappedAnyInput";
 
-const { Item } = Form
+const {RangePicker} = DatePicker
+const {Item} = Form
 
-const SelectGroup = ({ decorator }) => (
-  <Input.Group>
-    <Row gutter={16}>
-      <Col span={12}>
-        <Item label="Rental type">
-          <WrappedSelection
-            required
-            placeHolder="Select your rental type"
-            dec={decorator}
-            objName="rent-type"
-            value={['limited', 'unlimited']}
-          />
-        </Item>
-      </Col>
-      <Col span={12}>
-        <Item label="Flat type">
-          <WrappedSelection
-            required
-            placeHolder="Select your flat type"
-            dec={decorator}
-            objName="flat-type"
-            value={[
-              'student only',
-              'work only',
-              'female only',
-              'male only',
-              'mixed'
-            ]}
-          />
-        </Item>
-      </Col>
-    </Row>
-    <Item label="Nearby station">
-      <WrappedSelection
-        placeHolder="Add nearby station"
-        type="tags"
-        dec={decorator}
-        objName="nearby-station"
-        value={stations}
-      />
-    </Item>
+const SelectGroup = ({decorator, fieldValue}) => (
+    <Input.Group>
+      <Row gutter={16}>
+        <Col span={8}>
+          <Item label="Rental type">
+            <WrappedSelection
+              required
+              placeHolder="Please select"
+              dec={decorator}
+              objName="typeOfRent"
+              value={typeOfRent}
+            />
+          </Item>
+        </Col>
+        <Col span={8}>
+          <Item label="Date available">
+            <WrappedAnyInput
+              required
+              tag={fieldValue("typeOfRent") === "limited" ? <RangePicker/> : <DatePicker/>}
+              dec={decorator}
+              objName="date-available"
+            />
+          </Item>
+        </Col>
+        <Col span={8}>
+          <Item label="Flat type">
+            <WrappedSelection
+              required
+              placeHolder="Please select"
+              dec={decorator}
+              objName="flatType"
+              value={typeOfFlatshare}
+            />
+          </Item>
+        </Col>
+      </Row>
+      <Item label="Nearby station">
+        <WrappedSelection
+          placeHolder="Please select"
+          type="tags"
+          dec={decorator}
+          objName="stations"
+          value={stations}
+        />
+      </Item>
 
-    <Item label="Nearby store">
-      <WrappedSelection
-        placeHolder="Add nearby store"
-        type="tags"
-        dec={decorator}
-        objName="nearby-store"
-        value={stores}
-      />
-    </Item>
-    <Row gutter={16}>
-      <Col span={12}>
-        <Item label="Miscellaneous">
-          <WrappedSelection
-            placeHolder="Add miscellaneous"
-            type="tags"
-            dec={decorator}
-            objName="miscellaneous"
-            value={[
-              'Washing machine',
-              'Dishwasher',
-              'Terrace',
-              'Balcony',
-              'Garden',
-              'Basement,cellar',
-              'Elevator',
-              'Bicycle storage'
-            ]}
-          />
-        </Item>
-      </Col>
-      <Col span={12}>
-        <Item label="Flooring">
-          <WrappedSelection
-            placeHolder="Add flooring"
-            type="tags"
-            dec={decorator}
-            objName="flooring"
-            value={[
-              'Floorboards',
-              'Parquet',
-              'Laminate',
-              'Carpet',
-              'Tilling',
-              'PVC',
-              'Underfloor heating'
-            ]}
-          />
-        </Item>
-      </Col>
-    </Row>
-  </Input.Group>
-)
-
+      <Item label="Nearby store">
+        <WrappedSelection
+          placeHolder="Please select"
+          type="tags"
+          dec={decorator}
+          objName="stores"
+          value={stores}
+        />
+      </Item>
+      <Row gutter={16}>
+        <Col span={12}>
+          <Item label="Miscellaneous">
+            <WrappedSelection
+              placeHolder="Please select"
+              type="tags"
+              dec={decorator}
+              objName="miscellaneous"
+              value={miscellaneous}
+            />
+          </Item>
+        </Col>
+        <Col span={12}>
+          <Item label="Flooring">
+            <WrappedSelection
+              placeHolder="Please select"
+              type="tags"
+              dec={decorator}
+              objName="flooring"
+              value={flooring}
+            />
+          </Item>
+        </Col>
+      </Row>
+    </Input.Group>
+  )
 export default SelectGroup

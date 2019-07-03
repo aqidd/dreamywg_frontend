@@ -1,25 +1,16 @@
 import React from 'react'
-import { Input, Form, DatePicker, Switch, Row, Col } from 'antd'
+import {Col, DatePicker, Form, Input, Row, Switch} from 'antd'
 import WrappedAnyInput from '../../../common/form/wrappedAnyInput'
 
-const { Item } = Form
-const { RangePicker } = DatePicker
+const {Item} = Form;
 
-const SwitchGroup = ({ decorator, showDuration }) => (
+const SwitchGroup = ({decorator}) => (
   <Input.Group>
-    <Item label="Date available">
-      <WrappedAnyInput
-        required
-        tag={showDuration ? <RangePicker /> : <DatePicker />}
-        dec={decorator}
-        objName="date-available"
-      />
-    </Item>
     <Row>
       <Col span={8}>
         <Item label="Furnished">
           <WrappedAnyInput
-            tag={<Switch defaultChecked={false} />}
+            tag={<Switch defaultChecked={false}/>}
             dec={decorator}
             objName="furnished"
           />
@@ -28,7 +19,7 @@ const SwitchGroup = ({ decorator, showDuration }) => (
       <Col span={8}>
         <Item label="Parking lot">
           <WrappedAnyInput
-            tag={<Switch defaultChecked={false} />}
+            tag={<Switch defaultChecked={false}/>}
             dec={decorator}
             objName="parking-lot"
           />
@@ -37,7 +28,7 @@ const SwitchGroup = ({ decorator, showDuration }) => (
       <Col span={8}>
         <Item label="Separate living room">
           <WrappedAnyInput
-            tag={<Switch defaultChecked={false} />}
+            tag={<Switch defaultChecked={false}/>}
             dec={decorator}
             objName="livingroom"
           />
@@ -48,7 +39,7 @@ const SwitchGroup = ({ decorator, showDuration }) => (
       <Col span={8}>
         <Item label="Shower">
           <WrappedAnyInput
-            tag={<Switch defaultChecked={false} />}
+            tag={<Switch defaultChecked={false}/>}
             dec={decorator}
             objName="shower"
           />
@@ -57,7 +48,7 @@ const SwitchGroup = ({ decorator, showDuration }) => (
       <Col span={8}>
         <Item label="Bathtub">
           <WrappedAnyInput
-            tag={<Switch defaultChecked={false} />}
+            tag={<Switch defaultChecked={false}/>}
             dec={decorator}
             objName="bathtub"
           />
@@ -66,7 +57,7 @@ const SwitchGroup = ({ decorator, showDuration }) => (
       <Col span={8}>
         <Item label="Kitchen">
           <WrappedAnyInput
-            tag={<Switch defaultChecked={false} />}
+            tag={<Switch defaultChecked={false}/>}
             dec={decorator}
             objName="kitchen"
           />
@@ -77,7 +68,7 @@ const SwitchGroup = ({ decorator, showDuration }) => (
       <Col span={8}>
         <Item label="Internet">
           <WrappedAnyInput
-            tag={<Switch defaultChecked={false} />}
+            tag={<Switch defaultChecked={false}/>}
             dec={decorator}
             objName="internet"
           />
@@ -86,7 +77,7 @@ const SwitchGroup = ({ decorator, showDuration }) => (
       <Col span={8}>
         <Item label="Balcony">
           <WrappedAnyInput
-            tag={<Switch defaultChecked={false} />}
+            tag={<Switch defaultChecked={false}/>}
             dec={decorator}
             objName="balcony"
           />
@@ -95,7 +86,7 @@ const SwitchGroup = ({ decorator, showDuration }) => (
       <Col span={8}>
         <Item label="Terrace">
           <WrappedAnyInput
-            tag={<Switch defaultChecked={false} />}
+            tag={<Switch defaultChecked={false}/>}
             dec={decorator}
             objName="terrace"
           />
@@ -106,7 +97,7 @@ const SwitchGroup = ({ decorator, showDuration }) => (
       <Col span={8}>
         <Item label="Garden">
           <WrappedAnyInput
-            tag={<Switch defaultChecked={false} />}
+            tag={<Switch defaultChecked={false}/>}
             dec={decorator}
             objName="garden"
           />
@@ -115,7 +106,7 @@ const SwitchGroup = ({ decorator, showDuration }) => (
       <Col span={8}>
         <Item label="Washing machine">
           <WrappedAnyInput
-            tag={<Switch defaultChecked={false} />}
+            tag={<Switch defaultChecked={false}/>}
             dec={decorator}
             objName="washingMachine"
           />
@@ -124,7 +115,7 @@ const SwitchGroup = ({ decorator, showDuration }) => (
       <Col span={8}>
         <Item label="Dishwasher">
           <WrappedAnyInput
-            tag={<Switch defaultChecked={false} />}
+            tag={<Switch defaultChecked={false}/>}
             dec={decorator}
             objName="dishwasher"
           />
@@ -132,6 +123,6 @@ const SwitchGroup = ({ decorator, showDuration }) => (
       </Col>
     </Row>
   </Input.Group>
-)
+);
 
 export default SwitchGroup
