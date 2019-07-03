@@ -8,6 +8,10 @@ class AuthStore {
     email: '',
     password: ''
   }
+  @observable requestStatus = {
+      completed: false,
+      error: false
+  }
 
   constructor() {
     this.initData()
@@ -26,6 +30,17 @@ class AuthStore {
 
   @action login = async credentials => {
     return network.login(credentials)
+  }
+
+  @action loginv2 = credentials => {
+      network.login(credentials).then( response => {
+        this.setToken(response.data.token)
+        this.requestStatus.completed = true
+        this.requestStatus.error = false
+      }).catch( error => {
+        this.requestStatus.completed = true
+        this.requestStatus.error = true
+      })
   }
 
   hasToken = () => this.token !== ''
