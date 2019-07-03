@@ -1,5 +1,5 @@
 import React from 'react'
-import { List, Avatar, Button, Skeleton } from 'antd';
+import { List, Avatar, Button, Skeleton, Icon, Carousel } from 'antd';
 import axios from 'axios'
 
 const count = 3;
@@ -67,27 +67,37 @@ class RoomListContainer extends React.Component {
       ) : null;
 
     return (
-      <List
-        className="demo-loadmore-list"
-        loading={initLoading}
-        itemLayout="horizontal"
-        loadMore={loadMore}
-        dataSource={list}
-        renderItem={item => (
-          <List.Item actions={[<a>edit</a>, <a>more</a>]}>
-            <Skeleton avatar title={false} loading={item.loading} active>
-              <List.Item.Meta
-                avatar={
-                  <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                }
-                title={<a href="https://ant.design">{item.name.last}</a>}
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-              />
-              <div>content</div>
-            </Skeleton>
-          </List.Item>
-        )}
-      />
+      <div>
+        <h2> Available Rooms </h2>
+        <List
+          loading={initLoading}
+          itemLayout="vertical"
+          loadMore={loadMore}
+          dataSource={list}
+          renderItem={item => (
+            <List.Item 
+                actions={[<h3>900EUR</h3>, 
+                <Button type="primary" icon="phone">
+                  Contact
+                </Button>]}
+                extra={
+                  <img 
+                    width={200}
+                    src="http://images.mentalfloss.com/sites/default/files/styles/article_640x430/public/up_house.jpg"/>
+                }>
+              <Skeleton avatar title={false} loading={item.loading} active>
+                <List.Item.Meta
+                  title={<a href="https://ant.design">{item.name.last}'s Room</a>}
+                  description="AVAILABLE on 12 Dec 2019"
+                />
+              </Skeleton>
+              <p>This is a room short description. Click to see popup details (?).
+                  The room is pretty small with balcony and toilet. No kitchen and bed</p>
+            </List.Item>
+          )}
+        />
+      </div>
+      
     );
   }
 }

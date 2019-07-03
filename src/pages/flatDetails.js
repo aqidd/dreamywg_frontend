@@ -7,10 +7,14 @@ export default class FlatDetails extends React.Component {
     }
 
     render() {
-        return (<div>
+        return (<div style={pageStyle}>
             <FlatDetailsTab>
 
             </FlatDetailsTab>
         </div>)
     }
+}
+
+const pageStyle = {
+    padding: '30px'  
 }
