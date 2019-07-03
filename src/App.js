@@ -4,8 +4,8 @@ import LandingScreen from './pages/landing'
 import ProfileSetupOfferer from './pages/profileSetupOfferer'
 import ProfileSetupSeeker from './pages/profileSetupSeeker'
 import Register from './pages/register'
-import ConfirmationScreen from "./pages/confirmation"
-import RoleSelection from "./pages/roleSelection"
+import ConfirmationScreen from './pages/confirmation'
+import RoleSelection from './pages/roleSelection'
 import SearchScreen from './pages/search'
 import Login from './pages/login'
 import store from './stores/authStore'
@@ -21,29 +21,33 @@ export default class App extends React.Component {
         <Route exact path="/" component={LandingScreen} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/confirmation/:token" component={ConfirmationScreen} />
+        <Route
+          exact
+          path="/confirmation/:token"
+          component={ConfirmationScreen}
+        />
         <ProtectedRoute
           exact
           path="/setupofferer"
-          component={ProfileSetupOfferer}
+          Comp={ProfileSetupOfferer}
           isAuth={hasToken()}
         />
         <ProtectedRoute
           exact
           path="/setupseeker"
-          component={ProfileSetupSeeker}
+          Comp={ProfileSetupSeeker}
           isAuth={hasToken()}
         />
         <ProtectedRoute
           exact
           path="/roleselection"
-          component={RoleSelection}
+          Comp={RoleSelection}
           isAuth={hasToken()}
         />
         <ProtectedRoute
           exact
           path="/search"
-          component={SearchScreen}
+          Comp={SearchScreen}
           isAuth={hasToken()}
         />
       </BrowserRouter>
@@ -51,11 +55,9 @@ export default class App extends React.Component {
   }
 }
 
-const ProtectedRoute = ({ isAuth, component, ...others }) => (
+const ProtectedRoute = ({ isAuth, Comp, ...others }) => (
   <Route
     {...others}
-    render={props =>
-      isAuth ? <component {...props} /> : <Redirect to="/login" />
-    }
+    render={props => (isAuth ? <Comp {...props} /> : <Redirect to="/login" />)}
   />
 )

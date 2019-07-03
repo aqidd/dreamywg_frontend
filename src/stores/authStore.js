@@ -1,32 +1,36 @@
-import {action, observable} from 'mobx'
+import { action, observable } from 'mobx'
 import axios from 'axios'
 import network from '../util/network'
 
 class AuthStore {
-    @observable token = ''
-    @observable credentials = {
-        email: '',
-        password: ''
-    }
+  token = 'asdf'
+  @observable credentials = {
+    email: '',
+    password: ''
+  }
 
-    constructor() {
-        this.initData();
-    }
+  constructor() {
+    this.initData()
+  }
 
-    initData() {
-    }
+  initData() {}
 
-    getToken() {
-        return this.token;
-    }
+  setToken = token => {
+    this.token = token
+    localStorage.setItem('token', token)
+  }
 
-    @action login =  async(credentials) => {
-        return network.login(credentials);
-    }
+  get getToken() {
+    return localStorage.getItem('token')
+  }
 
-    hasToken = () => this.token !== ''
+  @action login = async credentials => {
+    return network.login(credentials)
+  }
+
+  hasToken = () => this.token !== ''
 }
 
-const Store = () => new AuthStore();
+const Store = () => new AuthStore()
 
 export default Store

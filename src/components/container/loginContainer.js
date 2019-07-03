@@ -24,7 +24,8 @@ export default class LoginContainer extends Component {
   updateFormResponse = (response) => {
     if (response.status === 200) {
       const token = response.data.token;
-      localStorage.setItem('token', token);
+      this.props.AuthStore.setToken(token);
+      //localStorage.setItem('token', token);
       this.setState({
         redirect: true
       })
