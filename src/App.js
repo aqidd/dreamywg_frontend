@@ -9,6 +9,7 @@ import RoleSelection from './pages/roleSelection'
 import SearchScreen from './pages/search'
 import Login from './pages/login'
 import store from './stores/authStore'
+import Interview from './pages/interview'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -42,6 +43,12 @@ export default class App extends React.Component {
           exact
           path="/roleselection"
           Comp={RoleSelection}
+          isAuth={hasToken()}
+        />
+        <ProtectedRoute
+          exact
+          path="/interview"
+          Comp={Interview}
           isAuth={hasToken()}
         />
         <ProtectedRoute
