@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col, Input, Form } from 'antd'
-import WrappedInput from '../../../common/form/warppedInput'
+import WrappedInput from '../../../common/form/wrappedInput'
 
 const Item = Form.Item
 
@@ -8,22 +8,20 @@ const ValueGroup = ({ decorator }) => (
   <Input.Group>
     <Row gutter={16}>
       <Col span={8}>
-        <Item label="Flat">
+        <Item label="Flatsize">
           <WrappedInput
             dec={decorator}
-            objName="apartment-size"
-            placeHolder="Apartment"
+            objName="flatSize"
             suffix="m&sup2;"
             type="number"
           />
         </Item>
       </Col>
       <Col span={8}>
-        <Item label="Room">
+        <Item label="Roomsize">
           <WrappedInput
             dec={decorator}
-            objName="room-size"
-            placeHolder="Room"
+            objName="roomSize"
             suffix="m&sup2;"
             type="number"
           />
@@ -34,7 +32,6 @@ const ValueGroup = ({ decorator }) => (
           <WrappedInput
             dec={decorator}
             objName="rent"
-            placeHolder="Month"
             suffix=" ‎€/Month"
             type="number"
           />

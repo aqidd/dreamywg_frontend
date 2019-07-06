@@ -1,7 +1,10 @@
 export const stores = ["Edeka", "Lidl", "Aldi", "dm", "Norma", "Netto", "Rewe", "Rossmann"];
-export const typeOfRent = ['limited', 'unlimited'];
-export const typeOfFlatshare = ['students only', 'workers only', 'mixed'];
-export const gender = ['Females only', 'Male only', 'Mixed'];
+export const rentType = ['limited', 'unlimited'];
+export const flatshareType = ['students only', 'workers only', 'Student association', 'mixed'];
+export const genderRestriction = ['Women only', 'Men only'];
+export const genderPreference = ['Man', 'Woman'];
+export const gender = ['Female', 'Male', 'Diverse'];
+
 export const cleanliness = [
   "Don't care",
   'Common rooms should be tidied up regularly',

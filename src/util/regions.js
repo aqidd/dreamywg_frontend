@@ -17,7 +17,6 @@ export default [
   "Ramersdorf-Perlach",
   "Obergiesing-Fasangarten",
   "Untergiesing-Harlaching",
-  "Thalkirchen-Obersendling-Forstenried-Fürstenried-Solln",
   "Hadern",
   "Pasing-Obermenzing",
   "Aubing-Lochhausen-Langwied",

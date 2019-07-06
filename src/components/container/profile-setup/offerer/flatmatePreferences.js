@@ -9,16 +9,16 @@ import {
   activities,
   cleaningSchedule,
   cleanliness,
-  flatshareExperience,
-  gender,
+  flatshareExperience, genderPreference,
+  genderRestriction,
   occupation,
   practiceOfAbstaining
 } from "../../../../util/selections";
 
-const Item = Form.Item
-const InputGroup = Input.Group
+const Item = Form.Item;
+const InputGroup = Input.Group;
 
-const {Option} = Select
+const {Option} = Select;
 
 @inject('store')
 @observer
@@ -32,18 +32,18 @@ class FlatmatePreferences extends Component {
         ? this.props.onNext(values)
         : this.props.onBack(values)
     })
-  }
+  };
   displayError = obj => {
-    const errorValue = Object.keys(obj).reduce((a, b) => a + ' ' + b)
+    const errorValue = Object.keys(obj).reduce((a, b) => a + ' ' + b);
     alert('Please complete the following field : ' + errorValue)
-  }
+  };
 
   render() {
     const {getFieldDecorator} = this.props.form;
 
     return (
       <Container>
-        <Title> Flat Preferences </Title>
+        <Title> Flatmate Preferences </Title>
         <Form layout={'vertical'}>
           <Row gutter={24}>
             <Col span={8}>
@@ -52,7 +52,7 @@ class FlatmatePreferences extends Component {
                   placeHolder="Please select"
                   dec={getFieldDecorator}
                   objName="gender"
-                  value={gender}
+                  value={genderPreference}
                 />
               </Item>
             </Col>
@@ -60,13 +60,13 @@ class FlatmatePreferences extends Component {
               <Item label="Age">
                 <InputGroup compact>
                   <WrappedAnyInput
-                    tag={<InputNumber style={{width: 70, textAlign: 'center'}}/>}
+                    tag={<InputNumber style={{width: "40%", textAlign: 'center'}}/>}
                     dec={getFieldDecorator}
                     objName="ageFrom"
                   />
                   <Input
                     style={{
-                      width: 30,
+                      width: "20%",
                       borderLeft: 0,
                       pointerEvents: 'none',
                       backgroundColor: '#fff'
@@ -98,7 +98,6 @@ class FlatmatePreferences extends Component {
             <Col span={12}>
               <Item label="Required flatshare experience">
                 <WrappedSelection
-                  required
                   placeHolder="Please select"
                   dec={getFieldDecorator}
                   objName="flatshareExperience"
@@ -142,10 +141,9 @@ class FlatmatePreferences extends Component {
             <Col span={8}>
               <Item label="Flatshare activities">
                 <WrappedSelection
-                  mode="tags"
+                  type="tags"
                   placeHolder="Please select"
                   dec={getFieldDecorator}
-                  tokenSeparators={[',']}
                   objName="activities"
                   value={activities}
                 />

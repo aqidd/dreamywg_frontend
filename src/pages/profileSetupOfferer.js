@@ -35,7 +35,7 @@ const steps = [
     content: Flatmates
   },
   {
-    title: 'Prefs',
+    title: 'Flatmate Preferences',
     content: FlatmatePreferences
   }
 ]

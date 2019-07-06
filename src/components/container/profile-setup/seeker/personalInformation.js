@@ -10,6 +10,7 @@ import PictureUpload from "../../../common/form/pictureUpload";
 import Languages from "../../../../util/languages"
 import styled from "styled-components";
 import {field, flatshareExperience, hobbies, occupation, practiceOfAbstaining} from "../../../../util/selections";
+import WrappedInput from "../../../common/form/wrappedInput";
 
 const Item = Form.Item;
 const InputGroup = Input.Group;
@@ -113,7 +114,7 @@ class PersonalInformation extends Component {
                   </Item>
                 </Col>
               </Row>
-              <Row>
+              <Row gutter={24}>
                 <Col span={12}>
                   <Item label="Hobbies">
                     <WrappedSelection
@@ -126,9 +127,12 @@ class PersonalInformation extends Component {
                   </Item>
                 </Col>
                 <Col span={12}>
-                  <Verficication>
-                    <Button>Verify Account</Button>
-                  </Verficication>
+                  <Item label="Link to social media profile">
+                    <WrappedInput
+                      dec={getFieldDecorator}
+                      objName={"socialMedia"}
+                    />
+                  </Item>
                 </Col>
               </Row>
 
@@ -170,7 +174,7 @@ class PersonalInformation extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={getFieldDecorator}
-                  objName="smoker"
+                  objName="isSmoker"
                 />
               </Item>
 
@@ -178,7 +182,7 @@ class PersonalInformation extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={getFieldDecorator}
-                  objName="pets"
+                  objName="hasPets"
                 />
               </Item>
 
@@ -186,7 +190,7 @@ class PersonalInformation extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={getFieldDecorator}
-                  objName="weekendAbsent"
+                  objName="isWeekendAbsent"
                 />
               </Item>
             </div>

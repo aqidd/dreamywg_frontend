@@ -9,34 +9,22 @@ import WrappendModal from "../common/form/wrappendModal";
 @observer
 export default class LoginContainer extends Component {
 
-  state = {redirect: false}
-
   constructor(props) {
     super(props);
 
   }
 
   onSubmit = async (data) => {
-    const response = await this.props.AuthStore.login(data)
-    return this.updateFormResponse(response);
-  }
-
-  updateFormResponse = (response) => {
-    if (response.status === 200) {
-      const token = response.data.token;
-      this.props.AuthStore.setToken(token);
-      //localStorage.setItem('token', token);
-      this.setState({
-        redirect: true
-      })
-    } else {
-      return WrappendModal(response.data.message)
-    }
+    return this.props.AuthStore.login(data);
   }
 
   render() {
-    if (this.state.redirect)
+    if (this.props.AuthStore.response.success)
       return <Redirect to={'/roleSelection'}/>;
+
+    if (this.props.AuthStore.response.completed && !this.props.AuthStore.response.success) {
+      WrappendModal(this.props.AuthStore.response.errorMessage)
+    }
 
     return (
       <Provider store='AuthStore'>

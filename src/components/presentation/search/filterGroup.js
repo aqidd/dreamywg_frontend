@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Form, Input, Row, Col, Switch, DatePicker, Button } from 'antd'
-import WrappedInput from '../../common/form/warppedInput'
+import WrappedInput from '../../common/form/wrappedInput'
 import WrappedSelection from '../../common/form/wrappedSelection'
 import WrappedAnyInput from '../../common/form/wrappedAnyInput'
 import WrappedAutoComplete from '../../common/form/wrappedAutoComplete'
 import regions from '../../../util/regions'
 import { inject, observer } from 'mobx-react'
+import {flatshareType, rentType} from "../../../util/selections";
 
 const { Item } = Form
 const { RangePicker } = DatePicker
@@ -64,21 +65,21 @@ class FilterGroup extends Component {
               <Input.Group>
                 <Row gutter={16}>
                   <Col span={12}>
-                    <Item label="Flat">
+                    <Item label="Flat size">
                       <WrappedInput
                         dec={getFieldDecorator}
                         objName="size"
-                        placeHolder="Apartment"
+                        placeHolder="flatSize"
                         suffix="m&sup2;"
                         type="number"
                       />
                     </Item>
                   </Col>
                   <Col span={12}>
-                    <Item label="Room">
+                    <Item label="Room size">
                       <WrappedInput
                         dec={getFieldDecorator}
-                        objName="room-size"
+                        objName="roomSize"
                         placeHolder="Room"
                         suffix="m&sup2;"
                         type="number"
@@ -115,21 +116,15 @@ class FilterGroup extends Component {
                   placeHolder="Select your rental type"
                   dec={getFieldDecorator}
                   objName="rentType"
-                  value={['limited', 'unlimited']}
+                  value={rentType}
                 />
               </Item>
               <Item label="Type of flat">
                 <WrappedSelection
                   placeHolder="Select flat type"
                   dec={getFieldDecorator}
-                  objName="flatType"
-                  value={[
-                    'student only',
-                    'work only',
-                    'female only',
-                    'male only',
-                    'mixed'
-                  ]}
+                  objName="flatshareType"
+                  value={flatshareType}
                 />
               </Item>
               <Item label="Dates">

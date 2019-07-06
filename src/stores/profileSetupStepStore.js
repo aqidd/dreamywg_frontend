@@ -48,34 +48,32 @@ class Store {
     this.imagePreview.show = true
   }
 
+
   @action nextStep = async () => {
     console.log(toJS(this.data))
     if (!this.isMax())
       this.currentSteps += 1
     else {
-      if (this.isSeeker) {
-        let res;
-        try {
-          res = await Api.profileSeeker(this.data)
-          this.status = true
-        } catch (e) {
-          this.status = false
-        }
-      } else {
-        let res;
-        try {
-          res = await Api.profileOffer(this.data)
-          this.status = true
-        } catch (e) {
-          this.status = false
-        }
+      const type = (this.isSeeker) ? "SEEKER" : "OFFERER";
+      this.updateData({
+        type: type,
+        images: this.images
+      });
+      try {
+        const res = await Api.patchUser(this.data)
+        this.status = true
+      } catch (e) {
+        this.status = false
       }
+
     }
   }
 
-  @action prevStep = () => !this.isMin() && (this.currentSteps -= 1)
+  @action
+  prevStep = () => !this.isMin() && (this.currentSteps -= 1)
 
-  @action updateData = data =>
+  @action
+  updateData = data =>
     (this.data = {...this.data, ...data})
 }
 

@@ -4,16 +4,15 @@ const serverUrl = 'http://localhost:4007'
 
 let config = {
   headers: {
-    authentication: `${localStorage.getItem('token')}`
+    Authorization: `${localStorage.getItem('token')}`
   }
 }
 
 const Api = {
-  login: credentials => axios.post(serverUrl + '/users/login', credentials, config),
+  login: credentials => axios.post(`${serverUrl}/users/login`, credentials, config),
   register: userData => axios.post(`${serverUrl}/users`, userData, config),
   confirmation: token => axios.get(`${serverUrl}/confirmation/${token}`),
-  profileOffer: data => axios.post(`${serverUrl}/flatofferer/`, data, config),
-  profileSeeker: data => axios.post(`${serverUrl}/flatseeker/`, data, config)
+  patchUser: data => axios.patch(`${serverUrl}/users`, data, config),
 }
 
 export default Api

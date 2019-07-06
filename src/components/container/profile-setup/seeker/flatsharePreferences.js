@@ -11,10 +11,10 @@ import {
   activities,
   cleaningSchedule,
   cleanliness,
-  gender,
+  genderRestriction,
   stores,
-  typeOfFlatshare,
-  typeOfRent
+  flatshareType,
+  rentType
 } from "../../../../util/selections";
 
 const Item = Form.Item;
@@ -65,8 +65,8 @@ class FlatsharePreferences extends Component {
                 <WrappedSelection
                   placeHolder="Please select"
                   dec={decorator}
-                  objName="typeOfRent"
-                  value={typeOfRent}
+                  objName="rentType"
+                  value={rentType}
                 />
               </Item>
             </Col>
@@ -76,8 +76,8 @@ class FlatsharePreferences extends Component {
                   tag="multiple"
                   placeHolder="Please select"
                   dec={decorator}
-                  objName="typeOfFlatshare"
-                  value={typeOfFlatshare}
+                  objName="flatshareType"
+                  value={flatshareType}
                 />
               </Item>
             </Col>
@@ -154,8 +154,8 @@ class FlatsharePreferences extends Component {
                 <WrappedSelection
                   placeHolder="Please select"
                   dec={decorator}
-                  objName="gender"
-                  value={gender}
+                  objName="genderRestriction"
+                  value={genderRestriction}
                 />
               </Item>
             </Col>
@@ -261,7 +261,7 @@ class FlatsharePreferences extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={decorator}
-                  objName="parking-lot"
+                  objName="parkingLot"
                 />
               </Item>
             </Col>
@@ -355,7 +355,7 @@ class FlatsharePreferences extends Component {
             <Col span={8}>
               <Item label="Dishwasher">
                 <WrappedAnyInput
-                  tag={<Switch checked={false}/>}
+                  tag={<Switch defaultChecked={false}/>}
                   dec={decorator}
                   objName="dishwasher"
                 />
@@ -390,10 +390,9 @@ class FlatsharePreferences extends Component {
             <Col span={8}>
               <Item label="Flatshare activities">
                 <WrappedSelection
-                  mode="tags"
+                  type="tags"
                   placeHolder="Please select"
                   dec={decorator}
-                  tokenSeparators={[',']}
                   objName="activities"
                   value={activities}
                 />
@@ -402,16 +401,7 @@ class FlatsharePreferences extends Component {
           </Row>
 
           <Row>
-            <Col span={8}>
-              <Item label="Student association">
-                <WrappedAnyInput
-                  tag={<Switch defaultChecked={false}/>}
-                  dec={decorator}
-                  objName="studentAssociation"
-                />
-              </Item>
-            </Col>
-            <Col span={8}>
+            <Col span={12}>
               <Item label="Smokers">
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
@@ -420,7 +410,7 @@ class FlatsharePreferences extends Component {
                 />
               </Item>
             </Col>
-            <Col span={8}>
+            <Col span={12}>
               <Item label="Pets">
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}

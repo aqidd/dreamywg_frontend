@@ -21,7 +21,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="parking-lot"
+            objName="parkingLot"
           />
         </Item>
       </Col>
