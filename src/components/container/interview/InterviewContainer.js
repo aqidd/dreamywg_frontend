@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Row, Col, Card, Button, Icon } from 'antd'
+import Title from '../../common/title'
 import styled from 'styled-components'
 import ListContent from './listContent'
+import { inject, observer } from 'mobx-react'
 
 const data = [
   {
@@ -42,28 +44,40 @@ const data = [
   }
 ]
 
+@inject('interviewStore')
+@observer
 export default class InterviewContainer extends Component {
   constructor(props) {
     super(props)
   }
 
-  onClickHandler = type => {}
+  onClickHandler = type => {
+    if (type.toLowerCase() == 'message') {
+      console.log('go to message')
+    } else {
+      //other action must be done inside store
+    }
+  }
 
   render() {
+    console.log(this.props.interviewStore.helloMsg)
     return (
       <Container>
+        <Row>
+          <Title> Interviews </Title>
+        </Row>
         <Row gutter={16}>
           <Col span={12}>
-            <Card title="Future Interview">
+            <StyledCard title="Upcoming Interview">
               <ListContent
                 data={data}
                 past={false}
                 onClick={type => onClickHandler(type)}
               />
-            </Card>
+            </StyledCard>
           </Col>
           <Col span={12}>
-            <Card
+            <StyledCard
               title="Past Interview"
               extra={
                 <Button shape="round" type="primary">
@@ -76,7 +90,7 @@ export default class InterviewContainer extends Component {
                 past={true}
                 onClick={type => onClickHandler(type)}
               />
-            </Card>
+            </StyledCard>
           </Col>
         </Row>
       </Container>
@@ -89,4 +103,11 @@ const Container = styled.div`
   margin-right: 5vh;
   margin-top: 5vh;
   margin-bottom: 5vh;
+`
+
+const StyledCard = styled(Card)`
+  transition: 0.3s;
+  &:hover ${StyledCard} {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
 `
