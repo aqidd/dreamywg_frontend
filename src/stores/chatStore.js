@@ -7,13 +7,23 @@ class Store {
   constructor() {
 
   }
-  @action retrieveChat = () => {
-    network.chat(userId)
+  @action retrieveChatList = (senderId) => {
+    network.chatList(senderId)
       .then((response) => {
         console.log('chat data', response.data)
       })
       .catch((err) => {
-        console.log('fail retrieve message data')
+        console.log('fail retrieve chat list')
+      })
+  }
+
+  @action retrieveChatUnit = () => {
+    network.chatUnit(messageId, senderId, receiverId)
+      .then((response) => {
+        console.log('chat data', response.data)
+      })
+      .catch((err) => {
+        console.log('fail retrieve chat unit')
       })
   }
 }
@@ -28,9 +38,8 @@ class MessageUnit {
       this.senderName = senderName;
       this.receiverName = receiverName;
   }
-
-
 }
+
 const initStore = () => new Store();
 
 export default initStore

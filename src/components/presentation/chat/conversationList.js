@@ -3,7 +3,10 @@ import {Typography, Card, Icon } from 'antd'
 const { Meta } = Card
 import { ThemeProvider, Avatar, ChatListItem, Title, Subtitle, Column, ChatList, Col, Row} from '@livechat/ui-kit'
 import styled from 'styled-components'
+import { inject, observer, Provider } from 'mobx-react'
 
+@inject('ChatStore')
+@observer
 export default class ConversationList extends Component {
   constructor(props) {
     super(props)
@@ -13,7 +16,10 @@ export default class ConversationList extends Component {
     }
     this.setState = this.setState.bind(this);
   }
-
+  componentDidMount() {
+    this.props.ChatStore.retrieveChatList();
+    
+  }
 
   toggleHover() {
     console.log("toggle hover")
@@ -21,9 +27,10 @@ export default class ConversationList extends Component {
 
   }
 
-  showConversation = (selfUserId, userId) => {
+  showChatList = (selfUserId, userId) => {
     console.log(selfUserId);
     console.log(userId);
+    this.props.ChatStore.retrieveChatList();
   }
 
 

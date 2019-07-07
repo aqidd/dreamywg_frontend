@@ -13,65 +13,103 @@ import { ThemeProvider,
   MessageTitle,
   MessageMedia} from '@livechat/ui-kit'
 
-const ConversationSide = () => (
-  <Container>
-    <ThemeProvider>
-      <div style={{ maxWidth: '1ß0%', height: 400, background: '#fafafa', padding: '30px' }}>
-        <MessageList active style={{ background: '#fafafa' }}>
-          <MessageGroup
-            avatar="https://livechat.s3.amazonaws.com/default/avatars/male_8.jpg"
-            onlyFirstWithMeta
-          >
-            {/*<Message authorName="Jon Smith" date="21:37" showMetaOnClick>*/}
-            {/*  <MessageMedia>*/}
-            {/*    <img src="https://static.staging.livechatinc.com/1520/P10B78E30V/dfd1830ebb68b4eefe6432d7ac2be2be/Cat-BusinessSidekick_Wallpapers.png" />*/}
-            {/*  </MessageMedia>*/}
-            {/*</Message>*/}
-            {/*<Message authorName="Jon Smith" date="21:37">*/}
-            {/*  <MessageTitle title="Message title" subtitle="24h" />*/}
-            {/*  <MessageMedia>*/}
-            {/*    <img src="https://static.staging.livechatinc.com/1520/P10B78E30V/dfd1830ebb68b4eefe6432d7ac2be2be/Cat-BusinessSidekick_Wallpapers.png" />*/}
-            {/*  </MessageMedia>*/}
-            {/*  <MessageText>*/}
-            {/*    The fastest way to help your customers - start chatting with visitors*/}
-            {/*  </MessageText>*/}
-            {/*  <MessageButtons>*/}
-            {/*    <MessageButton label="View more" primary />*/}
-            {/*    <MessageButton label="Cancel" />*/}
-            {/*  </MessageButtons>*/}
-            <Message>
-              <MessageText>
-                The fastest way to help your customers - start chatting with visitors
-                who need your help using a free 30-day trial.
-              </MessageText>
-              {/*<MessageButtons>*/}
-              {/*  <MessageButton label="View more" primary />*/}
-              {/*  <MessageButton label="Cancel" />*/}
-              {/*</MessageButtons>*/}
-            </Message>
-            <Message date="21:38" authorName="Jon Smith">
-              <MessageText>Hi! I would like to buy those shoes</MessageText>
-            </Message>
-          </MessageGroup>
-          <MessageGroup onlyFirstWithMeta avatar="https://livechat.s3.amazonaws.com/default/avatars/male_8.jpg">
-            <Message date="21:38" isOwn={true} authorName="Visitor">
-              <MessageText>
-                I love them
-                sooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-                much!
-              </MessageText>
-            </Message>
-            <Message date="21:38" isOwn={true} authorName="Visitor">
-              <MessageText>This helps me a lot</MessageText>
-            </Message>
-          </MessageGroup>
-        </MessageList>
-      </div>
-    </ThemeProvider>
-  </Container>
-)
+import io from "socket.io-client"
 
-export default ConversationSide
+export default class ChatContent extends React.Component{
+  constructor(){
+    super();
+    this.state = {
+      senderId: '',
+      receiverId: '',
+      content: '',
+      timestamp: Date,
+      messages: []
+    };
+
+    this.socket = io('localhost:8080');
+
+    this.socket.on('receive_message', function(data){
+      console.log("receive data again back")
+      addMessage(data);
+    });
+
+    const addMessage = data => {
+      console.log(data);
+      this.setState({messages: [...this.state.messages, data]});
+      console.log(this.state.messages);
+    };
+
+    this.sendMessage = ev => {
+      ev.preventDefault();
+
+      this.socket.emit('message', {
+        senderId: this.state.senderId,
+        receiverId: this.state.receiverId,
+        content: this.state.content,
+        timestamp: Date.now()
+      })
+      this.setState({message: ''});
+
+    }
+  }
+  componentDidMount() {
+
+  }
+
+  render() {
+    return(
+    <Container>
+      <ThemeProvider>
+        <div style={{ maxWidth: '100%', height: 400, background: '#fafafa', padding: '30px' }}>
+          <MessageList active style={{ background: '#fafafa' }}>
+            <MessageGroup
+              avatar="https://livechat.s3.amazonaws.com/default/avatars/male_8.jpg"
+              onlyFirstWithMeta
+            >
+              <Message date="21:38" authorName="Jon Smith" className="messages">
+                {this.state.messages.map(message => {
+                  return (
+                    <MessageText> from: {message.senderId}, to:{message.receiverId} , message: {message.content}</MessageText>
+                  )
+                })}
+              </Message>
+            </MessageGroup>
+            <MessageGroup onlyFirstWithMeta avatar="https://livechat.s3.amazonaws.com/default/avatars/male_8.jpg">
+              <Message date="21:38" isOwn={true} authorName="Visitor">
+                <MessageText>
+                  I love them
+                  sooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+                  much!
+                </MessageText>
+              </Message>
+              <Message date="21:38" isOwn={true} authorName="Visitor">
+                <MessageText>This helps me a lot</MessageText>
+              </Message>
+            </MessageGroup>
+          </MessageList>
+          <div className="messages">
+            {this.state.messages.map(message => {
+              return (
+                <div> from: {message.senderId}, to:{message.receiverId} , message: {message.content}</div>
+              )
+            })}
+          </div>
+          <div className="card-footer">
+            <input type="text" placeholder="sender" value={this.state.senderId} onChange={ev => this.setState({senderId: ev.target.value})} className="form-control"/>
+            <br/>
+            <input type="text" placeholder="receiver" value={this.state.receiverId} onChange={ev => this.setState({receiverId: ev.target.value})} className="form-control"/>
+            <br/>
+            <input type="text" placeholder="Message" className="form-control" value={this.state.content} onChange={ev => this.setState({content: ev.target.value})}/>
+            <br/>
+            <button onClick={this.sendMessage} className="btn btn-primary form-control">Send</button>
+          </div>
+        </div>
+      </ThemeProvider>
+    </Container>
+    )
+  }
+}
+
 
 const Title = styled.p`
   font-weight: bold;

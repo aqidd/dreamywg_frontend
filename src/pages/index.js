@@ -5,8 +5,6 @@ import TestHello from '../components/container/testHello'
 
 import styled from 'styled-components';
 
-
-
 export default class Home extends Component {
     constructor(props) {
         super(props)

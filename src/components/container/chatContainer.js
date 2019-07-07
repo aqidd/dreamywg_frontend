@@ -6,13 +6,10 @@ import { Layout, Card, Col, Row, Button, Input } from 'antd'
 import ConversationList from '../presentation/chat/conversationList'
 import ConversationSide from '../presentation/chat/conversationSide'
 
+
 @inject('ChatStore')
 @observer
 export default class ChatContent extends Component{
-    componentDidMount() {
-        //this.props.SocialMediaAuthStore.linkedInResponse();
-    }
-
     render() {
         return (
              <ThemeProvider theme={{ mode: this.props.theme }}>
@@ -20,6 +17,7 @@ export default class ChatContent extends Component{
                   <div>
                     <Row>
                       <Col span={16} push={8}>
+
                         <ConversationSide />
                       </Col>
                       <Col span={8} pull={16}>
