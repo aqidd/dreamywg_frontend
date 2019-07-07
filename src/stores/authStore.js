@@ -23,8 +23,10 @@ class AuthStore {
     @action login =  async(credentials) => {
         return network.login(credentials);
     }
+
+    hasToken = () => this.token !== ''
 }
 
-const initStore = () => new AuthStore();
+const Store = () => new AuthStore();
 
-export default initStore
+export default Store
