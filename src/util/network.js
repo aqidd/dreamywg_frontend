@@ -12,7 +12,8 @@ const Api = {
   login: credentials => axios.post(`${serverUrl}/users/login`, credentials, config),
   register: userData => axios.post(`${serverUrl}/users`, userData, config),
   confirmation: token => axios.get(`${serverUrl}/confirmation/${token}`),
-  patchUser: data => axios.patch(`${serverUrl}/users`, data, config),
+  createFlatofferer: data => axios.post(`${serverUrl}/flatofferer`, data, config),
+  createFlatseeker: data => axios.post(`${serverUrl}/flatseeker`, data, config),
 }
 
 export default Api

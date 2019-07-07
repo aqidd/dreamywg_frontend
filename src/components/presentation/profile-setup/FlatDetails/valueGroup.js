@@ -11,7 +11,7 @@ const ValueGroup = ({ decorator }) => (
         <Item label="Flatsize">
           <WrappedInput
             dec={decorator}
-            objName="flatSize"
+            objName="flat.flatSize"
             suffix="m&sup2;"
             type="number"
           />
@@ -21,7 +21,7 @@ const ValueGroup = ({ decorator }) => (
         <Item label="Roomsize">
           <WrappedInput
             dec={decorator}
-            objName="roomSize"
+            objName="flat.room.roomSize"
             suffix="m&sup2;"
             type="number"
           />
@@ -31,7 +31,7 @@ const ValueGroup = ({ decorator }) => (
         <Item label="Rent">
           <WrappedInput
             dec={decorator}
-            objName="rent"
+            objName="flat.room.rent"
             suffix=" ‎€/Month"
             type="number"
           />

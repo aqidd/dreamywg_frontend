@@ -1,6 +1,7 @@
 import {action, observable, toJS} from 'mobx'
 
 import Api from '../util/network'
+import {merge} from "lodash";
 
 class Store {
   @observable currentSteps = 0
@@ -55,12 +56,10 @@ class Store {
       this.currentSteps += 1
     else {
       const type = (this.isSeeker) ? "SEEKER" : "OFFERER";
-      this.updateData({
-        type: type,
-        images: this.images
-      });
+      this.data.type = type
+      // this.data.flat.room.images = this.images;
       try {
-        const res = await Api.patchUser(this.data)
+        const res = (this.isSeeker) ? await Api.createFlatseeker(this.data) : await Api.createFlatofferer(this.data)
         this.status = true
       } catch (e) {
         this.status = false
@@ -74,7 +73,7 @@ class Store {
 
   @action
   updateData = data =>
-    (this.data = {...this.data, ...data})
+    (this.data = merge(this.data, data))
 }
 
 export default Store

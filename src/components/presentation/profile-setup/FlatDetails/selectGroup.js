@@ -2,38 +2,31 @@ import React from 'react'
 import {Col, DatePicker, Form, Input, Row} from 'antd'
 import WrappedSelection from '../../../common/form/wrappedSelection'
 import stations from '../../../../util/shortStations'
-import {
-  flooring,
-  genderRestriction,
-  miscellaneous,
-  stores,
-  flatshareType,
-  rentType
-} from "../../../../util/selections";
+import {flatshareType, genderRestriction, rentType, stores} from "../../../../util/selections";
 import WrappedAnyInput from "../../../common/form/wrappedAnyInput";
 
-const {RangePicker} = DatePicker
-const {Item} = Form
+const {RangePicker} = DatePicker;
+const {Item} = Form;
 
 const SelectGroup = ({decorator, fieldValue}) => (
   <Input.Group>
     <Row gutter={16}>
       <Col span={12}>
-          <Item label="Flat type">
-            <WrappedSelection
-              placeHolder="Please select"
-              dec={decorator}
-              objName="flatshareType"
-              value={flatshareType}
-            />
-          </Item>
+        <Item label="Flat type">
+          <WrappedSelection
+            placeHolder="Please select"
+            dec={decorator}
+            objName="flat.flatshareType"
+            value={flatshareType}
+          />
+        </Item>
       </Col>
       <Col span={12}>
         <Item label="Gender restrictions">
           <WrappedSelection
             placeHolder="Please select"
             dec={decorator}
-            objName="genderRestrictions"
+            objName="flat.genderRestrictions"
             value={genderRestriction}
           />
         </Item>
@@ -46,7 +39,7 @@ const SelectGroup = ({decorator, fieldValue}) => (
             required
             placeHolder="Please select"
             dec={decorator}
-            objName="rentType"
+            objName="flat.room.rentType"
             value={rentType}
           />
         </Item>
@@ -55,9 +48,9 @@ const SelectGroup = ({decorator, fieldValue}) => (
         <Item label="Date available">
           <WrappedAnyInput
             required
-            tag={fieldValue("rentType") === "limited" ? <RangePicker/> : <DatePicker style={{width: "100%"}}/>}
+            tag={fieldValue("flat.room.rentType") === "limited" ? <RangePicker/> : <DatePicker style={{width: "100%"}}/>}
             dec={decorator}
-            objName="dateAvailable"
+            objName="flat.room.dateAvailable"
           />
         </Item>
       </Col>
@@ -69,7 +62,7 @@ const SelectGroup = ({decorator, fieldValue}) => (
             placeHolder="Please select"
             type="tags"
             dec={decorator}
-            objName="stations"
+            objName="flat.stations"
             value={stations}
           />
         </Item>
@@ -80,36 +73,12 @@ const SelectGroup = ({decorator, fieldValue}) => (
             placeHolder="Please select"
             type="tags"
             dec={decorator}
-            objName="stores"
+            objName="flat.stores"
             value={stores}
           />
         </Item>
       </Col>
     </Row>
-    {/*<Row gutter={16}>*/}
-    {/*  <Col span={12}>*/}
-    {/*    <Item label="Miscellaneous">*/}
-    {/*      <WrappedSelection*/}
-    {/*        placeHolder="Please select"*/}
-    {/*        type="tags"*/}
-    {/*        dec={decorator}*/}
-    {/*        objName="miscellaneous"*/}
-    {/*        value={miscellaneous}*/}
-    {/*      />*/}
-    {/*    </Item>*/}
-    {/*  </Col>*/}
-    {/*  <Col span={12}>*/}
-    {/*    <Item label="Flooring">*/}
-    {/*      <WrappedSelection*/}
-    {/*        placeHolder="Please select"*/}
-    {/*        type="tags"*/}
-    {/*        dec={decorator}*/}
-    {/*        objName="flooring"*/}
-    {/*        value={flooring}*/}
-    {/*      />*/}
-    {/*    </Item>*/}
-    {/*  </Col>*/}
-    {/*</Row>*/}
   </Input.Group>
-)
+);
 export default SelectGroup
