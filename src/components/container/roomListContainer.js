@@ -7,8 +7,6 @@ import { inject, observer, Provider } from 'mobx-react'
 const count = 3;
 const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat&noinfo`;
 
-@inject('tststs')
-@observer
 class RoomListContainer extends React.Component {
   state = {
     initLoading: true,

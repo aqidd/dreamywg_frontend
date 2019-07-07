@@ -2,7 +2,6 @@ import React from 'react'
 import { Tabs } from 'antd';
 import AboutFlat from '../presentation/flat-details/aboutFlat';
 import ResidentList from '../presentation/flat-details/residentList';
-import RoomDetails from '../presentation/flat-details/roomDetails';
 import InterviewDetails from '../presentation/flat-details/interviewDetails';
 import { inject, observer, Provider } from 'mobx-react'
 
@@ -16,9 +15,6 @@ var FlatDetailsTab = inject("store")(
           <Provider store={store}>
             <AboutFlat></AboutFlat>
           </Provider>
-        </TabPane>
-        <TabPane tab="Rooms" key="2">
-          <RoomDetails></RoomDetails>
         </TabPane>
         <TabPane tab="Residents" key="3">
           <ResidentList></ResidentList>

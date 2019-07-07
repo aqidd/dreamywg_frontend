@@ -57,9 +57,7 @@ const AboutFlat = inject('store')(
             </Row>
           </Col>
           <Col span={12}>
-            <Provider tststs={store}>
-              <RoomListContainer></RoomListContainer>
-            </Provider>
+            <RoomListContainer></RoomListContainer>
           </Col>
         </Row>
 
