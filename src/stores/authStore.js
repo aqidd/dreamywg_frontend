@@ -9,13 +9,24 @@ class AuthStore {
         password: ''
     }
 
-    constructor(rootStore) {
-        this.rootStore = rootStore
+    constructor() {
         this.initData();
     }
 
     initData() {
     }
+
+    getToken() {
+        return this.token;
+    }
+
+    @action login =  async(credentials) => {
+        return network.login(credentials);
+    }
+
+    hasToken = () => this.token !== ''
 }
 
-export default AuthStore
+const Store = () => new AuthStore();
+
+export default Store
