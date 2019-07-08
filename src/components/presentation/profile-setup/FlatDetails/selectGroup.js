@@ -16,7 +16,7 @@ const SelectGroup = ({decorator, fieldValue}) => (
           <WrappedSelection
             placeHolder="Please select"
             dec={decorator}
-            objName="flat.flatshareType"
+            objName="flatshareType"
             value={flatshareType}
           />
         </Item>
@@ -26,7 +26,7 @@ const SelectGroup = ({decorator, fieldValue}) => (
           <WrappedSelection
             placeHolder="Please select"
             dec={decorator}
-            objName="flat.genderRestrictions"
+            objName="genderRestrictions"
             value={genderRestriction}
           />
         </Item>
@@ -39,7 +39,7 @@ const SelectGroup = ({decorator, fieldValue}) => (
             required
             placeHolder="Please select"
             dec={decorator}
-            objName="flat.room.rentType"
+            objName="room.rentType"
             value={rentType}
           />
         </Item>
@@ -48,9 +48,9 @@ const SelectGroup = ({decorator, fieldValue}) => (
         <Item label="Date available">
           <WrappedAnyInput
             required
-            tag={fieldValue("flat.room.rentType") === "limited" ? <RangePicker/> : <DatePicker style={{width: "100%"}}/>}
+            tag={fieldValue("room.rentType") === "limited" ? <RangePicker/> : <DatePicker style={{width: "100%"}}/>}
             dec={decorator}
-            objName="flat.room.dateAvailable"
+            objName="room.dateAvailable"
           />
         </Item>
       </Col>
@@ -62,7 +62,7 @@ const SelectGroup = ({decorator, fieldValue}) => (
             placeHolder="Please select"
             type="tags"
             dec={decorator}
-            objName="flat.stations"
+            objName="stations"
             value={stations}
           />
         </Item>
@@ -73,7 +73,7 @@ const SelectGroup = ({decorator, fieldValue}) => (
             placeHolder="Please select"
             type="tags"
             dec={decorator}
-            objName="flat.stores"
+            objName="stores"
             value={stores}
           />
         </Item>

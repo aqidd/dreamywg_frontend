@@ -45,7 +45,7 @@ class FlatsharePreferences extends Component {
 
     return (
       <Container>
-        <Title> Flat Preferences </Title>
+        <Title> Flatshare Preferences </Title>
         <Form layout={'vertical'}>
 
           <Row gutter={24}>

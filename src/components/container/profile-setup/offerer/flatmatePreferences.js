@@ -51,7 +51,7 @@ class FlatmatePreferences extends Component {
                 <WrappedSelection
                   placeHolder="Please select"
                   dec={getFieldDecorator}
-                  objName="flat.flatmatePreferences.gender"
+                  objName="flatmatePreferences.gender"
                   value={genderPreference}
                 />
               </Item>
@@ -62,7 +62,7 @@ class FlatmatePreferences extends Component {
                   <WrappedAnyInput
                     tag={<InputNumber style={{width: "40%", textAlign: 'center'}}/>}
                     dec={getFieldDecorator}
-                    objName="flat.flatmatePreferences.age.from"
+                    objName="flatmatePreferences.age.from"
                   />
                   <Input
                     style={{
@@ -77,7 +77,7 @@ class FlatmatePreferences extends Component {
                   <WrappedAnyInput
                     tag={<InputNumber style={{width: "40%", textAlign: 'center', borderLeft: 0}}/>}
                     dec={getFieldDecorator}
-                    objName="flat.flatmatePreferences.age.to"
+                    objName="flatmatePreferences.age.to"
                   />
                 </InputGroup>
               </Item>
@@ -88,7 +88,7 @@ class FlatmatePreferences extends Component {
                   placeHolder="Please select"
                   type="multiple"
                   dec={getFieldDecorator}
-                  objName="flat.flatmatePreferences.occupations"
+                  objName="flatmatePreferences.occupations"
                   value={occupation}
                 />
               </Item>
@@ -100,7 +100,7 @@ class FlatmatePreferences extends Component {
                 <WrappedSelection
                   placeHolder="Please select"
                   dec={getFieldDecorator}
-                  objName="flat.flatmatePreferences.flatshareExperience"
+                  objName="flatmatePreferences.flatshareExperience"
                   value={flatshareExperience}
                 />
               </Item>
@@ -111,7 +111,7 @@ class FlatmatePreferences extends Component {
                   placeHolder="Please select"
                   type="multiple"
                   dec={getFieldDecorator}
-                  objName="flat.flatmatePreferences.practiceOfAbstaining"
+                  objName="flatmatePreferences.practiceOfAbstaining"
                   value={practiceOfAbstaining}
                 />
               </Item>
@@ -123,7 +123,7 @@ class FlatmatePreferences extends Component {
                 <WrappedSelection
                   placeHolder="Please select"
                   dec={getFieldDecorator}
-                  objName="flat.flatmatePreferences.cleanliness"
+                  objName="flatmatePreferences.cleanliness"
                   value={cleanliness}
                 />
               </Item>
@@ -133,7 +133,7 @@ class FlatmatePreferences extends Component {
                 <WrappedSelection
                   placeHolder="Please select"
                   dec={getFieldDecorator}
-                  objName="flat.flatmatePreferences.cleaningSchedule"
+                  objName="flatmatePreferences.cleaningSchedule"
                   value={cleaningSchedule}
                 />
               </Item>
@@ -144,7 +144,7 @@ class FlatmatePreferences extends Component {
                   type="tags"
                   placeHolder="Please select"
                   dec={getFieldDecorator}
-                  objName="flat.flatmatePreferences.activities"
+                  objName="flatmatePreferences.activities"
                   value={activities}
                 />
               </Item>
@@ -156,7 +156,7 @@ class FlatmatePreferences extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={getFieldDecorator}
-                  objName="flat.flatmatePreferences.smokersAllowed"
+                  objName="flatmatePreferences.smokersAllowed"
                 />
               </Item>
             </Col>
@@ -165,7 +165,7 @@ class FlatmatePreferences extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={getFieldDecorator}
-                  objName="flat.flatmatePreferences.petsAllowed"
+                  objName="flatmatePreferences.petsAllowed"
                 />
               </Item>
             </Col>
@@ -174,7 +174,7 @@ class FlatmatePreferences extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={getFieldDecorator}
-                  objName="flat.flatmatePreferences.weekendAbsent"
+                  objName="flatmatePreferences.weekendAbsent"
                 />
               </Item>
             </Col>

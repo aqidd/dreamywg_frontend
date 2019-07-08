@@ -11,15 +11,15 @@ const {Group, TextArea} = Input;
 
 const FlatmateItem = ({index, decorator, fieldValue}) => (
   <div style={{marginBottom: "5vh"}}>
-    <Subtitle> {`Flatmate: ${fieldValue(`flat.flatmates[${index}].firstName`) !== undefined ? fieldValue(`flat.flatmates[${index}].firstName`) : ""} ${fieldValue(
-      `flat.flatmates[${index}].lastName`) !== undefined ? fieldValue(`flat.flatmates[${index}].lastName`) : ""}`} </Subtitle>
+    <Subtitle> {`Flatmate: ${fieldValue(`flatmates[${index}].firstName`) !== undefined ? fieldValue(`flatmates[${index}].firstName`) : ""} ${fieldValue(
+      `flatmates[${index}].lastName`) !== undefined ? fieldValue(`flatmates[${index}].lastName`) : ""}`} </Subtitle>
     <Group>
       <Row gutter={16}>
         <Col span={12}>
           <Item label="First Name">
             <WrappedInput
               dec={decorator}
-              objName={`flat.flatmates[${index}].firstName`}
+              objName={`flatmates[${index}].firstName`}
               placeHolder="first name"
             />
           </Item>
@@ -28,7 +28,7 @@ const FlatmateItem = ({index, decorator, fieldValue}) => (
           <Item label="Last Name">
             <WrappedInput
               dec={decorator}
-              objName={`flat.flatmates[${index}].lastName`}
+              objName={`flatmates[${index}].lastName`}
               placeHolder="last name"
             />
           </Item>
@@ -41,7 +41,7 @@ const FlatmateItem = ({index, decorator, fieldValue}) => (
               type="multiple"
               placeHolder="Please select"
               dec={decorator}
-              objName={`flat.flatmates[${index}].languages`}
+              objName={`flatmates[${index}].languages`}
               value={languages}
             />
           </Item>
@@ -50,7 +50,7 @@ const FlatmateItem = ({index, decorator, fieldValue}) => (
           <Item label="Age">
             <WrappedInput
               dec={decorator}
-              objName={`flat.flatmates[${index}].age`}
+              objName={`flatmates[${index}].age`}
               type="number"
             />
           </Item>
@@ -61,7 +61,7 @@ const FlatmateItem = ({index, decorator, fieldValue}) => (
               placeHolder="Please select"
               dec={decorator}
               type="multiple"
-              objName={`flat.flatmates[${index}].practiceOfAbstaining`}
+              objName={`flatmates[${index}].practiceOfAbstaining`}
               value={practiceOfAbstaining}
             />
           </Item>
@@ -73,7 +73,7 @@ const FlatmateItem = ({index, decorator, fieldValue}) => (
             <WrappedSelection
               placeHolder="Please select"
               dec={decorator}
-              objName={`flat.flatmates[${index}].occupation`}
+              objName={`flatmates[${index}].occupation`}
               value={occupation}
             />
           </Item>
@@ -83,7 +83,7 @@ const FlatmateItem = ({index, decorator, fieldValue}) => (
             <WrappedSelection
               placeHolder="Please select"
               dec={decorator}
-              objName={`flat.flatmates[${index}].field`}
+              objName={`flatmates[${index}].field`}
               value={field}
             />
           </Item>
@@ -96,7 +96,7 @@ const FlatmateItem = ({index, decorator, fieldValue}) => (
               placeHolder="Please select"
               type="tags"
               dec={decorator}
-              objName={`flat.flatmates[${index}].hobbies`}
+              objName={`flatmates[${index}].hobbies`}
               value={hobbies}
             />
           </Item>
@@ -105,14 +105,14 @@ const FlatmateItem = ({index, decorator, fieldValue}) => (
           <Item label="Link to social media profile">
             <WrappedInput
               dec={decorator}
-              objName={`flat.flatmates[${index}].socialMedia`}
+              objName={`flatmates[${index}].socialMedia`}
             />
           </Item>
         </Col>
       </Row>
       <Row>
         <Col span={24}>
-          {decorator(`flat.flatmates[${index}].description`)(
+          {decorator(`flatmates[${index}].description`)(
             <TextArea placeholder="Enter your description"/>
           )}
         </Col>

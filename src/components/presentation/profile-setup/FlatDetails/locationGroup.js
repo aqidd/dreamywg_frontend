@@ -15,14 +15,14 @@ const LocationGroup = ({decorator}) => (
             required
             placeHolder="Please select"
             dec={decorator}
-            objName="flat.region"
+            objName="region"
             value={Regions}
           />
         </Item>
       </Col>
       <Col span={8}>
         <Item label="Street">
-          <WrappedInput required dec={decorator} objName="flat.street"/>
+          <WrappedInput required dec={decorator} objName="street"/>
         </Item>
       </Col>
       <Col span={4}>
@@ -30,7 +30,7 @@ const LocationGroup = ({decorator}) => (
           <WrappedInput
             required
             dec={decorator}
-            objName="flat.houseNr"
+            objName="houseNr"
             type="number"
           />
         </Item>

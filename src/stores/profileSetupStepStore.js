@@ -62,15 +62,15 @@ class Store {
       } else {
         this.data.type = "OFFERER";
         if (this.images.length > 0)
-          this.data.flat.room.images = this.images[0];
+          this.data.room.images = this.images[0];
       }
       try {
-        const res = (this.isSeeker) ? await Api.createFlatseeker(this.data) : await Api.createFlatofferer(this.data);
+        (this.isSeeker) ? await Api.createFlatseeker(this.data) : await Api.createFlatofferer(this.data);
+        console.log('User was successfully created as Seeker or Offerer');
         this.status = true
       } catch (e) {
         this.status = false
       }
-
     }
   };
 
