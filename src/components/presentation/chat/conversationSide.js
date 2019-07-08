@@ -69,7 +69,7 @@ export default class ChatContent extends React.Component{
               <Message date="21:38" authorName="Jon Smith" className="messages">
                 {this.state.messages.map(message => {
                   return (
-                    <MessageText> from: {message.senderId}, to:{message.receiverId} , message: {message.content}</MessageText>
+                    <MessageText key={message.uniqueId}> from: {message.senderId}, to:{message.receiverId} , message: {message.content}</MessageText>
                   )
                 })}
               </Message>
