@@ -1,9 +1,9 @@
 import React from 'react'
-import { Upload, Modal, Icon } from 'antd'
+import {Icon, Modal, Upload} from 'antd'
 
 const UploadButton = () => (
   <div>
-    <Icon type="plus" />
+    <Icon type="plus"/>
     <div>Upload</div>
   </div>
 )
@@ -14,7 +14,8 @@ const PictureUpload = ({
   preview,
   handlePreview,
   handleChange,
-  limit
+  limit,
+  beforeUpload
 }) => (
   <div>
     <Upload
@@ -22,13 +23,14 @@ const PictureUpload = ({
       fileList={fileList}
       onPreview={file => handlePreview(file)}
       onChange={data => handleChange(data)}
+      beforeUpload={file => beforeUpload(file)}
     >
-      {fileList.length >= limit ? null : <UploadButton />}
+      {fileList.length >= limit ? null : <UploadButton/>}
     </Upload>
     <Modal visible={preview.show} footer={null} onCancel={() => onCancel()}>
       <img
         alt="Unable to load image"
-        style={{ width: '100%' }}
+        style={{width: '100%'}}
         src={preview.url}
       />
     </Modal>

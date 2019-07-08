@@ -55,7 +55,7 @@ class FlatsharePreferences extends Component {
                   placeHolder="Please select"
                   type="multiple"
                   dec={decorator}
-                  objName="regions"
+                  objName="preferences.flat.regions"
                   value={Regions}
                 />
               </Item>
@@ -65,7 +65,7 @@ class FlatsharePreferences extends Component {
                 <WrappedSelection
                   placeHolder="Please select"
                   dec={decorator}
-                  objName="rentType"
+                  objName="preferences.flat.room.rentType"
                   value={rentType}
                 />
               </Item>
@@ -76,7 +76,7 @@ class FlatsharePreferences extends Component {
                   tag="multiple"
                   placeHolder="Please select"
                   dec={decorator}
-                  objName="flatshareType"
+                  objName="preferences.flat.flatshareType"
                   value={flatshareType}
                 />
               </Item>
@@ -90,7 +90,7 @@ class FlatsharePreferences extends Component {
                   <WrappedAnyInput
                     tag={<InputNumber style={{width: "40%", textAlign: 'center'}}/>}
                     dec={decorator}
-                    objName="roomSizeFrom"
+                    objName="preferences.flat.room.size.from"
                   />
                   <Input
                     style={{
@@ -105,7 +105,7 @@ class FlatsharePreferences extends Component {
                   <WrappedAnyInput
                     tag={<InputNumber style={{width: "40%", textAlign: 'center', borderLeft: 0}}/>}
                     dec={decorator}
-                    objName="roomSizeTo"
+                    objName="preferences.flat.room.size.to"
                   />
                 </InputGroup>
               </Item>
@@ -117,7 +117,7 @@ class FlatsharePreferences extends Component {
                   <WrappedAnyInput
                     tag={<InputNumber style={{width: "40%", textAlign: 'center'}}/>}
                     dec={decorator}
-                    objName="rentFrom"
+                    objName="preferences.flat.room.rent.from"
                   />
                   <Input
                     style={{
@@ -132,7 +132,7 @@ class FlatsharePreferences extends Component {
                   <WrappedAnyInput
                     tag={<InputNumber style={{width: "40%", textAlign: 'center', borderLeft: 0}}/>}
                     dec={decorator}
-                    objName="rentTo"
+                    objName="preferences.flat.room.rent.to"
                   />
                 </InputGroup>
               </Item>
@@ -142,7 +142,7 @@ class FlatsharePreferences extends Component {
                 <WrappedAnyInput
                   tag={<RangePicker style={{width: "100%"}} placeholder={["earliest", "latest"]}/>}
                   dec={decorator}
-                  objName="dateAvailable"
+                  objName="preferences.flat.room.dateAvailable"
                 />
               </Item>
             </Col>
@@ -154,7 +154,7 @@ class FlatsharePreferences extends Component {
                 <WrappedSelection
                   placeHolder="Please select"
                   dec={decorator}
-                  objName="genderRestriction"
+                  objName="preferences.genderRestriction"
                   value={genderRestriction}
                 />
               </Item>
@@ -166,7 +166,7 @@ class FlatsharePreferences extends Component {
                   <WrappedAnyInput
                     tag={<InputNumber style={{width: "40%", textAlign: 'center'}}/>}
                     dec={decorator}
-                    objName="ageFrom"
+                    objName="preferences.flatmates.age.from"
                   />
                   <Input
                     style={{
@@ -181,7 +181,7 @@ class FlatsharePreferences extends Component {
                   <WrappedAnyInput
                     tag={<InputNumber style={{width: "40%", textAlign: 'center', borderLeft: 0}}/>}
                     dec={decorator}
-                    objName="ageTo"
+                    objName="preferences.flatmates.age.to"
                   />
                 </InputGroup>
               </Item>
@@ -193,7 +193,7 @@ class FlatsharePreferences extends Component {
                   <WrappedAnyInput
                     tag={<InputNumber style={{width: "40%", textAlign: 'center'}}/>}
                     dec={decorator}
-                    objName="flatmatesFrom"
+                    objName="preferences.flatmates.amount.from"
                   />
                   <Input
                     style={{
@@ -208,7 +208,7 @@ class FlatsharePreferences extends Component {
                   <WrappedAnyInput
                     tag={<InputNumber style={{width: "40%", textAlign: 'center', borderLeft: 0}}/>}
                     dec={decorator}
-                    objName="flatmatesTo"
+                    objName="preferences.flatmates.amount.to"
                   />
                 </InputGroup>
               </Item>
@@ -224,7 +224,7 @@ class FlatsharePreferences extends Component {
                   placeHolder="Please select"
                   type="multiple"
                   dec={decorator}
-                  objName="stations"
+                  objName="preferences.flat.stations"
                   value={Stations}
                 />
               </Item>
@@ -235,7 +235,7 @@ class FlatsharePreferences extends Component {
                   placeHolder="Please select"
                   type="multiple"
                   dec={decorator}
-                  objName="stores"
+                  objName="preferences.flat.stores"
                   value={stores}
                 />
               </Item>
@@ -252,7 +252,7 @@ class FlatsharePreferences extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={decorator}
-                  objName="furnished"
+                  objName="preferences.flat.room.furnished"
                 />
               </Item>
             </Col>
@@ -261,7 +261,7 @@ class FlatsharePreferences extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={decorator}
-                  objName="parkingLot"
+                  objName="preferences.flatEquipment.parkingLot"
                 />
               </Item>
             </Col>
@@ -270,7 +270,7 @@ class FlatsharePreferences extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={decorator}
-                  objName="livingroom"
+                  objName="preferences.flatEquipment.livingroom"
                 />
               </Item>
             </Col>
@@ -281,7 +281,7 @@ class FlatsharePreferences extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={decorator}
-                  objName="shower"
+                  objName="preferences.flatEquipment.shower"
                 />
               </Item>
             </Col>
@@ -290,7 +290,7 @@ class FlatsharePreferences extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={decorator}
-                  objName="bathtub"
+                  objName="preferences.flatEquipment.bathtub"
                 />
               </Item>
             </Col>
@@ -299,7 +299,7 @@ class FlatsharePreferences extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={decorator}
-                  objName="kitchen"
+                  objName="preferences.flatEquipment.kitchen"
                 />
               </Item>
             </Col>
@@ -310,7 +310,7 @@ class FlatsharePreferences extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={decorator}
-                  objName="internet"
+                  objName="preferences.flatEquipment.internet"
                 />
               </Item>
             </Col>
@@ -319,7 +319,7 @@ class FlatsharePreferences extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={decorator}
-                  objName="balcony"
+                  objName="preferences.flatEquipment.balcony"
                 />
               </Item>
             </Col>
@@ -328,7 +328,7 @@ class FlatsharePreferences extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={decorator}
-                  objName="terrace"
+                  objName="preferences.flatEquipment.terrace"
                 />
               </Item>
             </Col>
@@ -339,7 +339,7 @@ class FlatsharePreferences extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={decorator}
-                  objName="garden"
+                  objName="preferences.flatEquipment.garden"
                 />
               </Item>
             </Col>
@@ -348,7 +348,7 @@ class FlatsharePreferences extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={decorator}
-                  objName="washingMachine"
+                  objName="preferences.flatEquipment.washingMachine"
                 />
               </Item>
             </Col>
@@ -357,7 +357,7 @@ class FlatsharePreferences extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={decorator}
-                  objName="dishwasher"
+                  objName="preferences.flatEquipment.dishwasher"
                 />
               </Item>
             </Col>
@@ -371,7 +371,7 @@ class FlatsharePreferences extends Component {
                 <WrappedSelection
                   placeHolder="Please select"
                   dec={decorator}
-                  objName="cleanliness"
+                  objName="preferences.cleanliness"
                   value={cleanliness}
                 />
               </Item>
@@ -382,7 +382,7 @@ class FlatsharePreferences extends Component {
                 <WrappedSelection
                   placeHolder="Please select"
                   dec={decorator}
-                  objName="cleaningSchedule"
+                  objName="preferences.cleaningSchedule"
                   value={cleaningSchedule}
                 />
               </Item>
@@ -393,7 +393,7 @@ class FlatsharePreferences extends Component {
                   type="tags"
                   placeHolder="Please select"
                   dec={decorator}
-                  objName="activities"
+                  objName="preferences.activities"
                   value={activities}
                 />
               </Item>
@@ -406,7 +406,7 @@ class FlatsharePreferences extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={decorator}
-                  objName="smokers"
+                  objName="preferences.smokers"
                 />
               </Item>
             </Col>
@@ -415,7 +415,7 @@ class FlatsharePreferences extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={decorator}
-                  objName="pets"
+                  objName="preferences.pets"
                 />
               </Item>
             </Col>

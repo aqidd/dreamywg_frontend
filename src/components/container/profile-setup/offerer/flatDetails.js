@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { inject, observer } from 'mobx-react'
-import { Form } from 'antd'
+import React, {Component} from 'react'
+import {inject, observer} from 'mobx-react'
+import {Form} from 'antd'
 import Title from '../../../common/title'
 import ValueGroup from '../../../presentation/profile-setup/FlatDetails/valueGroup'
 import ControlButton from '../../../common/form/controlButtons'
@@ -16,6 +16,7 @@ class FlatDetails extends Component {
   constructor(props) {
     super(props)
   }
+
   handleResult = (type, result) => {
     result.preventDefault()
     this.props.form.validateFields((error, values) => {
@@ -32,25 +33,22 @@ class FlatDetails extends Component {
     alert('Please complete the following field : ' + errorValue)
   }
 
-  componentDidMount = () => {
-
-  }
 
   render() {
-    const { getFieldDecorator, getFieldValue } = this.props.form
+    const {getFieldDecorator, getFieldValue} = this.props.form
     const {
       images,
       imagePreview,
       setImages,
       toggleImagePreview,
-      onPreviewCancel
+      onPreviewCancel,
     } = this.props.store.profileSetupStepStore
     return (
       <Container>
         <Title>Your Flat details</Title>
         <Form layout="vertical">
-          <LocationGroup decorator={getFieldDecorator} />
-          <ValueGroup decorator={getFieldDecorator} />
+          <LocationGroup decorator={getFieldDecorator}/>
+          <ValueGroup decorator={getFieldDecorator}/>
           <SelectGroup decorator={getFieldDecorator} fieldValue={getFieldValue}/>
           <SwitchGroup decorator={getFieldDecorator}/>
           <Form.Item label="Images">

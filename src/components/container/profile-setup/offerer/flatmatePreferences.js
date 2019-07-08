@@ -62,7 +62,7 @@ class FlatmatePreferences extends Component {
                   <WrappedAnyInput
                     tag={<InputNumber style={{width: "40%", textAlign: 'center'}}/>}
                     dec={getFieldDecorator}
-                    objName="flat.flatmatePreferences.ageFrom"
+                    objName="flat.flatmatePreferences.age.from"
                   />
                   <Input
                     style={{
@@ -77,7 +77,7 @@ class FlatmatePreferences extends Component {
                   <WrappedAnyInput
                     tag={<InputNumber style={{width: "40%", textAlign: 'center', borderLeft: 0}}/>}
                     dec={getFieldDecorator}
-                    objName="flat.flatmatePreferences.ageTo"
+                    objName="flat.flatmatePreferences.age.to"
                   />
                 </InputGroup>
               </Item>
