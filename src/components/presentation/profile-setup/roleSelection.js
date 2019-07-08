@@ -9,9 +9,14 @@ import ProfileSetupOfferer from '../../../pages/profileSetupOfferer';
 const RoleSelection = () => (
   <Container>
     <TitleContent flex title="What would you like to do?"/>
-    <SeekerCard/>
-    <OffererCard/>
-
+    <Col span={11}>
+      <SeekerCard/>
+    </Col>
+    <Col span={1}>
+    </Col>
+    <Col span={11}>
+      <OffererCard/>
+    </Col>
   </Container>
 );
 
@@ -23,15 +28,15 @@ const SeekerCard = () => (
     </Col>
     <Col span={19}>
       <Row>
-        <Title> Flatshare Seeker</Title>
+        <Title> Offer flatshare room</Title>
       </Row>
-      <Row>
-        <Description> You are looking for place to live. </Description>
+      <Row style={{marginBottom:"30px"}}>
+        <Description> You have an empty room in your flatshare and want to fill it quickly? Just click below. </Description>
       </Row>
       <Row>
         <Link to="/profileSetupSeeker">
           <Button type="primary" block>
-            <p>Continue</p>
+            <p>OFFER ROOM</p>
           </Button>
         </Link>
       </Row>
@@ -49,15 +54,15 @@ const OffererCard = () => (
       </Col>
       <Col span={19}>
         <Row>
-          <Title> Flatshare Offerer</Title>
+          <Title> Find flatshare</Title>
         </Row>
-        <Row>
-          <Description> you are offering a place. </Description>
+        <Row style={{marginBottom:"30px"}}>
+          <Description> You are looking for the perfect flatshare with the best flatmates for you? Just click below. </Description>
         </Row>
         <Row>
           <Link to="/profileSetupOfferer">
             <Button type="primary" block>
-            <p>Continue</p>
+            <p>FIND FLATSHARE</p>
             </Button>
           </Link>
         </Row>
@@ -71,6 +76,7 @@ const OffererCard = () => (
 const Container = styled.div`
   margin-top: 5vh;
   text-align: center;
+  height : 100vh;
 `;
 
 const StyledIcon = styled(Icon)`
@@ -86,7 +92,7 @@ const StyledIconSeeker = styled(StyledIcon)`
 
 const StyledCard = styled(Card)`
   margin-bottom: 5vh;
-  height: 30vh;
+  height: 40vh;
 `;
 
 const Title = styled.p`
