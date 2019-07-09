@@ -50,7 +50,7 @@ const SelectGroup = ({decorator, fieldValue}) => (
             required
             tag={fieldValue("rooms[0].rentType") === "limited" ? <RangePicker/> : <DatePicker style={{width: "100%"}}/>}
             dec={decorator}
-            objName="rooms[0].dateAvailable"
+            objName={fieldValue("rooms[0].rentType") === "limited" ? "rooms[0].dateAvailableRange" : "rooms[0].dateAvailable"}
           />
         </Item>
       </Col>
