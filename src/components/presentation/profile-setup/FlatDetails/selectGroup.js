@@ -39,7 +39,7 @@ const SelectGroup = ({decorator, fieldValue}) => (
             required
             placeHolder="Please select"
             dec={decorator}
-            objName="room.rentType"
+            objName="rooms[0].rentType"
             value={rentType}
           />
         </Item>
@@ -48,9 +48,9 @@ const SelectGroup = ({decorator, fieldValue}) => (
         <Item label="Date available">
           <WrappedAnyInput
             required
-            tag={fieldValue("room.rentType") === "limited" ? <RangePicker/> : <DatePicker style={{width: "100%"}}/>}
+            tag={fieldValue("rooms[0].rentType") === "limited" ? <RangePicker/> : <DatePicker style={{width: "100%"}}/>}
             dec={decorator}
-            objName="room.dateAvailable"
+            objName="rooms[0].dateAvailable"
           />
         </Item>
       </Col>

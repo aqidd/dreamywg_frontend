@@ -62,7 +62,7 @@ class Store {
       } else {
         this.data.type = "OFFERER";
         if (this.images.length > 0)
-          this.data.room.images = this.images[0];
+          this.data.rooms[0].images = this.images[0];
       }
       try {
         (this.isSeeker) ? await Api.createFlatseeker(this.data) : await Api.createFlatofferer(this.data);
