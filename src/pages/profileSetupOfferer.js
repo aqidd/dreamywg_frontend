@@ -15,6 +15,7 @@ export default class ProfileSetupOfferer extends Component {
   }
 
   render() {
+    console.log("testt")
     this.store.maxSteps = steps.length - 1
     return (
       <Provider store={this.store}>

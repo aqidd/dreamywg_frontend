@@ -1,24 +1,45 @@
-import React from 'react'
 import {Card, Col, Icon, Row, Button} from 'antd'
 import TitleContent from '../../common/titlecontent'
 import styled from 'styled-components'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import ProfileSetupSeeker from '../../../pages/profileSetupSeeker';
 import ProfileSetupOfferer from '../../../pages/profileSetupOfferer';
+import { Redirect } from 'react-router';
+import React, {Component} from 'react'
+import {withRouter} from 'react-router'
 
-const RoleSelection = () => (
-  <Container>
-    <TitleContent flex title="What would you like to do?"/>
-    <Col span={11}>
-      <SeekerCard/>
-    </Col>
-    <Col span={1}>
-    </Col>
-    <Col span={11}>
-      <OffererCard/>
-    </Col>
-  </Container>
-);
+
+@withRouter
+export default class RoleSelection extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return(
+    <Container>
+      <TitleContent flex title="What would you like to do?"/>
+      <Col span={11}>
+        <SeekerCard/>
+      </Col>
+      <Col span={1}>
+      </Col>
+      <Col span={11}>
+        <OffererCard/>
+      </Col>
+    </Container>
+    )
+  }
+}
+
+const setRedirectSeeker = () => {
+  console.log('this is')
+ return <Redirect to="/setupseeker"/>;
+   };
+
+const setRedirectOfferer = () => {
+  return <Redirect to="/setupofferer"/>;
+};
 
 const SeekerCard = () => (
 <Router>
@@ -34,15 +55,15 @@ const SeekerCard = () => (
         <Description> You have an empty room in your flatshare and want to fill it quickly? Just click below. </Description>
       </Row>
       <Row>
-        <Link to="/profileSetupSeeker">
-          <Button type="primary" block>
+        <Link to="/setupofferer">
+          <Button type="primary" block onClick={setRedirectSeeker}>
             <p>OFFER ROOM</p>
           </Button>
         </Link>
       </Row>
     </Col>
   </StyledCard>
-  <Route exact path="/profileSetupSeeker" component={ProfileSetupSeeker} />
+
 </Router>
 );
 const OffererCard = () => (
@@ -60,8 +81,8 @@ const OffererCard = () => (
           <Description> You are looking for the perfect flatshare with the best flatmates for you? Just click below. </Description>
         </Row>
         <Row>
-          <Link to="/profileSetupOfferer">
-            <Button type="primary" block>
+          <Link to="/setupseeker">
+            <Button type="primary" block onClick={setRedirectOfferer}>
             <p>FIND FLATSHARE</p>
             </Button>
           </Link>
@@ -69,7 +90,6 @@ const OffererCard = () => (
       </Col>
     </Row>
   </StyledCard>
-  <Route exact path="/profileSetupOfferer" component={ProfileSetupOfferer} />
 </Router>
 );
 
@@ -107,4 +127,3 @@ const Description = styled.p`
   font-weight: bold;
 `;
 
-export default RoleSelection
