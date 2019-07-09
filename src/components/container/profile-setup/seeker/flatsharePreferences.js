@@ -42,6 +42,7 @@ class FlatsharePreferences extends Component {
 
   render() {
     const decorator = this.props.form.getFieldDecorator;
+    const fieldValue = this.props.form.getFieldValue;
 
     return (
       <Container>
@@ -140,9 +141,10 @@ class FlatsharePreferences extends Component {
             <Col span={8}>
               <Item label="Date available">
                 <WrappedAnyInput
-                  tag={<RangePicker style={{width: "100%"}} placeholder={["earliest", "latest"]}/>}
+                  required
+                  tag={fieldValue("preferences.flat.room.rentType") === "limited" ? <RangePicker/> : <DatePicker style={{width: "100%"}}/>}
                   dec={decorator}
-                  objName="preferences.flat.room.dateAvailable"
+                  objName={fieldValue("preferences.flat.room.rentType") === "limited" ? "preferences.flat.room.dateAvailableRange" : "preferences.flat.room.dateAvailable"}
                 />
               </Item>
             </Col>
