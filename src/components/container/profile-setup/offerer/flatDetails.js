@@ -58,7 +58,7 @@ class FlatDetails extends Component {
           <hr/>
           <br/>
           <h2>Flat properties and Equipment</h2>
-          <SwitchGroup decorator={getFieldDecorator}/>
+          <SwitchGroup decorator={getFieldDecorator} basePath={'flatEquipment'} funisheBasePath={'rooms[0]'}/>
           <hr/>
           <br/>
           <h2>Images and Descriptions</h2>

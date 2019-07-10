@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import CustomHeader from '../components/common/customHeader';
+import DefaultHeader from '../components/common/defaultHeader';
 import CustomFooter from '../components/common/customFooter';
 import BaseLayout from '../components/presentation/baseLayout';
 import ChoiceContainer from "../components/presentation/profile-setup/ChoiceContainer";
@@ -12,7 +12,7 @@ export default class RoleSelection extends Component {
   render() {
     return (
       <BaseLayout>
-        <CustomHeader/>
+        <DefaultHeader/>
         <ChoiceContainer/>
         <CustomFooter/>
       </BaseLayout>

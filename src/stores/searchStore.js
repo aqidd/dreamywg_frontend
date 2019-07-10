@@ -1,5 +1,4 @@
-import { action, observable, toJS, computed } from 'mobx'
-import axios from 'axios'
+import {action, computed, observable, toJS} from 'mobx'
 import network from '../util/network'
 
 class Store {
@@ -45,20 +44,50 @@ class Store {
   @observable ready = true
   @observable filters = ['Matched', 'Price', 'Name', 'Rating']
   @observable sortBy = 'Matched'
+  @observable filterValues = {}
+  //  {
+  //   preferences: {
+  //     flat: {
+  //       regions: 'Buxdehude',
+  //       room: {
+  //         size: {
+  //           from: 200,
+  //           to: 300,
+  //         },
+  //         rent: {
+  //           from: 100,
+  //           to:400,
+  //         },
+  //         furnished: true,
+  //         rentType: "UNLIMITED",
+  //       },
+  //       flatshareType: 'students only',
+  //
+  //     },
+  //     flatEquipment: {
+  //       balcony: true
+  //     },
+  //     smokers: true,
+  //     pets: true
+  //   }
+  // };
 
   constructor() {
     this.initData()
   }
 
-  initData() {
-    //create post request to get data from here
+  async initData() {
+    try {
+      this.filterValues = await network.loadSearchProperties();
+      this.data = await network.flatseekerSearch(this.filterValues)
+    } catch (error) {
+      console.log(`Error: ${error}`)
+    }
   }
 
-  onSearch = (data) => {
-    //do api request 
-    console.log(data)
-    //and update data
-  }
+  onSearch = async (data) => {
+    this.data = await network.flatseekerSearch(data)
+  };
 
   @computed get getTotalPage() {
     console.log(Math.round(this.totalFound / 3))

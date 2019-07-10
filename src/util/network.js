@@ -14,6 +14,8 @@ const Api = {
   confirmation: token => axios.get(`${serverUrl}/confirmation/${token}`),
   createFlatofferer: data => axios.post(`${serverUrl}/flatofferers`, data, config),
   createFlatseeker: data => axios.post(`${serverUrl}/flatseekers`, data, config),
+  loadSearchProperties: () => axios.get(`${serverUrl}/flatseekers/loadSearchProperties`, config),
+  flatseekerSearch: filters => axios.post(`${serverUrl}/flatseekers/search`, filters, config) //todo: change to get!
 }
 
 export default Api

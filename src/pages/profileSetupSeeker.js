@@ -6,6 +6,7 @@ import StepsContentContainer from '../components/container/profile-setup/StepsCo
 import BaseLayout from '../components/presentation/baseLayout'
 import PersonalInformation from "../components/container/profile-setup/seeker/personalInformation";
 import FlatsharePreferences from "../components/container/profile-setup/seeker/flatsharePreferences";
+import DefaultHeader from "../components/common/defaultHeader";
 
 export default class PreferencesSetupSeeker extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ export default class PreferencesSetupSeeker extends Component {
     return (
       <Provider store={this.store}>
         <BaseLayout>
+          <DefaultHeader/>
           <StepsContentContainer data={steps}/>
         </BaseLayout>
       </Provider>

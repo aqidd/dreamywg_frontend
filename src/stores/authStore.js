@@ -7,37 +7,44 @@ class AuthStore {
     password: ''
   }
 
-  @observable response = {}
+  @observable response
 
   constructor() {
-    this.initData()
+    if (!this.response)
+      this.initData()
   }
 
   initData() {
     this.response = {
       success: false,
       completed: false,
-      errorMessage: ''
+      errorMessage: '',
+      type: undefined
     }
   }
 
   setToken = token => {
+    console.log(localStorage.getItem('token'))
     localStorage.setItem('token', token)
+    console.log(localStorage.getItem('token'))
+
   }
 
-  get getToken() {
+  getToken() {
     return localStorage.getItem('token')
   }
 
   @action login = async credentials => {
     return network.login(credentials)
       .then((response) => {
+        console.log(JSON.stringify(response.data))
         const token = response.data.token;
         this.setToken(token);
         this.response = {
           success: true,
           completed: true,
-          errorMessage: ''
+          errorMessage: '',
+          type: response.data.type,
         }
       })
       .catch((error) => {
@@ -58,6 +65,7 @@ class AuthStore {
   }
 
   hasToken = () => {
+    console.log(`user has token: ${localStorage.getItem('token')}`)
     return localStorage.getItem('token') !== null
   }
 }

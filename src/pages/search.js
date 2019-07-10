@@ -3,9 +3,9 @@ import { Layout, Pagination } from 'antd'
 import SearchContainer from '../components/container/search/searchContainer'
 import styled from 'styled-components'
 import FilterGroup from '../components/presentation/search/filterGroup'
-import InsystemHeader from '../components/common/InsystemHeader'
 import { Provider } from 'mobx-react'
 import SearchStore from '../stores/searchStore'
+import DefaultHeader from "../components/common/defaultHeader";
 
 const { Sider, Content } = Layout
 
@@ -20,7 +20,7 @@ export default class SearchScreen extends Component {
     return (
       <Provider store={SearchStore}>
         <Layout>
-          <InsystemHeader />
+          <DefaultHeader/>
           <Layout>
             <StyledSider
               breakpoint="lg"
