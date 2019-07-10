@@ -31,7 +31,7 @@ export default class StepsContentContainer extends Component {
 
     if (this.props.store.profileSetupStepStore.status) {
       if (this.props.store.profileSetupStepStore.isSeeker) {
-        return (<Redirect to={'/search'}/>)
+        return <Redirect to={'/search'}/>
       } else {
         //TODO: Aqid put your redirect path here
         return (<Redirect to={'/'}/>)

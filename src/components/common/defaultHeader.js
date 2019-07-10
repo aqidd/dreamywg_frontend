@@ -24,7 +24,7 @@ const DefaultHeader = ({theme}) => (
             </Link> :
             <Popover placement="bottomRight"
                      content={
-                       <Link to="/" refresh="true" onClick={localStorage.removeItem('token')}>
+                       <Link to="/" refresh="true" onClick={() => localStorage.removeItem('token')}>
                          <span>Logout</span>
                        </Link>
                      }

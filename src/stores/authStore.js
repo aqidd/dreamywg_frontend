@@ -44,7 +44,7 @@ class AuthStore {
           success: true,
           completed: true,
           errorMessage: '',
-          type: response.data.type,
+          type: response.data.type ? response.data.type: null,
         }
       })
       .catch((error) => {

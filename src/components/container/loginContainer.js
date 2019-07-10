@@ -21,12 +21,11 @@ export default class LoginContainer extends Component {
   render() {
     if (this.props.store.response.success) {
       console.log('successful: ' + this.props.store.response.type + " " + !this.props.store.response.type)
-      if (!this.props.store.response.type){
-        return <Redirect to={'/roleSelection'}/>;
-      }
-      else if (this.props.store.response.type === "OFFERER")
+      if (this.props.store.response.type === "SEEKER") {
+        return <Redirect to={'/search'}/>;
+      } else if (this.props.store.response.type === "OFFERER")
         return <Redirect to={'/'}/>; // TODO: AQID CHANGE HERE!
-      else return <Redirect to={'/search'}/>;
+      else return <Redirect to={'/roleSelection'}/>;
     }
     if (this.props.store.response.completed && !this.props.store.response.success) {
       WrappendModal(this.props.store.response.errorMessage)
