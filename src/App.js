@@ -23,18 +23,18 @@ export default class App extends React.Component {
         <Route exact path="/roleselection" component={RoleSelection}/>
         <Route exact path="/setupseeker" component={ProfileSetupSeeker}/>
         <Route exact path="/setupofferer" component={ProfileSetupOfferer}/>
-        <ProtectedRoute
-          exact
-          path="/setupofferer"
-          component={ProfileSetupOfferer}
-          isAuth={hasToken()}
-        />
-        <ProtectedRoute
-          exact
-          path="/setupseeker"
-          component={ProfileSetupSeeker}
-          isAuth={hasToken()}
-        />
+        {/*<ProtectedRoute*/}
+        {/*  exact*/}
+        {/*  path="/setupofferer"*/}
+        {/*  component={ProfileSetupOfferer}*/}
+        {/*  isAuth={hasToken()}*/}
+        {/*/>*/}
+        {/*<ProtectedRoute*/}
+        {/*  exact*/}
+        {/*  path="/setupseeker"*/}
+        {/*  component={ProfileSetupSeeker}*/}
+        {/*  isAuth={hasToken()}*/}
+        {/*/>*/}
         <ProtectedRoute
           exact
           path="/flat"

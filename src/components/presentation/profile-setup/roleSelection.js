@@ -13,8 +13,36 @@ import {withRouter} from 'react-router'
 export default class RoleSelection extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      redirectOfferer: false,
+      redirectSeeker: false
+    }
   }
 
+
+  static setRedirectOfferer = () => {
+    this.setState({
+      redirectOfferer: true
+    })
+  }
+
+  static renderRedirectOfferer = () => {
+    if (this.state.redirectOfferer) {
+      return <Redirect to='/setupofferer' />
+    }
+  }
+
+  static setRedirectSeeker = () => {
+    this.setState({
+      redirectSeeker: true
+    })
+  }
+
+  static renderRedirectSeeker = () => {
+    if (this.state.redirectSeeker) {
+      return <Redirect to='/setupseeker' />
+    }
+  }
   render() {
     return(
     <Container>
@@ -34,39 +62,95 @@ export default class RoleSelection extends Component {
 
 const setRedirectSeeker = () => {
   console.log('this is')
- return <Redirect to="/setupseeker"/>;
+  this.setState({
+    selectValue: event.target.value,
+    redirect: true
+  });
+  if(redirect){
+    return <Redirect to="/setupseeker"/>;
+  }
+
    };
 
 const setRedirectOfferer = () => {
-  return <Redirect to="/setupofferer"/>;
+  this.setState({
+    selectValue: event.target.value,
+    redirect: true
+  });
+  if(redirect) {
+    return <Redirect to="/setupofferer"/>;
+  }
 };
 
-const SeekerCard = () => (
-<Router>
-  <StyledCard>
-    <Col span={5}>
-      <StyledIconOfferer type="team"/>
-    </Col>
-    <Col span={19}>
-      <Row>
-        <Title> Offer flatshare room</Title>
-      </Row>
-      <Row style={{marginBottom:"30px"}}>
-        <Description> You have an empty room in your flatshare and want to fill it quickly? Just click below. </Description>
-      </Row>
-      <Row>
-        <Link to="/setupofferer">
-          <Button type="primary" block onClick={setRedirectSeeker}>
-            <p>OFFER ROOM</p>
-          </Button>
-        </Link>
-      </Row>
-    </Col>
-  </StyledCard>
+class OffererCard extends Component{
+  constructor(props) {
+    super(props);
+  }
+  state = {
+    redirect: false
+  }
+  setRedirect = () => {
+    this.forceUpdate();
+  }
 
-</Router>
-);
-const OffererCard = () => (
+  renderRedirect = () => {
+    //if (this.state.redirect) {
+      return <Redirect to='/setupofferer' />
+
+  }
+
+  render() {
+    return(
+      <Router>
+        <StyledCard>
+          <Col span={5}>
+            <StyledIconOfferer type="team"/>
+          </Col>
+          <Col span={19}>
+            <Row>
+              <Title> Offer flatshare room</Title>
+            </Row>
+            <Row style={{marginBottom:"30px"}}>
+              <Description> You have an empty room in your flatshare and want to fill it quickly? Just click below. </Description>
+            </Row>
+            <Row>
+              {this.renderRedirect()}
+              <Button type="primary" block onClick={this.setRedirect}>
+                <p>OFFER ROOM</p>
+              </Button>
+            </Row>
+          </Col>
+        </StyledCard>
+
+      </Router>
+
+
+    )}
+}
+
+class SeekerCard extends Component{
+  constructor(props) {
+    super(props);
+
+  }
+  state = {
+    redirect: false
+
+  }
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/setupseeker' />
+    }
+  }
+  render() {
+    return(
 <Router>
   <StyledCard>
     <Row>
@@ -81,17 +165,17 @@ const OffererCard = () => (
           <Description> You are looking for the perfect flatshare with the best flatmates for you? Just click below. </Description>
         </Row>
         <Row>
-          <Link to="/setupseeker">
-            <Button type="primary" block onClick={setRedirectOfferer}>
-            <p>FIND FLATSHARE</p>
-            </Button>
-          </Link>
+          {this.renderRedirect()}
+          <Button type="primary" block onClick={this.setRedirect}>
+            <p>FIND ROOM</p>
+          </Button>
         </Row>
       </Col>
     </Row>
   </StyledCard>
 </Router>
-);
+    )}
+}
 
 const Container = styled.div`
   margin-top: 5vh;
