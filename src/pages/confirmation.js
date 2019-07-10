@@ -1,40 +1,29 @@
 import React, {Component} from 'react'
-import {Layout} from 'antd'
-import CustomHeader from '../components/container/customHeader'
-import CustomFooter from '../components/container/customFooter'
 import 'antd/dist/antd.css'
-import styled from 'styled-components'
-import initStore from "../stores/confirmationStore";
-import {inject, observer, Provider} from 'mobx-react'
-import ConfirmationContent from "../components/container/confirmationContent";
+import {Provider} from 'mobx-react'
+import ConfirmationContent from "../components/container/confirmation/confirmationContent";
+import BaseLayout from "../components/presentation/baseLayout";
+import ConfirmationStore from "../stores/confirmationStore";
+import {withRouter} from 'react-router';
 
 
-const {Header, Footer} = Layout;
+export default withRouter(
+  class ConfirmationScreen extends Component {
+    constructor(props) {
+      super(props);
+      this.store = ConfirmationStore();
+    }
 
-export default class ConfirmationScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.store = initStore();
+    render = () => {
+      const token = this.props.match.params.token;
+
+      return (
+        <Provider store={this.store}>
+          <BaseLayout>
+            <ConfirmationContent token={token}/>
+          </BaseLayout>
+        </Provider>
+      )
+    }
   }
-
-  render = () => {
-    return (
-      <Provider ConfirmationStore={this.store}>
-        <div>
-          <Layout>
-            <StyledHeader>
-              <CustomHeader/>
-            </StyledHeader>
-            <ConfirmationContent/>
-    
-          </Layout>
-        </div>
-      </Provider>
-    )
-  }
-}
-
-const
-  StyledHeader = styled(Header)`
-  background-color: white;
-`;
+)

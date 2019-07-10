@@ -1,29 +1,28 @@
 import {action, observable} from "mobx"
-import Router from "next/dist/client/router";
 import network from '../util/network';
 
+import React from 'react';
+
+const serverUnavailable = "Server unavailable. Maybe try it later";
+
 class Store {
-  @observable confirmationResult = {msg: "", status: true};
+  @observable result;
 
   constructor() {
-    this.confirmationResult.msg = "Pending...";
-    this.confirmationResult.status = true;
+    this.result = undefined
   }
 
-  @action verify = () => {
-    network.confirmation(Router.query.token)
+  @action verify = (token) => {
+    network.confirmation(token)
       .then((response) => {
-        this.confirmationResult.msg = response.data;
-        this.confirmationResult.status = true;
+        this.result = {state: true, data: response.data}
       })
       .catch((err) => {
-        this.confirmationResult.status = false;
-        if (err) this.confirmationResult.status = "Server unavailable. Maybe try it later";
-        else this.confirmationResult.status = err.response.data
+        this.result = {state: false, data: err ? serverUnavailable : err.response.data};
       })
   }
 }
 
-const initStore = () => new Store();
+const ConfirmationStore = () => new Store();
 
-export default initStore
+export default ConfirmationStore
