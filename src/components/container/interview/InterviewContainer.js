@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Row, Col, Card, Button, Icon } from 'antd'
+import { Row, Col, Card, Button, Icon, Menu, Dropdown } from 'antd'
 import Title from '../../common/title'
 import styled from 'styled-components'
 import ListContent from './listContent'
 import { inject, observer } from 'mobx-react'
+import { toJS } from 'mobx'
 
 const data = [
   {
@@ -47,8 +48,33 @@ const data = [
 @inject('interviewStore')
 @observer
 export default class InterviewContainer extends Component {
+
   constructor(props) {
     super(props)
+    
+    this.menu = (
+      <Menu>
+        {
+          toJS(this.props.interviewStore.schedules).forEach(schedule => {
+            <Menu.Item>
+              <a target="_blank" rel="noopener noreferrer">
+                {schedule.date}
+              </a>
+            </Menu.Item>
+          })
+        }
+      </Menu>
+    );
+  }
+
+  componentDidMount() {
+    this.props.interviewStore.fetchSchedules().then(response => {
+      console.log(response, this.props.interviewStore.schedules)
+      
+      alert('success on getting schedule')
+    }).catch(error => {
+      console.log(error)
+    })
   }
 
   onClickHandler = type => {
@@ -60,7 +86,6 @@ export default class InterviewContainer extends Component {
   }
 
   render() {
-    console.log(this.props.interviewStore.helloMsg)
     return (
       <Container>
         <Row>
@@ -69,6 +94,11 @@ export default class InterviewContainer extends Component {
         <Row gutter={16}>
           <Col span={12}>
             <StyledCard title="Upcoming Interview">
+            <Dropdown overlay={this.menu}>
+              <a className="ant-dropdown-link" href="#">
+                Choose Schedule <Icon type="down" />
+              </a>
+            </Dropdown>
               <ListContent
                 data={data}
                 past={false}

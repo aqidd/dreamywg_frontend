@@ -13,7 +13,8 @@ const Api = {
   register: userData => axios.post(`${serverUrl}/users`, userData, config),
   confirmation: token => axios.get(`${serverUrl}/confirmation/${token}`),
   profileOffer: data => axios.post(`${serverUrl}/flatofferer/`, data, config),
-  profileSeeker: data => axios.post(`${serverUrl}/flatseeker/`, data, config)
+  profileSeeker: data => axios.post(`${serverUrl}/flatseeker/`, data, config),
+  schedules: () => axios.get(`${serverUrl}/schedules`)
 }
 
 export default Api
