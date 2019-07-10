@@ -19,8 +19,8 @@ export default class ChatContent extends React.Component{
   constructor(){
     super();
     this.state = {
-      senderId: '',
-      receiverId: '',
+      user1: '',
+      user2: '',
       content: '',
       timestamp: Date,
       messages: []
@@ -43,8 +43,8 @@ export default class ChatContent extends React.Component{
       ev.preventDefault();
 
       this.socket.emit('message', {
-        senderId: this.state.senderId,
-        receiverId: this.state.receiverId,
+        user1: this.state.user1,
+        user2: this.state.user2,
         content: this.state.content,
         timestamp: Date.now()
       })
@@ -69,7 +69,7 @@ export default class ChatContent extends React.Component{
               <Message date="21:38" authorName="Jon Smith" className="messages">
                 {this.state.messages.map(message => {
                   return (
-                    <MessageText key={message.uniqueId}> from: {message.senderId}, to:{message.receiverId} , message: {message.content}</MessageText>
+                    <MessageText key={message.uniqueId}> from: {message.user1}, to:{message.user2} , message: {message.content}</MessageText>
                   )
                 })}
               </Message>
@@ -90,14 +90,14 @@ export default class ChatContent extends React.Component{
           <div className="messages">
             {this.state.messages.map(message => {
               return (
-                <div> from: {message.senderId}, to:{message.receiverId} , message: {message.content}</div>
+                <div> from: {message.user1}, to:{message.user2} , message: {message.content}</div>
               )
             })}
           </div>
           <div className="card-footer">
-            <input type="text" placeholder="sender" value={this.state.senderId} onChange={ev => this.setState({senderId: ev.target.value})} className="form-control"/>
+            <input type="text" placeholder="sender" value={this.state.user1} onChange={ev => this.setState({user1: ev.target.value})} className="form-control"/>
             <br/>
-            <input type="text" placeholder="receiver" value={this.state.receiverId} onChange={ev => this.setState({receiverId: ev.target.value})} className="form-control"/>
+            <input type="text" placeholder="receiver" value={this.state.user2} onChange={ev => this.setState({user2: ev.target.value})} className="form-control"/>
             <br/>
             <input type="text" placeholder="Message" className="form-control" value={this.state.content} onChange={ev => this.setState({content: ev.target.value})}/>
             <br/>

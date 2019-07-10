@@ -17,8 +17,7 @@ export default class ConversationList extends Component {
     this.setState = this.setState.bind(this);
   }
   componentDidMount() {
-    this.props.ChatStore.retrieveChatList();
-    
+    this.props.ChatStore.retrieveChatList("user1");
   }
 
   toggleHover() {
@@ -28,9 +27,7 @@ export default class ConversationList extends Component {
   }
 
   showChatList = (selfUserId, userId) => {
-    console.log(selfUserId);
-    console.log(userId);
-    this.props.ChatStore.retrieveChatList();
+    this.props.ChatStore.retrieveChatList("user1");
   }
 
 

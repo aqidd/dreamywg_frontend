@@ -8,6 +8,7 @@ class Store {
 
   }
   @action retrieveChatList = (senderId) => {
+    console.log("retrieve chat list frontend store", senderId)
     network.chatList(senderId)
       .then((response) => {
         console.log('chat data', response.data)
