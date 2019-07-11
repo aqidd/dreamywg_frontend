@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import store from '../stores/authStore'
-import { Provider } from 'mobx-react'
+import {Provider} from 'mobx-react'
 import LoginContainer from '../components/container/loginContainer'
-import CustomHeader from '../components/common/customHeader'
 import CustomFooter from '../components/common/customFooter'
 import BaseLayout from '../components/presentation/baseLayout'
+import DefaultHeader from "../components/common/defaultHeader";
 
 export default class Login extends Component {
   constructor(props) {
@@ -14,13 +14,15 @@ export default class Login extends Component {
 
   render() {
     return (
-      <BaseLayout>
-        <CustomHeader />
-        <Provider AuthStore={this.store}>
-          <LoginContainer />
-        </Provider>
-        <CustomFooter />
-      </BaseLayout>
+      <div>
+        <BaseLayout>
+          <DefaultHeader/>
+          <Provider store={this.store}>
+            <LoginContainer/>
+          </Provider>
+          <CustomFooter/>
+        </BaseLayout>
+      </div>
     )
   }
 }
