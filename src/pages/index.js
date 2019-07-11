@@ -23,6 +23,3 @@ export default class Home extends Component {
     }
 }
 
-const Title = styled.h1`
-  color: red;
-`;
