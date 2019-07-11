@@ -26,8 +26,8 @@ export default class ConversationList extends Component {
 
   }
 
-  showChatList = (selfUserId, userId) => {
-    this.props.ChatStore.retrieveChatList("user1");
+  deleteChatUnit(){
+    this.props.ChatStore.deleteChatUnit(id);
   }
 
 

@@ -7,9 +7,9 @@ class Store {
   constructor() {
 
   }
-  @action retrieveChatList = (senderId) => {
-    console.log("retrieve chat list frontend store", senderId)
-    network.chatList(senderId)
+  @action retrieveChatList = (userId) => {
+    console.log("retrieve chat list frontend store", userId)
+    network.chatList(userId)
       .then((response) => {
         console.log('chat data', response.data)
       })

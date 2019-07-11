@@ -14,8 +14,9 @@ const Api = {
   confirmation: token => axios.get(`${serverUrl}/confirmation/${token}`),
   chatList: userId => axios.get(serverUrl+'/chat/', {
     params: {
-      userId: 'user1'
-    }}), //retrieve chat list
+      userId: userId
+    }
+  }), //retrieve chat list
   chatUnit: (messageId, senderId, receiverId) => axios.get(serverUrl + '/chatunit', messageId, senderId, receiverId), //retrieve chat unit
 }
 
