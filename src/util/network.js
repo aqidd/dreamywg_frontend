@@ -23,7 +23,7 @@ const Api = {
       user1:senderId,
       user2:receiverId
     }
-  }messageId, senderId, receiverId), //retrieve chat unit
+  }), //retrieve chat unit
   createFlatofferer: data => axios.post(`${serverUrl}/flatofferers`, data, config),
   createFlatseeker: data => axios.post(`${serverUrl}/flatseekers`, data, config),
 }
