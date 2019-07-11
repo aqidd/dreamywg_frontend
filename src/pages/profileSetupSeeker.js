@@ -8,17 +8,11 @@ import PersonalInformation from "../components/container/profile-setup/seeker/pe
 import FlatsharePreferences from "../components/container/profile-setup/seeker/flatsharePreferences";
 import DefaultHeader from "../components/common/defaultHeader";
 
-export default class PreferencesSetupSeeker extends Component {
+export default class ProfileSetupSeeker extends Component {
   constructor(props) {
     super(props);
     this.store = RegistrationRootStore(true, steps.length - 1)
-  }
-
-  componentDidMount() {
-    if (this.store.profileSetupStepStore.status) {
-      this.props.history.push('/login')
-    }
-  }
+  }//todo: check argument. IS really seeker?
 
   render() {
     return (

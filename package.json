@@ -16,7 +16,7 @@
     "react-scripts": "3.0.1",
     "styled-components": "^4.2.0",
     "styled-theming": "^2.2.0",
-    "react-router": "latest"
+    "react-router": "^5.0.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.4.4",
