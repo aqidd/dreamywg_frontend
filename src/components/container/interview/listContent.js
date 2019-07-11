@@ -9,7 +9,7 @@ const ListContent = ({ past, data, onClick }) =>
       dataSource={data}
       renderItem={item => (
         <List.Item
-          key={item.title}
+          key={item.date}
           actions={[
             <IconText type="like" text="Accept" />,
             <IconText type="dislike" text="Reject" />,
@@ -21,7 +21,6 @@ const ListContent = ({ past, data, onClick }) =>
             avatar={<Avatar src={item.avatar} />}
             title={<a href={item.href}>{item.title}</a>}
           />
-          {item.content}
         </List.Item>
       )}
     />
@@ -32,16 +31,16 @@ const ListContent = ({ past, data, onClick }) =>
       renderItem={item => (
         <List.Item
           actions={[
-            <IconText type="calendar" text="2 July 2020" />,
-            <IconText type="message" text="Message" />
+            <IconText type="calendar" text={item.time} />,
+            <IconText type="message" text={item.status} />
           ]}
         >
           <List.Item.Meta
             avatar={
               <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
             }
-            title={<a href="https://ant.design">shubu</a>}
-            description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+            title={<a href="https://ant.design">Timeslot {item.time}</a>}
+            description="No interviewee booked for this slot"
           />
         </List.Item>
       )}

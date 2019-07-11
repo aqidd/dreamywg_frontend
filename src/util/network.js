@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const serverUrl = 'http://localhost:4007'
+const serverUrl = 'http://localhost:4005'
 
 let config = {
   headers: {
@@ -14,7 +14,8 @@ const Api = {
   confirmation: token => axios.get(`${serverUrl}/confirmation/${token}`),
   profileOffer: data => axios.post(`${serverUrl}/flatofferer/`, data, config),
   profileSeeker: data => axios.post(`${serverUrl}/flatseeker/`, data, config),
-  schedules: () => axios.get(`${serverUrl}/schedules`)
+  schedules: () => axios.get(`${serverUrl}/schedules`),
+  timeslots: (scheduleId) => axios.get(`${serverUrl}/schedules/${scheduleId}/timeslots`)
 }
 
 export default Api

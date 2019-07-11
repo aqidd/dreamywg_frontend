@@ -54,11 +54,13 @@ export default class InterviewContainer extends Component {
   }
 
   componentDidMount() {
+    this.getAllSchedules()
+  }
+
+  getAllSchedules = () => {
     this.props.interviewStore.fetchSchedules().then(response => {
+      // do something here
       console.log(response, this.props.interviewStore.schedules)
-      this.props.interviewStore.schedules.forEach(schedule => {
-        console.log(toJS(schedule))
-      })
     }).catch(error => {
       console.log(error)
     })
@@ -73,6 +75,7 @@ export default class InterviewContainer extends Component {
   }
 
   render() {
+    let timeslots = []
     return (
       <Container>
         <Row>
@@ -81,24 +84,19 @@ export default class InterviewContainer extends Component {
         <Row gutter={16}>
           <Col span={12}>
             <StyledCard title="Upcoming Interview" >
-              <Select>
-                {/* <Option value="1">Default value</Option>
-                { 
-                  this.props.interviewStore.schedules.map(function (schedule) {
-                  return <Option value={schedule._id}>{schedule.date}</Option>
-                })} */}
-                {/* {
-                  this.props.interviewStore.schedules.forEach(schedule => {
+              <Select style={{ width: 200 }}>
+                {
+                  this.props.interviewStore.schedules.map(schedule => {
                     schedule = toJS(schedule)
-                    console.log('schedule', schedule)
+                    timeslots = schedule.timeslots
                     {
-                      return <Option value={schedule._id}>{schedule.date}</Option>
+                      return <Option value={schedule._id} key={schedule._id}>{schedule.date}</Option>
                     }
                   })
-                } */}
+                }
               </Select>
               <ListContent
-                data={data}
+                data={timeslots}
                 past={false}
                 onClick={type => onClickHandler(type)}
               />
