@@ -21,9 +21,9 @@ class OAuth extends Component {
           <hr/>
           <br/>
           <div>
-            <Link to={'/'}>
+            <Link to={'/login'}>
               <Button type="primary">
-                <p>Go to login</p>
+                Go to Login
               </Button>
             </Link>
           </div>

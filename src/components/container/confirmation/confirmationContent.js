@@ -29,7 +29,7 @@ export default class ConfirmationContent extends Component {
               <p>{result.data}</p>
               <Link to={'/login'}>
                 <Button type="primary">
-                  <p>Go to Login</p>
+                  Go to Login
                 </Button>
               </Link>
             </div>

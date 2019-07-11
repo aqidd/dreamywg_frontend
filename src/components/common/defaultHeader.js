@@ -13,7 +13,9 @@ const DefaultHeader = ({theme}) => (
         <Col xs={2} sm={2} md={2} lg={2} xl={5}/>
         <Col xs={10} sm={10} md={10} lg={10} xl={7}>
           <div className="logo">
-            <Image img={img} style={{width: 80}}/>
+            <Link to="/" refresh="true">
+              <Image img={img} style={{width: 80}}/>
+            </Link>
           </div>
         </Col>
         <Col xs={10} sm={10} md={10} lg={10} xl={7}>

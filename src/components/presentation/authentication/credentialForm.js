@@ -45,6 +45,7 @@ class CredentialForm extends React.Component {
           <Item>
             <Row>
               <Col span={4}>
+                {/*todo: change here to distinguish between login and register*/}
                 <Button type="primary" htmlType="submit" className="credential-form-button">
                   Login
                 </Button>
