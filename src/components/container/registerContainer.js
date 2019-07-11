@@ -5,7 +5,7 @@ import GeneralInfo from '../presentation/authentication/generalInfo'
 import CredentialForm from '../presentation/authentication/credentialForm'
 import styled from 'styled-components'
 import oAuth from "../presentation/authentication/oAuth";
-import WrappendModal from "../common/form/wrappendModal";
+import WrappedModal from "../common/form/wrappedModal";
 
 const {Step} = Steps
 
@@ -20,7 +20,7 @@ export default class RegisterContainer extends Component {
     if (response.status === 200) {
       this.props.RegisterStore.step.nextStep()
     } else {
-      return WrappendModal(`Sorry, something went wrong. Please try again.`)
+      return WrappedModal(`Sorry, something went wrong. Please try again.`)
     }
   }
 

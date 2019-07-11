@@ -12,7 +12,7 @@ export default class ProfileSetupSeeker extends Component {
   constructor(props) {
     super(props);
     this.store = RegistrationRootStore(true, steps.length - 1)
-  }//todo: check argument. IS really seeker?
+  }
 
   render() {
     return (

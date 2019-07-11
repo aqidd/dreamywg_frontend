@@ -41,8 +41,9 @@ class FilterGroup extends Component {
     })
   }
 
-  componentDidMount = () => {
-    const {setFieldsValue} = this.props.form //todo here:
+  componentDidMount = async () => {
+    const {setFieldsValue} = this.props.form
+    await this.props.store.initData()
     const filterValues = this.props.store.filterValues
     setFieldsValue({
       preferences: {

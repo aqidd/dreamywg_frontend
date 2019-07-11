@@ -37,7 +37,6 @@ class AuthStore {
   @action login = async credentials => {
     return network.login(credentials)
       .then((response) => {
-        console.log(JSON.stringify(response.data))
         const token = response.data.token;
         this.setToken(token);
         this.response = {
