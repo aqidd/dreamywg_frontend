@@ -1,8 +1,8 @@
-import React from 'react'
-import {Card, Col, Icon, Row, Button} from 'antd'
+import {Button, Card, Col, Icon, Row} from 'antd'
 import TitleContent from '../../common/titlecontent'
 import styled from 'styled-components'
-import Link from 'next/link';
+import React from "react";
+import {Link} from "react-router-dom";
 
 const ChoiceContainer = () => (
   <Container>
@@ -20,14 +20,14 @@ const SeekerCard = () => (
     </Col>
     <Col span={19}>
       <Row>
-        <Title> Flatshare Seeker</Title>
+        <Title>Flatshare Seeker</Title>
       </Row>
       <Row>
         <Description> You are looking for place to live. </Description>
       </Row>
       <Row>
-        <Link href="/profileSetupSeeker">
-          <Button type="primary" block>
+        <Link to={"/setupseeker"}>
+          <Button type="primary">
             <p>Continue</p>
           </Button>
         </Link>
@@ -43,15 +43,15 @@ const OffererCard = () => (
       </Col>
       <Col span={19}>
         <Row>
-          <Title> Flatshare Offerer</Title>
+          <Title>Flatshare Offerer</Title>
         </Row>
         <Row>
           <Description> you are offering a place. </Description>
         </Row>
         <Row>
-          <Link href="/profileSetupOfferer">
-            <Button type="primary" block>
-            <p>Continue</p>
+          <Link to={"/setupofferer"}>
+            <Button type="primary">
+              <p>Continue</p>
             </Button>
           </Link>
         </Row>

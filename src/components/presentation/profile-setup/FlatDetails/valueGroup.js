@@ -1,40 +1,37 @@
 import React from 'react'
 import { Row, Col, Input, Form } from 'antd'
-import WrappedInput from '../../../common/form/warppedInput'
+import WrappedInput from '../../../common/form/wrappedInput'
 
 const Item = Form.Item
 
 const ValueGroup = ({ decorator }) => (
   <Input.Group>
-    <Row gutter={5}>
+    <Row gutter={16}>
       <Col span={8}>
-        <Item label="Flat">
+        <Item label="Flatsize">
           <WrappedInput
             dec={decorator}
-            objName="apartment-size"
-            placeHolder="Apartment"
-            suffix="Square Meter"
+            objName="flatSize"
+            suffix="m&sup2;"
             type="number"
           />
         </Item>
       </Col>
       <Col span={8}>
-        <Item label="Room">
+        <Item label="Roomsize">
           <WrappedInput
             dec={decorator}
-            objName="room-size"
-            placeHolder="Room"
-            suffix="Square Meter"
+            objName="rooms[0].roomSize"
+            suffix="m&sup2;"
             type="number"
           />
         </Item>
       </Col>
       <Col span={8}>
-        <Item label="Minimum rent">
+        <Item label="Rent">
           <WrappedInput
             dec={decorator}
-            objName="month"
-            placeHolder="Month"
+            objName="rooms[0].rent"
             suffix=" ‎€/Month"
             type="number"
           />
