@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Card, Button, Icon, Menu, Dropdown } from 'antd'
+import { Row, Col, Card, Button, Select } from 'antd'
 import Title from '../../common/title'
 import styled from 'styled-components'
 import ListContent from './listContent'
@@ -51,27 +51,14 @@ export default class InterviewContainer extends Component {
 
   constructor(props) {
     super(props)
-    
-    this.menu = (
-      <Menu>
-        {
-          toJS(this.props.interviewStore.schedules).forEach(schedule => {
-            <Menu.Item>
-              <a target="_blank" rel="noopener noreferrer">
-                {schedule.date}
-              </a>
-            </Menu.Item>
-          })
-        }
-      </Menu>
-    );
   }
 
   componentDidMount() {
     this.props.interviewStore.fetchSchedules().then(response => {
       console.log(response, this.props.interviewStore.schedules)
-      
-      alert('success on getting schedule')
+      this.props.interviewStore.schedules.forEach(schedule => {
+        console.log(toJS(schedule))
+      })
     }).catch(error => {
       console.log(error)
     })
@@ -93,12 +80,23 @@ export default class InterviewContainer extends Component {
         </Row>
         <Row gutter={16}>
           <Col span={12}>
-            <StyledCard title="Upcoming Interview">
-            <Dropdown overlay={this.menu}>
-              <a className="ant-dropdown-link" href="#">
-                Choose Schedule <Icon type="down" />
-              </a>
-            </Dropdown>
+            <StyledCard title="Upcoming Interview" >
+              <Select>
+                {/* <Option value="1">Default value</Option>
+                { 
+                  this.props.interviewStore.schedules.map(function (schedule) {
+                  return <Option value={schedule._id}>{schedule.date}</Option>
+                })} */}
+                {/* {
+                  this.props.interviewStore.schedules.forEach(schedule => {
+                    schedule = toJS(schedule)
+                    console.log('schedule', schedule)
+                    {
+                      return <Option value={schedule._id}>{schedule.date}</Option>
+                    }
+                  })
+                } */}
+              </Select>
               <ListContent
                 data={data}
                 past={false}

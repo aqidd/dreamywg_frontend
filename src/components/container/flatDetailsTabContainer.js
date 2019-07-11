@@ -8,7 +8,7 @@ import InterviewContainer from '../container/interview/InterviewContainer'
 const { TabPane } = Tabs
 
 const FlatDetailsTab = props => (
-  <Tabs defaultActiveKey="1">
+  <Tabs defaultActiveKey="4">
     <TabPane tab="About" key="1">
       <AboutFlat />
     </TabPane>
