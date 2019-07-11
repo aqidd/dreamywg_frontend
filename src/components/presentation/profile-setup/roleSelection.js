@@ -101,7 +101,7 @@ class OffererCard extends Component{
 
   render() {
     return(
-      <Router>
+      <div>
         <StyledCard>
           <Col span={5}>
             <StyledIconOfferer type="team"/>
@@ -114,15 +114,16 @@ class OffererCard extends Component{
               <Description> You have an empty room in your flatshare and want to fill it quickly? Just click below. </Description>
             </Row>
             <Row>
-              {this.renderRedirect()}
-              <Button type="primary" block onClick={this.setRedirect}>
+              <Link to={'/setupofferer'}>
+              <Button type="primary" block>
                 <p>OFFER ROOM</p>
               </Button>
+              </Link>
             </Row>
           </Col>
         </StyledCard>
 
-      </Router>
+      </div>
 
 
     )}
@@ -151,7 +152,7 @@ class SeekerCard extends Component{
   }
   render() {
     return(
-<Router>
+<div>
   <StyledCard>
     <Row>
       <Col span={5}>
@@ -165,15 +166,16 @@ class SeekerCard extends Component{
           <Description> You are looking for the perfect flatshare with the best flatmates for you? Just click below. </Description>
         </Row>
         <Row>
-          {this.renderRedirect()}
+          <Link to={'/setupseeker'}>
           <Button type="primary" block onClick={this.setRedirect}>
             <p>FIND ROOM</p>
           </Button>
+          </Link>
         </Row>
       </Col>
     </Row>
   </StyledCard>
-</Router>
+</div>
     )}
 }
 
