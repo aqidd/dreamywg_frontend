@@ -15,7 +15,8 @@ const Api = {
   profileOffer: data => axios.post(`${serverUrl}/flatofferer/`, data, config),
   profileSeeker: data => axios.post(`${serverUrl}/flatseeker/`, data, config),
   schedules: () => axios.get(`${serverUrl}/schedules`),
-  timeslots: (scheduleId) => axios.get(`${serverUrl}/schedules/${scheduleId}/timeslots`)
+  timeslots: (scheduleId) => axios.get(`${serverUrl}/schedules/${scheduleId}/timeslots`),
+  pastTimeslots: () => axios.get(`${serverUrl}/schedules/timeslots/past`)
 }
 
 export default Api

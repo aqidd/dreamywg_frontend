@@ -6,45 +6,7 @@ import ListContent from './listContent'
 import { inject, observer } from 'mobx-react'
 import { toJS } from 'mobx'
 
-const data = [
-  {
-    href: 'http://ant.design',
-    title: `Patipon Riebpradit`,
-    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    description:
-      'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    content:
-      'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.'
-  },
-  {
-    href: 'http://ant.design',
-    title: `Patipon Riebpradit`,
-    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    description:
-      'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    content:
-      'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.'
-  },
-  {
-    href: 'http://ant.design',
-    title: `Patipon Riebpradit`,
-    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    description:
-      'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    content:
-      'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.'
-  },
-  {
-    href: 'http://ant.design',
-    title: `Patipon Riebpradit`,
-    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    description:
-      'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    content:
-      'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.'
-  }
-]
-
+// TODO refactor logic in UI
 @inject('interviewStore')
 @observer
 export default class InterviewContainer extends Component {
@@ -55,15 +17,32 @@ export default class InterviewContainer extends Component {
 
   componentDidMount() {
     this.getAllSchedules()
+    this.getAllPastTimeslots()
   }
 
   getAllSchedules = () => {
     this.props.interviewStore.fetchSchedules().then(response => {
       // do something here
-      console.log(response, this.props.interviewStore.schedules)
+      console.log(response, this.props.interviewStore.schedules, 'all schedules')
     }).catch(error => {
       console.log(error)
     })
+  }
+
+  getAllPastTimeslots = () => {
+    this.props.interviewStore.fetchPastTimeslots().then(response => {
+      // do something here
+      console.log(response, toJS(this.props.interviewStore.pastTimeslots), 'past timeslot')
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
+  refreshTimeslots = (id) => {
+    const sch = toJS(this.props.interviewStore.schedules).filter(schedule => {
+      return schedule._id === id
+    })
+    this.props.interviewStore.setCurrentTimeslots(sch[0].timeslots)
   }
 
   onClickHandler = type => {
@@ -75,7 +54,6 @@ export default class InterviewContainer extends Component {
   }
 
   render() {
-    let timeslots = []
     return (
       <Container>
         <Row>
@@ -84,11 +62,11 @@ export default class InterviewContainer extends Component {
         <Row gutter={16}>
           <Col span={12}>
             <StyledCard title="Upcoming Interview" >
-              <Select style={{ width: 200 }}>
+              <p>Select Schedule</p>
+              <Select style={{ width: 200 }} onChange={this.refreshTimeslots}>
                 {
                   this.props.interviewStore.schedules.map(schedule => {
                     schedule = toJS(schedule)
-                    timeslots = schedule.timeslots
                     {
                       return <Option value={schedule._id} key={schedule._id}>{schedule.date}</Option>
                     }
@@ -96,7 +74,7 @@ export default class InterviewContainer extends Component {
                 }
               </Select>
               <ListContent
-                data={timeslots}
+                data={toJS(this.props.interviewStore.currentTimeslots)}
                 past={false}
                 onClick={type => onClickHandler(type)}
               />
@@ -112,7 +90,7 @@ export default class InterviewContainer extends Component {
               }
             >
               <ListContent
-                data={data}
+                data={toJS(this.props.interviewStore.pastTimeslots)}
                 past={true}
                 onClick={type => onClickHandler(type)}
               />

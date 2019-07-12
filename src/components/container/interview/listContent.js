@@ -9,7 +9,7 @@ const ListContent = ({ past, data, onClick }) =>
       dataSource={data}
       renderItem={item => (
         <List.Item
-          key={item.date}
+          key={item.time}
           actions={[
             <IconText type="like" text="Accept" />,
             <IconText type="dislike" text="Reject" />,
@@ -19,7 +19,8 @@ const ListContent = ({ past, data, onClick }) =>
         >
           <List.Item.Meta
             avatar={<Avatar src={item.avatar} />}
-            title={<a href={item.href}>{item.title}</a>}
+            title={item.time}
+            description={item.status}
           />
         </List.Item>
       )}
