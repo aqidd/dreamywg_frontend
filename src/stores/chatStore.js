@@ -7,19 +7,29 @@ class Store {
   constructor() {
 
   }
-  @action retrieveChatList = (userId) => {
-    console.log("retrieve chat list frontend store", userId)
-    network.chatList(userId)
+  @action retrieveChatList = () => {
+    network.chatList()
       .then((response) => {
-        console.log('chat data', response.data)
+        console.log('chat data size', response.data.length);
+        if(response.data.length == 0){
+          network.initChat().then((response) =>{
+              console.log("success create new chat")
+          }).catch((err)=>{
+              console.log("fail create new chat")
+          })
+          retrieveChatList();
+        }else{
+          console.log("storing data to chat list", response.data)
+          this.listofMessage = response.data
+        }
       })
       .catch((err) => {
         console.log('fail retrieve chat list')
       })
   }
 
-  @action retrieveChatUnit = () => {
-    network.chatUnit(messageId, senderId, receiverId)
+  @action retrieveChatUnit = (id) => {
+    network.chatUnit(id)
       .then((response) => {
         console.log('chat data', response.data)
       })
@@ -27,6 +37,8 @@ class Store {
         console.log('fail retrieve chat unit')
       })
   }
+
+
 }
 
 class MessageUnit {

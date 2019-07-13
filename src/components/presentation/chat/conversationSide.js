@@ -66,24 +66,19 @@ export default class ChatContent extends React.Component{
               avatar="https://livechat.s3.amazonaws.com/default/avatars/male_8.jpg"
               onlyFirstWithMeta
             >
-              <Message date="21:38" authorName="Jon Smith" className="messages">
                 {this.state.messages.map(message => {
                   return (
-                    <MessageText key={message.uniqueId}> from: {message.user1}, to:{message.user2} , message: {message.content}</MessageText>
+                    <Message date={message.timestamp} authorName={message.user1} className="messages">
+                    <MessageText key={message.uniqueId}>{message.content}</MessageText>
+                    </Message>
                   )
                 })}
-              </Message>
             </MessageGroup>
             <MessageGroup onlyFirstWithMeta avatar="https://livechat.s3.amazonaws.com/default/avatars/male_8.jpg">
               <Message date="21:38" isOwn={true} authorName="Visitor">
                 <MessageText>
-                  I love them
-                  sooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-                  much!
+                    hey
                 </MessageText>
-              </Message>
-              <Message date="21:38" isOwn={true} authorName="Visitor">
-                <MessageText>This helps me a lot</MessageText>
               </Message>
             </MessageGroup>
           </MessageList>
