@@ -3,8 +3,10 @@ import { Row, Col, Card, Button, Select } from 'antd'
 import Title from '../../common/title'
 import styled from 'styled-components'
 import ListContent from './listContent'
-import { inject, observer } from 'mobx-react'
+import { inject, observer, Provider } from 'mobx-react'
 import { toJS } from 'mobx'
+import AddScheduleForm from '../../presentation/flat-details/addScheduleForm';
+import AddTimeslotForm from '../../presentation/flat-details/addTimeslotForm';
 
 // TODO refactor logic in UI
 @inject('store')
@@ -59,20 +61,37 @@ export default class InterviewContainer extends Component {
         <Row>
           <Title> Interviews </Title>
         </Row>
+        <Row>
+          <h3>Add Schedule</h3>
+          <Provider store={this.store}>
+            <AddScheduleForm></AddScheduleForm>
+          </Provider>
+          <br/>
+        </Row>
         <Row gutter={16}>
           <Col span={12}>
             <StyledCard title="Upcoming Interview" >
-              <p>Select Schedule</p>
-              <Select style={{ width: 200 }} onChange={this.refreshTimeslots}>
-                {
-                  this.props.store.interviewStore.schedules.map(schedule => {
-                    schedule = toJS(schedule)
+              <Row>
+                <Col span={12}>
+                  <p>Select Schedule</p>
+                  <Select style={{ width: 200 }} onChange={this.refreshTimeslots}>
                     {
-                      return <Option value={schedule._id} key={schedule._id}>{schedule.date}</Option>
+                      this.props.store.interviewStore.schedules.map(schedule => {
+                        schedule = toJS(schedule)
+                        {
+                          return <Option value={schedule._id} key={schedule._id}>{schedule.date}</Option>
+                        }
+                      })
                     }
-                  })
-                }
-              </Select>
+                  </Select>
+                </Col>
+                <Col span={12}>
+                  <p>Add Timeslot</p>
+                  <Provider store={this.store}>
+                    <AddTimeslotForm></AddTimeslotForm>
+                  </Provider>
+                </Col>
+              </Row>
               <ListContent
                 data={toJS(this.props.store.interviewStore.currentTimeslots)}
                 past={false}
@@ -83,11 +102,6 @@ export default class InterviewContainer extends Component {
           <Col span={12}>
             <StyledCard
               title="Past Interview"
-              extra={
-                <Button shape="round" type="primary">
-                  Add
-                </Button>
-              }
             >
               <ListContent
                 data={toJS(this.props.store.interviewStore.pastTimeslots)}
