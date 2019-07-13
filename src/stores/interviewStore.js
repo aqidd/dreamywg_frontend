@@ -8,6 +8,10 @@ class InterviewStore {
   @observable currentTimeslots = []
   @observable pastTimeslots = []
 
+  constructor(rootStore) {
+    this.rootStore = rootStore
+  }
+
   @action async fetchSchedules() {
     this.schedules = []
     let response = ''
@@ -45,6 +49,6 @@ class InterviewStore {
   }
 }
 
-const interviewStore = () => new InterviewStore()
+const interviewStore = (rootStore) => new InterviewStore(rootStore)
 
 export default interviewStore

@@ -20,7 +20,9 @@ var FlatDetailsTab = inject("store")(
           <ResidentList />
         </TabPane>
         <TabPane tab="Interviews" key="3">
-          <InterviewContainer />
+          <Provider store={store}>
+            <InterviewContainer />
+          </Provider>
         </TabPane>
       </Tabs>
   );
