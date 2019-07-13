@@ -2,26 +2,28 @@ import React from 'react'
 import { Tabs } from 'antd'
 import AboutFlat from '../presentation/flat-details/aboutFlat'
 import ResidentList from '../presentation/flat-details/residentList'
-import RoomDetails from '../presentation/flat-details/roomDetails'
 import InterviewContainer from '../container/interview/InterviewContainer'
+import { inject, observer, Provider } from 'mobx-react'
 
 const { TabPane } = Tabs
 
-const FlatDetailsTab = props => (
-  <Tabs defaultActiveKey="4">
-    <TabPane tab="About" key="1">
-      <AboutFlat />
-    </TabPane>
-    <TabPane tab="Rooms" key="2">
-      <RoomDetails />
-    </TabPane>
-    <TabPane tab="Residents" key="3">
-      <ResidentList />
-    </TabPane>
-    <TabPane tab="Interviews" key="4">
-      <InterviewContainer />
-    </TabPane>
-  </Tabs>
-)
+var FlatDetailsTab = inject("store")(
+  observer(({ store }) => {
+    return (
+      <Tabs defaultActiveKey="3">
+        <TabPane tab="About" key="1">
+          <Provider store={store}>
+            <AboutFlat></AboutFlat>
+          </Provider>
+        </TabPane>
+        <TabPane tab="Residents" key="2">
+          <ResidentList />
+        </TabPane>
+        <TabPane tab="Interviews" key="3">
+          <InterviewContainer />
+        </TabPane>
+      </Tabs>
+  );
+}))
 
 export default FlatDetailsTab

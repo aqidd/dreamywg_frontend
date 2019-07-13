@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
 import {Button, Col, DatePicker, Form, Icon, Input, Row, Select} from 'antd';
+import {gender, rentType} from "../../../util/selections";
+import WrappedSelection from "../../common/form/wrappedSelection";
 
 @inject('store')
 @observer
@@ -48,15 +50,13 @@ class GeneralInfo extends Component {
         <Row gutter={24}>
           <Col span={6}>
             <Form.Item label="Gender">
-              {getFieldDecorator('gender', {
-                rules: [{required: true, message: 'Please input your gender!'}],
-              })(
-                <Select placeholder="Gender">
-                  <Option value="M">Male</Option>
-                  <Option value="F">Female</Option>
-                  <Option value="O">Others</Option>
-                </Select>,
-              )}
+              <WrappedSelection
+                required
+                placeHolder="Please select"
+                dec={getFieldDecorator}
+                objName="gender"
+                value={gender}
+              />
             </Form.Item>
           </Col>
           <Col span={6}>

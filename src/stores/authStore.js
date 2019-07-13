@@ -1,26 +1,27 @@
-import { action, observable } from 'mobx'
-import axios from 'axios'
+import {action, observable} from 'mobx'
 import network from '../util/network'
 
 class AuthStore {
-  token = 'asdf'
   @observable credentials = {
     email: '',
     password: ''
   }
-  @observable requestStatus = {
-      completed: false,
-      error: false
-  }
+
+  @observable response = {}
 
   constructor() {
     this.initData()
   }
 
-  initData() {}
+  initData() {
+    this.response = {
+      success: false,
+      completed: false,
+      errorMessage: ''
+    }
+  }
 
   setToken = token => {
-    this.token = token
     localStorage.setItem('token', token)
   }
 
@@ -30,20 +31,35 @@ class AuthStore {
 
   @action login = async credentials => {
     return network.login(credentials)
-  }
-
-  @action loginv2 = credentials => {
-      network.login(credentials).then( response => {
-        this.setToken(response.data.token)
-        this.requestStatus.completed = true
-        this.requestStatus.error = false
-      }).catch( error => {
-        this.requestStatus.completed = true
-        this.requestStatus.error = true
+      .then((response) => {
+        const token = response.data.token;
+        this.setToken(token);
+        this.response = {
+          success: true,
+          completed: true,
+          errorMessage: ''
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          this.response = {
+            success: false,
+            completed: true,
+            errorMessage: error.response.data
+          }
+        } else {
+          this.response = {
+            success: false,
+            completed: true,
+            errorMessage: 'Sorry, something went wrong. Please try it again.'
+          }
+        }
       })
   }
 
-  hasToken = () => this.token !== ''
+  hasToken = () => {
+    return localStorage.getItem('token') !== null
+  }
 }
 
 const Store = () => new AuthStore()

@@ -1,6 +1,8 @@
 import React from 'react'
 import { List, Avatar, Button, Skeleton, Icon, Carousel } from 'antd';
+import RoomModal from '../presentation/flat-details/roomModal'
 import axios from 'axios'
+import { inject, observer, Provider } from 'mobx-react'
 
 const count = 3;
 const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat&noinfo`;
@@ -13,8 +15,11 @@ class RoomListContainer extends React.Component {
     list: [],
   };
 
+  modalVisible = false;
+
   componentDidMount() {
     this.getData().then( res => {
+      // todo move to store
       this.setState({
         initLoading: false,
         data: res.data.results,
@@ -50,6 +55,10 @@ class RoomListContainer extends React.Component {
     })
   };
 
+  showRoomDetails = (visibility) => {
+    this.modalVisible = visibility;
+  };
+
   render() {
     const { initLoading, loading, list } = this.state;
     const loadMore =
@@ -79,6 +88,9 @@ class RoomListContainer extends React.Component {
                 actions={[<h3>900EUR</h3>, 
                 <Button type="primary" icon="phone">
                   Contact
+                </Button>, 
+                <Button type="primary" icon="eye">
+                  View Details
                 </Button>]}
                 extra={
                   <img 
@@ -96,6 +108,9 @@ class RoomListContainer extends React.Component {
             </List.Item>
           )}
         />
+        <Provider>
+          <RoomModal></RoomModal>
+        </Provider>
       </div>
       
     );

@@ -27,9 +27,9 @@ export default class ConfirmationContent extends Component {
         result.state ? (
             <div>
               <p>{result.data}</p>
-              <Link to={'/'}>
+              <Link to={'/login'}>
                 <Button type="primary">
-                  <p>Login</p>
+                  <p>Go to Login</p>
                 </Button>
               </Link>
             </div>

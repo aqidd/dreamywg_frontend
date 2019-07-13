@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, BrowserRouter, Redirect } from 'react-router-dom'
+import {BrowserRouter, Redirect, Route} from 'react-router-dom'
 import LandingScreen from './pages/landing'
 import ProfileSetupOfferer from './pages/profileSetupOfferer'
 import ProfileSetupSeeker from './pages/profileSetupSeeker'
@@ -14,15 +14,16 @@ import FlatDetails from './pages/flatDetails'
 
 export default class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
+
   render() {
-    const { hasToken } = store()
+    const {hasToken} = store()
     return (
       <BrowserRouter>
-        <Route exact path="/" component={LandingScreen} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/" component={LandingScreen}/>
+        <Route exact path="/register" component={Register}/>
+        <Route exact path="/login" component={Login}/>
         <Route
           exact
           path="/confirmation/:token"
@@ -69,9 +70,9 @@ export default class App extends React.Component {
   }
 }
 
-const ProtectedRoute = ({ isAuth, Comp, ...others }) => (
+const ProtectedRoute = ({isAuth, Comp, ...others}) => (
   <Route
     {...others}
-    render={props => (isAuth ? <Comp {...props} /> : <Redirect to="/login" />)}
+    render={props => (isAuth ? <Comp {...props} /> : <Redirect to="/login"/>)}
   />
 )

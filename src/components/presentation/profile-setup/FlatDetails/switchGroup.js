@@ -12,7 +12,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="furnished"
+            objName="rooms[0].furnished"
           />
         </Item>
       </Col>
@@ -21,7 +21,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="parking-lot"
+            objName="flatEquipment.parkingLot"
           />
         </Item>
       </Col>
@@ -30,7 +30,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="livingroom"
+            objName="flatEquipment.livingroom"
           />
         </Item>
       </Col>
@@ -41,7 +41,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="shower"
+            objName="flatEquipment.shower"
           />
         </Item>
       </Col>
@@ -50,7 +50,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="bathtub"
+            objName="flatEquipment.bathtub"
           />
         </Item>
       </Col>
@@ -59,7 +59,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="kitchen"
+            objName="flatEquipment.kitchen"
           />
         </Item>
       </Col>
@@ -70,7 +70,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="internet"
+            objName="flatEquipment.internet"
           />
         </Item>
       </Col>
@@ -79,7 +79,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="balcony"
+            objName="flatEquipment.balcony"
           />
         </Item>
       </Col>
@@ -88,7 +88,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="terrace"
+            objName="flatEquipment.terrace"
           />
         </Item>
       </Col>
@@ -99,7 +99,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="garden"
+            objName="flatEquipment.garden"
           />
         </Item>
       </Col>
@@ -108,7 +108,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="washingMachine"
+            objName="flatEquipment.washingMachine"
           />
         </Item>
       </Col>
@@ -117,7 +117,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="dishwasher"
+            objName="flatEquipment.dishwasher"
           />
         </Item>
       </Col>

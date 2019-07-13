@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
-import {Button, Col, Form, Input, Row, Select, Switch} from 'antd'
+import {Col, Form, Input, Row, Select, Switch} from 'antd'
 import Title from '../../../common/title'
 import Container from '../../../common/form/container'
 import WrappedSelection from '../../../common/form/wrappedSelection'
@@ -10,6 +10,7 @@ import PictureUpload from "../../../common/form/pictureUpload";
 import Languages from "../../../../util/languages"
 import styled from "styled-components";
 import {field, flatshareExperience, hobbies, occupation, practiceOfAbstaining} from "../../../../util/selections";
+import WrappedInput from "../../../common/form/wrappedInput";
 
 const Item = Form.Item;
 const InputGroup = Input.Group;
@@ -54,14 +55,14 @@ class PersonalInformation extends Component {
         <Title> Personal Information </Title>
         <Form layout={'vertical'}>
           <div style={{width: '100%', float: "left"}}>
-            <div style={{width: '75%',  float: "left"}}>
+            <div style={{width: '75%', float: "left"}}>
               <Row gutter={24}>
                 <Col span={12}>
                   <Item label="Occupation">
                     <WrappedSelection
                       placeHolder="Please select"
                       dec={getFieldDecorator}
-                      objName="occupation"
+                      objName="personalInformation.occupation"
                       value={occupation}
                     />
                   </Item>
@@ -71,64 +72,76 @@ class PersonalInformation extends Component {
                     <WrappedSelection
                       placeHolder="Please select"
                       dec={getFieldDecorator}
-                      objName="field"
+                      objName="personalInformation.field"
                       value={field}
                     />
                   </Item>
                 </Col>
               </Row>
-
               <Row gutter={24}>
-                <Col span={8}>
+                <Col span={12}>
+                  <Item label="Age">
+                    <WrappedInput
+                      dec={getFieldDecorator}
+                      objName="personalInformation.age"
+                      type="number"
+                    />
+                  </Item>
+                </Col>
+                <Col span={12}>
                   <Item label="Flatshare experience">
                     <WrappedSelection
                       placeHolder="Please select"
                       dec={getFieldDecorator}
-                      objName="flatshareExperience"
+                      objName="personalInformation.flatshareExperience"
                       value={flatshareExperience}
                     />
                   </Item>
                 </Col>
-
-                <Col span={8}>
+              </Row>
+              <Row gutter={24}>
+                <Col span={12}>
                   <Item label="Languages you speak">
                     <WrappedSelection
                       placeHolder="Please select"
                       type="multiple"
                       dec={getFieldDecorator}
-                      objName="languages"
+                      objName="personalInformation.languages"
                       value={Languages}
                     />
                   </Item>
                 </Col>
-                <Col span={8}>
+                <Col span={12}>
                   <Item label="Practices of Abstaining">
                     <WrappedSelection
                       placeHolder="Please select"
                       type="multiple"
                       dec={getFieldDecorator}
-                      objName="practiceOfAbstaining"
+                      objName="personalInformation.practiceOfAbstaining"
                       value={practiceOfAbstaining}
                     />
                   </Item>
                 </Col>
               </Row>
-              <Row>
+              <Row gutter={24}>
                 <Col span={12}>
                   <Item label="Hobbies">
                     <WrappedSelection
                       placeHolder="Please select"
                       type="multiple"
                       dec={getFieldDecorator}
-                      objName="hobbies"
+                      objName="personalInformation.hobbies"
                       value={hobbies}
                     />
                   </Item>
                 </Col>
                 <Col span={12}>
-                  <Verficication>
-                    <Button>Verify Account</Button>
-                  </Verficication>
+                  <Item label="Link to social media profile">
+                    <WrappedInput
+                      dec={getFieldDecorator}
+                      objName={"personalInformation.socialMedia"}
+                    />
+                  </Item>
                 </Col>
               </Row>
 
@@ -140,13 +153,12 @@ class PersonalInformation extends Component {
                       autosize={{minRows: 3, maxRows: 8}}
                     />}
                     dec={getFieldDecorator}
-                    objName="selfDescription"
+                    objName="personalInformation.description"
                   />
                 </Item>
               </Row>
-
             </div>
-            <div style={{width: "20%", float:"right"}}>
+            <div style={{width: "20%", float: "right"}}>
               <Form.Item label="Profile picture">
                 <PictureUpload
                   onCancel={() => {
@@ -170,7 +182,7 @@ class PersonalInformation extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={getFieldDecorator}
-                  objName="smoker"
+                  objName="personalInformation.smoker"
                 />
               </Item>
 
@@ -178,7 +190,7 @@ class PersonalInformation extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={getFieldDecorator}
-                  objName="pets"
+                  objName="personalInformation.pets"
                 />
               </Item>
 
@@ -186,7 +198,7 @@ class PersonalInformation extends Component {
                 <WrappedAnyInput
                   tag={<Switch defaultChecked={false}/>}
                   dec={getFieldDecorator}
-                  objName="weekendAbsent"
+                  objName="personalInformation.weekendAbsent"
                 />
               </Item>
             </div>

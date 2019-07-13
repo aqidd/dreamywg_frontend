@@ -8,8 +8,7 @@ const WrappendModal = (message) => {
         {message}
       </div>
     ),
-    onOk() {
-    }
+    onOk() {}
   })
 }
 export default WrappendModal
