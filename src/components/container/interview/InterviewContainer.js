@@ -47,12 +47,25 @@ export default class InterviewContainer extends Component {
     this.props.store.interviewStore.setCurrentTimeslots(sch[0], sch[0].timeslots)
   }
 
-  onClickHandler = type => {
-    if (type.toLowerCase() == 'message') {
-      console.log('go to message')
-    } else {
-      //other action must be done inside store
+  onClickHandler = data => {
+    let status = ''
+    switch(data.type) {
+      case 'like':
+        status = 'ACCEPTED'
+        break;
+      case 'dislike':
+        status = 'REJECTED'
+        break;
+      case 'stop':
+        status = 'NO_SHOW'
+        break;
+      case 'message':
+        break;
+      default:
+        console.error('ERROR onClick')
     }
+
+    this.props.store.interviewStore.updateTimeslotStatus(data.data._id, status)
   }
 
   render() {
@@ -106,7 +119,7 @@ export default class InterviewContainer extends Component {
               <ListContent
                 data={toJS(this.props.store.interviewStore.pastTimeslots)}
                 past={true}
-                onClick={type => onClickHandler(type)}
+                onClick={(data) => this.onClickHandler(data)}
               />
             </StyledCard>
           </Col>

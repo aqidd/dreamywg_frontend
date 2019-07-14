@@ -90,6 +90,19 @@ class InterviewStore {
     window.location.reload(); 
     return response;
   }
+
+  @action async updateTimeslotStatus(id, status) {
+    let response = ''
+    try {
+        await network.updatePastTimeslotStatus(id, {status: status});
+        response = '{status: success}'
+    } catch (e) {
+      console.log(e)
+      response = '{status: error}'
+    }
+    window.location.reload(); 
+    return response;
+  }
 }
 
 const interviewStore = (rootStore) => new InterviewStore(rootStore)

@@ -85,13 +85,15 @@ class RoomListContainer extends React.Component {
           dataSource={list}
           renderItem={item => (
             <List.Item 
-                actions={[<h3>900EUR</h3>, 
-                <Button type="primary" icon="phone">
+                actions={[
+                <h3>900EUR</h3>, 
+                <Button type="primary" icon="message">
                   Contact
                 </Button>, 
-                <Button type="primary" icon="eye">
-                  View Details
-                </Button>]}
+                // <Button type="primary" icon="eye">
+                //   View Details
+                // </Button>
+                ]}
                 extra={
                   <img 
                     width={200}
