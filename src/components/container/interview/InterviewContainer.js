@@ -63,7 +63,7 @@ export default class InterviewContainer extends Component {
         </Row>
         <Row>
           <h3>Add Schedule</h3>
-          <Provider store={this.store}>
+          <Provider store={this.props.store}>
             <AddScheduleForm></AddScheduleForm>
           </Provider>
           <br/>
@@ -87,7 +87,7 @@ export default class InterviewContainer extends Component {
                 </Col>
                 <Col span={12}>
                   <p>Add Timeslot</p>
-                  <Provider store={this.store}>
+                  <Provider store={this.props.store}>
                     <AddTimeslotForm></AddTimeslotForm>
                   </Provider>
                 </Col>
