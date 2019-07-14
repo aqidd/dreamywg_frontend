@@ -1,7 +1,7 @@
 export const stores = ["Edeka", "Lidl", "Aldi", "dm", "Norma", "Netto", "Rewe", "Rossmann"];
 export const rentType = ['limited', 'unlimited'];
 export const flatshareType = ['students only', 'workers only', 'Student association', 'mixed'];
-export const genderRestriction = ['Women only', 'Men only'];
+export const genderRestriction = ['Women only', 'Men only', 'None'];
 export const genderPreference = ['Man', 'Woman'];
 export const gender = ['Female', 'Male', 'Diverse'];
 
@@ -27,23 +27,3 @@ export const field = ['IT', 'Medicine', 'Physics', 'Math'];
 
 export const flatshareExperience = ['None', '≤ 1 year', '> 1 year', '> 2 year'];
 export const practiceOfAbstaining = ['Vegan', 'Vegetarian', 'Paleo'];
-export const miscellaneous = [
-  'Washing machine',
-  'Dishwasher',
-  'Terrace',
-  'Balcony',
-  'Garden',
-  'Basement,cellar',
-  'Elevator',
-  'Bicycle storage'
-];
-export const flooring = [
-  'Floorboards',
-  'Parquet',
-  'Laminate',
-  'Carpet',
-  'Tilling',
-  'PVC',
-  'Underfloor heating'
-];
-

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
-import {Form} from 'antd'
+import {Form, Input, Row} from 'antd'
 import Title from '../../../common/title'
 import ValueGroup from '../../../presentation/profile-setup/FlatDetails/valueGroup'
 import ControlButton from '../../../common/form/controlButtons'
@@ -9,6 +9,11 @@ import SelectGroup from '../../../presentation/profile-setup/FlatDetails/selectG
 import LocationGroup from '../../../presentation/profile-setup/FlatDetails/locationGroup'
 import Container from '../../../common/form/container'
 import PictureUpload from '../../../common/form/pictureUpload'
+import WrappedAnyInput from "../../../common/form/wrappedAnyInput";
+import WrappedInput from "../../../common/form/wrappedInput";
+
+const {Item} = Form
+const {TextArea} = Input
 
 @inject('store')
 @observer
@@ -50,8 +55,14 @@ class FlatDetails extends Component {
           <LocationGroup decorator={getFieldDecorator}/>
           <ValueGroup decorator={getFieldDecorator}/>
           <SelectGroup decorator={getFieldDecorator} fieldValue={getFieldValue}/>
-          <SwitchGroup decorator={getFieldDecorator}/>
-          <Form.Item label="Images">
+          <hr/>
+          <br/>
+          <h2>Flat properties and Equipment</h2>
+          <SwitchGroup decorator={getFieldDecorator} basePath={'flatEquipment'} funisheBasePath={'rooms[0]'}/>
+          <hr/>
+          <br/>
+          <h2>Images and Descriptions</h2>
+          <Item label="Images">
             <PictureUpload
               onCancel={() => {
                 onPreviewCancel()
@@ -69,7 +80,27 @@ class FlatDetails extends Component {
               }}
               limit={10}
             />
-          </Form.Item>
+          </Item>
+          <Row>
+            <Item label="Flatshare headline">
+              <WrappedInput
+                dec={getFieldDecorator}
+                objName="title"
+              />
+            </Item>
+          </Row>
+          <Row>
+            <Item label="Short description of your flatshare">
+              <WrappedAnyInput
+                tag={<TextArea
+                  placeholder="Please describe your flatshare in one sentence"
+                  autosize={{minRows: 2, maxRows: 2}}
+                />}
+                dec={getFieldDecorator}
+                objName="shortDescription"
+              />
+            </Item>
+          </Row>
           <ControlButton
             onClick={(type, result) => this.handleResult(type, result)}
             next="Next"
