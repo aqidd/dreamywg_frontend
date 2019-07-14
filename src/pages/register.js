@@ -16,7 +16,7 @@ export default class Register extends Component {
           return (
                <BaseLayout>
                     <DefaultHeader />
-                    <Provider RegisterStore={this.store}>
+                    <Provider store={this.store}>
                          <RegisterContainer />
                     </Provider>
                     <CustomFooter />

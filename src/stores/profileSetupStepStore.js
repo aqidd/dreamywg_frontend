@@ -55,7 +55,7 @@ class Store {
     if (!this.isMax())
       this.currentSteps += 1;
     else {
-      if (this.isSeeker) {
+      if (this.isSeeker)  {
         this.data.type = "SEEKER";
         if (this.images.length > 0)
           this.data.personalInformation.image = this.images[0];

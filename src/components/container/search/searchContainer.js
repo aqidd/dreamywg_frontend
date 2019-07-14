@@ -13,20 +13,13 @@ export default class SearchContainer extends Component {
     const store = this.props.store
     return (
       <Container>
-        {store.data.length == 0 ? (
+        {store.data.length === 0 ? (
           <NotFound description="We are unable to find your place" />
         ) : (
           <Row>
             <Col xl={18} lg={24} md={24} sm={24} xs={24}>
               <Row>
-                <TitleContainer>
-                  <Title>{store.getIntroTitle} </Title>
-                  <FilterBar
-                    defaultVal={store.filters[0]}
-                    filter={store.filters}
-                    handleChange={data => store.sortData(data)}
-                  />
-                </TitleContainer>
+                  <Title>Our suggestions for you</Title>
               </Row>
               <Row>
                 <CardContainer>
@@ -35,12 +28,15 @@ export default class SearchContainer extends Component {
                       ready={store.ready}
                       key={index}
                       sponsor={element.sponsored}
-                      img={element.img}
-                      name={element.name}
+                      id={element.id}
+                      img='https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'//{element.img}
+                      title={element.title}
                       description={element.description}
-                      recommendation={element.matched}
+                      matched={element.matched}
                       location={element.location}
                       price={element.price}
+                      roomSize={element.roomSize}
+                      dateAvailable={element.dateAvailable}
                     />
                   ))}
                 </CardContainer>
@@ -49,9 +45,9 @@ export default class SearchContainer extends Component {
                 <PaginationContainer>
                   <Pagination
                     defaultPageSize={3}
-                    onChange={(page, pageSize) => store.switchPage(page)}
+                    onChange={(page) => store.switchPage(page)}
                     defaultCurrent={store.currentStep}
-                    total={store.totalFound}
+                    total={store.totalResults}
                   />
                 </PaginationContainer>
               </Row>

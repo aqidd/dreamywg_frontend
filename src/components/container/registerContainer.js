@@ -9,7 +9,7 @@ import WrappedModal from "../common/form/wrappedModal";
 
 const {Step} = Steps
 
-@inject('RegisterStore')
+@inject('store')
 @observer
 export default class RegisterContainer extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export default class RegisterContainer extends Component {
 
   updateFormResponse = (response) => {
     if (response.status === 200) {
-      this.props.RegisterStore.step.nextStep()
+      this.props.store.step.nextStep()
     } else {
       return WrappedModal(`Sorry, something went wrong. Please try again.`)
     }
@@ -27,15 +27,15 @@ export default class RegisterContainer extends Component {
   handleClick = async (name, data) => {
     switch (name) {
       case 'credential-form':
-        this.props.RegisterStore.userStore.saveUserData({
+        this.props.store.userStore.saveUserData({
           email: data.email,
           password: data.password
         })
-        this.props.RegisterStore.step.nextStep()
+        this.props.store.step.nextStep()
         break;
       case 'general-info-form':
-        this.props.RegisterStore.userStore.saveUserData(data)
-        const response = await this.props.RegisterStore.userStore.registerUser();
+        this.props.store.userStore.saveUserData(data)
+        const response = await this.props.store.userStore.registerUser();
         this.updateFormResponse(response);
         break;
       default:
@@ -45,7 +45,7 @@ export default class RegisterContainer extends Component {
   }
 
   render = () => {
-    const {currentSteps} = this.props.RegisterStore.step
+    const {currentSteps} = this.props.store.step
     const data = steps
     const Content = data[currentSteps].content
 
@@ -63,7 +63,7 @@ export default class RegisterContainer extends Component {
                 </Steps>
                 <div style={stepsContent}>
                   <Row>
-                    <Provider store={this.props.RegisterStore}>
+                    <Provider store={this.props.store}>
                       <Content
                         processData={(name, data) => this.handleClick(name, data)}
                       />
