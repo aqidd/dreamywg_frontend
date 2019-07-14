@@ -1,61 +1,37 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import CredentialForm from './../presentation/authentication/credentialForm'
-import { inject, observer, Provider } from 'mobx-react'
+import {inject, observer, Provider} from 'mobx-react'
 import 'antd/dist/antd.css'
-import ResponseModal from '../common/responseModal'
+import {Redirect} from "react-router-dom";
+import WrappendModal from "../common/form/wrappendModal";
 
 @inject('AuthStore')
 @observer
 export default class LoginContainer extends Component {
 
-  state = {visible: false, formResponse: ''}
+  constructor(props) {
+    super(props);
+
+  }
 
   onSubmit = async (data) => {
-    const response = await this.props.AuthStore.login(data)
-    this.updateFormResponse(response);
-  }
-
-  dismissModal = () => {
-    this.setState({
-      visible: false
-    })
-  }
-
-  showModal = () => {
-    this.setState({
-      visible: true
-    })
-  }
-
-  updateFormResponse = (response) => {
-    // TODO: message should be moved to constant
-    let message = ''; 
-    // success responses. lol 
-    if(parseInt(response.status / 100) === 2 ) { 
-      message = 'Login success, token: ' + response.data.token
-    } else {
-      message = `Login error. Code ${response.status}`
-    }
-    this.setState({
-      visible: true,
-      formResponse: message
-    })
-    
+    return this.props.AuthStore.login(data);
   }
 
   render() {
+    if (this.props.AuthStore.response.success)
+      return <Redirect to={'/roleSelection'}/>;
+
+    if (this.props.AuthStore.response.completed && !this.props.AuthStore.response.success) {
+      WrappendModal(this.props.AuthStore.response.errorMessage)
+    }
+
     return (
-      <div>
-        <Provider store='AuthStore'>
-            <CredentialForm
-                processData={(name,data) => this.onSubmit(data)}/>
-        </Provider>
-        <ResponseModal 
-            response={this.state.formResponse} 
-            visible={this.state.visible}
-            hideModal={this.dismissModal}>  
-        </ResponseModal>
-      </div>
+      <Provider store='AuthStore'>
+        <CredentialForm
+          processData={(name, data) => this.onSubmit(data)}/>
+      </Provider>
     )
+
   }
 }

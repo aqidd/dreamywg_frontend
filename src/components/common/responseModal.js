@@ -12,10 +12,9 @@ export default class ResponseModal extends Component {
             <Modal
             visible={this.props.visible}
             onOk={() => this.props.hideModal()}
-            onCancel={() => this.props.hideModal()}
             >
                 <div>
-                    {JSON.stringify(this.props.response)}
+                    {this.props.response}
                 </div>
             </Modal>
         )

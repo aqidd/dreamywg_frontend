@@ -4,17 +4,22 @@ import 'antd/dist/antd.css'
 import RegistrationRootStore from '../stores/registrationRootStore'
 import StepsContentContainer from '../components/container/profile-setup/StepsContainer'
 import BaseLayout from '../components/presentation/baseLayout'
-import PersonalInformation from "../components/container/profile-setup/personalInformation";
-import FlatsharePreferences from "../components/container/profile-setup/flatsharePreferences";
+import PersonalInformation from "../components/container/profile-setup/seeker/personalInformation";
+import FlatsharePreferences from "../components/container/profile-setup/seeker/flatsharePreferences";
 
-export default class PreferencesSetupOfferer extends Component {
+export default class PreferencesSetupSeeker extends Component {
   constructor(props) {
     super(props);
-    this.store = RegistrationRootStore()
+    this.store = RegistrationRootStore(true, steps.length - 1)
+  }
+
+  componentDidMount() {
+    if (this.store.profileSetupStepStore.status) {
+      this.props.history.push('/login')
+    }
   }
 
   render() {
-    this.store.maxSteps = steps.length - 1;
     return (
       <Provider store={this.store}>
         <BaseLayout>
