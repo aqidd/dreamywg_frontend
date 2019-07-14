@@ -18,7 +18,7 @@ export default class RegisterContainer extends Component {
 
   updateFormResponse = (response) => {
     if (response.status === 200) {
-      this.props.store.step.nextStep()
+      this.props.store.stepStore.nextStep()
     } else {
       return WrappedModal(`Sorry, something went wrong. Please try again.`)
     }
@@ -27,15 +27,15 @@ export default class RegisterContainer extends Component {
   handleClick = async (name, data) => {
     switch (name) {
       case 'credential-form':
-        this.props.store.userStore.saveUserData({
+        this.props.store.authStore.saveUserData({
           email: data.email,
           password: data.password
         })
-        this.props.store.step.nextStep()
+        this.props.store.stepStore.nextStep()
         break;
       case 'general-info-form':
-        this.props.store.userStore.saveUserData(data)
-        const response = await this.props.store.userStore.registerUser();
+        this.props.store.authStore.saveUserData(data)
+        const response = await this.props.store.authStore.registerUser();
         this.updateFormResponse(response);
         break;
       default:
@@ -45,7 +45,7 @@ export default class RegisterContainer extends Component {
   }
 
   render = () => {
-    const {currentSteps} = this.props.store.step
+    const {currentSteps} = this.props.store.stepStore
     const data = steps
     const Content = data[currentSteps].content
 

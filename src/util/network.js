@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const serverUrl = 'http://localhost:4005'
+const serverUrl = 'http://localhost:4005';
 
 let config = () => {
   return {
@@ -19,6 +19,6 @@ const Api = {
   createFlatseeker: data => axios.post(`${serverUrl}/flatseekers`, data, config()),
   loadSearchProperties: () => axios.get(`${serverUrl}/flatseekers/loadSearchProperties`, config()),
   flatseekerSearch: filters => axios.post(`${serverUrl}/flatseekers/search`, filters, config()) //todo: change to get!
-}
+};
 
 export default Api

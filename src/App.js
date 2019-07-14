@@ -3,7 +3,6 @@ import {BrowserRouter, Redirect, Route} from 'react-router-dom'
 import LandingScreen from './pages/landing'
 import ProfileSetupOfferer from './pages/profileSetupOfferer'
 import ProfileSetupSeeker from './pages/profileSetupSeeker'
-import SocialMediaAuth from './pages/socialMediaAuth'
 import Register from './pages/register'
 import ConfirmationScreen from './pages/confirmation'
 import RoleSelection from './pages/roleSelection'
@@ -19,7 +18,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    const {hasToken} = store()
+    const {hasToken} = store();
     return (
       <BrowserRouter>
         <Route exact path="/" component={LandingScreen}/>
@@ -70,4 +69,4 @@ const ProtectedRoute = ({isAuth, Comp, ...others}) => (
     {...others}
     render={props => (isAuth ? <Comp {...props} /> : <Redirect to="/login"/>)}
   />
-)
+);

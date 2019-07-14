@@ -7,7 +7,7 @@ import {withRouter} from 'react-router';
 import {Layout} from "antd";
 import DefaultHeader from "../components/common/defaultHeader";
 
-const theme = "light"
+const theme = "light";
 
 
 export default withRouter(

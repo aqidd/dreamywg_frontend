@@ -10,13 +10,6 @@ export default class Register extends Component {
      constructor(props) {
           super(props)
           this.store = RegisterRootStore()
-       //todo: check if needed
-          try {
-               this.userId = this.props.location.search.split('?uid=')[1]
-               this.store.userStore.setUserId(this.userId);
-          } catch (e) {
-               console.error(e);
-          }
      }
 
      render() {

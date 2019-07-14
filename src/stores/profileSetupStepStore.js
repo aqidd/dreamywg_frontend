@@ -13,8 +13,7 @@ class Store {
   };
   @observable data = {};
 
-  constructor(rootStore, isSeeker, maxSteps) {
-    this.rootStore = rootStore;
+  constructor(isSeeker, maxSteps) {
     this.isSeeker = isSeeker;
     this.maxSteps = maxSteps
   }
@@ -55,7 +54,7 @@ class Store {
     if (!this.isMax())
       this.currentSteps += 1;
     else {
-      if (this.isSeeker)  {
+      if (this.isSeeker) {
         this.data.type = "SEEKER";
         if (this.images.length > 0)
           this.data.personalInformation.image = this.images[0];
@@ -82,4 +81,6 @@ class Store {
     (this.data = merge(this.data, data))
 }
 
-export default Store
+const ProfileSetupStepStore = (isSeeker, maxSteps) => new Store(isSeeker, maxSteps);
+
+export default ProfileSetupStepStore

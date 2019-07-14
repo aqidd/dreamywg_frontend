@@ -1,10 +1,10 @@
-import UserStore from './userStore'
 import RegisterStepStore from './registerStepStore'
+import AuthStore from "./authStore";
 
 class RegisterRootStore {
     constructor() {
-        this.userStore = new UserStore(this)
-        this.step = new RegisterStepStore(this)
+        this.authStore = new AuthStore()
+        this.stepStore = new RegisterStepStore()
     }
 }
 
