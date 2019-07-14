@@ -44,7 +44,7 @@ export default class InterviewContainer extends Component {
     const sch = toJS(this.props.store.interviewStore.schedules).filter(schedule => {
       return schedule._id === id
     })
-    this.props.store.interviewStore.setCurrentTimeslots(sch[0].timeslots)
+    this.props.store.interviewStore.setCurrentTimeslots(sch[0], sch[0].timeslots)
   }
 
   onClickHandler = type => {

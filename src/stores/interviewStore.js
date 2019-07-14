@@ -1,10 +1,11 @@
-import { observable, action, runInAction } from 'mobx'
+import { observable, action, runInAction, toJS } from 'mobx'
 import network from '../util/network'
 
 class InterviewStore {
   // TODO should be moved to scheduleStore
   @observable schedules = []
 
+  @observable currentSchedule = {}
   @observable currentTimeslots = []
   @observable pastTimeslots = []
 
@@ -44,8 +45,9 @@ class InterviewStore {
     return response;
   }
 
-  @action setCurrentTimeslots(data) {
-    this.currentTimeslots = data;
+  @action setCurrentTimeslots(schedule, timeslots) {
+    this.currentSchedule = schedule
+    this.currentTimeslots = timeslots;
   }
 
   @action async submitSchedules(evt) {
@@ -63,6 +65,29 @@ class InterviewStore {
       console.log(e)
       response = '{status: error}'
     }
+    window.location.reload(); 
+    return response;
+  }
+
+  @action async submitTimeslots(evt) {
+    evt.preventDefault()
+    const scheduleId = evt.target.scheduleId.value
+    console.log(scheduleId)
+    const param = {
+      startTime: evt.target.startTime.value,
+      endTime: evt.target.endTime.value,
+      sessionTime: evt.target.sessionTime.value
+    }
+
+    let response = ''
+    try {
+        await network.createTimeslots(scheduleId, param);
+        response = '{status: success}'
+    } catch (e) {
+      console.log(e)
+      response = '{status: error}'
+    }
+    window.location.reload(); 
     return response;
   }
 }

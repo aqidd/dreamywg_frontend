@@ -18,6 +18,7 @@ const Api = {
   timeslots: (scheduleId) => axios.get(`${serverUrl}/schedules/${scheduleId}/timeslots`),
   pastTimeslots: () => axios.get(`${serverUrl}/schedules/timeslots/past`),
   createSchedules: (data) => axios.post(`${serverUrl}/schedules`, data, config),
+  createTimeslots: (scheduleId, data) => axios.post(`${serverUrl}/schedules/${scheduleId}/timeslots`, data, config),
   createFlatofferer: data => axios.post(`${serverUrl}/flatofferers`, data, config),
   createFlatseeker: data => axios.post(`${serverUrl}/flatseekers`, data, config),
 }
