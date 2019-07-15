@@ -3,11 +3,13 @@ import network from '../util/network'
 import io from 'socket.io-client'
 import React from 'react'
 
+
 class Store {
   @observable listofMessage = []
   @observable chatUnit = [];
   @observable clientSocketInfo = [];
   @observable clientId = null;
+  @observable content = null;
   @observable state = {
     user1: '',
     user2: '',
@@ -16,11 +18,14 @@ class Store {
     messages: []
   };
   @observable socket = io('localhost:8080');
-  @action pushData = (MessageUnit) => this.listofMessage.push(MessageUnit);
+  @action pushData = async (MessageUnit) => this.listofMessage.push(MessageUnit);
   constructor() {
     //this.socket = io('localhost:8080');
+    //setTimeout(getUserId,1000)
+    await this.getUserId();
 
     this.socket.on('connect', function (socket) {
+      console.log("on connect", this.clientId)
       if(this.clientId != null){
         this.socket.emit('storeClientInfo', { customId: this.clientId});
       }
@@ -58,27 +63,31 @@ class Store {
   @action sendMessage = (content) => {
     //looping through array for the socketid of the receiver
     let socketreceiverId;
-    let receiverId = this.chatUnit.user1;
-
-    if(receiverId === this.clientId){
-      //if the assigned receiverid is the current user then change to other user in current chat channel
-      receiverId  = this.chatUnit.user2;
-    }
-
-    for (let client of this.clientSocketInfo) {
-      console.log("client info", client)
-      if(client.customId === receiverId){
-        socketreceiverId = client.clientId;
+    let receiverId;
+    let temp = this.chatUnit.map((element) => {
+      receiverId = element.user1;
+      console.log("receiver id", receiverId);
+      if(receiverId === this.clientId){
+        //if the assigned receiverid is the current user then change to other user in current chat channel
+        console.log("it is the samee change the receiver id")
+        receiverId  = element.user2;
+        console.log("current receiver id", receiverId)
       }
-    }
 
-    this.socket.emit('message', {
-      user1: this.chatUnit.user1,
-      user2: this.chatUnit.user2,
-      content: content,
-      timestamp: Date.now(),
-      socketId : socketreceiverId
-    })
+      console.log("user1", element.user1);
+      console.log("user2", element.user2);
+      console.log("socketid", socketreceiverId);
+      console.log("content", content);
+      this.socket.emit('message', {
+        user1: this.chatUnit.user1,
+        user2: this.chatUnit.user2,
+        content: content,
+        timestamp: Date.now(),
+        receiver : receiverId
+      });
+  });
+
+
     //this.setState({message: ''});
   }
 
@@ -93,11 +102,11 @@ class Store {
               console.log("fail create new chat")
           })
           retrieveChatList();
-          getUserId();
         }else{
           console.log("storing data to chat list", response.data)
           this.listofMessage = response.data
         }
+
       })
       .catch((err) => {
         console.log('fail retrieve chat list')
@@ -119,7 +128,7 @@ class Store {
   @action getUserId = () => {
     network.getUserId()
       .then((response) => {
-        console.log('chat data', response.data)
+        console.log('current user id', response.data)
         this.clientId = response.data
       })
       .catch((err) => {

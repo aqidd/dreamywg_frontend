@@ -64,7 +64,7 @@ export default class ChatContent extends React.Component{
             {/*<input type="text" placeholder="receiver" value={this.props.ChatStore.state.user2} onChange={ev => this.setState({user2: ev.target.value})} className="form-control"/>*/}
             {/*<br/>*/}
 
-            <input type="text" placeholder="Message" className="form-control" value={this.props.ChatStore.content} onChange={ev => this.setState({content: ev.target.value})}/>
+            <input type="text" placeholder="Message" className="form-control" value={this.props.ChatStore.content}/>
             <br/>
             <button onClick={() => this.props.ChatStore.sendMessage()} className="btn btn-primary form-control">Send</button>
           </div>
