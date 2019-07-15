@@ -15,33 +15,25 @@ class ChatStore {
   @action pushData = async (MessageUnit) => this.listOfChats.push(MessageUnit)
 
   constructor() {
-    this.socket = io('localhost:8080');
-    //setTimeout(assignUserId,1000)
     this.initChatStore()
   }
 
   @action initChatStore = async () => {
     await this.assignUserId()
-
+    this.socket = io('localhost:8080');
+    this.socket.on('reply', this.addMessage.bind(this))
     this.socket.on('connect', this.connect.bind(this))
     this.socket.on('disconnect', () => console.log('disconnected ;('))
   }
 
-  @action connect(socket) {
+  @action connect() {
     console.log('connected')
     this.socket.emit('storeClientInfo', { userId: this.clientId })
-
-    this.socket.on('reply', this.addMessage.bind(this))
-
-    socket.on('disconnect', () => console.log('disconnected without this ;('))
-
   }
 
 
   @action addMessage = (data) => {
-    console.log(data)
     this.chatUnit.messages = [...this.chatUnit.messages, data]
-    //  this.messages = this.messages.push(data)
   }
 
   @action sendMessage = (content) => {
