@@ -4,8 +4,10 @@ const { Meta } = Card
 import { ThemeProvider, Avatar, ChatListItem, Title, Subtitle, Column, ChatList, Col, Row} from '@livechat/ui-kit'
 import styled from 'styled-components'
 import { inject, observer, Provider } from 'mobx-react'
+import { Skeleton } from 'antd';
 
 @inject('ChatStore')
+@observer
 export default class ConversationList extends Component {
   constructor(props) {
     super(props)
@@ -28,16 +30,10 @@ export default class ConversationList extends Component {
   deleteChatUnit(){
     this.props.ChatStore.deleteChatUnit(id);
   }
-  getTime(timestamp){
-    let date = new Date(timestamp);
-    let hours = date.getHours();
-// Minutes part from the timestamp
-    let minutes = "0" + date.getMinutes();
-    return hours + ':' + minutes.substr(-2) ;
-  }
 
   showConversation(id){
-
+    console.log("")
+    this.props.ChatStore.retrieveChatUnit(id);
   }
 
   render() {
@@ -49,12 +45,12 @@ export default class ConversationList extends Component {
         <div style={{ maxWidth: '100%', height: 400, padding:'30px'  }} className="scrollable-container">
           <ChatList>
             {this.props.ChatStore.listofMessage.map( element =>
-              <ChatListItem onClick={() => this.showConversation("gaby", "stefan")} onMouseEnter={this.toggleHover.bind(this)} onMouseLeave={this.toggleHover.bind(this)}>
+              <ChatListItem onClick={() => this.showConversation(element._id)} onMouseEnter={this.toggleHover.bind(this)} onMouseLeave={this.toggleHover.bind(this)}>
                 {/*<Avatar imgUrl="https://livechat.s3.amazonaws.com/default/avatars/male_8.jpg" />*/}
                 <Column fill="true">
                   <Row justify>
                     <Title ellipsis>{element.user1.slice(0,10)}</Title>
-                    <Subtitle nowrap>{this.getTime(element.messages[0].timestamp)}</Subtitle>
+                    <Subtitle nowrap>{this.props.ChatStore.getTime(element.messages[0].timestamp)}</Subtitle>
                   </Row>
                   <Subtitle ellipsis>
                     {element.messages[0].content.slice(0,10)}
@@ -63,8 +59,8 @@ export default class ConversationList extends Component {
               </ChatListItem>
             )}
 
-            <ChatListItem onClick={() => this.showConversation("gaby", "stefan")} onMouseEnter={this.toggleHover.bind(this)} onMouseLeave={this.toggleHover.bind(this)}>
-            </ChatListItem>
+            {/*<ChatListItem onClick={() => this.showConversation("gaby", "stefan")} onMouseEnter={this.toggleHover.bind(this)} onMouseLeave={this.toggleHover.bind(this)}>*/}
+            {/*</ChatListItem>*/}
           </ChatList>
         </div>
       </ThemeProvider>

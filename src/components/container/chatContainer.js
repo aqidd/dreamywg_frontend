@@ -8,7 +8,6 @@ import ConversationSide from '../presentation/chat/conversationSide'
 
 
 @inject('ChatStore')
-@observer
 export default class ChatContent extends Component{
     render() {
         return (
@@ -17,7 +16,6 @@ export default class ChatContent extends Component{
                   <div>
                     <Row>
                       <Col span={16} push={8}>
-
                         <ConversationSide />
                       </Col>
                       <Col span={8} pull={16}>

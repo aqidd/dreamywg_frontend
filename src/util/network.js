@@ -26,6 +26,7 @@ const Api = {
   flatseekerSearch: filters => axios.post(`${serverUrl}/flatseekers/search`, filters, config()), //todo: change to get!
   allusers: () => axios.get(`${serverUrl}/users`),
   initChat: () => axios.post(serverUrl+'/initchat', {},config()),
+  getUserId : () => axios.get(`${serverUrl}/userid`, config()),
   deleteChatList: () => axios.delete(serverUrl+'/chat')
 }
 
