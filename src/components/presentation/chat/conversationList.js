@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { inject, observer, Provider } from 'mobx-react'
 import { Skeleton } from 'antd';
 
-@inject('ChatStore')
+@inject('store')
 @observer
 export default class ConversationList extends Component {
   constructor(props) {
@@ -18,8 +18,8 @@ export default class ConversationList extends Component {
   }
   
   componentDidMount() {
-    this.props.ChatStore.retrieveChatList();
-    console.log("list of message",this.props.ChatStore.listofMessage)
+    this.props.store.retrieveChatList();
+    console.log("list of message",this.props.store.listOfChats)
   }
 
   toggleHover() {
@@ -28,12 +28,12 @@ export default class ConversationList extends Component {
   }
 
   deleteChatUnit(){
-    this.props.ChatStore.deleteChatUnit(id);
+    this.props.store.deleteChatUnit(id);
   }
 
   showConversation(id){
     console.log("")
-    this.props.ChatStore.retrieveChatUnit(id);
+    this.props.store.retrieveChatUnit(id);
   }
 
   render() {
@@ -44,13 +44,13 @@ export default class ConversationList extends Component {
 
         <div style={{ maxWidth: '100%', height: 400, padding:'30px'  }} className="scrollable-container">
           <ChatList>
-            {this.props.ChatStore.listofMessage.map( element =>
+            {this.props.store.listOfChats.map( element =>
               <ChatListItem onClick={() => this.showConversation(element._id)} onMouseEnter={this.toggleHover.bind(this)} onMouseLeave={this.toggleHover.bind(this)}>
                 {/*<Avatar imgUrl="https://livechat.s3.amazonaws.com/default/avatars/male_8.jpg" />*/}
                 <Column fill="true">
                   <Row justify>
                     <Title ellipsis>{element.user1.slice(0,10)}</Title>
-                    <Subtitle nowrap>{this.props.ChatStore.getTime(element.messages[0].timestamp)}</Subtitle>
+                    <Subtitle nowrap>{this.props.store.getTime(element.messages[0].timestamp)}</Subtitle>
                   </Row>
                   <Subtitle ellipsis>
                     {element.messages[0].content.slice(0,10)}

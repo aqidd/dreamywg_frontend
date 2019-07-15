@@ -7,7 +7,7 @@ import ConversationList from '../presentation/chat/conversationList'
 import ConversationSide from '../presentation/chat/conversationSide'
 
 
-@inject('ChatStore')
+@inject('store')
 export default class ChatContent extends Component{
     render() {
         return (
