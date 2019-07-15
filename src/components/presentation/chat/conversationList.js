@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import {Typography, Card, Icon } from 'antd'
-const { Meta } = Card
-import { ThemeProvider, Avatar, ChatListItem, Title, Subtitle, Column, ChatList, Col, Row} from '@livechat/ui-kit'
+import { Card } from 'antd'
+import { Avatar, ChatList, ChatListItem, Column, Row, Subtitle, ThemeProvider, Title } from '@livechat/ui-kit'
 import styled from 'styled-components'
-import { inject, observer, Provider } from 'mobx-react'
-import { Skeleton } from 'antd';
+import { inject, observer } from 'mobx-react'
+import moment from 'moment'
+
+const { Meta } = Card
 
 @inject('store')
 @observer
@@ -14,57 +15,48 @@ export default class ConversationList extends Component {
     this.state = {
       hover: false
     }
-    this.setState = this.setState.bind(this);
-  }
-  
-  componentDidMount() {
-    this.props.store.retrieveChatList();
-    console.log("list of message",this.props.store.listOfChats)
+    this.setState = this.setState.bind(this)
   }
 
   toggleHover() {
-    console.log("toggle hover")
-    this.setState({hover: !this.state.hover})
+    console.log('toggle hover')
+    this.setState({ hover: !this.state.hover })
   }
 
-  deleteChatUnit(){
-    this.props.store.deleteChatUnit(id);
+  deleteChatUnit() {
+    this.props.store.deleteChatUnit(id)
   }
 
-  showConversation(id){
-    console.log("")
-    this.props.store.retrieveChatUnit(id);
+  showConversation(id) {
+    this.props.store.retrieveChatUnit(id)
   }
 
   render() {
-
+    const listOfChats = this.props.store.listOfChats
     return (
-    <Container>
-      <ThemeProvider>
-
-        <div style={{ maxWidth: '100%', height: 400, padding:'30px'  }} className="scrollable-container">
-          <ChatList>
-            {this.props.store.listOfChats.map( element =>
-              <ChatListItem onClick={() => this.showConversation(element._id)} onMouseEnter={this.toggleHover.bind(this)} onMouseLeave={this.toggleHover.bind(this)}>
-                {/*<Avatar imgUrl="https://livechat.s3.amazonaws.com/default/avatars/male_8.jpg" />*/}
-                <Column fill="true">
-                  <Row justify>
-                    <Title ellipsis>{element.user1.slice(0,10)}</Title>
-                    <Subtitle nowrap>{this.props.store.getTime(element.messages[0].timestamp)}</Subtitle>
-                  </Row>
-                  <Subtitle ellipsis>
-                    {element.messages[0].content.slice(0,10)}
-                  </Subtitle>
-                </Column>
-              </ChatListItem>
-            )}
-
-            {/*<ChatListItem onClick={() => this.showConversation("gaby", "stefan")} onMouseEnter={this.toggleHover.bind(this)} onMouseLeave={this.toggleHover.bind(this)}>*/}
-            {/*</ChatListItem>*/}
-          </ChatList>
-        </div>
-      </ThemeProvider>
-    </Container>
+      <Container>
+        <ThemeProvider>
+          <div style={{ maxWidth: '100%', height: 400, padding: '30px' }} className="scrollable-container">
+            <ChatList>
+              {listOfChats.map(element =>
+                <ChatListItem onClick={() => this.showConversation(element._id)}
+                              onMouseEnter={this.toggleHover.bind(this)} onMouseLeave={this.toggleHover.bind(this)}>
+                  <Avatar imgUrl="https://livechat.s3.amazonaws.com/default/avatars/male_8.jpg"/>
+                  <Column fill="true">
+                    <Row justify>
+                      <Title ellipsis>{element.user1.slice(0, 10)}</Title>
+                      <Subtitle nowrap>{(element.messages.length === 0)? "":moment(element.messages[0].timestamp).format('HH:mm')}</Subtitle>
+                    </Row>
+                    <Subtitle ellipsis>
+                      {(element.messages.length === 0)? "": element.messages[0].content.slice(0, 10)}
+                    </Subtitle>
+                  </Column>
+                </ChatListItem>
+              )}
+            </ChatList>
+          </div>
+        </ThemeProvider>
+      </Container>
     )
   }
 

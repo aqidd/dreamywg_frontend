@@ -3,6 +3,7 @@ import { Card, Input } from 'antd'
 import styled from 'styled-components'
 import { inject, observer } from 'mobx-react'
 import { Message, MessageGroup, MessageList, MessageText, ThemeProvider } from '@livechat/ui-kit'
+import moment from 'moment'
 
 
 const { Meta } = Card
@@ -27,7 +28,7 @@ export default class ChatContent extends React.Component {
                 onlyFirstWithMeta
               >
                 {this.props.store.chatUnit.messages.map(msg =>
-                  <Message date={this.props.store.getTime(msg.timestamp)}
+                  <Message date={moment(msg.timestamp).format("HH:mm")}
                            isOwn={(this.props.store.clientId === msg.senderId)}
                            authorName="Visitor">
                     <MessageText>

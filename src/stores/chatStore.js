@@ -20,14 +20,14 @@ class ChatStore {
 
   @action initChatStore = async () => {
     await this.assignUserId()
-    this.socket = io('localhost:8080');
+
+    this.socket = io('localhost:8080')
     this.socket.on('reply', this.addMessage.bind(this))
     this.socket.on('connect', this.connect.bind(this))
-    this.socket.on('disconnect', () => console.log('disconnected ;('))
+    this.socket.on('disconnect', () => console.log('disconnected'))
   }
 
   @action connect() {
-    console.log('connected')
     this.socket.emit('storeClientInfo', { userId: this.clientId })
   }
 
@@ -48,61 +48,33 @@ class ChatStore {
     this.socket.emit('sendMessage', message)
   }
 
-  @action retrieveChatList = () => {
-    network.chatList()
-      .then((response) => {
-        console.log('chat data size', response.data.length)
-        if (response.data.length == 0) {
-          network.initChat().then((response) => {
-            console.log('success create new chat')
-          }).catch((err) => {
-            console.log('fail create new chat')
-          })
-          retrieveChatList()
-        } else {
-          console.log('storing data to chat list', response.data)
-          this.listOfChats = response.data
-        }
-
-      })
-      .catch((err) => {
-        console.log('fail retrieve chat list')
-      })
+  @action retrieveChatList = async () => {
+    try {
+      this.listOfChats = (await network.chatList()).data
+      console.log(JSON.stringify(this.listOfChats))
+      if (this.listOfChats.length !== 0) {
+        await this.retrieveChatUnit(this.listOfChats[0]._id)
+      }
+    } catch (err) {
+      console.log(`Error in retrieving chatlist: ${err}`)
+    }
   }
 
-  @action retrieveChatUnit = (id) => {
-    console.log('retrieve chat unit')
-    network.chatUnit(id)
-      .then((response) => {
-        console.log('chat data', response.data)
-        this.chatUnit = response.data
-      })
-      .catch((err) => {
-        console.log('fail retrieve chat unit')
-      })
+  @action retrieveChatUnit = async (id) => {
+    try {
+      this.chatUnit = (await network.chatUnit(id)).data
+    } catch (err) {
+      console.log(`Error in retrieving chatlist with id ${id}: ${err}`)
+    }
   }
 
   @action assignUserId = async () => {
-    const response = await network.getUserId()
-    if (!response) {
-      return null
-    } else this.clientId = response.data
+    try {
+      this.clientId = (await network.getUserId()).data
+    } catch (err) {
+      console.log(`Error in getting UserId: ${err}`)
+    }
   }
-
-  @action getTime = (timestamp) => {
-    let date = new Date(timestamp)
-    let hours = date.getHours()
-// Minutes part from the timestamp
-    let minutes = '0' + date.getMinutes()
-    return hours + ':' + minutes.substr(-2)
-  }
-
-  @action updateClientSocketInfo = (data) => {
-    this.clientSocketInfo = data
-    console.log('current client info', this.clientSocketInfo)
-  }
-
-
 }
 
 const Store = () => new ChatStore()
