@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 import styled from 'styled-components'
 import {Button, Col, DatePicker, Form, Row, Switch} from 'antd'
 import WrappedAnyInput from '../../common/form/wrappedAnyInput'
-import regions from '../../../util/regions'
 import {inject, observer} from 'mobx-react'
 import NumberRange from "../profile-setup/flatsharePreferences/numberRange";
+import moment from 'moment'
 import {
   RegionSelection,
   TypeOfFlatshareSelection,
@@ -19,30 +19,18 @@ const {RangePicker} = DatePicker
 class FilterGroup extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      data: regions
-    }
-    this.handleSearch = this.handleSearch.bind(this)
   }
-
-  handleSearch = value =>
-    this.setState({
-      data: regions.filter(
-        element => element.toLowerCase().indexOf(value.toLowerCase()) != -1
-      )
-    })
 
   handleResult = (type, result) => {
     result.preventDefault()
     this.props.form.validateFields((error, values) => {
-      error && type != 'Back'
-        ? this.displayError(error)
-        : this.props.store.onSearch(values)
+      error ? this.displayError(error) : this.props.store.onSearch(values)
     })
   }
 
-  componentDidMount = () => {
-    const {setFieldsValue} = this.props.form //todo here:
+  componentDidMount = async () => {
+    const {setFieldsValue} = this.props.form
+    await this.props.store.initData()
     const filterValues = this.props.store.filterValues
     setFieldsValue({
       preferences: {
@@ -59,8 +47,11 @@ class FilterGroup extends Component {
             },
             furnished: filterValues.preferences.flat.room.furnished,
             rentType: filterValues.preferences.flat.room.rentType,
-            dateAvailable: filterValues.preferences.flat.room.dateAvailable,
-            dateAvailableRange: filterValues.preferences.flat.room.dateAvailableRange,
+            dateAvailable: moment(filterValues.preferences.flat.room.dateAvailable),
+            dateAvailableRange:
+              (filterValues.preferences.flat.room.dateAvailableRange !== undefined)
+                ? filterValues.preferences.flat.room.dateAvailableRange
+                : filterValues.preferences.flat.room.dateAvailableRange,
           },
           flatshareType: filterValues.preferences.flat.flatshareType,
 
@@ -102,8 +93,8 @@ class FilterGroup extends Component {
               </Row>
               <Item label="Date available">
                 <WrappedAnyInput
-                  required
-                  tag={getFieldValue("preferences.flat.room.rentType") === "limited" ? <RangePicker/> :
+                  tag={getFieldValue("preferences.flat.room.rentType") === "limited" ?
+                    <RangePicker/> :
                     <DatePicker style={{width: "100%"}}/>}
                   dec={getFieldDecorator}
                   objName={getFieldValue("preferences.flat.room.rentType") === "limited" ? "preferences.flat.room.dateAvailableRange" : "preferences.flat.room.dateAvailable"}
@@ -114,6 +105,7 @@ class FilterGroup extends Component {
                   <Item label="Furnished">
                     <WrappedAnyInput
                       tag={<Switch defaultChecked={false}/>}
+                        // defaultChecked={this.props.store.filterValues.preferences.flat.room.furnished}/>}
                       dec={getFieldDecorator}
                       objName="preferences.flat.room.furnished"
                     />
@@ -123,6 +115,7 @@ class FilterGroup extends Component {
                   <Item label="Balcony">
                     <WrappedAnyInput
                       tag={<Switch defaultChecked={false}/>}
+                        // defaultChecked={this.props.store.filterValues.preferences.flatEquipment.balcony}/>}
                       dec={getFieldDecorator}
                       objName="preferences.flatEquipment.balcony"
                     />
@@ -134,6 +127,7 @@ class FilterGroup extends Component {
                   <Item label="Smoke allowed">
                     <WrappedAnyInput
                       tag={<Switch defaultChecked={false}/>}
+                      // defaultChecked={this.props.store.filterValues.preferences.smokers}/>}
                       dec={getFieldDecorator}
                       objName="preferences.smokers"
                     />
@@ -143,6 +137,7 @@ class FilterGroup extends Component {
                   <Item label="Pet-allowed">
                     <WrappedAnyInput
                       tag={<Switch defaultChecked={false}/>}
+                        // defaultChecked={this.props.store.filterValues.preferences.pets}/>}
                       dec={getFieldDecorator}
                       objName="preferences.pets"
                     />

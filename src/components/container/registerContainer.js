@@ -5,11 +5,11 @@ import GeneralInfo from '../presentation/authentication/generalInfo'
 import CredentialForm from '../presentation/authentication/credentialForm'
 import styled from 'styled-components'
 import oAuth from "../presentation/authentication/oAuth";
-import WrappendModal from "../common/form/wrappendModal";
+import WrappedModal from "../common/form/wrappedModal";
 
 const {Step} = Steps
 
-@inject('RegisterStore')
+@inject('store')
 @observer
 export default class RegisterContainer extends Component {
   constructor(props) {
@@ -18,24 +18,24 @@ export default class RegisterContainer extends Component {
 
   updateFormResponse = (response) => {
     if (response.status === 200) {
-      this.props.RegisterStore.step.nextStep()
+      this.props.store.stepStore.nextStep()
     } else {
-      return WrappendModal(`Sorry, something went wrong. Please try again.`)
+      return WrappedModal(`Sorry, something went wrong. Please try again.`)
     }
   }
 
   handleClick = async (name, data) => {
     switch (name) {
       case 'credential-form':
-        this.props.RegisterStore.userStore.saveUserData({
+        this.props.store.authStore.saveUserData({
           email: data.email,
           password: data.password
         })
-        this.props.RegisterStore.step.nextStep()
+        this.props.store.stepStore.nextStep()
         break;
       case 'general-info-form':
-        this.props.RegisterStore.userStore.saveUserData(data)
-        const response = await this.props.RegisterStore.userStore.registerUser();
+        this.props.store.authStore.saveUserData(data)
+        const response = await this.props.store.authStore.registerUser();
         this.updateFormResponse(response);
         break;
       default:
@@ -45,7 +45,7 @@ export default class RegisterContainer extends Component {
   }
 
   render = () => {
-    const {currentSteps} = this.props.RegisterStore.step
+    const {currentSteps} = this.props.store.stepStore
     const data = steps
     const Content = data[currentSteps].content
 
@@ -63,7 +63,7 @@ export default class RegisterContainer extends Component {
                 </Steps>
                 <div style={stepsContent}>
                   <Row>
-                    <Provider store={this.props.RegisterStore}>
+                    <Provider store={this.props.store}>
                       <Content
                         processData={(name, data) => this.handleClick(name, data)}
                       />

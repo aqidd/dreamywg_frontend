@@ -13,8 +13,7 @@ class Store {
   };
   @observable data = {};
 
-  constructor(rootStore, isSeeker, maxSteps) {
-    this.rootStore = rootStore;
+  constructor(isSeeker, maxSteps) {
     this.isSeeker = isSeeker;
     this.maxSteps = maxSteps
   }
@@ -82,4 +81,6 @@ class Store {
     (this.data = merge(this.data, data))
 }
 
-export default Store
+const ProfileSetupStepStore = (isSeeker, maxSteps) => new Store(isSeeker, maxSteps);
+
+export default ProfileSetupStepStore

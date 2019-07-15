@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
-import {Button, Col, DatePicker, Form, Icon, Input, Row, Select} from 'antd';
-import {gender, rentType} from "../../../util/selections";
+import {Button, Col, DatePicker, Form, Icon, Input, Row} from 'antd';
+import {gender} from "../../../util/selections";
 import WrappedSelection from "../../common/form/wrappedSelection";
 
 @inject('store')
@@ -64,7 +64,7 @@ class GeneralInfo extends Component {
               {getFieldDecorator('dateOfBirth', {
                 rules: [{required: true, message: 'Please input your date of birth!'}],
               })(
-                <DatePicker style={{width:"98%"}}/>,
+                <DatePicker style={{width: "98%"}}/>,
               )}
             </Form.Item>
           </Col>

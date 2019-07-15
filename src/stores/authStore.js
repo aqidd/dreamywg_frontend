@@ -1,21 +1,24 @@
 import {action, observable} from 'mobx'
 import network from '../util/network'
+import {merge} from "lodash";
 
-class AuthStore {
+class Store {
   @observable credentials = {
     email: '',
     password: ''
-  }
+  };
 
-  @observable response
+  @observable user = {};
+
+  @observable loginResponse;
 
   constructor() {
-    if (!this.response)
+    if (!this.loginResponse)
       this.initData()
   }
 
   initData() {
-    this.response = {
+    this.loginResponse = {
       success: false,
       completed: false,
       errorMessage: '',
@@ -24,11 +27,8 @@ class AuthStore {
   }
 
   setToken = token => {
-    console.log(localStorage.getItem('token'))
-    localStorage.setItem('token', token)
-    console.log(localStorage.getItem('token'))
-
-  }
+    localStorage.setItem('token', token);
+  };
 
   getToken() {
     return localStorage.getItem('token')
@@ -37,39 +37,55 @@ class AuthStore {
   @action login = async credentials => {
     return network.login(credentials)
       .then((response) => {
-        console.log(JSON.stringify(response.data))
         const token = response.data.token;
+        this.user = response.data.user;
         this.setToken(token);
-        this.response = {
+        this.loginResponse = {
           success: true,
           completed: true,
           errorMessage: '',
-          type: response.data.type ? response.data.type: null,
+          type: response.data.type ? response.data.type : null,
         }
       })
       .catch((error) => {
         if (error.response) {
-          this.response = {
+          this.loginResponse = {
             success: false,
             completed: true,
             errorMessage: error.response.data
           }
         } else {
-          this.response = {
+          this.loginResponse = {
             success: false,
             completed: true,
             errorMessage: 'Sorry, something went wrong. Please try it again.'
           }
         }
       })
-  }
+  };
 
   hasToken = () => {
-    console.log(`user has token: ${localStorage.getItem('token')}`)
     return localStorage.getItem('token') !== null
+  };
+
+
+  @action saveUserData = (userData) => {
+    this.user = merge(this.user, userData);
+  };
+
+  @action
+  async registerUser() {
+    try {
+      const response = await network.register(this.user);
+      this.user = response.data;
+      return response
+    } catch (e) {
+      return e;
+    }
   }
+
 }
 
-const Store = () => new AuthStore()
+const AuthStore = () => new Store();
 
-export default Store
+export default AuthStore

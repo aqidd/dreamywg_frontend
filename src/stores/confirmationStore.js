@@ -18,7 +18,7 @@ class Store {
         this.result = {state: true, data: response.data}
       })
       .catch((err) => {
-        this.result = {state: false, data: err ? serverUnavailable : err.response.data};
+        this.result = {state: false, data: err ? serverUnavailable : err.loginResponse.data};
       })
   }
 }
