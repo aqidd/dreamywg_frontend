@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const serverUrl = 'http://localhost:4005';
+export const serverUrl = 'http://localhost:4005';
 
 let config = () => {
   return {
