@@ -10,9 +10,7 @@ class ChatStore {
 
   @observable clientId = null
 
-  @observable activeChatId = 0
-
-  @action pushData = async (MessageUnit) => this.listOfChats.push(MessageUnit) //todo!
+  @observable activeChatId
 
   constructor() {
     this.initChatStore()
@@ -54,7 +52,7 @@ class ChatStore {
   @action retrieveChatList = async () => {
     try {
       const chats = (await network.chatList()).data
-      this.activeChatId = Object.keys(chats)[0] //todo check if error here if chats is empty
+      this.activeChatId = Object.keys(chats)[0]
       this.chats = chats
     } catch (err) {
       console.log(`Error in retrieving chatlist: ${err}`)
