@@ -10,7 +10,7 @@ const { TabPane } = Tabs;
 var FlatDetailsTab = inject("store")(
   observer(({ store }) => {
     return (
-      <Tabs defaultActiveKey="2">
+      <Tabs defaultActiveKey="1">
         <TabPane tab="About" key="1">
           <Provider store={store}>
             <AboutFlat></AboutFlat>

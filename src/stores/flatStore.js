@@ -14,7 +14,10 @@ class FlatStore {
         this.flat = {
             title: 'Some Flat in Sendling',
             rooms: [],
-            flatmates: []
+            flatmates: [],
+            stores: [],
+            stations: [],
+            flatEquipment: {}
         };
     }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Card, Carousel, Icon } from 'antd'
+import { Row, Col, Card, Carousel, Icon, Tag } from 'antd'
 import GoogleMap from '../../common/googleMap';
 import RoomListContainer from '../../container/roomListContainer'
 import { inject, observer, Provider } from 'mobx-react'
@@ -8,6 +8,7 @@ const { Meta } = Card
 
 const AboutFlat = inject('store')(
   observer(({ store }) => {
+    const flat = store.flatStore.flat;
     return(
       <div>
         <Row gutter={32}>
@@ -30,9 +31,35 @@ const AboutFlat = inject('store')(
                   }
                 >
                   <Meta
-                    title={store.flatStore.flat.title}
-                    description="2 Bedroom - 1 Bathroom - Furnished - WG Friendly"
+                    title={flat.title}
                   />
+                  <br/>
+                  <div>
+                    Flatshare Type: {flat.flatshareType}
+                  </div>
+                  <div>
+                    Equipments: &nbsp;
+                    {
+                      Object.keys(flat.flatEquipment)
+                      .map(function (key) { return flat.flatEquipment[key]? key : undefined; })
+                      .filter(value => !!value)
+                      .map(equipment => {
+                        return (
+                          <Tag key={equipment}>{equipment}</Tag>
+                        )
+                      })
+                    }
+                  </div>
+                  <div>
+                    Store Nearby : &nbsp;
+                    {
+                      flat.stores.map(store => {
+                        return (
+                          <Tag key={store}>{store}</Tag>
+                        )
+                      })
+                    }
+                  </div>
                 </Card>
               </Col>
               <Col span={12}>
@@ -40,18 +67,28 @@ const AboutFlat = inject('store')(
                   cover={
                     <GoogleMap></GoogleMap>
                   }
-                  actions={[<Icon type="pushpin"/>]}
                 >
                   <Meta
-                    title="Obersendling straße 6969"
+                    title={`${flat.region} ${flat.street}, ${flat.houseNr}`}
                   />
+                  <br/>
+                  <div>
+                    Stations Nearby : &nbsp;
+                    {
+                      flat.stations.map(station => {
+                        return (
+                          <Tag key={station}>{station}</Tag>
+                        )
+                      })
+                    }
+                  </div>
                 </Card>
               </Col>
             </Row>
             <Row className="flat-description">
               <Col span={24}>
                 <p>
-                  {store.flatStore.flat.longDescription}
+                  {flat.longDescription}
                 </p>
               </Col>
             </Row>
