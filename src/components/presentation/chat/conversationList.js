@@ -23,16 +23,10 @@ export default class ConversationList extends Component {
     this.setState({ hover: !this.state.hover })
   }
 
-  deleteChatUnit() {
-    this.props.store.deleteChatUnit(id)
-  }
-
-  showConversation(id) {
-    this.props.store.retrieveChatUnit(id)
-  }
 
   render() {
     const chats = this.props.store.chats
+    const clientId = this.props.store.clientId
     const keys = Object.keys(chats)
     return (
       <Container>
@@ -45,15 +39,16 @@ export default class ConversationList extends Component {
                 return (
                   <ChatListItem onClick={() => this.props.store.activeChatId = key}
                                 onMouseEnter={this.toggleHover.bind(this)} onMouseLeave={this.toggleHover.bind(this)}>
-                    <Avatar imgUrl="https://livechat.s3.amazonaws.com/default/avatars/male_8.jpg"/>
+                    <Avatar letter={((element.user1.id === clientId) ? element.user1 : element.user2).fullName.slice(0, 1)}/>
                     <Column fill="true">
                       <Row justify>
-                        <Title ellipsis>{element.user1.slice(0, 10)}</Title>
+                        <Title
+                          ellipsis>{(element.user1.id === clientId) ? element.user2.fullName : element.user1.fullName}</Title>
                         <Subtitle
-                          nowrap>{(length === 0) ? '' : moment(element.messages[length-1].timestamp).format('HH:mm')}</Subtitle>
+                          nowrap>{(length === 0) ? '' : moment(element.messages[length - 1].timestamp).format('HH:mm')}</Subtitle>
                       </Row>
                       <Subtitle ellipsis>
-                        {(length === 0) ? '' : element.messages[length-1].content.slice(0, 10) //todo: if latest is last
+                        {(length === 0) ? '' : element.messages[length - 1].content.slice(0, 10) //todo: if latest is last
                         }
                       </Subtitle>
                     </Column>

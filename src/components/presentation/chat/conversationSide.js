@@ -24,20 +24,21 @@ export default class ConversationSide extends React.Component {
           <div style={{ maxWidth: '100%', height: 400, background: '#fafafa', padding: '30px' }}>
             <MessageList active style={{ background: '#fafafa' }}>
               {/*render message based on store value*/}
-              <MessageGroup
-                avatar="https://livechat.s3.amazonaws.com/default/avatars/male_8.jpg"
-                onlyFirstWithMeta
-              >
-                {chat.messages.map(msg =>
-                  <Message date={moment(msg.timestamp).format("HH:mm")}
+              {chat.messages.map(msg =>
+                <MessageGroup
+                  avatarLetter={((chat.user1.id === msg.senderId) ? chat.user1 : chat.user2).fullName.slice(0,1)}
+                  isOwn={(this.props.store.clientId === msg.senderId)}
+                  onlyFirstWithMeta
+                >
+                  <Message date={moment(msg.timestamp).format('HH:mm')}
                            isOwn={(this.props.store.clientId === msg.senderId)}
-                           authorName="Visitor">
+                           authorName={(chat.user1.id === msg.senderId) ? chat.user1.fullName : chat.user2.fullName}>
                     <MessageText>
                       {msg.content}
                     </MessageText>
                   </Message>
-                )}
-              </MessageGroup>
+                </MessageGroup>
+              )}
             </MessageList>
             <div className="card-footer">
               <Search
