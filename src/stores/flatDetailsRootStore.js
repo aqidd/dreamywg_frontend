@@ -2,12 +2,12 @@ import FlatStore from './flatStore'
 import FlatPresentationStore from './flatPresentationStore'
 
 class FlatDetailsRootStore {
-    constructor() {
-        this.flatStore = new FlatStore(this)
-        this.flatPresentationStore = new FlatPresentationStore(this)
+    constructor(id) {
+        this.flatStore = new FlatStore(this);
+        this.flatStore.setId(id)
+
+        this.flatPresentationStore = new FlatPresentationStore(this);
     }
 }
 
-const flatDetailsRootStore = () => new FlatDetailsRootStore();
-
-export default flatDetailsRootStore
+export default FlatDetailsRootStore

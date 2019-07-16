@@ -16,10 +16,12 @@ var FlatDetailsTab = inject("store")(
             <AboutFlat></AboutFlat>
           </Provider>
         </TabPane>
-        <TabPane tab="Residents" key="3">
-          <ResidentList></ResidentList>
+        <TabPane tab="Residents" key="2">
+          <Provider store={store}>
+            <ResidentList></ResidentList>
+          </Provider>
         </TabPane>
-        <TabPane tab="Interviews" key="4">
+        <TabPane tab="Interviews" key="3">
           <InterviewDetails></InterviewDetails>
         </TabPane>
       </Tabs>

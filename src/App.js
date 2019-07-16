@@ -49,7 +49,7 @@ export default class App extends React.Component {
         />
         <ProtectedRoute
           exact
-          path="/flat"
+          path="/flat/:id"
           component={FlatDetails}
           isAuth={hasToken()}
         />
