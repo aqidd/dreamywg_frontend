@@ -1,13 +1,14 @@
-import React, { Component } from 'react'
-import { Layout, Pagination } from 'antd'
+import React, {Component} from 'react'
+import {Layout} from 'antd'
 import SearchContainer from '../components/container/search/searchContainer'
 import styled from 'styled-components'
 import FilterGroup from '../components/presentation/search/filterGroup'
-import InsystemHeader from '../components/common/InsystemHeader'
-import { Provider } from 'mobx-react'
+import {Provider} from 'mobx-react'
 import SearchStore from '../stores/searchStore'
+import DefaultHeader from "../components/common/defaultHeader";
 
-const { Sider, Content } = Layout
+const {Sider, Content} = Layout
+const theme = "light"
 
 export default class SearchScreen extends Component {
   constructor(props) {
@@ -16,11 +17,12 @@ export default class SearchScreen extends Component {
       priceRange: [0, 10000]
     }
   }
+
   render() {
     return (
       <Provider store={SearchStore}>
-        <Layout>
-          <InsystemHeader />
+        <div>
+          <DefaultHeader theme={theme}/>
           <Layout>
             <StyledSider
               breakpoint="lg"
@@ -28,16 +30,13 @@ export default class SearchScreen extends Component {
               width={400}
               theme="light"
             >
-              <FilterGroup
-                priceRange={[100, 10000]}
-                sliderChange={value => console.log(value)}
-              />
+              <FilterGroup/>
             </StyledSider>
             <StyledContent>
-              <SearchContainer />
+              <SearchContainer/>
             </StyledContent>
           </Layout>
-        </Layout>
+        </div>
       </Provider>
     )
   }

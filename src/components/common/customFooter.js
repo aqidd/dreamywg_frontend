@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react'
 
-const CustomFooter = () => <div> custom footer </div>
+const CustomFooter = () => <div> </div>
 
 export default CustomFooter

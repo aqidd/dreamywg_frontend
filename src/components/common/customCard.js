@@ -1,31 +1,41 @@
 import React from 'react'
-import { Button, Skeleton } from 'antd'
+import {Button, Skeleton} from 'antd'
 import styled from 'styled-components'
 
 const CustomCard = ({
+  ready,
+  key,
   sponsor,
+  id,
   img,
-  name,
+  title,
   description,
-  recommendation,
+  matched,
   location,
   price,
-  ready
+  roomSize,
+  dateAvailable
 }) =>
   ready ? (
-    <CardContainer onClick={() => alert('work wa')}>
-      <StyledImage alt="example" src={img} />
+    <CardContainer onClick={() => alert(`Click on flat with id: ${id}`)}>
+      <StyledImage alt="example" src={img}/>
 
       <ContentContainer>
         <TitleContainer>
-          <Title>{name}</Title>
+          <Title>{title}</Title>
           <Button type={sponsor ? 'primary' : 'danger'} shape="round">
-            {sponsor ? 'Sponsored' : recommendation + '% Matched'}
+            {sponsor ? 'Sponsored' : matched + '% Matched'}
           </Button>
         </TitleContainer>
-        <DescriptionContainer>
-          <p>{description}</p>
-        </DescriptionContainer>
+        <BodyContainer>
+          <DescriptionContainer>
+            <p>{description}</p>
+          </DescriptionContainer>
+          <InfoContainer>
+            <b>{roomSize} m&sup2;</b>
+            <Price> {price} €</Price>
+          </InfoContainer>
+        </BodyContainer>
 
         <FooterContainer>
           <AddressContainer>
@@ -33,12 +43,12 @@ const CustomCard = ({
               <strong>{location}</strong>
             </p>
           </AddressContainer>
-          <Price> {'€' + price} </Price>
+          <p>{dateAvailable}</p>
         </FooterContainer>
       </ContentContainer>
     </CardContainer>
   ) : (
-    <Skeleton active />
+    <Skeleton active/>
   )
 
 const CardContainer = styled.div`
@@ -71,15 +81,28 @@ const TitleContainer = styled.div`
   justify-content: space-between;
 `
 
-const DescriptionContainer = styled.div`
+const BodyContainer = styled.div`
   max-height: 30px;
   margin-top: -2vh;
   @media (max-width: 700px) {
-    ${DescriptionContainer} {
+    ${BodyContainer} {
       display: none;
     }
   }
 `
+
+const DescriptionContainer = styled.div`
+  float: left
+  width: 70%
+`
+
+const InfoContainer = styled.div`
+  float: right
+  text-align: right
+  width: 30%
+`
+
+
 
 const FooterContainer = styled.div`
   display: flex;
