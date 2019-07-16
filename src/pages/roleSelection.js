@@ -1,21 +1,28 @@
 import React, {Component} from 'react'
-import CustomHeader from '../components/common/customHeader';
-import CustomFooter from '../components/common/customFooter';
-import BaseLayout from '../components/presentation/baseLayout';
-import ChoiceContainer from "../components/presentation/profile-setup/ChoiceContainer";
+import CustomFooter from '../components/common/customFooter'
+import BaseLayout from '../components/presentation/baseLayout'
+import RoleSelection from "../components/presentation/profile-setup/roleSelection"
+import initStore from "../stores/roleSelectionStore"
+import 'antd/dist/antd.css'
+import {Provider} from "mobx-react"
+import DefaultHeader from "../components/common/defaultHeader";
 
-export default class RoleSelection extends Component {
+
+export default class RoleSelectionPages extends Component {
   constructor(props) {
     super(props);
+    this.store = initStore();
   }
 
   render() {
     return (
-      <BaseLayout>
-        <CustomHeader/>
-        <ChoiceContainer/>
-        <CustomFooter/>
-      </BaseLayout>
+      <Provider RoleSelectionStore={this.store}>
+        <BaseLayout>
+          <DefaultHeader/>
+          <RoleSelection/>
+          <CustomFooter/>
+        </BaseLayout>
+      </Provider>
     );
   }
 }

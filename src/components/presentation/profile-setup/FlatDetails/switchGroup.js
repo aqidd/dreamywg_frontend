@@ -1,10 +1,10 @@
 import React from 'react'
-import {Col, DatePicker, Form, Input, Row, Switch} from 'antd'
+import {Col, Form, Input, Row, Switch} from 'antd'
 import WrappedAnyInput from '../../../common/form/wrappedAnyInput'
 
 const {Item} = Form;
 
-const SwitchGroup = ({decorator}) => (
+const SwitchGroup = ({decorator, basePath, funisheBasePath}) => (
   <Input.Group>
     <Row>
       <Col span={8}>
@@ -12,7 +12,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="rooms[0].furnished"
+            objName={`${funisheBasePath}.furnished`}
           />
         </Item>
       </Col>
@@ -21,7 +21,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="flatEquipment.parkingLot"
+            objName={`${basePath}.parkingLot`}
           />
         </Item>
       </Col>
@@ -30,7 +30,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="flatEquipment.livingroom"
+            objName={`${basePath}.livingroom`}
           />
         </Item>
       </Col>
@@ -41,7 +41,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="flatEquipment.shower"
+            objName={`${basePath}.shower`}
           />
         </Item>
       </Col>
@@ -50,7 +50,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="flatEquipment.bathtub"
+            objName={`${basePath}.bathtub`}
           />
         </Item>
       </Col>
@@ -59,7 +59,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="flatEquipment.kitchen"
+            objName={`${basePath}.kitchen`}
           />
         </Item>
       </Col>
@@ -70,7 +70,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="flatEquipment.internet"
+            objName={`${basePath}.internet`}
           />
         </Item>
       </Col>
@@ -79,7 +79,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="flatEquipment.balcony"
+            objName={`${basePath}.balcony`}
           />
         </Item>
       </Col>
@@ -88,7 +88,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="flatEquipment.terrace"
+            objName={`${basePath}.terrace`}
           />
         </Item>
       </Col>
@@ -99,7 +99,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="flatEquipment.garden"
+            objName={`${basePath}.garden`}
           />
         </Item>
       </Col>
@@ -108,7 +108,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="flatEquipment.washingMachine"
+            objName={`${basePath}.washingMachine`}
           />
         </Item>
       </Col>
@@ -117,7 +117,7 @@ const SwitchGroup = ({decorator}) => (
           <WrappedAnyInput
             tag={<Switch defaultChecked={false}/>}
             dec={decorator}
-            objName="flatEquipment.dishwasher"
+            objName={`${basePath}.dishwasher`}
           />
         </Item>
       </Col>
