@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
 import { Card } from 'antd'
-import { Avatar, ChatList, ChatListItem, Column, Row, Subtitle, ThemeProvider, Title } from '@livechat/ui-kit'
+import {
+  Avatar,
+  ChatList,
+  ChatListItem,
+  Column,
+  Row,
+  Subtitle,
+  ThemeProvider,
+  Title
+} from '@livechat/ui-kit'
 import styled from 'styled-components'
-import { inject, observer } from 'mobx-react'
 import moment from 'moment'
 
-const { Meta } = Card
-
-@inject('store')
-@observer
 export default class ConversationList extends Component {
   constructor(props) {
     super(props)
@@ -23,32 +27,52 @@ export default class ConversationList extends Component {
     this.setState({ hover: !this.state.hover })
   }
 
-
   render() {
-    const chats = this.props.store.chats
-    const clientId = this.props.store.clientId
+    const chats = this.props.chat
+    const clientId = this.props.clientId
     const keys = Object.keys(chats)
     return (
       <Container>
         <ThemeProvider>
-          <div style={{ maxWidth: '100%', height: 400, padding: '30px' }} className="scrollable-container">
+          <div
+            style={{ maxWidth: '100%', height: 400, padding: '30px' }}
+            className="scrollable-container"
+          >
             <ChatList>
               {keys.map(key => {
                 const element = chats[key]
                 const length = element.messages.length
                 return (
-                  <ChatListItem onClick={() => this.props.store.activeChatId = key}
-                                onMouseEnter={this.toggleHover.bind(this)} onMouseLeave={this.toggleHover.bind(this)}>
-                    <Avatar letter={((element.user1.id === clientId) ? element.user1 : element.user2).fullName.slice(0, 1)}/>
+                  <ChatListItem
+                    onClick={key => this.props.onchange(key)}
+                    onMouseEnter={this.toggleHover.bind(this)}
+                    onMouseLeave={this.toggleHover.bind(this)}
+                  >
+                    <Avatar
+                      letter={(element.user1.id === clientId
+                        ? element.user1
+                        : element.user2
+                      ).fullName.slice(0, 1)}
+                    />
                     <Column fill="true">
                       <Row justify>
-                        <Title
-                          ellipsis>{(element.user1.id === clientId) ? element.user2.fullName : element.user1.fullName}</Title>
-                        <Subtitle
-                          nowrap>{(length === 0) ? '' : moment(element.messages[length - 1].timestamp).format('HH:mm')}</Subtitle>
+                        <Title ellipsis>
+                          {element.user1.id === clientId
+                            ? element.user2.fullName
+                            : element.user1.fullName}
+                        </Title>
+                        <Subtitle nowrap>
+                          {length === 0
+                            ? ''
+                            : moment(
+                                element.messages[length - 1].timestamp
+                              ).format('HH:mm')}
+                        </Subtitle>
                       </Row>
                       <Subtitle ellipsis>
-                        {(length === 0) ? '' : element.messages[length - 1].content.slice(0, 10) //todo: if latest is last
+                        {length === 0
+                          ? ''
+                          : element.messages[length - 1].content.slice(0, 10) //todo: if latest is last
                         }
                       </Subtitle>
                     </Column>
@@ -61,9 +85,7 @@ export default class ConversationList extends Component {
       </Container>
     )
   }
-
 }
-
 
 const Container = styled.div`
   text-align: center;
@@ -72,9 +94,9 @@ const Container = styled.div`
 `
 
 const HoverText = styled.p`
-	color: #000;
-	:hover {
-		color: #ed1212;
-		cursor: pointer;
-	}
+  color: #000;
+  :hover {
+    color: #ed1212;
+    cursor: pointer;
+  }
 `

@@ -1,23 +1,19 @@
 import React from 'react'
 import { Card, Input } from 'antd'
 import styled from 'styled-components'
-import { inject, observer } from 'mobx-react'
 import { Message, MessageGroup, MessageList, MessageText, ThemeProvider } from '@livechat/ui-kit'
 import moment from 'moment'
 
-
-const { Meta } = Card
 const { Search } = Input
-@inject('store')
-@observer
+
 export default class ConversationSide extends React.Component {
   constructor(props) {
     super(props)
   }
 
-
   render() {
-    const chat = this.props.store.chats[this.props.store.activeChatId]
+    const chat = this.props.chat
+    const clientId = this.props.clientId
     return (
       <Container>
         <ThemeProvider>
@@ -27,11 +23,11 @@ export default class ConversationSide extends React.Component {
               {chat.messages.map(msg =>
                 <MessageGroup
                   avatarLetter={((chat.user1.id === msg.senderId) ? chat.user1 : chat.user2).fullName.slice(0,1)}
-                  isOwn={(this.props.store.clientId === msg.senderId)}
+                  isOwn={(clientId === msg.senderId)}
                   onlyFirstWithMeta
                 >
                   <Message date={moment(msg.timestamp).format('HH:mm')}
-                           isOwn={(this.props.store.clientId === msg.senderId)}
+                           isOwn={(clientId === msg.senderId)}
                            authorName={(chat.user1.id === msg.senderId) ? chat.user1.fullName : chat.user2.fullName}>
                     <MessageText>
                       {msg.content}
@@ -44,7 +40,7 @@ export default class ConversationSide extends React.Component {
               <Search
                 placeholder="input text"
                 enterButton="Send"
-                onSearch={value => this.props.store.sendMessage(value)}
+                onSearch={value => this.props.onSend(value)}
               />
             </div>
           </div>

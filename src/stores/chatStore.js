@@ -18,7 +18,6 @@ class ChatStore {
 
   @action initChatStore = async () => {
     await this.assignUserId()
-
     this.socket = io('localhost:8080')
     this.socket.on('reply', this.addMessage.bind(this))
     this.socket.on('connect', this.connect.bind(this))
@@ -34,6 +33,10 @@ class ChatStore {
     console.log(JSON.stringify(data))
     const senderId = data.senderId.toString()
     this.chats[senderId].messages = [...this.chats[senderId].messages, data]
+  }
+
+  get currentChat(){
+    return this.chats[this.activeChatId]
   }
 
   @action sendMessage = (content) => {
@@ -64,6 +67,10 @@ class ChatStore {
     } catch (err) {
       console.log(`Error in getting UserId: ${err}`)
     }
+  }
+
+  @action updateActiveChat = (id) => {
+    this.activeChatId = id
   }
 }
 
