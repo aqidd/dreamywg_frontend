@@ -41,7 +41,7 @@ export default class ChatContent extends Component {
       <ThemeProvider theme={{ mode: this.props.theme }}>
         <StyledContent>
           <Card>
-            {(this.props.store.listOfChats.length > 0) ? chat : noChats}
+            {(Object.keys(this.props.store.chats).length > 0) ? chat : noChats}
           </Card>
         </StyledContent>
       </ThemeProvider>

@@ -5,14 +5,17 @@ import React from 'react'
 
 
 class ChatStore {
-  @observable listOfChats = []
-  @observable chatUnit = {
-    messages: []
-  }
+
+  @observable chats = {}
+  // @observable chatUnit = {
+  //   messages: []
+  // }
 
   @observable clientId = null
 
-  @action pushData = async (MessageUnit) => this.listOfChats.push(MessageUnit)
+  @observable activeChatId = 0
+
+  @action pushData = async (MessageUnit) => this.listOfChats.push(MessageUnit) //todo!
 
   constructor() {
     this.initChatStore()
@@ -33,41 +36,33 @@ class ChatStore {
 
 
   @action addMessage = (data) => {
-    this.chatUnit.messages = [...this.chatUnit.messages, data]
+    console.log(JSON.stringify(data))
+    const senderId = data.senderId.toString()
+    this.chats[senderId].messages = [...this.chats[senderId].messages, data]
   }
 
   @action sendMessage = (content) => {
+    const activeChat = this.chats[this.activeChatId]
     const message = {
-      user1: this.chatUnit.user1,
-      user2: this.chatUnit.user2,
+      user1: activeChat.user1,
+      user2: activeChat.user2,
       content: content,
       timestamp: Date.now(),
       senderId: this.clientId
     }
-    this.addMessage(message)
+    this.chats[this.activeChatId].messages = [...this.chats[this.activeChatId].messages, message]
     this.socket.emit('sendMessage', message)
   }
 
   @action retrieveChatList = async () => {
     try {
-      this.listOfChats = (await network.chatList()).data
-      console.log(JSON.stringify(this.listOfChats))
-      if (this.listOfChats.length !== 0) {
-        await this.retrieveChatUnit(this.listOfChats[0]._id)
-      }
+      const chats = (await network.chatList()).data
+      this.activeChatId = Object.keys(chats)[0] //todo check if error here if chats is empty
+      this.chats = chats
     } catch (err) {
       console.log(`Error in retrieving chatlist: ${err}`)
     }
   }
-
-  @action retrieveChatUnit = async (id) => {
-    try {
-      this.chatUnit = (await network.chatUnit(id)).data
-    } catch (err) {
-      console.log(`Error in retrieving chatlist with id ${id}: ${err}`)
-    }
-  }
-
   @action assignUserId = async () => {
     try {
       this.clientId = (await network.getUserId()).data

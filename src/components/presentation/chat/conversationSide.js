@@ -10,13 +10,14 @@ const { Meta } = Card
 const { Search } = Input
 @inject('store')
 @observer
-export default class ChatContent extends React.Component {
+export default class ConversationSide extends React.Component {
   constructor(props) {
     super(props)
   }
 
 
   render() {
+    const chat = this.props.store.chats[this.props.store.activeChatId]
     return (
       <Container>
         <ThemeProvider>
@@ -27,7 +28,7 @@ export default class ChatContent extends React.Component {
                 avatar="https://livechat.s3.amazonaws.com/default/avatars/male_8.jpg"
                 onlyFirstWithMeta
               >
-                {this.props.store.chatUnit.messages.map(msg =>
+                {chat.messages.map(msg =>
                   <Message date={moment(msg.timestamp).format("HH:mm")}
                            isOwn={(this.props.store.clientId === msg.senderId)}
                            authorName="Visitor">
