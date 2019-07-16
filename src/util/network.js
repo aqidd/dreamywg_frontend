@@ -24,6 +24,7 @@ const Api = {
   updatePastTimeslotStatus: (id, data) => axios.put(`${serverUrl}/timeslots/${id}`, data, config),
   createFlatofferer: data => axios.post(`${serverUrl}/flatofferers`, data, config),
   createFlatseeker: data => axios.post(`${serverUrl}/flatseekers`, data, config),
+  getFlat: id => axios.get(`${serverUrl}/flats/${id}`),
   createFlatofferer: data => axios.post(`${serverUrl}/flatofferers`, data, config()),
   createFlatseeker: data => axios.post(`${serverUrl}/flatseekers`, data, config()),
   loadSearchProperties: () => axios.get(`${serverUrl}/flatseekers/loadSearchProperties`, config()),

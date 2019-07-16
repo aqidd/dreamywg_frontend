@@ -49,8 +49,8 @@ export default class App extends React.Component {
         />
         <ProtectedRoute
           exact
-          path="/interview"
-          Comp={Interview}
+          path="/flat/:id"
+          component={FlatDetails}
           isAuth={hasToken()}
         />
         <ProtectedRoute

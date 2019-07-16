@@ -10,14 +10,16 @@ const { TabPane } = Tabs
 var FlatDetailsTab = inject("store")(
   observer(({ store }) => {
     return (
-      <Tabs defaultActiveKey="3">
+      <Tabs defaultActiveKey="1">
         <TabPane tab="About" key="1">
           <Provider store={store}>
             <AboutFlat></AboutFlat>
           </Provider>
         </TabPane>
         <TabPane tab="Residents" key="2">
-          <ResidentList />
+          <Provider store={store}>
+            <ResidentList></ResidentList>
+          </Provider>
         </TabPane>
         <TabPane tab="Interviews" key="3">
           <Provider store={store}>
