@@ -1,7 +1,6 @@
 import React from 'react'
 import FlatDetailsTab from  '../components/container/flatDetailsTabContainer'
 import { Provider } from 'mobx-react';
-import {toJS} from 'mobx'
 import FlatDetailsRootStore from '../stores/flatDetailsRootStore'
 
 export default class FlatDetails extends React.Component {
@@ -15,16 +14,17 @@ export default class FlatDetails extends React.Component {
         this.flatDetailsRootStore.flatStore.fetchFlat().catch(console.error)
     }
 
-    render() {
-        return (
+  render() {
+    return (
+      <Provider store={this.flatDetailsRootStore}>
         <div style={pageStyle}>
-            <Provider store={this.flatDetailsRootStore}>
-                <FlatDetailsTab/>
-            </Provider>
-        </div>)
-    }
+          <FlatDetailsTab />
+        </div>
+      </Provider>
+    )
+  }
 }
 
 const pageStyle = {
-    padding: '30px'  
+  padding: '30px'
 }

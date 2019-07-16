@@ -1,5 +1,4 @@
 import {action, observable} from 'mobx'
-import axios from 'axios'
 import network from '../util/network'
 import {merge} from 'lodash'
 

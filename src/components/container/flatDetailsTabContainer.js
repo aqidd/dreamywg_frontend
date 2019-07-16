@@ -1,11 +1,11 @@
 import React from 'react'
-import { Tabs } from 'antd';
-import AboutFlat from '../presentation/flat-details/aboutFlat';
-import ResidentList from '../presentation/flat-details/residentList';
-import InterviewDetails from '../presentation/flat-details/interviewDetails';
+import { Tabs } from 'antd'
+import AboutFlat from '../presentation/flat-details/aboutFlat'
+import ResidentList from '../presentation/flat-details/residentList'
+import InterviewContainer from '../container/interview/InterviewContainer'
 import { inject, observer, Provider } from 'mobx-react'
 
-const { TabPane } = Tabs;
+const { TabPane } = Tabs
 
 var FlatDetailsTab = inject("store")(
   observer(({ store }) => {
@@ -22,11 +22,12 @@ var FlatDetailsTab = inject("store")(
           </Provider>
         </TabPane>
         <TabPane tab="Interviews" key="3">
-          <InterviewDetails></InterviewDetails>
+          <Provider store={store}>
+            <InterviewContainer></InterviewContainer>
+          </Provider>
         </TabPane>
       </Tabs>
-    );
-  })
-)
+  );
+}))
 
 export default FlatDetailsTab

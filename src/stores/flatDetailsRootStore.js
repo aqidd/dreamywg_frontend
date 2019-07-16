@@ -1,5 +1,6 @@
 import FlatStore from './flatStore'
 import FlatPresentationStore from './flatPresentationStore'
+import InterviewStore from './interviewStore'
 
 class FlatDetailsRootStore {
     constructor(id) {
@@ -7,6 +8,7 @@ class FlatDetailsRootStore {
         this.flatStore.setId(id)
 
         this.flatPresentationStore = new FlatPresentationStore(this);
+        this.interviewStore = InterviewStore(this)
     }
 }
 
