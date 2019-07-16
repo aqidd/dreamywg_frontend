@@ -7,25 +7,30 @@ class AuthStore {
     password: ''
   }
 
-  @observable response = {}
+  @observable response
 
   constructor() {
-    this.initData()
+    if (!this.response)
+      this.initData()
   }
 
   initData() {
     this.response = {
       success: false,
       completed: false,
-      errorMessage: ''
+      errorMessage: '',
+      type: undefined
     }
   }
 
   setToken = token => {
+    console.log(localStorage.getItem('token'))
     localStorage.setItem('token', token)
+    console.log(localStorage.getItem('token'))
+
   }
 
-  get getToken() {
+  getToken() {
     return localStorage.getItem('token')
   }
 
@@ -37,7 +42,8 @@ class AuthStore {
         this.response = {
           success: true,
           completed: true,
-          errorMessage: ''
+          errorMessage: '',
+          type: response.data.type ? response.data.type: null,
         }
       })
       .catch((error) => {
@@ -58,6 +64,7 @@ class AuthStore {
   }
 
   hasToken = () => {
+    console.log(`user has token: ${localStorage.getItem('token')}`)
     return localStorage.getItem('token') !== null
   }
 }
