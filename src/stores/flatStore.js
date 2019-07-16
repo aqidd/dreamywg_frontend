@@ -1,8 +1,8 @@
 import {action, observable} from 'mobx'
-import axios from 'axios'
 import network from '../util/network'
 
 class FlatStore {
+    @observable id = ''
     @observable flat = null
 
     constructor(rootStore) {
@@ -13,12 +13,19 @@ class FlatStore {
     initData() {
         this.flat = {
             title: 'Some Flat in Sendling',
-            address: ''
+            rooms: [],
+            flatmates: []
         };
     }
 
-    @action async fetchFlat() {
-        
+    @action setId = (id) => {
+        this.id = id;
+    }
+
+    @action fetchFlat = async () => {
+        const response = await network.getFlat(this.id)
+        this.flat = response.data
+        return response.data
     }
 }
 

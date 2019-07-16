@@ -14,6 +14,7 @@ const Api = {
   confirmation: token => axios.get(`${serverUrl}/confirmation/${token}`),
   createFlatofferer: data => axios.post(`${serverUrl}/flatofferers`, data, config),
   createFlatseeker: data => axios.post(`${serverUrl}/flatseekers`, data, config),
+  getFlat: id => axios.get(`${serverUrl}/flats/${id}`),
 }
 
 export default Api

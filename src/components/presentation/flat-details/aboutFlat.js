@@ -51,13 +51,15 @@ const AboutFlat = inject('store')(
             <Row className="flat-description">
               <Col span={24}>
                 <p>
-                Die Wohnung befindet sich drei Gehminuten von der U- und S-Bahnstation am Harras entfernt und liegt – ideal für Medizinstudenten – genau zwischen dem Sendlinger Tor (Medizinische Fakultät Vorklinik) und dem Klinikum Großhadern. Für Studenten an der TU als auch LMU ist die Lage perfekt gelegen und mit der U6 schnell zu erreichen. 
+                  {store.flatStore.flat.longDescription}
                 </p>
               </Col>
             </Row>
           </Col>
           <Col span={12}>
-            <RoomListContainer></RoomListContainer>
+            <Provider store={store}>
+              <RoomListContainer></RoomListContainer>
+            </Provider>
           </Col>
         </Row>
 
