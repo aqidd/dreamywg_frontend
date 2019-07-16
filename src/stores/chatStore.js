@@ -7,9 +7,6 @@ import React from 'react'
 class ChatStore {
 
   @observable chats = {}
-  // @observable chatUnit = {
-  //   messages: []
-  // }
 
   @observable clientId = null
 
