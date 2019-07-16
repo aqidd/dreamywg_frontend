@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const serverUrl = 'http://localhost:4005'
+const socketUrl = 'localhost:8080'
 
 let config = () => {
   return {
@@ -28,7 +29,8 @@ const Api = {
   allusers: () => axios.get(`${serverUrl}/users`),
   initChat: () => axios.post(serverUrl + '/initchat', {}, config()),
   getUserId: () => axios.get(`${serverUrl}/userid`, config()),
-  deleteChatList: () => axios.delete(serverUrl + '/chat')
+  deleteChatList: () => axios.delete(serverUrl + '/chat'),
+  getSocketUrl: () => socketUrl
 }
 
 export default Api

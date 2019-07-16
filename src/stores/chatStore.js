@@ -1,7 +1,6 @@
 import { action, observable } from 'mobx'
 import network from '../util/network'
 import io from 'socket.io-client'
-import React from 'react'
 
 
 class ChatStore {
@@ -18,7 +17,7 @@ class ChatStore {
 
   @action initChatStore = async () => {
     await this.assignUserId()
-    this.socket = io('localhost:8080')
+    this.socket = io(network.getSocketUrl())
     this.socket.on('reply', this.addMessage.bind(this))
     this.socket.on('connect', this.connect.bind(this))
     this.socket.on('disconnect', () => console.log('disconnected'))
