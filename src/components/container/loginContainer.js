@@ -20,7 +20,7 @@ export default class LoginContainer extends Component {
 
   render() {
     if (this.props.store.loginResponse.success) {
-      console.log('successful: ' + this.props.store.loginResponse.type + " " + !this.props.store.loginResponse.type);
+      console.log('successful: ' + this.props.store.loginResponse.success + " " + !this.props.store.loginResponse.type);
       if (this.props.store.loginResponse.type === "SEEKER") {
         return <Redirect to={'/search'}/>;
       } else if (this.props.store.loginResponse.type === "OFFERER") {
