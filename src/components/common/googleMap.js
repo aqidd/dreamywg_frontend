@@ -4,13 +4,10 @@ import GoogleMapReact from 'google-map-react';
 const MarkerComponent = ({ text }) => <div>{text}</div>;
 
 class GoogleMap extends Component {
-  static defaultProps = {
-    center: {
-      lat: 61.95,
-      lng: 100.33
-    },
-    zoom: 11
-  };
+
+  constructor(props) {
+    super(props)
+  }
 
   render() {
     return (

@@ -10,8 +10,8 @@ import RoleSelection from './pages/roleSelection'
 import SearchScreen from './pages/search'
 import Login from './pages/login'
 import store from './stores/authStore'
+import Interview from './pages/interview'
 import FlatDetails from './pages/flatDetails'
-
 
 export default class App extends React.Component {
   constructor(props) {
@@ -56,7 +56,7 @@ export default class App extends React.Component {
         />
         <ProtectedRoute
           exact
-          path="/flat"
+          path="/flat/:id"
           component={FlatDetails}
           isAuth={hasToken()}
         />
@@ -64,6 +64,12 @@ export default class App extends React.Component {
           exact
           path="/search"
           Comp={SearchScreen}
+          isAuth={hasToken()}
+        />
+        <ProtectedRoute
+          exact
+          path="/flat"
+          Comp={FlatDetails}
           isAuth={hasToken()}
         />
       </BrowserRouter>
