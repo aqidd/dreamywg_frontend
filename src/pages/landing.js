@@ -20,7 +20,6 @@ class LandingScreen extends Component {
   onLogin = () => this.props.history.push('/login')
 
   render = () => {
-    this.props.notify('yeye', 'hehe', '/search')
     return (
       <div>
         <Layout>
