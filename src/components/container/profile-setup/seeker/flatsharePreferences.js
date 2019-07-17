@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
-import {Button, Col, DatePicker, Form, Input, InputNumber, Row, Select, Switch} from 'antd'
+import {Button, Col, DatePicker, Form, Input, Row, Select, Switch} from 'antd'
 import Title from '../../../common/title'
 import Container from '../../../common/form/container'
 import WrappedSelection from '../../../common/form/wrappedSelection'
@@ -11,11 +11,17 @@ import {
   activities,
   cleaningSchedule,
   cleanliness,
-  genderRestriction,
-  stores,
   flatshareType,
-  rentType
+  genderRestriction,
+  rentType,
+  stores
 } from "../../../../util/selections";
+import NumberRange from "../../../presentation/profile-setup/flatsharePreferences/numberRange";
+import SwitchGroup from "../../../presentation/profile-setup/FlatDetails/switchGroup";
+import {
+  RegionSelection, TypeOfFlatshareSelection,
+  TypeOfRentSelection
+} from "../../../presentation/profile-setup/flatsharePreferences/commonFields";
 
 const Item = Form.Item;
 const InputGroup = Input.Group;
@@ -48,101 +54,32 @@ class FlatsharePreferences extends Component {
       <Container>
         <Title> Flatshare Preferences </Title>
         <Form layout={'vertical'}>
-
           <Row gutter={24}>
             <Col span={12}>
-              <Item label="Regions">
-                <WrappedSelection
-                  placeHolder="Please select"
-                  type="multiple"
-                  dec={decorator}
-                  objName="preferences.flat.regions"
-                  value={Regions}
-                />
-              </Item>
+              <RegionSelection decorator={decorator}/>
             </Col>
             <Col span={6}>
-              <Item label="Type of rent">
-                <WrappedSelection
-                  placeHolder="Please select"
-                  dec={decorator}
-                  objName="preferences.flat.room.rentType"
-                  value={rentType}
-                />
-              </Item>
+              <TypeOfRentSelection decorator={decorator}/>
             </Col>
             <Col span={6}>
-              <Item label="Type of flatshare">
-                <WrappedSelection
-                  tag="multiple"
-                  placeHolder="Please select"
-                  dec={decorator}
-                  objName="preferences.flat.flatshareType"
-                  value={flatshareType}
-                />
-              </Item>
+              <TypeOfFlatshareSelection decorator={decorator}/>
             </Col>
           </Row>
 
           <Row gutter={24}>
             <Col span={8}>
-              <Item label="Room size in m&sup2;">
-                <InputGroup compact>
-                  <WrappedAnyInput
-                    tag={<InputNumber style={{width: "40%", textAlign: 'center'}}/>}
-                    dec={decorator}
-                    objName="preferences.flat.room.size.from"
-                  />
-                  <Input
-                    style={{
-                      width: "20%",
-                      borderLeft: 0,
-                      pointerEvents: 'none',
-                      backgroundColor: '#fff'
-                    }}
-                    placeholder="-"
-                    disabled
-                  />
-                  <WrappedAnyInput
-                    tag={<InputNumber style={{width: "40%", textAlign: 'center', borderLeft: 0}}/>}
-                    dec={decorator}
-                    objName="preferences.flat.room.size.to"
-                  />
-                </InputGroup>
-              </Item>
+              <NumberRange decorator={decorator} itemLabel="Room size in m&sup2;"
+                           objName={"preferences.flat.room.size"}/>
             </Col>
             <Col span={8}>
-
-              <Item label="Rent in €">
-                <InputGroup compact>
-                  <WrappedAnyInput
-                    tag={<InputNumber style={{width: "40%", textAlign: 'center'}}/>}
-                    dec={decorator}
-                    objName="preferences.flat.room.rent.from"
-                  />
-                  <Input
-                    style={{
-                      width: "20%",
-                      borderLeft: 0,
-                      pointerEvents: 'none',
-                      backgroundColor: '#fff'
-                    }}
-                    placeholder="-"
-                    disabled
-                  />
-                  <WrappedAnyInput
-                    tag={<InputNumber style={{width: "40%", textAlign: 'center', borderLeft: 0}}/>}
-                    dec={decorator}
-                    objName="preferences.flat.room.rent.to"
-                  />
-                </InputGroup>
-              </Item>
+              <NumberRange decorator={decorator} itemLabel={"Rent in €"} objName={"preferences.flat.room.rent"}/>
             </Col>
             <Col span={8}>
               <Item label="Date available">
                 <WrappedAnyInput
                   required
-                  tag={fieldValue("preferences.flat.room.rentType") === "limited" ? <RangePicker/> : <DatePicker style={{width: "100%"}}/>}
+                  tag={fieldValue("preferences.flat.room.rentType") === "limited" ? <RangePicker/> :
+                    <DatePicker style={{width: "100%"}}/>}
                   dec={decorator}
                   objName={fieldValue("preferences.flat.room.rentType") === "limited" ? "preferences.flat.room.dateAvailableRange" : "preferences.flat.room.dateAvailable"}
                 />
@@ -162,58 +99,12 @@ class FlatsharePreferences extends Component {
               </Item>
             </Col>
             <Col span={8}>
-
-              <Item label="Flatmates age">
-                <InputGroup compact>
-                  <WrappedAnyInput
-                    tag={<InputNumber style={{width: "40%", textAlign: 'center'}}/>}
-                    dec={decorator}
-                    objName="preferences.flatmates.age.from"
-                  />
-                  <Input
-                    style={{
-                      width: "20%",
-                      borderLeft: 0,
-                      pointerEvents: 'none',
-                      backgroundColor: '#fff'
-                    }}
-                    placeholder="-"
-                    disabled
-                  />
-                  <WrappedAnyInput
-                    tag={<InputNumber style={{width: "40%", textAlign: 'center', borderLeft: 0}}/>}
-                    dec={decorator}
-                    objName="preferences.flatmates.age.to"
-                  />
-                </InputGroup>
-              </Item>
+              <NumberRange decorator={decorator} itemLabel="Flatmates age" objName={"preferences.flatmates.age."}/>
             </Col>
 
             <Col span={8}>
-              <Item label="Flatmates">
-                <InputGroup compact>
-                  <WrappedAnyInput
-                    tag={<InputNumber style={{width: "40%", textAlign: 'center'}}/>}
-                    dec={decorator}
-                    objName="preferences.flatmates.amount.from"
-                  />
-                  <Input
-                    style={{
-                      width: "20%",
-                      borderLeft: 0,
-                      pointerEvents: 'none',
-                      backgroundColor: '#fff'
-                    }}
-                    placeholder="-"
-                    disabled
-                  />
-                  <WrappedAnyInput
-                    tag={<InputNumber style={{width: "40%", textAlign: 'center', borderLeft: 0}}/>}
-                    dec={decorator}
-                    objName="preferences.flatmates.amount.to"
-                  />
-                </InputGroup>
-              </Item>
+              <NumberRange decorator={decorator} itemLabel="Number of Flatmates"
+                           objName={"preferences.flatmates.amount"}/>
             </Col>
           </Row>
           <hr/>
@@ -248,122 +139,9 @@ class FlatsharePreferences extends Component {
           <br/>
           <h2>Flat properties and Equipment</h2>
 
-          <Row>
-            <Col span={8}>
-              <Item label="Furnished">
-                <WrappedAnyInput
-                  tag={<Switch defaultChecked={false}/>}
-                  dec={decorator}
-                  objName="preferences.flat.room.furnished"
-                />
-              </Item>
-            </Col>
-            <Col span={8}>
-              <Item label="Parking lot">
-                <WrappedAnyInput
-                  tag={<Switch defaultChecked={false}/>}
-                  dec={decorator}
-                  objName="preferences.flatEquipment.parkingLot"
-                />
-              </Item>
-            </Col>
-            <Col span={8}>
-              <Item label="Separate living room">
-                <WrappedAnyInput
-                  tag={<Switch defaultChecked={false}/>}
-                  dec={decorator}
-                  objName="preferences.flatEquipment.livingroom"
-                />
-              </Item>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={8}>
-              <Item label="Shower">
-                <WrappedAnyInput
-                  tag={<Switch defaultChecked={false}/>}
-                  dec={decorator}
-                  objName="preferences.flatEquipment.shower"
-                />
-              </Item>
-            </Col>
-            <Col span={8}>
-              <Item label="Bathtub">
-                <WrappedAnyInput
-                  tag={<Switch defaultChecked={false}/>}
-                  dec={decorator}
-                  objName="preferences.flatEquipment.bathtub"
-                />
-              </Item>
-            </Col>
-            <Col span={8}>
-              <Item label="Kitchen">
-                <WrappedAnyInput
-                  tag={<Switch defaultChecked={false}/>}
-                  dec={decorator}
-                  objName="preferences.flatEquipment.kitchen"
-                />
-              </Item>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={8}>
-              <Item label="Internet">
-                <WrappedAnyInput
-                  tag={<Switch defaultChecked={false}/>}
-                  dec={decorator}
-                  objName="preferences.flatEquipment.internet"
-                />
-              </Item>
-            </Col>
-            <Col span={8}>
-              <Item label="Balcony">
-                <WrappedAnyInput
-                  tag={<Switch defaultChecked={false}/>}
-                  dec={decorator}
-                  objName="preferences.flatEquipment.balcony"
-                />
-              </Item>
-            </Col>
-            <Col span={8}>
-              <Item label="Terrace">
-                <WrappedAnyInput
-                  tag={<Switch defaultChecked={false}/>}
-                  dec={decorator}
-                  objName="preferences.flatEquipment.terrace"
-                />
-              </Item>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={8}>
-              <Item label="Garden">
-                <WrappedAnyInput
-                  tag={<Switch defaultChecked={false}/>}
-                  dec={decorator}
-                  objName="preferences.flatEquipment.garden"
-                />
-              </Item>
-            </Col>
-            <Col span={8}>
-              <Item label="Washing machine">
-                <WrappedAnyInput
-                  tag={<Switch defaultChecked={false}/>}
-                  dec={decorator}
-                  objName="preferences.flatEquipment.washingMachine"
-                />
-              </Item>
-            </Col>
-            <Col span={8}>
-              <Item label="Dishwasher">
-                <WrappedAnyInput
-                  tag={<Switch defaultChecked={false}/>}
-                  dec={decorator}
-                  objName="preferences.flatEquipment.dishwasher"
-                />
-              </Item>
-            </Col>
-          </Row>
+          <SwitchGroup decorator={decorator} basePath={'preferences.flatEquipment'}
+                       funisheBasePath={'preferences.flat.room'}/>
+
           <hr/>
           <br/>
           <h2>Flatshare living</h2>

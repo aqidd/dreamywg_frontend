@@ -1,7 +1,7 @@
 import React from 'react'
 import {Modal} from "antd";
 
-const WrappendModal = (message) => {
+const WrappedModal = (message) => {
   Modal.info({
     content: (
       <div>
@@ -11,4 +11,4 @@ const WrappendModal = (message) => {
     onOk() {}
   })
 }
-export default WrappendModal
+export default WrappedModal

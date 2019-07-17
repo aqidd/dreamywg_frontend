@@ -55,14 +55,14 @@ class Store {
     if (!this.isMax())
       this.currentSteps += 1;
     else {
-      if (this.isSeeker) {
+      if (this.isSeeker)  {
         this.data.type = "SEEKER";
         if (this.images.length > 0)
           this.data.personalInformation.image = this.images[0];
       } else {
         this.data.type = "OFFERER";
         if (this.images.length > 0)
-          this.data.rooms[0].images = this.images[0];
+          this.data.rooms[0].images = this.images;
       }
       try {
         (this.isSeeker) ? await Api.createFlatseeker(this.data) : await Api.createFlatofferer(this.data);

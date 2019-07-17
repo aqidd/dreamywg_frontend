@@ -2,9 +2,12 @@ import React, {Component} from 'react'
 import 'antd/dist/antd.css'
 import {Provider} from 'mobx-react'
 import ConfirmationContent from "../components/container/confirmation/confirmationContent";
-import BaseLayout from "../components/presentation/baseLayout";
 import ConfirmationStore from "../stores/confirmationStore";
 import {withRouter} from 'react-router';
+import {Layout} from "antd";
+import DefaultHeader from "../components/common/defaultHeader";
+
+const theme = "light"
 
 
 export default withRouter(
@@ -19,9 +22,10 @@ export default withRouter(
 
       return (
         <Provider store={this.store}>
-          <BaseLayout>
+          <Layout>
+            <DefaultHeader theme={theme}/>
             <ConfirmationContent token={token}/>
-          </BaseLayout>
+          </Layout>
         </Provider>
       )
     }
