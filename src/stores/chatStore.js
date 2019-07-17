@@ -11,12 +11,18 @@ class ChatStore {
 
   @observable activeChatId
 
-  constructor() {
-    this.initChatStore()
+  constructor(id) {
+    this.initChatStore(id)
   }
 
-  @action initChatStore = async () => {
+  @action initChatStore = async (id) => {
     await this.assignUserId()
+
+    if (id) {
+      const data = (await network.createChat(id)).data
+      this.assignChatList(data.chats)
+      this.activeChatId = data.userId
+    }
     this.socket = io(network.getSocketUrl())
     this.socket.on('reply', this.addMessage.bind(this))
     this.socket.on('connect', this.connect.bind(this))
@@ -27,14 +33,12 @@ class ChatStore {
     this.socket.emit('storeClientInfo', { userId: this.clientId })
   }
 
-
   @action addMessage = (data) => {
-    console.log(JSON.stringify(data))
     const senderId = data.senderId.toString()
     this.chats[senderId].messages = [...this.chats[senderId].messages, data]
   }
 
-  get currentChat(){
+  get currentChat() {
     return this.chats[this.activeChatId]
   }
 
@@ -51,11 +55,14 @@ class ChatStore {
     this.socket.emit('sendMessage', message)
   }
 
+  @action assignChatList = (chats) => {
+    this.activeChatId = Object.keys(chats)[0]
+    this.chats = chats
+  }
+
   @action retrieveChatList = async () => {
     try {
-      const chats = (await network.chatList()).data
-      this.activeChatId = Object.keys(chats)[0]
-      this.chats = chats
+      this.assignChatList((await network.chatList()).data)
     } catch (err) {
       console.log(`Error in retrieving chatlist: ${err}`)
     }
@@ -73,6 +80,6 @@ class ChatStore {
   }
 }
 
-const Store = () => new ChatStore()
+const Store = (id) => new ChatStore(id)
 
 export default Store

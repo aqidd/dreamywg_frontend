@@ -10,7 +10,7 @@ import { Provider } from 'mobx-react'
 export default class ChatPage extends Component {
   constructor(props) {
     super(props)
-    this.store = Store()
+    this.store = Store(this.props.match.params.id)
   }
 
   render() {

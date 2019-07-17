@@ -33,7 +33,7 @@ export default class StepsContentContainer extends Component {
       if (this.props.store.isSeeker) {
         return <Redirect to={'/search'}/>
       } else {
-        //TODO: Aqid put your redirect path here
+        //TODO: Aqid put your redirect path here: -> retrieve flat ID and view flat offerview
         return (<Redirect to={'/'}/>)
       }
     }

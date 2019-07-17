@@ -25,13 +25,13 @@ export default class ChatContent extends Component {
             <ConversationSide 
               chat={this.props.store.currentChat}
               clientId={this.props.store.clientId}
-              onSend={(msg) => this.props.store.sendMessage(msg)}/>
+              onSend={(msg) => {this.props.store.sendMessage(msg); this.forceUpdate() }}/>
           </Col>
           <Col span={8} pull={16}>
             <ConversationList
               chat={this.props.store.chats}
               clientId={this.props.store.clientId}
-              onChange={key => this.props.store.updateActiveChat(key)}
+              onChange={key => {this.props.store.updateActiveChat(key);}}
             />
           </Col>
         </Row>

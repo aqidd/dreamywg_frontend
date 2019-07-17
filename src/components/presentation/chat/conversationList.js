@@ -44,7 +44,7 @@ export default class ConversationList extends Component {
                 const length = element.messages.length
                 return (
                   <ChatListItem
-                    onClick={key => this.props.onchange(key)}
+                    onClick={() => this.props.onChange(key)}
                     onMouseEnter={this.toggleHover.bind(this)}
                     onMouseLeave={this.toggleHover.bind(this)}
                   >
@@ -72,7 +72,7 @@ export default class ConversationList extends Component {
                       <Subtitle ellipsis>
                         {length === 0
                           ? ''
-                          : element.messages[length - 1].content.slice(0, 10) //todo: if latest is last
+                          : element.messages[length - 1].content.slice(0, 10)
                         }
                       </Subtitle>
                     </Column>
