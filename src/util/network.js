@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const serverUrl = 'http://localhost:4005'
-const socketUrl = 'localhost:8080'
+export const serverUrl = 'http://localhost:4005'
+export const socketUrl = 'localhost:8080'
 
 let config = () => {
   return {
@@ -14,7 +14,6 @@ let config = () => {
 const Api = {
   login: credentials => axios.post(`${serverUrl}/users/login`, credentials, config()),
   register: userData => axios.post(`${serverUrl}/users`, userData, config()),
-  registerWithSocialMedia: userData => axios.patch(`${serverUrl}/users/${userData._id}`, userData, config),
   confirmation: token => axios.get(`${serverUrl}/confirmation/${token}`),
   chatList: () => axios.get(serverUrl + '/chat/', config()), //retrieve chat list
   chatUnit: (id) => axios.get(serverUrl + '/chatunit', {
@@ -33,8 +32,6 @@ const Api = {
   createFlatofferer: data => axios.post(`${serverUrl}/flatofferers`, data, config),
   createFlatseeker: data => axios.post(`${serverUrl}/flatseekers`, data, config),
   getFlat: id => axios.get(`${serverUrl}/flats/${id}`),
-  createFlatofferer: data => axios.post(`${serverUrl}/flatofferers`, data, config()),
-  createFlatseeker: data => axios.post(`${serverUrl}/flatseekers`, data, config()),
   loadSearchProperties: () => axios.get(`${serverUrl}/flatseekers/loadSearchProperties`, config()),
   flatseekerSearch: filters => axios.post(`${serverUrl}/flatseekers/search`, filters, config()), //todo: change to get!
   allusers: () => axios.get(`${serverUrl}/users`),
