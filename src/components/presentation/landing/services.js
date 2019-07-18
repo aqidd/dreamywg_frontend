@@ -23,32 +23,40 @@ const dataService = [
   }
 ]
 
-const Services = () => (
-  <Container>
-    <Row>
-      <Row>
-        <TitleContent
-          subtitle="Our Services"
-          title=" Featured Service that We Provide"
-        />
-      </Row>
-      <CardRow
-        type="flex"
-        justify="center"
-        gutter={16}
-        style={{ marginTop: '2vh' }}
-      >
-        {dataService.map(data => (
-          <ServiceCard
-            title={data.title}
-            icon={data.icon}
-            subtitle={data.content}
-          />
-        ))}
-      </CardRow>
-    </Row>
-  </Container>
-)
+class Services extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render = () => {
+    return (
+      <Container>
+        <Row>
+          <Row>
+            <TitleContent
+              subtitle="Our Services"
+              title=" Featured Service that We Provide"
+            />
+          </Row>
+          <CardRow
+            type="flex"
+            justify="center"
+            gutter={16}
+            style={{ marginTop: '2vh' }}
+          >
+            {dataService.map(data => (
+              <ServiceCard
+                title={data.title}
+                icon={data.icon}
+                subtitle={data.content}
+              />
+            ))}
+          </CardRow>
+        </Row>
+      </Container>
+    )
+  }
+}
 
 const ServiceCard = ({ title, subtitle, icon }) => (
   <Col span={5}>
