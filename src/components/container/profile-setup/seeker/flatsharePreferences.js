@@ -89,7 +89,7 @@ class FlatsharePreferences extends Component {
 
           <Row gutter={24}>
             <Col span={8}>
-              <Item label="Gender">
+              <Item label="Gender restrictions">
                 <WrappedSelection
                   placeHolder="Please select"
                   dec={decorator}

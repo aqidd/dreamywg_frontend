@@ -1,9 +1,11 @@
-import {action, observable} from 'mobx'
-import axios from 'axios'
+import {action, observable, toJS} from 'mobx'
 import network from '../util/network'
+import {convertAddressToCoordinate} from '../util/location'
 
 class FlatStore {
+    @observable id = ''
     @observable flat = null
+    @observable flatCoordinate = {}
 
     constructor(rootStore) {
         this.rootStore = rootStore
@@ -13,12 +15,26 @@ class FlatStore {
     initData() {
         this.flat = {
             title: 'Some Flat in Sendling',
-            address: ''
+            rooms: [],
+            flatmates: [],
+            stores: [],
+            stations: [],
+            flatEquipment: {}
         };
     }
 
-    @action async fetchFlat() {
-        
+    @action setId = (id) => {
+        this.id = id;
+    }
+
+    @action fetchFlat = async () => {
+        const response = await network.getFlat(this.id)
+        this.flat = response.data
+
+        // TODO (Q) configure geocoding with gmaps or other provider
+        this.flatCoordinate = await convertAddressToCoordinate(`${this.flat.region} ${this.flat.street}, ${this.flat.houseNr}`)
+        console.log(toJS(this.flatCoordinate))
+        return response.data
     }
 }
 
