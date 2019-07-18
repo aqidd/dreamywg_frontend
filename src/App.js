@@ -17,7 +17,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    const {hasToken} = store()
+    const {hasToken} = store();
     return (
       <BrowserRouter>
         <Route exact path="/" component={LandingScreen}/>
@@ -74,4 +74,4 @@ const ProtectedRoute = ({isAuth, Comp, ...others}) => (
     {...others}
     render={props => (isAuth ? <Comp {...props} /> : <Redirect to="/login"/>)}
   />
-)
+);

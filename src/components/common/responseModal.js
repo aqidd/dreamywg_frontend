@@ -14,7 +14,7 @@ export default class ResponseModal extends Component {
             onOk={() => this.props.hideModal()}
             >
                 <div>
-                    {this.props.response}
+                    {this.props.loginResponse}
                 </div>
             </Modal>
         )

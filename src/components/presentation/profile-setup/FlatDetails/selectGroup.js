@@ -22,11 +22,11 @@ const SelectGroup = ({decorator, fieldValue}) => (
         </Item>
       </Col>
       <Col span={12}>
-        <Item label="Gender restrictions">
+        <Item label="Gender restriction">
           <WrappedSelection
             placeHolder="Please select"
             dec={decorator}
-            objName="genderRestrictions"
+            objName="genderRestriction"
             value={genderRestriction}
           />
         </Item>

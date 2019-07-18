@@ -6,7 +6,7 @@ import ConfirmationStore from "../stores/confirmationStore";
 import {withRouter} from 'react-router';
 import BaseLayout from '../components/presentation/baseLayout';
 
-const theme = "light"
+const theme = "light";
 
 
 export default withRouter(
