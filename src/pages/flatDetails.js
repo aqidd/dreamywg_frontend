@@ -2,6 +2,7 @@ import React from 'react'
 import FlatDetailsTab from  '../components/container/flatDetailsTabContainer'
 import { Provider } from 'mobx-react';
 import FlatDetailsRootStore from '../stores/flatDetailsRootStore'
+import MainLayout from '../components/presentation/mainLayout';
 
 export default class FlatDetails extends React.Component {
     constructor(props) {
@@ -16,11 +17,13 @@ export default class FlatDetails extends React.Component {
 
   render() {
     return (
-      <Provider store={this.flatDetailsRootStore}>
-        <div style={pageStyle}>
-          <FlatDetailsTab />
-        </div>
-      </Provider>
+      <MainLayout>
+        <Provider store={this.flatDetailsRootStore}>
+          <div style={pageStyle}>
+            <FlatDetailsTab />
+          </div>
+        </Provider>
+      </MainLayout>
     )
   }
 }
