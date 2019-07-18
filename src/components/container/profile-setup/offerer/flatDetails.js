@@ -79,6 +79,8 @@ class FlatDetails extends Component {
                 this.forceUpdate()
               }}
               limit={10}
+              onCancel={console.log}
+              beforeUpload={console.log}
             />
           </Item>
           <Row>
