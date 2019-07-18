@@ -19,17 +19,17 @@ export default class LoginContainer extends Component {
   };
 
   render() {
-    if (this.props.store.response.success) {
-      console.log('successful: ' + this.props.store.response.type + " " + !this.props.store.response.type);
-      if (this.props.store.response.type === "SEEKER") {
+    if (this.props.store.loginResponse.success) {
+      console.log('successful: ' + this.props.store.loginResponse.success + " " + !this.props.store.loginResponse.type);
+      if (this.props.store.loginResponse.type === "SEEKER") {
         return <Redirect to={'/search'}/>;
-      } else if (this.props.store.response.type === "OFFERER") {
+      } else if (this.props.store.loginResponse.type === "OFFERER") {
         return <Redirect to={'/'}/>; // TODO: AQID CHANGE HERE!
       } else {
         return <Redirect to={'/roleSelection'}/>;
       }
-    } else if (this.props.store.response.completed && !this.props.store.response.success) {
-      WrappedModal(this.props.store.response.errorMessage)
+    } else if (this.props.store.loginResponse.completed && !this.props.store.loginResponse.success) {
+      WrappedModal(this.props.store.loginResponse.errorMessage)
     } else if (this.props.store.hasToken()) {
       return <Redirect to={'/'}/>;
     }

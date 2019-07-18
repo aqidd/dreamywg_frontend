@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {inject, observer} from 'mobx-react'
-import {Form, Input, Row} from 'antd'
+import React, { Component } from 'react'
+import { inject, observer } from 'mobx-react'
+import { Col, Form, Input, Row, Select } from 'antd'
 import Title from '../../../common/title'
 import ValueGroup from '../../../presentation/profile-setup/FlatDetails/valueGroup'
 import ControlButton from '../../../common/form/controlButtons'
@@ -9,11 +9,14 @@ import SelectGroup from '../../../presentation/profile-setup/FlatDetails/selectG
 import LocationGroup from '../../../presentation/profile-setup/FlatDetails/locationGroup'
 import Container from '../../../common/form/container'
 import PictureUpload from '../../../common/form/pictureUpload'
-import WrappedAnyInput from "../../../common/form/wrappedAnyInput";
-import WrappedInput from "../../../common/form/wrappedInput";
+import WrappedAnyInput from '../../../common/form/wrappedAnyInput'
+import WrappedInput from '../../../common/form/wrappedInput'
+import WrappedSelection from '../../../common/form/wrappedSelection'
+import { stores } from '../../../../util/selections'
 
-const {Item} = Form
-const {TextArea} = Input
+const { Item } = Form
+const { TextArea } = Input
+const { Option } = Select
 
 @inject('store')
 @observer
@@ -40,14 +43,14 @@ class FlatDetails extends Component {
 
 
   render() {
-    const {getFieldDecorator, getFieldValue} = this.props.form
+    const { getFieldDecorator, getFieldValue } = this.props.form
     const {
       images,
       imagePreview,
       setImages,
       toggleImagePreview,
-      onPreviewCancel,
-    } = this.props.store.profileSetupStepStore
+      onPreviewCancel
+    } = this.props.store
     return (
       <Container>
         <Title>Your Flat details</Title>
@@ -55,6 +58,37 @@ class FlatDetails extends Component {
           <LocationGroup decorator={getFieldDecorator}/>
           <ValueGroup decorator={getFieldDecorator}/>
           <SelectGroup decorator={getFieldDecorator} fieldValue={getFieldValue}/>
+          <Row gutter={16}>
+            <Col span={12}>
+              <Item label="Nearby station">
+                {
+                  getFieldDecorator('stations')(
+                    <Select
+                      mode="multiple"
+                      placeholder="Please select"
+                      style={{ width: '100%' }}
+                      filterOption={false}
+                      onSearch={this.props.store.search}
+                    >
+                      {this.props.store.filteredStations.map(d => (
+                        <Option key={d}>{d}</Option>
+                      ))}
+                    </Select>)
+                }
+              </Item>
+            </Col>
+            <Col span={12}>
+              <Item label="Nearby store">
+                <WrappedSelection
+                  placeHolder="Please select"
+                  type="tags"
+                  dec={getFieldDecorator}
+                  objName="stores"
+                  value={stores}
+                />
+              </Item>
+            </Col>
+          </Row>
           <hr/>
           <br/>
           <h2>Flat properties and Equipment</h2>
@@ -94,7 +128,7 @@ class FlatDetails extends Component {
               <WrappedAnyInput
                 tag={<TextArea
                   placeholder="Please describe your flatshare in one sentence"
-                  autosize={{minRows: 2, maxRows: 2}}
+                  autosize={{ minRows: 2, maxRows: 2 }}
                 />}
                 dec={getFieldDecorator}
                 objName="shortDescription"

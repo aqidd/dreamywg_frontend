@@ -2,6 +2,7 @@ import React from 'react'
 import { List, Avatar, Button, Skeleton, Icon, Carousel } from 'antd'
 import { inject, observer } from 'mobx-react'
 import { toJS } from 'mobx'
+import { Link } from 'react-router-dom'
 
 const RoomListContainer = inject('store')(
   observer(({ store }) => {
@@ -14,16 +15,18 @@ const RoomListContainer = inject('store')(
           renderItem={room => (
             <List.Item
               actions={[
-                <Button type="primary" icon="message">
-                  Interested
-                </Button>
+                <Link to={`/chat/${store.flatStore.flat._id}`}>
+                  <Button type="primary" icon="message">
+                    Interested
+                  </Button>
+                </Link>
               ]}
             >
               <List.Item.Meta
-                title={`Room Price : ${room.rent}EUR`}
+                title={`Room Price : ${room.rent} EUR`}
                 description={`Available during : ${new Date(
                   room.dateAvailableRange[0]
-                ).toDateString()} -
+                ).toDateString()} - 
                     ${new Date(room.dateAvailableRange[1]).toDateString()}`}
               />
               <p>

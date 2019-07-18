@@ -5,6 +5,7 @@
   "dependencies": {
     "antd": "^3.18.2",
     "axios": "^0.19.0",
+    "env-cmd": "^9.0.3",
     "firebase": "^6.0.2",
     "google-map-react": "^1.1.4",
     "lodash": "^4.17.11",
@@ -18,7 +19,9 @@
     "react-scripts": "3.0.1",
     "styled-components": "^4.2.0",
     "styled-theming": "^2.2.0",
-    "sweetalert2": "^8.13.6"
+    "sweetalert2": "^8.13.6",
+    "@livechat/ui-kit": "^0.4.0-5",
+    "socket.io-client": "^2.2.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.4.4",

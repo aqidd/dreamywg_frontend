@@ -16,24 +16,24 @@ export default class StepsContentContainer extends Component {
   }
 
   handleClick = (type, result) => {
-    this.props.store.profileSetupStepStore.updateData(result)
+    this.props.store.updateData(result)
     type === 'Next'
-      ? this.props.store.profileSetupStepStore.nextStep()
-      : this.props.store.profileSetupStepStore.prevStep()
+      ? this.props.store.nextStep()
+      : this.props.store.prevStep()
     this.forceUpdate()
   }
 
   render = () => {
 
-    const {currentSteps} = this.props.store.profileSetupStepStore
+    const {currentSteps} = this.props.store
     const {data} = this.props
     const Content = data[currentSteps].content
 
-    if (this.props.store.profileSetupStepStore.status) {
-      if (this.props.store.profileSetupStepStore.isSeeker) {
+    if (this.props.store.status) {
+      if (this.props.store.isSeeker) {
         return <Redirect to={'/search'}/>
       } else {
-        //TODO: Aqid put your redirect path here
+        //TODO: Aqid put your redirect path here: -> retrieve flat ID and view flat offerview
         return (<Redirect to={'/'}/>)
       }
     }
