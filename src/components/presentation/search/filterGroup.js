@@ -1,18 +1,18 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
-import {Button, Col, DatePicker, Form, Row, Switch} from 'antd'
+import { Button, Col, DatePicker, Form, Row, Switch } from 'antd'
 import WrappedAnyInput from '../../common/form/wrappedAnyInput'
-import {inject, observer} from 'mobx-react'
-import NumberRange from "../profile-setup/flatsharePreferences/numberRange";
+import { inject, observer } from 'mobx-react'
+import NumberRange from '../profile-setup/flatsharePreferences/numberRange'
 import moment from 'moment'
 import {
   RegionSelection,
   TypeOfFlatshareSelection,
   TypeOfRentSelection
-} from "../profile-setup/flatsharePreferences/commonFields";
+} from '../profile-setup/flatsharePreferences/commonFields'
 
-const {Item} = Form
-const {RangePicker} = DatePicker
+const { Item } = Form
+const { RangePicker } = DatePicker
 
 @inject('store')
 @observer
@@ -29,9 +29,12 @@ class FilterGroup extends Component {
   }
 
   componentDidMount = async () => {
-    const {setFieldsValue} = this.props.form
+    const { setFieldsValue } = this.props.form
     await this.props.store.initData()
     const filterValues = this.props.store.filterValues
+
+    console.log([moment(filterValues.preferences.flat.room.dateAvailableRange[0]).format('YYYY-MM-DD'), moment(filterValues.preferences.flat.room.dateAvailableRange[0]).format('YYYY-MM-DD')])
+
     setFieldsValue({
       preferences: {
         flat: {
@@ -39,33 +42,30 @@ class FilterGroup extends Component {
           room: {
             size: {
               from: filterValues.preferences.flat.room.size.from,
-              to: filterValues.preferences.flat.room.size.to,
+              to: filterValues.preferences.flat.room.size.to
             },
             rent: {
               from: filterValues.preferences.flat.room.rent.from,
-              to: filterValues.preferences.flat.room.rent.to,
+              to: filterValues.preferences.flat.room.rent.to
             },
-            furnished: filterValues.preferences.flat.room.furnished,
             rentType: filterValues.preferences.flat.room.rentType,
             dateAvailable: moment(filterValues.preferences.flat.room.dateAvailable),
-            dateAvailableRange:
-              (filterValues.preferences.flat.room.dateAvailableRange !== undefined)
-                ? filterValues.preferences.flat.room.dateAvailableRange
-                : filterValues.preferences.flat.room.dateAvailableRange,
+            dateAvailableRange: [(moment(filterValues.preferences.flat.room.dateAvailableRange[0]).format('YYYY-MM-DD')), (moment(filterValues.preferences.flat.room.dateAvailableRange[1]).format('YYYY-MM-DD'))]
           },
-          flatshareType: filterValues.preferences.flat.flatshareType,
+          flatshareType: filterValues.preferences.flat.flatshareType
 
         },
         flatEquipment: {
-          balcony: filterValues.preferences.flatEquipment.balcony
-        },
-        smokers: filterValues.preferences.smokers,
-        pets: filterValues.preferences.pets
+          balcony: filterValues.preferences.flatEquipment.balcony,
+          washingMachine: filterValues.preferences.flatEquipment.washingMachine,
+          dishwasher: filterValues.preferences.flatEquipment.dishwasher,
+          parkingLot: filterValues.preferences.flatEquipment.parkingLot
+        }
       }
     })
   }
   render = () => {
-    const {getFieldDecorator, getFieldValue} = this.props.form
+    const { getFieldDecorator, getFieldValue } = this.props.form
     return (
       <Border>
         <Container>
@@ -76,11 +76,11 @@ class FilterGroup extends Component {
               <Row gutter={16}>
                 <Col span={12}>
                   <NumberRange decorator={getFieldDecorator} itemLabel="Room size in m&sup2;"
-                               objName={"preferences.flat.room.size"}/>
+                               objName={'preferences.flat.room.size'}/>
                 </Col>
                 <Col span={12}>
-                  <NumberRange decorator={getFieldDecorator} itemLabel={"Rent in €"}
-                               objName={"preferences.flat.room.rent"}/>
+                  <NumberRange decorator={getFieldDecorator} itemLabel={'Rent in €'}
+                               objName={'preferences.flat.room.rent'}/>
                 </Col>
               </Row>
               <Row gutter={16}>
@@ -93,21 +93,21 @@ class FilterGroup extends Component {
               </Row>
               <Item label="Date available">
                 <WrappedAnyInput
-                  tag={getFieldValue("preferences.flat.room.rentType") === "limited" ?
+                  tag={getFieldValue('preferences.flat.room.rentType') === 'limited' ?
                     <RangePicker/> :
-                    <DatePicker style={{width: "100%"}}/>}
+                    <DatePicker style={{ width: '100%' }}/>}
                   dec={getFieldDecorator}
-                  objName={getFieldValue("preferences.flat.room.rentType") === "limited" ? "preferences.flat.room.dateAvailableRange" : "preferences.flat.room.dateAvailable"}
+                  objName={getFieldValue('preferences.flat.room.rentType') === 'limited' ? 'preferences.flat.room.dateAvailableRange' : 'preferences.flat.room.dateAvailable'}
                 />
               </Item>
               <Row>
                 <Col span={12}>
-                  <Item label="Furnished">
+                  <Item label="Parking lot">
                     <WrappedAnyInput
                       tag={<Switch defaultChecked={false}/>}
-                        // defaultChecked={this.props.store.filterValues.preferences.flat.room.furnished}/>}
+                      // defaultChecked={this.props.store.filterValues.preferences.flatEquipment.parkingLot}/>}
                       dec={getFieldDecorator}
-                      objName="preferences.flat.room.furnished"
+                      objName="preferences.flatEquipment.parkingLot"
                     />
                   </Item>
                 </Col>
@@ -115,7 +115,7 @@ class FilterGroup extends Component {
                   <Item label="Balcony">
                     <WrappedAnyInput
                       tag={<Switch defaultChecked={false}/>}
-                        // defaultChecked={this.props.store.filterValues.preferences.flatEquipment.balcony}/>}
+                      // defaultChecked={this.props.store.filterValues.preferences.flatEquipment.balcony}/>}
                       dec={getFieldDecorator}
                       objName="preferences.flatEquipment.balcony"
                     />
@@ -124,22 +124,22 @@ class FilterGroup extends Component {
               </Row>
               <Row>
                 <Col span={12}>
-                  <Item label="Smoke allowed">
+                  <Item label="Dishwasher">
                     <WrappedAnyInput
                       tag={<Switch defaultChecked={false}/>}
-                      // defaultChecked={this.props.store.filterValues.preferences.smokers}/>}
+                      // defaultChecked={this.props.store.filterValues.preferences.flatEquipment.dishwasher}/>}
                       dec={getFieldDecorator}
-                      objName="preferences.smokers"
+                      objName="preferences.flatEquipment.dishwasher"
                     />
                   </Item>
                 </Col>
                 <Col span={12}>
-                  <Item label="Pet-allowed">
+                  <Item label="Washing machine">
                     <WrappedAnyInput
                       tag={<Switch defaultChecked={false}/>}
-                        // defaultChecked={this.props.store.filterValues.preferences.pets}/>}
+                      // defaultChecked={this.props.store.filterValues.preferences.flatEquipment.washingMachine}/>}
                       dec={getFieldDecorator}
-                      objName="preferences.pets"
+                      objName="preferences.flatEquipment.washingMachine"
                     />
                   </Item>
                 </Col>

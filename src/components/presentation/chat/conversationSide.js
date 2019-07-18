@@ -3,6 +3,7 @@ import { Card, Input } from 'antd'
 import styled from 'styled-components'
 import { Message, MessageGroup, MessageList, MessageText, ThemeProvider } from '@livechat/ui-kit'
 import moment from 'moment'
+import { toJS } from 'mobx'
 
 const { Search } = Input
 

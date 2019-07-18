@@ -50,8 +50,8 @@ export default class ConversationList extends Component {
                   >
                     <Avatar
                       letter={(element.user1.id === clientId
-                        ? element.user1
-                        : element.user2
+                        ? element.user2
+                        : element.user1
                       ).fullName.slice(0, 1)}
                     />
                     <Column fill="true">

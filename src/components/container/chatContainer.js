@@ -5,6 +5,7 @@ import theme from 'styled-theming'
 import { Card, Col, Layout, Row } from 'antd'
 import ConversationList from '../presentation/chat/conversationList'
 import ConversationSide from '../presentation/chat/conversationSide'
+import { toJS } from 'mobx'
 
 @inject('store')
 @observer
@@ -18,6 +19,7 @@ export default class ChatContent extends Component {
   }
 
   render() {
+    console.log(JSON.stringify(toJS(this.props.store.chats)))
     const chat = (
       <div>
         <Row>

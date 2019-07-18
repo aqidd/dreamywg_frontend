@@ -1,4 +1,4 @@
-import { action, observable } from 'mobx'
+import { action, observable, toJS } from 'mobx'
 import network from '../util/network'
 import io from 'socket.io-client'
 
