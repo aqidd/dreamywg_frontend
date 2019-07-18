@@ -31,6 +31,7 @@ export default class InterviewContainer extends Component {
     })
   }
 
+
   getAllPastTimeslots = () => {
     this.props.store.interviewStore.fetchPastTimeslots().then(response => {
       // do something here

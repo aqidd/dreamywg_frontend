@@ -6,6 +6,7 @@ import ProfileSetupSeeker from './pages/profileSetupSeeker'
 import Register from './pages/register'
 import ConfirmationScreen from './pages/confirmation'
 import RoleSelection from './pages/roleSelection'
+import Schedule from './pages/schedule'
 import SearchScreen from './pages/search'
 import Login from './pages/login'
 import store from './stores/authStore'
@@ -65,6 +66,14 @@ export default class App extends React.Component {
           Comp={FlatDetails}
           isAuth={hasToken()}
         />
+
+        <ProtectedRoute
+          exact
+          path="/schedule/:id"
+          component={Schedule}
+          isAuth={hasToken()}
+        />
+
       </BrowserRouter>
     )
   }
