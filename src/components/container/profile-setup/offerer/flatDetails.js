@@ -12,8 +12,8 @@ import PictureUpload from '../../../common/form/pictureUpload'
 import WrappedAnyInput from "../../../common/form/wrappedAnyInput";
 import WrappedInput from "../../../common/form/wrappedInput";
 
-const {Item} = Form
-const {TextArea} = Input
+const {Item} = Form;
+const {TextArea} = Input;
 
 @inject('store')
 @observer
@@ -23,7 +23,7 @@ class FlatDetails extends Component {
   }
 
   handleResult = (type, result) => {
-    result.preventDefault()
+    result.preventDefault();
     this.props.form.validateFields((error, values) => {
       error && type != 'Back'
         ? this.displayError(error)
@@ -31,23 +31,23 @@ class FlatDetails extends Component {
         ? this.props.onNext(values)
         : this.props.onBack(values)
     })
-  }
+  };
 
   displayError = obj => {
-    const errorValue = Object.keys(obj).reduce((a, b) => a + ' ' + b)
+    const errorValue = Object.keys(obj).reduce((a, b) => a + ' ' + b);
     alert('Please complete the following field : ' + errorValue)
-  }
+  };
 
 
   render() {
-    const {getFieldDecorator, getFieldValue} = this.props.form
+    const {getFieldDecorator, getFieldValue} = this.props.form;
     const {
       images,
       imagePreview,
       setImages,
       toggleImagePreview,
       onPreviewCancel,
-    } = this.props.store.profileSetupStepStore
+    } = this.props.store;
     return (
       <Container>
         <Title>Your Flat details</Title>
@@ -65,17 +65,17 @@ class FlatDetails extends Component {
           <Item label="Images">
             <PictureUpload
               onCancel={() => {
-                onPreviewCancel()
+                onPreviewCancel();
                 this.forceUpdate()
               }}
               fileList={images}
               preview={imagePreview}
               handleChange={data => {
-                setImages(data)
+                setImages(data);
                 this.forceUpdate()
               }}
               handlePreview={file => {
-                toggleImagePreview(file)
+                toggleImagePreview(file);
                 this.forceUpdate()
               }}
               limit={10}

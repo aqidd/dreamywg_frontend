@@ -48,7 +48,7 @@ class PersonalInformation extends Component {
       setImages,
       toggleImagePreview,
       onPreviewCancel
-    } = this.props.store.profileSetupStepStore;
+    } = this.props.store;
 
     return (
       <Container>
@@ -162,17 +162,17 @@ class PersonalInformation extends Component {
               <Form.Item label="Profile picture">
                 <PictureUpload
                   onCancel={() => {
-                    onPreviewCancel()
+                    onPreviewCancel();
                     this.forceUpdate()
                   }}
                   fileList={images}
                   preview={imagePreview}
                   handleChange={data => {
-                    setImages(data)
+                    setImages(data);
                     this.forceUpdate()
                   }}
                   handlePreview={file => {
-                    toggleImagePreview(file)
+                    toggleImagePreview(file);
                     this.forceUpdate()
                   }}
                   limit={1}
