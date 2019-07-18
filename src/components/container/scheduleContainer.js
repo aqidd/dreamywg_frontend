@@ -40,7 +40,7 @@ export default class ScheduleContainer extends Component {
                           <Col span={8}>{moment(timeslot.endTime).format("hh:mm")}</Col>
                           <Col span={8}>
 
-                            <Button type="primary" htmlType="submit" onClick={() => this.props.store.update(timeslot._id)}>
+                            <Button type="primary" htmlType="submit"  disabled={!(timeslot.status==='IDLE')} onClick={() => this.props.store.update(timeslot._id)}>
                               Book Schedule
                             </Button>
                           </Col>

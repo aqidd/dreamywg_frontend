@@ -33,9 +33,10 @@ class ScheduleStore {
     let response = ''
     try{
       const data = {
-        status: true
+        status: "BOOKED"
       }
       const response = await network.updatePastTimeslotStatus(id, data);
+      this.getTimeslots();
       if(response) {
         console.log("response form update timeslot", response)
       }
