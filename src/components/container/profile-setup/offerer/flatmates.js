@@ -56,7 +56,7 @@ class Flatmates extends Component {
     getFieldDecorator('keys', {initialValue: []})
     const keys = getFieldValue('keys')
     const formItems = keys.map((k, index) => (
-      <FlatmateItem index={k} decorator={getFieldDecorator} fieldValue={getFieldValue}/>
+      <FlatmateItem index={k} key={k} decorator={getFieldDecorator} fieldValue={getFieldValue}/>
     ))
     return (
       <Container>

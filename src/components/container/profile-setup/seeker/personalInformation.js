@@ -176,6 +176,7 @@ class PersonalInformation extends Component {
                     this.forceUpdate()
                   }}
                   limit={1}
+                  beforeUpload={console.log}
                 />
               </Form.Item>
               <Item label="Smoker">
