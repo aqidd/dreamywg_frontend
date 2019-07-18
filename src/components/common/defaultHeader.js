@@ -8,8 +8,7 @@ import {Link} from "react-router-dom";
 
 const DefaultHeader = ({theme}) => (
   <ThemeProvider theme={{mode: theme}}>
-    <Container>
-      <Row type="flex" justify="center">
+      <Container type="flex" justify="center">
         <Col xs={2} sm={2} md={2} lg={2} xl={5}/>
         <Col xs={10} sm={10} md={10} lg={10} xl={7}>
           <div className="logo">
@@ -19,26 +18,25 @@ const DefaultHeader = ({theme}) => (
           </div>
         </Col>
         <Col xs={10} sm={10} md={10} lg={10} xl={7}>
-          {/*TODO: super ugly but works for now*/}
           {localStorage.getItem('token') === null ?
             <Link to="/login" refresh="true">
-              <Icon style={{fontSize: 32, float: "right"}} type="user"/>
+              <div style={rightMenu}>Login</div>
             </Link> :
-            <Popover placement="bottomRight"
-                     content={
-                       <Link to="/" refresh="true" onClick={() => localStorage.removeItem('token')}>
-                         <span>Logout</span>
-                       </Link>
-                     }
-                     trigger="click">
-              <Icon style={{fontSize: 32, float: "right"}} type="user"/>
-            </Popover>}
+            <Link to="/" refresh="true" onClick={() => localStorage.removeItem('token')}>
+              <div style={rightMenu}>Logout</div>
+            </Link>
+          }
         </Col>
         <Col xs={2} sm={2} md={2} lg={2} xl={5}/>
-      </Row>
-    </Container>
+      </Container>
+
   </ThemeProvider>
 );
+
+const rightMenu = {
+  float: 'right',
+  paddingTop: '10px'
+}
 
 const backgroundColor = theme('mode', {
   light: 'white',
@@ -50,10 +48,10 @@ const textColor = theme('mode', {
   dark: '#fff'
 });
 
-const Container = styled.div`
+const Container = styled(Row)`
+  padding-top: 2vh;
   height: 80px;
-  margin-top: 2vh;
-  background-color: ${backgroundColor};
+  background-color: white; // ${backgroundColor} not working
   color: ${textColor};
 `;
 

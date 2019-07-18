@@ -11,7 +11,11 @@ export default class LandingScreen extends Component {
     this.onGetStarted.bind(this)
   }
 
-  onGetStarted = () => this.props.history.push("/register")
+  onGetStarted = () => {
+    localStorage.getItem('token') === null ?
+      this.props.history.push("/register") :
+      this.props.history.push("/search")
+  }
 
   onLogin = () => this.props.history.push("/login")
 
