@@ -7,7 +7,7 @@ import { inject, observer, Provider } from 'mobx-react'
 
 const { TabPane } = Tabs
 
-var FlatDetailsTab = inject("store")(
+const FlatDetailsTab = inject("store")(
   observer(({ store }) => {
     return (
       <Tabs defaultActiveKey="1">

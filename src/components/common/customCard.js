@@ -92,14 +92,14 @@ const BodyContainer = styled.div`
 `
 
 const DescriptionContainer = styled.div`
-  float: left
-  width: 70%
+  float: left;
+  width: 70%;
 `
 
 const InfoContainer = styled.div`
-  float: right
-  text-align: right
-  width: 30%
+  float: right;
+  text-align: right;
+  width: 30%;
 `
 
 
