@@ -37,6 +37,14 @@ class UserStore {
         }
         return response;
     }
+
+    @action getUser = async () => {
+        if(!!this.user) {
+            this.user = await network.getProfile();
+        }
+        
+        return this.user;
+    }
 }
 
 export default UserStore

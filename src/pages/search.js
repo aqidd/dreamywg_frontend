@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import FilterGroup from '../components/presentation/search/filterGroup'
 import {Provider} from 'mobx-react'
 import SearchStore from '../stores/searchStore'
-import DefaultHeader from "../components/common/defaultHeader";
+import MainLayout from '../components/presentation/mainLayout';
 
 const {Sider, Content} = Layout
 const theme = "light"
@@ -20,24 +20,24 @@ export default class SearchScreen extends Component {
 
   render() {
     return (
-      <Provider store={SearchStore}>
-        <div>
-          <DefaultHeader theme={theme}/>
-          <Layout>
-            <StyledSider
-              breakpoint="lg"
-              collapsedWidth={0}
-              width={400}
-              theme="light"
-            >
-              <FilterGroup/>
-            </StyledSider>
-            <StyledContent>
-              <SearchContainer/>
-            </StyledContent>
-          </Layout>
-        </div>
-      </Provider>
+      <MainLayout>
+        <Provider store={SearchStore}>
+            <Layout>
+              <StyledSider
+                breakpoint="lg"
+                collapsedWidth={0}
+                width={400}
+                theme="light"
+              >
+                <FilterGroup/>
+              </StyledSider>
+              <StyledContent>
+                <SearchContainer/>
+              </StyledContent>
+            </Layout>
+        </Provider>
+      </MainLayout>
+      
     )
   }
 }

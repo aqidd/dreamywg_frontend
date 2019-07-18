@@ -4,8 +4,7 @@ import {Provider} from 'mobx-react'
 import ConfirmationContent from "../components/container/confirmation/confirmationContent";
 import ConfirmationStore from "../stores/confirmationStore";
 import {withRouter} from 'react-router';
-import {Layout} from "antd";
-import DefaultHeader from "../components/common/defaultHeader";
+import BaseLayout from '../components/presentation/baseLayout';
 
 const theme = "light"
 
@@ -21,12 +20,11 @@ export default withRouter(
       const token = this.props.match.params.token;
 
       return (
-        <Provider store={this.store}>
-          <Layout>
-            <DefaultHeader theme={theme}/>
+        <BaseLayout>
+          <Provider store={this.store}>
             <ConfirmationContent token={token}/>
-          </Layout>
-        </Provider>
+          </Provider>
+        </BaseLayout>
       )
     }
   }

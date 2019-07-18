@@ -9,7 +9,6 @@ import RoleSelection from './pages/roleSelection'
 import SearchScreen from './pages/search'
 import Login from './pages/login'
 import store from './stores/authStore'
-import Interview from './pages/interview'
 import FlatDetails from './pages/flatDetails'
 
 export default class App extends React.Component {

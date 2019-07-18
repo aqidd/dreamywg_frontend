@@ -12,7 +12,7 @@ const MainLayout = ({ children }) => (
             <Menu
             theme="dark"
             mode="horizontal"
-            defaultSelectedKeys={['2']}
+            defaultSelectedKeys={['1']}
             style={{ lineHeight: '64px' }}
             >
                 <Menu.Item key="1">
@@ -21,8 +21,13 @@ const MainLayout = ({ children }) => (
                     </Link>
                 </Menu.Item>
                 <Menu.Item key="2">
-                    <Link to="/flat/">
-                        <span>Your Offer</span>
+                    <Link to="/setupofferer">
+                        <span>Create Flat Offer</span>
+                    </Link>
+                </Menu.Item>
+                <Menu.Item key="4">
+                    <Link to="/setupseeker">
+                        <span>Update Profile</span>
                     </Link>
                 </Menu.Item>
                 <Menu.Item key="3">

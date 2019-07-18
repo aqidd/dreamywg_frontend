@@ -42,12 +42,10 @@ export default class ConfirmationContent extends Component {
     );
 
     return (
-      <BaseLayout>
-        <Container>
-          <Title>Account Confirmation</Title>
-          {content}
-        </Container>
-      </BaseLayout>
+      <Container>
+        <Title>Account Confirmation</Title>
+        {content}
+      </Container>
     )
   }
 }

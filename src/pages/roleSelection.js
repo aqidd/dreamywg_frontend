@@ -5,7 +5,6 @@ import RoleSelection from "../components/presentation/profile-setup/roleSelectio
 import initStore from "../stores/roleSelectionStore"
 import 'antd/dist/antd.css'
 import {Provider} from "mobx-react"
-import DefaultHeader from "../components/common/defaultHeader";
 
 
 export default class RoleSelectionPages extends Component {
@@ -18,9 +17,7 @@ export default class RoleSelectionPages extends Component {
     return (
       <Provider RoleSelectionStore={this.store}>
         <BaseLayout>
-          <DefaultHeader/>
           <RoleSelection/>
-          <CustomFooter/>
         </BaseLayout>
       </Provider>
     );
