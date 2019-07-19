@@ -37,32 +37,36 @@ class Services extends Component {
 
   render = () => {
     return (
-      <StyledContainer >
-        <Row>
+      <ParallaxWrapper>
+        <StyledContainer >
           <Row>
-            <TitleContent
-              subtitle="Our Services"
-              title=" Featured Service that We Provide"
-            />
+            <Row>
+              <TitleContent
+                subtitle="Our Services"
+                title=" Featured Service that We Provide"
+              />
+            </Row>
+
+              <CardRow
+                type="flex"
+                justify="center"
+                gutter={16}
+                style={{ marginTop: '2vh' }}
+              >
+                {dataService.map(data => (
+
+                    <ServiceCard
+                      title={data.title}
+                      icon={data.icon}
+                      subtitle={data.content}
+                    />
+
+                ))}
+              </CardRow>
+
           </Row>
-          <AnimatedCardRow>
-            <CardRow
-              type="flex"
-              justify="center"
-              gutter={16}
-              style={{ marginTop: '2vh' }}
-            >
-              {dataService.map(data => (
-                <ServiceCard className={data.position}
-                  title={data.title}
-                  icon={data.icon}
-                  subtitle={data.content}
-                />
-              ))}
-            </CardRow>
-          </AnimatedCardRow>
-        </Row>
-      </StyledContainer>
+        </StyledContainer>
+      </ParallaxWrapper>
     )
   }
 }
@@ -121,16 +125,24 @@ const CardRow = styled(Row)`
   margin-top: 2vh;
 
 `
-const AnimatedCardRow = styled.div`
-  webkit-animation: fade-out 10s;
-  @keyframes fade-out {
-    from {
-    transform: translateZ(0px);
-  }
-    to {
-    transform: translateZ(3px);
-    }
-  }
 
+const ParallaxWrapper = styled.div`
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective: 2px;
 `
 
+const AnimatedCardRow = styled.div`
+  -webkit-animation: fade-in-right 2s;
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateZ(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+ `
