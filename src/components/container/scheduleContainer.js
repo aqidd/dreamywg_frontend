@@ -2,10 +2,7 @@ import React, { Component } from 'react'
 import { Button, Col, Form, Input, Row, Select, Steps, TimePicker } from 'antd'
 import { inject, observer, Provider } from 'mobx-react'
 import { toJS } from 'mobx'
-import AddTimeslotForm from '../presentation/flat-details/addTimeslotForm'
 import moment from 'moment'
-
-const { Step } = Steps
 
 @inject('store')
 @observer
