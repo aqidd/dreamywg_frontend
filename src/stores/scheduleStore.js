@@ -29,7 +29,7 @@ class ScheduleStore {
     return response
   }
 
-  @action async update(id){
+  @action async bookSlot(id){
     let response = ''
     try{
       const data = {
