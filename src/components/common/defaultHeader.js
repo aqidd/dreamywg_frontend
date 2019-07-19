@@ -33,7 +33,7 @@ const DefaultHeader = ({ theme, redirect }) => (
                 <Link
                   to="/"
                   refresh="true"
-                  onClick={() => localStorage.removeItem('token')}
+                  onClick={() => localStorage.clear()}
                 >
                   <span>Logout</span>
                 </Link>
