@@ -16,15 +16,12 @@ export default class Schedule extends React.Component {
   render() {
     return (
       <BaseLayout>
-        <DefaultHeader/>
         <Provider store={this.store}>
           <div>
             <ScheduleContainer />
           </div>
         </Provider>
-        <CustomFooter/>
       </BaseLayout>
-
     )
   }
 }

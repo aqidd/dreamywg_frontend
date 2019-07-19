@@ -19,7 +19,7 @@ class ScheduleStore {
   @action async getTimeslots() {
     let response = ''
     try {
-      const data = await network.timeslots(this.scheduleId);
+      const data = await network.schedule(this.scheduleId);
       this.schedule = data.data;
       response = '{status: success}'
     } catch (e) {
