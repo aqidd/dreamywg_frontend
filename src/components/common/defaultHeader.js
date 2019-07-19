@@ -40,6 +40,9 @@ const DefaultHeader = ({theme}) => (
   </ThemeProvider>
 );
 
+
+
+
 const backgroundColor = theme('mode', {
   light: 'white',
   dark: '#222'

@@ -22,3 +22,4 @@ const withRedirect = Component =>
   }
 
 export default withRedirect
+ 

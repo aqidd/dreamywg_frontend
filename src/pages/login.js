@@ -24,5 +24,5 @@ export default class Login extends Component {
         </BaseLayout>
       </div>
     )
-  }
+  }x
 }

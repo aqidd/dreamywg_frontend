@@ -1,7 +1,14 @@
 import React from 'react'
 import { Card, Input } from 'antd'
 import styled from 'styled-components'
-import { Message, MessageGroup, MessageList, MessageText, ThemeProvider } from '@livechat/ui-kit'
+import {
+  Message,
+  MessageGroup,
+  MessageList,
+  MessageText,
+  ThemeProvider,
+  Bubble
+} from '@livechat/ui-kit'
 import moment from 'moment'
 import { toJS } from 'mobx'
 
@@ -10,6 +17,7 @@ const { Search } = Input
 export default class ConversationSide extends React.Component {
   constructor(props) {
     super(props)
+    this.state = { currentMessage: '' }
   }
 
   render() {
@@ -18,72 +26,87 @@ export default class ConversationSide extends React.Component {
     return (
       <Container>
         <ThemeProvider>
-          <div style={{ maxWidth: '100%', height: 400, background: '#fafafa', padding: '30px' }}>
+          <ChatContainer>
             <MessageList active style={{ background: '#fafafa' }}>
               {/*render message based on store value*/}
-              {chat.messages.map(msg =>
+              {chat.messages.map(msg => (
                 <MessageGroup
-                  avatarLetter={((chat.user1.id === msg.senderId) ? chat.user1 : chat.user2).fullName.slice(0,1)}
-                  isOwn={(clientId === msg.senderId)}
+                  avatarLetter={(chat.user1.id === msg.senderId
+                    ? chat.user1
+                    : chat.user2
+                  ).fullName.slice(0, 1)}
+                  isOwn={clientId === msg.senderId}
                   onlyFirstWithMeta
                 >
-                  <Message date={moment(msg.timestamp).format('HH:mm')}
-                           isOwn={(clientId === msg.senderId)}
-                           authorName={(chat.user1.id === msg.senderId) ? chat.user1.fullName : chat.user2.fullName}>
-                    <MessageText>
-                      {msg.content}
-                    </MessageText>
+                  <Message
+                    date={moment(msg.timestamp).format('HH:mm')}
+                    isOwn={clientId === msg.senderId}
+                    authorName={
+                      chat.user1.id === msg.senderId
+                        ? chat.user1.fullName
+                        : chat.user2.fullName
+                    }
+                  >
+                    <Bubble
+                      style={
+                        chat.user1.id === msg.senderId
+                          ? receiverBubble
+                          : senderBubble
+                      }
+                      isOwn={chat.user1.id == msg.sendId}
+                    >
+                      <MessageText>{msg.content}</MessageText>
+                    </Bubble>
                   </Message>
                 </MessageGroup>
-              )}
+              ))}
             </MessageList>
             <div className="card-footer">
               <Search
                 placeholder="input text"
+                value={this.state.currentMessage}
+                onChange={event => {
+                  console.log('things has changed')
+                  this.setState({ currentMessage: event.target.value })
+                }}
+                onPressEnter={value => {
+                  this.setState({ currentMessage: '' })
+                  this.props.onSend(this.state.currentMessage)
+                }}
                 enterButton="Send"
-                onSearch={value => this.props.onSend(value)}
+                onSearch={value => {
+                  this.setState({ currentMessage: '' })
+                  this.props.onSend(this.state.currentMessage)
+                }}
               />
             </div>
-          </div>
+          </ChatContainer>
         </ThemeProvider>
       </Container>
     )
   }
 }
 
-
-const Title = styled.p`
-  font-weight: bold;
-`
-const Subtitle = styled.p`
-  font-weight: normal;
-`
-
-
 const Container = styled.div`
   text-align: center;
-  margin-top: 10vh;
   margin-bottom: 16vh;
 `
-const theme = {
-  vars: {
-    'primary-color': '#427fe1',
-    'secondary-color': '#fbfbfb',
-    'tertiary-color': '#fff',
-    'avatar-border-color': 'blue'
-  },
-  AgentBar: {
-    Avatar: {
-      size: '42px'
-    },
-    css: {
-      backgroundColor: 'var(--secondary-color)',
-      borderColor: 'var(--avatar-border-color)'
-    }
-  },
-  Message: {
-    css: {
-      fontWeight: 'bold'
-    }
-  }
+
+const ChatContainer = styled.div`
+  height: 50vh;
+`
+
+const receiverBubble = {
+  backgroundColor: '#1890ff',
+  borderBottomLeftRadius: 30,
+  borderTopLeftRadius: 30,
+  borderTopRightRadius: 0,
+  borderBottomRightRadius: 30
+}
+const senderBubble = {
+  backgroundColor: 'pink',
+  borderBottomLeftRadius: 30,
+  borderTopLeftRadius: 0,
+  borderTopRightRadius: 30,
+  borderBottomRightRadius: 30
 }

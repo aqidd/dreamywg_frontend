@@ -20,7 +20,7 @@ axios.interceptors.response.use(
     console.log(error.response)
     Swal.fire({
       title: 'Error occour during request, try again...',
-      text: 'error',
+      text: error.response.message,
       type: error.response.status,
       confirmButtonText: 'OK'
     })
