@@ -5,22 +5,19 @@ import Image from "../../common/Image"
 import VersionCard from "./versionCard"
 import styled from "styled-components"
 
-
 class Introduction extends Component {
   constructor(props) {
     super(props)
+    this.myRef = React.createRef();
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.parallaxShift);
+
+
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.parallaxShift);
-  }
 
-  parallaxShift(){
-    let _w
   }
 
   render = () => {
@@ -70,7 +67,7 @@ class Introduction extends Component {
             lg={11}
             xl={11}
           >
-            <Image img={img} />
+            <Image img={img} className="img_par" alt="image"/>
           </Col>
         </Row>
       </StyledContainer>
@@ -81,6 +78,7 @@ class Introduction extends Component {
 const StyledContainer = styled.div`
      margin: auto;
      margin-top: 10vh;
+}
 `
 const StyledInContainer = styled.div`
      align-items: center;

@@ -3,23 +3,27 @@ import { Row, Col, Typography, Card, Icon } from 'antd'
 import TitleContent from '../../common/titlecontent'
 import styled, { ThemeProvider } from 'styled-components'
 import theme from 'styled-theming'
+import simpleParallax from 'simple-parallax-js'
 const { Meta } = Card
 
 const dataService = [
   {
     title: 'Intelligence Recommendation',
     content: 'Very provide very very Gut Services',
-    icon: 'file-search'
+    icon: 'file-search',
+    position: 'left'
   },
   {
     title: 'Instant Communication',
     content: 'Very provide very very Gut Services',
-    icon: 'wechat'
+    icon: 'wechat',
+    position: 'center'
   },
   {
     title: 'Interview Scheduling',
     content: 'Very provide very very Gut Services',
-    icon: 'contacts'
+    icon: 'contacts',
+    position: 'right'
   }
 ]
 
@@ -27,10 +31,13 @@ class Services extends Component {
   constructor(props) {
     super(props)
   }
+  componentDidMount() {
+    const left =  document.getElementsByClassName('left');
+  }
 
   render = () => {
     return (
-      <Container>
+      <StyledContainer >
         <Row>
           <Row>
             <TitleContent
@@ -38,6 +45,7 @@ class Services extends Component {
               title=" Featured Service that We Provide"
             />
           </Row>
+
           <CardRow
             type="flex"
             justify="center"
@@ -45,7 +53,7 @@ class Services extends Component {
             style={{ marginTop: '2vh' }}
           >
             {dataService.map(data => (
-              <ServiceCard
+              <ServiceCard className={data.position}
                 title={data.title}
                 icon={data.icon}
                 subtitle={data.content}
@@ -53,7 +61,7 @@ class Services extends Component {
             ))}
           </CardRow>
         </Row>
-      </Container>
+      </StyledContainer>
     )
   }
 }
@@ -101,12 +109,24 @@ const StyledMeta = styled(Meta)`
   color: ${textColor};
 `
 
-const Container = styled.div`
+const StyledContainer = styled.div`
   text-align: center;
   margin-top: 10vh;
   margin-bottom: 16vh;
+
 `
 
 const CardRow = styled(Row)`
   margin-top: 2vh;
+  -webkit-animation: fade-in 2s;
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateZ(0px);
+    }
+    to {
+      opacity: 1;
+      transform: translateZ(-5px);
+    }
+  }
 `

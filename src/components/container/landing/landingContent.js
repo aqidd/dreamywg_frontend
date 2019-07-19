@@ -37,11 +37,6 @@ const StyledContent = styled(Layout.Content)`
   background-color: ${backgroundColor};
   color: ${textColor};
   
-  /*create parallax*/
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 `
 
 export default LandingContent
