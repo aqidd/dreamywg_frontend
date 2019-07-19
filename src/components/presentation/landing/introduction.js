@@ -4,6 +4,7 @@ import img from "../../../resources/about-demo3.png"
 import Image from "../../common/Image"
 import VersionCard from "./versionCard"
 import styled from "styled-components"
+import simpleParallax from 'simple-parallax-js'
 
 class Introduction extends Component {
   constructor(props) {
@@ -12,8 +13,13 @@ class Introduction extends Component {
   }
 
   componentDidMount() {
-
-
+    const image =  document.querySelectorAll('Img');
+    new simpleParallax(image, {
+      overflow: true,
+      orientation: 'right',
+      delay: .6,
+      transition: 'cubic-bezier(0,0,0,1)'
+    });
   }
 
   componentWillUnmount() {

@@ -14,7 +14,8 @@ class Showcase extends Component {
   componentDidMount() {
     //window.addEventListener('scroll', this.parallaxShift);
     //window.addEventListener('scroll', this.parallaxShift);
-    const image =  document.getElementsByClassName('chat_demo');
+
+
   }
 
   componentWillUnmount() {
