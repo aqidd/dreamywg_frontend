@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Button, Col, Form, Input, Row, Select, Steps, TimePicker } from 'antd'
+import { Button, Col, Row, Card } from 'antd'
 import { inject, observer, Provider } from 'mobx-react'
-import { toJS } from 'mobx'
 import moment from 'moment'
+import styled from 'styled-components'
 
 @inject('store')
 @observer
@@ -17,62 +17,79 @@ export default class ScheduleContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{marginBottom: '2vh'}}>
         <Row>
-          <p style={{ textAlign: 'center' }}>
-            Available Schedule{' '}
+          <Col span={4}></Col>
+          <Col span={10}>
+          <h2 style={{ textAlign: 'center' }}>
+            Viewing Schedule on &nbsp;
             {moment(this.props.store.schedule.date).format('MMMM Do YYYY')}
-          </p>
+          </h2>
+          <br/>
           <div>
-            <Row style={{ justifyContent: 'center' }}>
-              <Col span={8}>Start Time</Col>
-              <Col span={8}>End Time</Col>
+            <Row>
+              <Col span={6}><h3>Start Time</h3></Col>
+              <Col span={6}><h3>End Time</h3></Col>
             </Row>
             {this.props.store.schedule.timeslots.map(timeslot => {
               return (
-                <Row
-                  key={timeslot._id}
-                  style={{
-                    justifyContent: 'center',
-                    marginTop: 5,
-                    marginBottom: 5
-                  }}
-                >
-                  <Col span={8}>
-                    {moment(timeslot.startTime).format('hh:mm')}
-                  </Col>
-                  <Col span={8}>{moment(timeslot.endTime).format('hh:mm')}</Col>
-                  <Col span={8}>
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      disabled={!(timeslot.status === 'IDLE')}
-                      onClick={() =>
-                        this.props.store.bookSchedule(timeslot._id)
-                      }
-                    >
-                      Book Schedule
-                    </Button>
-                    {this.props.store.isTimeslotOwner(timeslot) ? (
+                <StyledCard style={cardStyle}>
+                  <Row
+                    key={timeslot._id}
+                  >
+                    <Col span={6}>
+                      {moment(timeslot.startTime).format('hh:mm')}
+                    </Col>
+                    <Col span={6}>{moment(timeslot.endTime).format('hh:mm')}</Col>
+                    <Col span={8}>
                       <Button
                         type="primary"
                         htmlType="submit"
+                        disabled={!(timeslot.status === 'IDLE')}
                         onClick={() =>
-                          this.props.store.cancelSchedule(timeslot._id)
+                          this.props.store.bookSchedule(timeslot._id)
                         }
+                        style={{marginRight: '2vh'}}
                       >
-                        Cancel Schedule
+                        Book Schedule
                       </Button>
-                    ) : (
-                      <span />
-                    )}
-                  </Col>
-                </Row>
+                      {this.props.store.isTimeslotOwner(timeslot) ? (
+                        <Button
+                          type="primary"
+                          htmlType="submit"
+                          onClick={() =>
+                            this.props.store.cancelSchedule(timeslot._id)
+                          }
+                        >
+                          Cancel Schedule
+                        </Button>
+                      ) : (
+                        <span />
+                      )}
+                    </Col>
+                  </Row>
+                </StyledCard>
               )
             })}
           </div>
+          </Col>
+          <Col span={4}></Col>
         </Row>
       </div>
     )
   }
+}
+
+const StyledCard = styled(Card)`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &:hover ${StyledCard} {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+`
+
+const cardStyle = {
+  borderRadius: 7,
+  marginTop: '1vh'
 }
