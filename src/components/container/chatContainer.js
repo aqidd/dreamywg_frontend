@@ -46,7 +46,7 @@ export default class ChatContent extends Component {
             />
           </Col>
         </Row>
-        {this.props.store.updateChat? <div></div>: <div></div>}
+        {this.props.store.updateChat? <div/>: <div/>}
       </Container>
     )
 
