@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import GoogleMapReact from 'google-map-react';
+import React, { Component } from 'react'
+import GoogleMapReact from 'google-map-react'
+import styled from 'styled-components'
 
-const MarkerComponent = ({ text }) => <div>{text}</div>;
+const MarkerComponent = ({ text }) => <div>{text}</div>
 
 class GoogleMap extends Component {
-
   constructor(props) {
     super(props)
   }
@@ -12,16 +12,25 @@ class GoogleMap extends Component {
   render() {
     return (
       // Important! Always set the container height explicitly
-      <div style={{ height: '400px', width: '100%' }}>
+      <Container>
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyCoKWfHbsSmyyM3PUpoEifplwkk2iZihJE' }}
           center={this.props.center}
           defaultZoom={this.props.zoom}
         >
+<<<<<<< HEAD
+=======
+          <MarkerComponent lat={61.955413} lng={110.337844} text="My Marker" />
+>>>>>>> redesign/refactor
         </GoogleMapReact>
-      </div>
-    );
+      </Container>
+    )
   }
 }
 
-export default GoogleMap;
+const Container = styled.div`
+  width: 100%;
+  height: 60vh;
+`
+
+export default GoogleMap

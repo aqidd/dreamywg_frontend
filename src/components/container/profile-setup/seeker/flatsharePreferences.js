@@ -1,54 +1,42 @@
-import React, {Component} from 'react'
-import {inject, observer} from 'mobx-react'
-import {Button, Col, DatePicker, Form, Input, Row, Select, Switch} from 'antd'
+import React, { Component } from 'react'
+import { inject, observer } from 'mobx-react'
+import { Button, Col, DatePicker, Form, Input, Row, Select, Switch } from 'antd'
 import Title from '../../../common/title'
 import Container from '../../../common/form/container'
 import WrappedSelection from '../../../common/form/wrappedSelection'
 import WrappedAnyInput from '../../../common/form/wrappedAnyInput'
-import Stations from "../../../../util/shortStations";
-import Regions from "../../../../util/regions";
+import { activities, cleaningSchedule, cleanliness, genderRestriction, stores } from '../../../../util/selections'
+import NumberRange from '../../../presentation/profile-setup/flatsharePreferences/numberRange'
+import SwitchGroup from '../../../presentation/profile-setup/FlatDetails/switchGroup'
 import {
-  activities,
-  cleaningSchedule,
-  cleanliness,
-  flatshareType,
-  genderRestriction,
-  rentType,
-  stores
-} from "../../../../util/selections";
-import NumberRange from "../../../presentation/profile-setup/flatsharePreferences/numberRange";
-import SwitchGroup from "../../../presentation/profile-setup/FlatDetails/switchGroup";
-import {
-  RegionSelection, TypeOfFlatshareSelection,
+  RegionSelection,
+  TypeOfFlatshareSelection,
   TypeOfRentSelection
-} from "../../../presentation/profile-setup/flatsharePreferences/commonFields";
+} from '../../../presentation/profile-setup/flatsharePreferences/commonFields'
 
-const Item = Form.Item;
-const InputGroup = Input.Group;
-const {RangePicker} = DatePicker;
-const {Option} = Select;
+const Item = Form.Item
+const InputGroup = Input.Group
+const { RangePicker } = DatePicker
+const { Option } = Select
 
 @inject('store')
 @observer
 class FlatsharePreferences extends Component {
   handleResult = (type, result) => {
-    result.preventDefault();
+    result.preventDefault()
     this.props.form.validateFields((error, values) => {
       error && type !== 'Back'
-        ? this.displayError(error)
+        ? this.props.displayError(error)
         : type === 'Next'
         ? this.props.onNext(values)
         : this.props.onBack(values)
     })
-  };
-  displayError = obj => {
-    const errorValue = Object.keys(obj).reduce((a, b) => a + ' ' + b);
-    alert('Please complete the following field : ' + errorValue)
-  };
+  }
+
 
   render() {
-    const decorator = this.props.form.getFieldDecorator;
-    const fieldValue = this.props.form.getFieldValue;
+    const decorator = this.props.form.getFieldDecorator
+    const fieldValue = this.props.form.getFieldValue
 
     return (
       <Container>
@@ -69,19 +57,19 @@ class FlatsharePreferences extends Component {
           <Row gutter={24}>
             <Col span={8}>
               <NumberRange decorator={decorator} itemLabel="Room size in m&sup2;"
-                           objName={"preferences.flat.room.size"}/>
+                           objName={'preferences.flat.room.size'}/>
             </Col>
             <Col span={8}>
-              <NumberRange decorator={decorator} itemLabel={"Rent in €"} objName={"preferences.flat.room.rent"}/>
+              <NumberRange decorator={decorator} itemLabel={'Rent in €'} objName={'preferences.flat.room.rent'}/>
             </Col>
             <Col span={8}>
               <Item label="Date available">
                 <WrappedAnyInput
                   required
-                  tag={fieldValue("preferences.flat.room.rentType") === "limited" ? <RangePicker/> :
-                    <DatePicker style={{width: "100%"}}/>}
+                  tag={fieldValue('preferences.flat.room.rentType') === 'limited' ? <RangePicker/> :
+                    <DatePicker style={{ width: '100%' }}/>}
                   dec={decorator}
-                  objName={fieldValue("preferences.flat.room.rentType") === "limited" ? "preferences.flat.room.dateAvailableRange" : "preferences.flat.room.dateAvailable"}
+                  objName={fieldValue('preferences.flat.room.rentType') === 'limited' ? 'preferences.flat.room.dateAvailableRange' : 'preferences.flat.room.dateAvailable'}
                 />
               </Item>
             </Col>
@@ -99,12 +87,12 @@ class FlatsharePreferences extends Component {
               </Item>
             </Col>
             <Col span={8}>
-              <NumberRange decorator={decorator} itemLabel="Flatmates age" objName={"preferences.flatmates.age."}/>
+              <NumberRange decorator={decorator} itemLabel="Flatmates age" objName={'preferences.flatmates.age.'}/>
             </Col>
 
             <Col span={8}>
               <NumberRange decorator={decorator} itemLabel="Number of Flatmates"
-                           objName={"preferences.flatmates.amount"}/>
+                           objName={'preferences.flatmates.amount'}/>
             </Col>
           </Row>
           <hr/>
@@ -113,13 +101,19 @@ class FlatsharePreferences extends Component {
           <Row gutter={24}>
             <Col span={12}>
               <Item label="Stations Nearby">
-                <WrappedSelection
-                  placeHolder="Please select"
-                  type="multiple"
-                  dec={decorator}
-                  objName="preferences.flat.stations"
-                  value={Stations}
-                />
+                {
+                  decorator('preferences.flat.stations')(
+                    <Select
+                      mode="multiple"
+                      placeholder="Please select"
+                      filterOption={false}
+                      onSearch={this.props.store.search}
+                    >
+                      {this.props.store.filteredStations.map(d => (
+                        <Option key={d}>{d}</Option>
+                      ))}
+                    </Select>)
+                }
               </Item>
             </Col>
             <Col span={12}>
@@ -202,7 +196,7 @@ class FlatsharePreferences extends Component {
           </Row>
 
           <Button
-            style={{float: 'right'}}
+            style={{ float: 'right' }}
             htmlType="submit"
             onClick={result => this.handleResult('Next', result)}
             type="primary"

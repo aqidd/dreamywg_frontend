@@ -25,18 +25,17 @@ const {Option} = Select;
 class FlatmatePreferences extends Component {
   handleResult = (type, result) => {
     result.preventDefault();
+    console.log('halo')
     this.props.form.validateFields((error, values) => {
+      console.log('go')
       error && type !== 'Back'
-        ? this.displayError(error)
+        ? this.props.displayError(error)
         : type === 'Next'
         ? this.props.onNext(values)
         : this.props.onBack(values)
     })
   };
-  displayError = obj => {
-    const errorValue = Object.keys(obj).reduce((a, b) => a + ' ' + b);
-    alert('Please complete the following field : ' + errorValue)
-  };
+
 
   render() {
     const {getFieldDecorator} = this.props.form;

@@ -1,46 +1,52 @@
-import React, {Component} from "react"
-import {Layout} from "antd"
-import LandingContent from "../components/container/landing/landingContent"
-import CustomFooter from "../components/common/customFooter"
-import styled from "styled-components"
+import React, { Component } from 'react'
+import { Layout } from 'antd'
+import LandingContent from '../components/container/landing/landingContent'
+import CustomFooter from '../components/common/customFooter'
+import styled from 'styled-components'
 
-import "antd/dist/antd.css"
-import DefaultHeader from "../components/common/defaultHeader";
+import 'antd/dist/antd.css'
+import DefaultHeader from '../components/common/defaultHeader'
+import { Provider } from 'mobx-react'
+const { Header, Footer } = Layout
+const theme = 'light'
+import AuthStore from '../stores/authStore'
 
-const {Header, Footer} = Layout
-const theme = "light"
-
-export default class LandingScreen extends Component {
+class LandingScreen extends Component {
   constructor(props) {
     super(props)
     this.onGetStarted.bind(this)
+    this.store = AuthStore()
   }
 
-  onGetStarted = () => this.props.history.push("/register")
+  onGetStarted = () => this.props.history.push('/register')
 
-  onLogin = () => this.props.history.push("/login")
+  onLogin = () => this.props.history.push('/login')
 
-  render = () => (
-    <div>
-      <Layout>
-        <DefaultHeader theme={theme}/>
-        <LandingContent
-          theme={theme}
-          onGetStarted={() => this.onGetStarted()}
-        />
-        <StyledFooter>
-          <CustomFooter/>
-        </StyledFooter>
-      </Layout>
-    </div>
-  )
+  render = () => {
+    return (
+
+        <Layout>
+          <DefaultHeader theme={theme} />
+          <LandingContent
+            theme={theme}
+            onGetStarted={() => this.onGetStarted()}
+          />
+          <StyledFooter>
+            <CustomFooter />
+          </StyledFooter>
+        </Layout>
+
+    )
+  }
 }
 
-const themeDecider = () => (theme === "dark" ? "#222" : "white")
+export default LandingScreen
+
+const themeDecider = () => (theme === 'dark' ? '#222' : 'white')
 
 const StyledHeader = styled.div`
-     background-color: ${themeDecider()};
+  background-color: ${themeDecider()};
 `
 const StyledFooter = styled(Footer)`
-     background-color: ${themeDecider()};
+  background-color: ${themeDecider()};
 `
