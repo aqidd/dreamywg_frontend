@@ -66,11 +66,8 @@ const AboutFlat = inject('store')(
                 <Card
                   cover={
                     <GoogleMap center={
-                      {
-                        lat: 61.95,
-                        lng: 100.33
-                      }
-                    } zoom={11}></GoogleMap>
+                      flat.coordinate
+                    } zoom={15}></GoogleMap>
                   }
                 >
                   <Meta

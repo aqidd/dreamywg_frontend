@@ -13,11 +13,11 @@ class InterviewStore {
     this.rootStore = rootStore
   }
 
-  @action async fetchSchedules() {
+  @action async fetchSchedules(flatId) {
     this.schedules = []
     let response = ''
     try {
-        const data = await network.schedules();
+        const data = await network.schedules(flatId);
         runInAction(() => {
           this.schedules = data.data;
         })
@@ -29,11 +29,11 @@ class InterviewStore {
     return response;
   }
 
-  @action async fetchPastTimeslots() {
+  @action async fetchPastTimeslots(flatId) {
     this.pastTimeslots = []
     let response = ''
     try {
-        const data = await network.pastTimeslots();
+        const data = await network.pastTimeslots(flatId);
         runInAction(() => {
           this.pastTimeslots = data.data;
         })
@@ -54,9 +54,10 @@ class InterviewStore {
     evt.preventDefault()
     const param = {
       startDate: evt.target.startDate.value,
-      endDate: evt.target.endDate.value
+      endDate: evt.target.endDate.value,
+      flatId: evt.target.flatId.value
     }
-
+    console.log(param)
     let response = ''
     try {
         await network.createSchedules(param);

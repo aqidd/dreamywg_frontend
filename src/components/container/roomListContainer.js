@@ -21,7 +21,7 @@ const RoomListContainer = inject('store')(
                 extra={
                   <img 
                     width={200}
-                    src={room.images[0]}/>
+                    src={room.image}/>
                 }>
               <List.Item.Meta
                 title={`Room Price : ${room.rent}EUR`}
