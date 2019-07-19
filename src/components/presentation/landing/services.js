@@ -45,21 +45,22 @@ class Services extends Component {
               title=" Featured Service that We Provide"
             />
           </Row>
-
-          <CardRow
-            type="flex"
-            justify="center"
-            gutter={16}
-            style={{ marginTop: '2vh' }}
-          >
-            {dataService.map(data => (
-              <ServiceCard className={data.position}
-                title={data.title}
-                icon={data.icon}
-                subtitle={data.content}
-              />
-            ))}
-          </CardRow>
+          <AnimatedCardRow>
+            <CardRow
+              type="flex"
+              justify="center"
+              gutter={16}
+              style={{ marginTop: '2vh' }}
+            >
+              {dataService.map(data => (
+                <ServiceCard className={data.position}
+                  title={data.title}
+                  icon={data.icon}
+                  subtitle={data.content}
+                />
+              ))}
+            </CardRow>
+          </AnimatedCardRow>
         </Row>
       </StyledContainer>
     )
@@ -118,15 +119,18 @@ const StyledContainer = styled.div`
 
 const CardRow = styled(Row)`
   margin-top: 2vh;
-  -webkit-animation: fade-in 2s;
-  @keyframes fade-in {
+
+`
+const AnimatedCardRow = styled.div`
+  webkit-animation: fade-out 10s;
+  @keyframes fade-out {
     from {
-      opacity: 0;
-      transform: translateZ(0px);
-    }
+    transform: translateZ(0px);
+  }
     to {
-      opacity: 1;
-      transform: translateZ(-5px);
+    transform: translateZ(3px);
     }
   }
+
 `
+
