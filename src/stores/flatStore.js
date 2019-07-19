@@ -19,7 +19,8 @@ class FlatStore {
             flatmates: [],
             stores: [],
             stations: [],
-            flatEquipment: {}
+            flatEquipment: {},
+            coordinate: {}
         };
     }
 
@@ -31,10 +32,10 @@ class FlatStore {
         const response = await network.getFlat(this.id)
         this.flat = response.data
 
-        // TODO (Q) configure geocoding with gmaps or other provider
         this.flatCoordinate = await convertAddressToCoordinate(`${this.flat.region} ${this.flat.street}, ${this.flat.houseNr}`)
-        console.log(toJS(this.flatCoordinate))
-        return response.data
+        this.flat.coordinate = this.flatCoordinate
+
+        return this.flat
     }
 }
 
