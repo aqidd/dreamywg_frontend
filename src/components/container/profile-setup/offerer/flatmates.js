@@ -39,17 +39,14 @@ class Flatmates extends Component {
 
     this.props.form.validateFields((error, values) => {
       error && type !== 'Back'
-        ? this.displayError(error)
+        ? this.props.displayError(error)
         : type === 'Next'
         ? this.props.onNext(values)
         : this.props.onBack(values)
     })
   }
 
-  displayError = obj => {
-    const errorValue = Object.keys(obj).reduce((a, b) => a + ' ' + b)
-    alert('Please complete the following field : ' + errorValue)
-  }
+
 
   render() {
     const {getFieldDecorator, getFieldValue} = this.props.form

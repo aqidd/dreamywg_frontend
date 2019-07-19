@@ -6,13 +6,16 @@ import styled from 'styled-components'
 
 import 'antd/dist/antd.css'
 import DefaultHeader from '../components/common/defaultHeader'
+import { Provider } from 'mobx-react'
 const { Header, Footer } = Layout
 const theme = 'light'
+import AuthStore from '../stores/authStore'
 
 class LandingScreen extends Component {
   constructor(props) {
     super(props)
     this.onGetStarted.bind(this)
+    this.store = AuthStore()
   }
 
   onGetStarted = () => this.props.history.push('/register')
@@ -21,7 +24,7 @@ class LandingScreen extends Component {
 
   render = () => {
     return (
-      <div>
+
         <Layout>
           <DefaultHeader theme={theme} />
           <LandingContent
@@ -32,7 +35,7 @@ class LandingScreen extends Component {
             <CustomFooter />
           </StyledFooter>
         </Layout>
-      </div>
+
     )
   }
 }
