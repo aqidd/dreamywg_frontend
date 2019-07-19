@@ -55,7 +55,7 @@ class Store {
           success: true,
           completed: true,
           errorMessage: '',
-          type: response.data.type ? response.data.type : null,
+          type: this.user.type ? this.user.type : null,
           token: token
         }
       })
@@ -79,13 +79,6 @@ class Store {
 
   hasToken = () => {
     return localStorage.getItem('token') !== null
-  }
-
-  @action saveUserData = userData => {
-    this.user = merge(this.user, userData)
-  }
-  firstLogin = () => {
-    return localStorage.getItem('firsttime') !== null
   }
 
   @action saveUserData = userData => {

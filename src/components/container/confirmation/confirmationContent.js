@@ -4,7 +4,6 @@ import Title from '../../common/title'
 import styled from 'styled-components'
 
 import 'antd/dist/antd.css'
-import { Link } from 'react-router-dom'
 import { Button } from 'antd'
 import BaseLayout from '../../presentation/baseLayout'
 import withRedirect from '../../common/class/withRedirect'
@@ -27,16 +26,12 @@ class ConfirmationContent extends Component {
         <p> Pending... </p>
       ) : result.state ? (
         <div>
-          <p>{result.data}</p>
+          <p>Successfully verified your account!</p>
           <Button type="primary" onClick={() => this.props.redirect('/login')}>
             Go to Login
           </Button>
         </div>
-      ) : (
-        <div>
-          <p>{result.data}</p>
-        </div>
-      )
+      ) : null
 
     return (
       <BaseLayout>

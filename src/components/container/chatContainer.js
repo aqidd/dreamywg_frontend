@@ -16,7 +16,7 @@ export default class ChatContent extends Component {
   }
 
   componentDidMount() {
-    this.props.store.chatStore.retrieveChatList()
+    this.props.store.retrieveChatList()
   }
 
   render() {
@@ -28,24 +28,25 @@ export default class ChatContent extends Component {
         <Row>
           <Col span={16} push={8}>
             <ConversationSide
-              chat={this.props.store.chatStore.currentChat}
-              clientId={this.props.store.chatStore.clientId}
+              chat={this.props.store.currentChat}
+              clientId={this.props.store.clientId}
               onSend={msg => {
-                this.props.store.chatStore.sendMessage(msg)
+                this.props.store.sendMessage(msg)
                 this.forceUpdate()
               }}
             />
           </Col>
           <Col span={8} pull={16}>
             <ConversationList
-              chat={this.props.store.chatStore.chats}
-              clientId={this.props.store.chatStore.clientId}
+              chats={this.props.store.chats}
+              clientId={this.props.store.clientId}
               onChange={key => {
-                this.props.store.chatStore.updateActiveChat(key)
+                this.props.store.updateActiveChat(key)
               }}
             />
           </Col>
         </Row>
+        {this.props.store.updateChat? <div></div>: <div></div>}
       </Container>
     )
 
@@ -59,7 +60,7 @@ export default class ChatContent extends Component {
       <ThemeProvider theme={{ mode: this.props.theme }}>
         <StyledContent>
           <Card>
-            {Object.keys(this.props.store.chatStore.chats).length > 0
+            {Object.keys(this.props.store.chats).length > 0
               ? chat
               : noChats}
           </Card>

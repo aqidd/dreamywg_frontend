@@ -14,7 +14,7 @@ const FlatDetailsTab = inject('store')(
       <Tabs
         animated={false}
         tabBarStyle={{ textAlign: 'center' }}
-        defaultActiveKey="4"
+        defaultActiveKey="1"
       >
         <TabPane tab="About" key="1">
           <Provider store={store}>
@@ -32,7 +32,8 @@ const FlatDetailsTab = inject('store')(
           </Provider>
         </TabPane>
         <TabPane tab="Messages" key="4">
-          <ChatContainer />
+
+          <ChatContainer store ={store.chatStore}/>
         </TabPane>
       </Tabs>
     )

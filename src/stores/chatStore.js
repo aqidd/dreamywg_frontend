@@ -9,12 +9,14 @@ class Store {
 
   @observable activeChatId
 
+  @observable updateChat = false
+
   constructor(id) {
     this.initChatStore(id)
   }
 
   @action initChatStore = async id => {
-    await this.assignUserId()
+    this.clientId = localStorage.getItem('userId')
 
     if (id) {
       const data = (await network.createChat(id)).data
@@ -34,6 +36,7 @@ class Store {
   @action addMessage = data => {
     const senderId = data.senderId.toString()
     this.chats[senderId].messages = [...this.chats[senderId].messages, data]
+    this.updateChat =  !this.updateChat
   }
 
   get currentChat() {
@@ -57,8 +60,10 @@ class Store {
   }
 
   @action assignChatList = chats => {
-    this.activeChatId = Object.keys(chats)[0]
-    this.chats = chats
+    if (chats) {
+      this.activeChatId = Object.keys(chats)[0]
+      this.chats = chats
+    }
   }
 
   @action retrieveChatList = async () => {
@@ -66,13 +71,6 @@ class Store {
       this.assignChatList((await network.chatList()).data)
     } catch (err) {
       console.log(`Error in retrieving chatlist: ${err}`)
-    }
-  }
-  @action assignUserId = async () => {
-    try {
-      this.clientId = localStorage.getItem('userId')
-    } catch (err) {
-      console.log(`Error in getting UserId: ${err}`)
     }
   }
 
