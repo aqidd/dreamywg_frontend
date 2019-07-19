@@ -14,7 +14,7 @@ const NumberRange = ({decorator, itemLabel, objName}) => (
       />
       <Input
         style={{
-          width: "20%",
+          width: "20px",
           borderLeft: 0,
           pointerEvents: 'none',
           backgroundColor: '#fff'

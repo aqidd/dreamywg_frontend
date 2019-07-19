@@ -6,7 +6,6 @@ import FlatDetailsRootStore from '../stores/flatDetailsRootStore'
 export default class FlatDetails extends React.Component {
     constructor(props) {
         super(props)
-
         this.flatDetailsRootStore = new FlatDetailsRootStore(this.props.match.params.id);
     }
 
