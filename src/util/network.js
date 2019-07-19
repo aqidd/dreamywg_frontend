@@ -21,7 +21,7 @@ axios.interceptors.response.use(
     Swal.fire({
       title: 'Error occured during request, try again...',
       text: error.response.message,
-      type: error.response.status,
+      type: 'error',
       confirmButtonText: 'OK'
     })
     return Promise.reject(error)
@@ -56,7 +56,7 @@ const Api = {
   // chat
   createChat: id => axios.post(`${serverUrl}/chat/flat/${id}`, {}, config()),
   chatList: () => axios.get(serverUrl + '/chat/', config()),
-  getSocketUrl: () => socketUrl 
+  getSocketUrl: () => socketUrl
 }
 
 export default Api
