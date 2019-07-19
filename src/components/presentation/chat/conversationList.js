@@ -15,6 +15,16 @@ import moment from 'moment'
 
 const ConversationList = ({ chat, clientId, onChange }) => {
   const keys = Object.keys(chats)
+  const avatarName = (element.user1.id === clientId
+    ? element.user2
+    : element.user1
+  ).fullName.slice(0, 1)
+  const username =
+    element.user1.id === clientId
+      ? element.user2.fullName
+      : element.user1.fullName
+  const date = length === 0? '' : moment(element.messages[length - 1].timestamp).format('HH:mm')
+  const message = length === 0? '': element.messages[length - 1].content.slice(0, 20)
   return (
     <Container>
       <ThemeProvider>
@@ -26,31 +36,14 @@ const ConversationList = ({ chat, clientId, onChange }) => {
                 const length = element.messages.length
                 return (
                   <ChatListItem onClick={() => onChange(key)}>
-                    <Avatar
-                      letter={(element.user1.id === clientId
-                        ? element.user2
-                        : element.user1
-                      ).fullName.slice(0, 1)}
-                    />
+                    <Avatar letter={avatarName} />
                     <Column fill="true">
                       <Row justify>
-                        <Title ellipsis>
-                          {element.user1.id === clientId
-                            ? element.user2.fullName
-                            : element.user1.fullName}
-                        </Title>
-                        <Subtitle nowrap>
-                          {length === 0
-                            ? ''
-                            : moment(
-                                element.messages[length - 1].timestamp
-                              ).format('HH:mm')}
-                        </Subtitle>
+                        <Title ellipsis>{username}</Title>
+                        <Subtitle nowrap>{date}</Subtitle>
                       </Row>
                       <Subtitle ellipsis>
-                        {length === 0
-                          ? ''
-                          : element.messages[length - 1].content.slice(0, 20)}
+                        {message}
                       </Subtitle>
                     </Column>
                   </ChatListItem>

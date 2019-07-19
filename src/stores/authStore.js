@@ -27,7 +27,7 @@ class Store {
   }
 
   setUserId = id => {
-    localStorage.setItem('userId', id);
+    localStorage.setItem('userId', id)
   }
 
   setToken = token => {
@@ -43,12 +43,14 @@ class Store {
   }
 
   @action login = async credentials => {
-    return network.login(credentials)
-      .then((response) => {
-        const token = response.data.token;
-        this.user = response.data.user;
-        this.setToken(token);
-        this.setUserId(user._id);
+    return network
+      .login(credentials)
+      .then(response => {
+        const token = response.data.token
+        console.log(response.data)
+        this.user = response.data.user
+        this.setToken(token)
+        this.setUserId(this.user._id)
         this.loginResponse = {
           success: true,
           completed: true,
@@ -65,6 +67,7 @@ class Store {
             errorMessage: error.response.data
           }
         } else {
+          console.log(error)
           this.loginResponse = {
             success: false,
             completed: true,
@@ -78,9 +81,9 @@ class Store {
     return localStorage.getItem('token') !== null
   }
 
-  @action saveUserData = (userData) => {
-    this.user = merge(this.user, userData);
-  };
+  @action saveUserData = userData => {
+    this.user = merge(this.user, userData)
+  }
   firstLogin = () => {
     return localStorage.getItem('firsttime') !== null
   }
