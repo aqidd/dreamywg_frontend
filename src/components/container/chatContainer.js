@@ -15,25 +15,25 @@ export default class ChatContent extends Component {
   }
 
   componentDidMount() {
-    this.props.store.retrieveChatList()
+    this.props.store.chatStore.retrieveChatList()
   }
 
   render() {
-    console.log(JSON.stringify(toJS(this.props.store.chats)))
+
     const chat = (
       <div>
         <Row>
           <Col span={16} push={8}>
-            <ConversationSide 
-              chat={this.props.store.currentChat}
-              clientId={this.props.store.clientId}
-              onSend={(msg) => {this.props.store.sendMessage(msg); this.forceUpdate() }}/>
+            <ConversationSide
+              chat={this.props.store.chatStore.currentChat}
+              clientId={this.props.store.chatStore.clientId}
+              onSend={(msg) => {this.props.store.chatStore.sendMessage(msg); this.forceUpdate() }}/>
           </Col>
           <Col span={8} pull={16}>
             <ConversationList
-              chat={this.props.store.chats}
-              clientId={this.props.store.clientId}
-              onChange={key => {this.props.store.updateActiveChat(key);}}
+              chat={this.props.store.chatStore.chats}
+              clientId={this.props.store.chatStore.clientId}
+              onChange={key => {this.props.store.chatStore.updateActiveChat(key);}}
             />
           </Col>
         </Row>
@@ -50,7 +50,7 @@ export default class ChatContent extends Component {
       <ThemeProvider theme={{ mode: this.props.theme }}>
         <StyledContent>
           <Card>
-            {Object.keys(this.props.store.chats).length > 0 ? chat : noChats}
+            {Object.keys(this.props.store.chatStore.chats).length > 0 ? chat : noChats}
           </Card>
         </StyledContent>
       </ThemeProvider>

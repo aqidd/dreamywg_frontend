@@ -2,9 +2,7 @@ import { action, observable, toJS } from 'mobx'
 import network from '../util/network'
 import io from 'socket.io-client'
 
-
-class ChatStore {
-
+class Store {
   @observable chats = {}
 
   @observable clientId = null
@@ -15,7 +13,7 @@ class ChatStore {
     this.initChatStore(id)
   }
 
-  @action initChatStore = async (id) => {
+  @action initChatStore = async id => {
     await this.assignUserId()
 
     if (id) {
@@ -33,7 +31,7 @@ class ChatStore {
     this.socket.emit('storeClientInfo', { userId: this.clientId })
   }
 
-  @action addMessage = (data) => {
+  @action addMessage = data => {
     const senderId = data.senderId.toString()
     this.chats[senderId].messages = [...this.chats[senderId].messages, data]
   }
@@ -42,7 +40,7 @@ class ChatStore {
     return this.chats[this.activeChatId]
   }
 
-  @action sendMessage = (content) => {
+  @action sendMessage = content => {
     const activeChat = this.chats[this.activeChatId]
     const message = {
       user1: activeChat.user1,
@@ -51,11 +49,14 @@ class ChatStore {
       timestamp: Date.now(),
       senderId: this.clientId
     }
-    this.chats[this.activeChatId].messages = [...this.chats[this.activeChatId].messages, message]
+    this.chats[this.activeChatId].messages = [
+      ...this.chats[this.activeChatId].messages,
+      message
+    ]
     this.socket.emit('sendMessage', message)
   }
 
-  @action assignChatList = (chats) => {
+  @action assignChatList = chats => {
     this.activeChatId = Object.keys(chats)[0]
     this.chats = chats
   }
@@ -75,11 +76,11 @@ class ChatStore {
     }
   }
 
-  @action updateActiveChat = (id) => {
+  @action updateActiveChat = id => {
     this.activeChatId = id
   }
 }
 
-const Store = (id) => new ChatStore(id)
+const ChatStore = id => new Store(id)
 
-export default Store
+export default ChatStore
