@@ -7,7 +7,7 @@ import { inject, observer, Provider } from 'mobx-react'
 import { toJS } from 'mobx'
 import AddScheduleForm from '../../presentation/flat-details/addScheduleForm';
 import AddTimeslotForm from '../../presentation/flat-details/addTimeslotForm';
-
+import {copyToClipboard} from '../../../util/clipboard'
 // TODO refactor logic in UI
 @inject('store')
 @observer
@@ -45,6 +45,20 @@ export default class InterviewContainer extends Component {
       return schedule._id === id
     })
     this.props.store.interviewStore.setCurrentTimeslots(sch[0], sch[0].timeslots)
+  }
+
+  shareSchedule = () => {
+    let path = ''
+    const scheduleId = this.props.store.interviewStore.currentSchedule._id
+    if (typeof window !== 'undefined' && !!scheduleId) {
+      path = location.protocol + '//' + location.host + `/schedule/${scheduleId}`; 
+      copyToClipboard(path)
+      alert('open message screen and paste the schedule URL to relevant seeker')
+    } else {
+      // TODO work out what you want to do server-side...
+      console.log('this is an SSR - or ERROR. find another way')
+      alert('please select schedule')
+    }
   }
 
   onClickHandler = data => {
@@ -97,8 +111,9 @@ export default class InterviewContainer extends Component {
                       })
                     }
                   </Select>
+                  <Button onClick={this.shareSchedule}>SHARE SCHEDULE</Button>
                 </Col>
-                <Col span={12}>
+                <Col span={8}>
                   <p>Add Timeslot</p>
                   <Provider store={this.props.store}>
                     <AddTimeslotForm></AddTimeslotForm>

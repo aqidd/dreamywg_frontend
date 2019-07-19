@@ -18,7 +18,6 @@ export default class ScheduleContainer extends Component {
     this.props.store.getTimeslots();
   }
 
-
   render () {
   return (
       <div>
@@ -35,13 +34,22 @@ export default class ScheduleContainer extends Component {
 
                   this.props.store.schedule.timeslots.map((timeslot) => {
                     return (
-                      <Row style={{ justifyContent:"center", marginTop:5 , marginBottom:5}}>
+                      <Row key={timeslot._id} style={{ justifyContent:"center", marginTop:5 , marginBottom:5}}>
                           <Col span={8}>{moment(timeslot.startTime).format("hh:mm")}</Col>
                           <Col span={8}>{moment(timeslot.endTime).format("hh:mm")}</Col>
                           <Col span={8}>
-                            <Button type="primary" htmlType="submit"  disabled={!(timeslot.status==='IDLE')} onClick={() => this.props.store.update(timeslot._id)}>
+                            <Button type="primary" htmlType="submit" disabled={!(timeslot.status==='IDLE')} onClick={() => this.props.store.bookSchedule(timeslot._id)}>
                               Book Schedule
                             </Button>
+                            {
+                              this.props.store.isTimeslotOwner(timeslot)?
+                                (
+                                  <Button type="primary" htmlType="submit" onClick={() => this.props.store.cancelSchedule(timeslot._id)}>
+                                    Cancel Schedule
+                                  </Button>
+                                ) : (<span></span>)
+                            }
+                            
                           </Col>
                       </Row>
                     )
@@ -51,7 +59,7 @@ export default class ScheduleContainer extends Component {
 
               </div>
 
-          </Row>>
+          </Row>
       </div>)
 
 }
