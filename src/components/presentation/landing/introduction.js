@@ -29,7 +29,7 @@ class Introduction extends Component {
   render = () => {
     return(
       <StyledContainer>
-        <Row>
+        <Row style={}>
           <Col xs={2} sm={2} md={2} lg={2} xl={5} />
           <Col xs={20} sm={20} md={10} lg={10} xl={7}>
             <StyledInContainer>
