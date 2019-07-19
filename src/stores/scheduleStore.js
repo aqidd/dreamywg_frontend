@@ -16,7 +16,6 @@ class ScheduleStore {
   }
 
   @action async getTimeslots() {
-    debugger
     let response = ''
     try {
       const data = await network.schedule(this.scheduleId);

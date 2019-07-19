@@ -70,7 +70,7 @@ class Store {
   }
   @action assignUserId = async () => {
     try {
-      this.clientId = (await network.getUserId()).data
+      this.clientId = localStorage.getItem('userId')
     } catch (err) {
       console.log(`Error in getting UserId: ${err}`)
     }

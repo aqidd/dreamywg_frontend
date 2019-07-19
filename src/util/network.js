@@ -39,7 +39,6 @@ const Api = {
   profileSeeker: data => axios.post(`${serverUrl}/flatseeker/`, data, config()),
   createFlatofferer: data => axios.post(`${serverUrl}/flatofferers`, data, config()),
   createFlatseeker: data => axios.post(`${serverUrl}/flatseekers`, data, config()),
-  getUserId: () => axios.get(`${serverUrl}/userid`, config()), // TODO remove and change to local storage
   // search
   loadSearchProperties: () => axios.get(`${serverUrl}/flatseekers/loadSearchProperties`, config()),
   flatseekerSearch: filters => axios.post(`${serverUrl}/flatseekers/search`, filters, config()),
