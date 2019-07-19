@@ -1,11 +1,13 @@
 import React from 'react'
-import { Form, DatePicker, Button } from 'antd';
+import { Form, DatePicker, Button, Input } from 'antd';
 import { inject, observer } from 'mobx-react'
 
 const AddScheduleForm = inject("store")(
     observer(( {store} ) => {
       return (
         <Form layout="inline" onSubmit={store.interviewStore.submitSchedules}>
+            {/* TODO : hidden form  */}
+            <Input type="hidden" name="flatId" value={store.flatStore.id}/>
             <Form.Item label="Start Date">
                 <DatePicker name="startDate"/>
             </Form.Item>

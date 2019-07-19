@@ -23,8 +23,7 @@ export default class InterviewContainer extends Component {
   }
 
   getAllSchedules = () => {
-    this.props.store.interviewStore.fetchSchedules().then(response => {
-      // do something here
+    this.props.store.interviewStore.fetchSchedules(this.props.store.flatStore.id).then(response => {
       console.log(response, this.props.store.interviewStore.schedules, 'all schedules')
     }).catch(error => {
       console.log(error)
@@ -33,7 +32,7 @@ export default class InterviewContainer extends Component {
 
 
   getAllPastTimeslots = () => {
-    this.props.store.interviewStore.fetchPastTimeslots().then(response => {
+    this.props.store.interviewStore.fetchPastTimeslots(this.props.store.flatStore.id).then(response => {
       // do something here
       console.log(response, toJS(this.props.store.interviewStore.pastTimeslots), 'past timeslot')
     }).catch(error => {
