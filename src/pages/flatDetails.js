@@ -1,5 +1,5 @@
 import React from 'react'
-import FlatDetailsTab from  '../components/container/flatDetailsTabContainer'
+import FlatDetailsTab from  '../components/container/flatDetails/flatDetailsTabContainer'
 import { Provider } from 'mobx-react';
 import FlatDetailsRootStore from '../stores/flatDetailsRootStore'
 

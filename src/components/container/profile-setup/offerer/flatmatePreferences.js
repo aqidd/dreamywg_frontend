@@ -18,8 +18,6 @@ import {
 const Item = Form.Item;
 const InputGroup = Input.Group;
 
-const {Option} = Select;
-
 @inject('store')
 @observer
 class FlatmatePreferences extends Component {

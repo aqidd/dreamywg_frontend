@@ -15,7 +15,6 @@ import {
 } from '../../../presentation/profile-setup/flatsharePreferences/commonFields'
 
 const Item = Form.Item
-const InputGroup = Input.Group
 const { RangePicker } = DatePicker
 const { Option } = Select
 
@@ -95,6 +94,7 @@ class FlatsharePreferences extends Component {
                            objName={'preferences.flatmates.amount'}/>
             </Col>
           </Row>
+          
           <hr/>
           <br/>
 

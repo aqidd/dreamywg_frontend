@@ -36,9 +36,6 @@ class FlatDetails extends Component {
     })
   }
 
-
-
-
   render() {
     const { getFieldDecorator, getFieldValue } = this.props.form
     const {
@@ -52,26 +49,28 @@ class FlatDetails extends Component {
       <Container>
         <Title>Your Flat details</Title>
         <Form layout="vertical">
-          <LocationGroup decorator={getFieldDecorator}/>
-          <ValueGroup decorator={getFieldDecorator}/>
-          <SelectGroup decorator={getFieldDecorator} fieldValue={getFieldValue}/>
+          <LocationGroup decorator={getFieldDecorator} />
+          <ValueGroup decorator={getFieldDecorator} />
+          <SelectGroup
+            decorator={getFieldDecorator}
+            fieldValue={getFieldValue}
+          />
           <Row gutter={16}>
             <Col span={12}>
               <Item label="Nearby station">
-                {
-                  getFieldDecorator('stations')(
-                    <Select
-                      mode="multiple"
-                      placeholder="Please select"
-                      style={{ width: '100%' }}
-                      filterOption={false}
-                      onSearch={this.props.store.search}
-                    >
-                      {this.props.store.filteredStations.map(d => (
-                        <Option key={d}>{d}</Option>
-                      ))}
-                    </Select>)
-                }
+                {getFieldDecorator('stations')(
+                  <Select
+                    mode="multiple"
+                    placeholder="Please select"
+                    style={{ width: '100%' }}
+                    filterOption={false}
+                    onSearch={this.props.store.search}
+                  >
+                    {this.props.store.filteredStations.map(d => (
+                      <Option key={d}>{d}</Option>
+                    ))}
+                  </Select>
+                )}
               </Item>
             </Col>
             <Col span={12}>
@@ -86,12 +85,16 @@ class FlatDetails extends Component {
               </Item>
             </Col>
           </Row>
-          <hr/>
-          <br/>
+          <hr />
+          <br />
           <h2>Flat properties and Equipment</h2>
-          <SwitchGroup decorator={getFieldDecorator} basePath={'flatEquipment'} funisheBasePath={'rooms[0]'}/>
-          <hr/>
-          <br/>
+          <SwitchGroup
+            decorator={getFieldDecorator}
+            basePath={'flatEquipment'}
+            funisheBasePath={'rooms[0]'}
+          />
+          <hr />
+          <br />
           <h2>Images and Descriptions</h2>
           <Item label="Images">
             <PictureUpload
@@ -116,19 +119,18 @@ class FlatDetails extends Component {
           </Item>
           <Row>
             <Item label="Flatshare headline">
-              <WrappedInput
-                dec={getFieldDecorator}
-                objName="title"
-              />
+              <WrappedInput dec={getFieldDecorator} objName="title" />
             </Item>
           </Row>
           <Row>
             <Item label="Short description of your flatshare">
               <WrappedAnyInput
-                tag={<TextArea
-                  placeholder="Please describe your flatshare in one sentence"
-                  autosize={{ minRows: 2, maxRows: 2 }}
-                />}
+                tag={
+                  <TextArea
+                    placeholder="Please describe your flatshare in one sentence"
+                    autosize={{ minRows: 2, maxRows: 2 }}
+                  />
+                }
                 dec={getFieldDecorator}
                 objName="shortDescription"
               />

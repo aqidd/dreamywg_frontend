@@ -13,19 +13,6 @@ const RoomListContainer = inject('store')(
           itemLayout="vertical"
           dataSource={store.flatStore.flat.rooms}
           renderItem={room => (
-<<<<<<< HEAD
-            <List.Item 
-                actions={[
-                <Button type="primary" icon="message">
-                  Interested
-                </Button>
-                ]}
-                extra={
-                  <img 
-                    width={200}
-                    src={room.image}/>
-                }>
-=======
             <List.Item
               actions={[
                 <Link to={`/chat/${store.flatStore.flat._id}`}>
@@ -35,12 +22,11 @@ const RoomListContainer = inject('store')(
                 </Link>
               ]}
             >
->>>>>>> redesign/refactor
               <List.Item.Meta
                 title={`Room Price : ${room.rent} EUR`}
                 description={`Available during : ${new Date(
                   room.dateAvailableRange[0]
-                ).toDateString()} - 
+                ).toDateString()} -
                     ${new Date(room.dateAvailableRange[1]).toDateString()}`}
               />
               <p>

@@ -3,7 +3,7 @@ import { Row, Col, Card, Carousel, Icon, Tag } from 'antd'
 import GoogleMap from '../../common/googleMap'
 import styled from 'styled-components'
 
-const FlatCard = ({ title, description, type, store, station, equipment }) => (
+const FlatCard = ({ title, description, type, store, station, equipment,address }) => (
   <StyledCard style={roundCorner}>
     <CardContainer>
       <Carousel
@@ -49,10 +49,7 @@ const FlatCard = ({ title, description, type, store, station, equipment }) => (
         <StyledSection>
           <Subtitle>Location</Subtitle>
           <GoogleMap
-            center={{
-              lat: 61.95,
-              lng: 100.33
-            }}
+            center={address}
             zoom={11}
           />
         </StyledSection>

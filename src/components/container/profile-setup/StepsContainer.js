@@ -10,8 +10,6 @@ const { Step } = Steps
 @inject('store')
 @observer
 class StepsContentContainer extends Component {
-  formRef = null
-
   constructor(props) {
     super(props)
   }

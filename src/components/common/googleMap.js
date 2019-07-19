@@ -18,10 +18,7 @@ class GoogleMap extends Component {
           center={this.props.center}
           defaultZoom={this.props.zoom}
         >
-<<<<<<< HEAD
-=======
           <MarkerComponent lat={61.955413} lng={110.337844} text="My Marker" />
->>>>>>> redesign/refactor
         </GoogleMapReact>
       </Container>
     )

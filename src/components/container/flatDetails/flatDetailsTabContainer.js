@@ -1,10 +1,10 @@
 import React from 'react'
 import { Tabs } from 'antd'
-import AboutFlat from '../presentation/flat-details/aboutFlat'
-import ResidentList from '../presentation/flat-details/residentList'
-import InterviewContainer from '../container/interview/InterviewContainer'
+import AboutFlat from './aboutFlat'
+import ResidentList from '../../presentation/flat-details/residentList'
+import InterviewContainer from '../interview/InterviewContainer'
 import { inject, observer, Provider } from 'mobx-react'
-import ChatContainer from '../container/chatContainer'
+import ChatContainer from '../chatContainer'
 
 const { TabPane } = Tabs
 

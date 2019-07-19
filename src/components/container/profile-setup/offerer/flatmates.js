@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {inject, observer} from 'mobx-react'
-import {Button, Col, Form, Icon, Row} from 'antd'
+import React, { Component } from 'react'
+import { inject, observer } from 'mobx-react'
+import { Button, Col, Form, Icon, Row } from 'antd'
 import Container from '../../../common/form/container'
 import FlatmateItem from '../../../presentation/profile-setup/FlatDetails/flatmateitem'
 import Title from '../../../common/title'
@@ -13,7 +13,7 @@ let id = 0
 @observer
 class Flatmates extends Component {
   remove = k => {
-    const {form} = this.props
+    const { form } = this.props
     // can use data-binding to get
     const keys = form.getFieldValue('keys')
     // We need at least one passenger
@@ -26,7 +26,7 @@ class Flatmates extends Component {
   }
 
   add = () => {
-    const {form} = this.props
+    const { form } = this.props
     const keys = form.getFieldValue('keys')
     const nextKeys = keys.concat(id++)
     form.setFieldsValue({
@@ -46,14 +46,17 @@ class Flatmates extends Component {
     })
   }
 
-
-
   render() {
-    const {getFieldDecorator, getFieldValue} = this.props.form
-    getFieldDecorator('keys', {initialValue: []})
+    const { getFieldDecorator, getFieldValue } = this.props.form
+    getFieldDecorator('keys', { initialValue: [] })
     const keys = getFieldValue('keys')
     const formItems = keys.map((k, index) => (
-      <FlatmateItem index={k} key={k} decorator={getFieldDecorator} fieldValue={getFieldValue}/>
+      <FlatmateItem
+        index={k}
+        key={k}
+        decorator={getFieldDecorator}
+        fieldValue={getFieldValue}
+      />
     ))
     return (
       <Container>
@@ -63,7 +66,7 @@ class Flatmates extends Component {
           <RowContainer>
             <Col span={24}>
               <Button type="dashed" onClick={() => this.add()} block>
-                <Icon type="plus"/> Click here to add flatmate
+                <Icon type="plus" /> Click here to add flatmate
               </Button>
             </Col>
           </RowContainer>

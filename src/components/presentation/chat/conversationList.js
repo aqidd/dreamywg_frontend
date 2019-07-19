@@ -35,7 +35,7 @@ export default class ConversationList extends Component {
       <Container>
         <ThemeProvider>
           <div className="scrollable-container">
-            <StyledCard style={{ borderRadius: 30 }}>
+            <StyledCard style={roundCard}>
               <ChatList>
                 {keys.map(key => {
                   const element = chats[key]
@@ -95,3 +95,7 @@ const StyledCard = styled(Card)`
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
 `
+
+const roundCard = {
+  borderRadius: 30
+}

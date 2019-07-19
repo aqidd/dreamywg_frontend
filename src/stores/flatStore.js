@@ -14,6 +14,7 @@ class FlatStore {
 
   initData() {
     this.flat = {
+      coordinate: {},
       title: 'Some Flat dat ist very very Gut',
       flatshareType: 'Yearly',
       rooms: [
