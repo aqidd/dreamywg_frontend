@@ -8,10 +8,13 @@ import { toJS } from 'mobx'
 import AddScheduleForm from '../../presentation/flat-details/addScheduleForm'
 import AddTimeslotForm from '../../presentation/flat-details/addTimeslotForm'
 import { copyToClipboard } from '../../../util/clipboard'
+import Swal from 'sweetalert2'
+import withRedirect from '../../common/class/withRedirect'
+
 // TODO refactor logic in UI
 @inject('store')
 @observer
-export default class InterviewContainer extends Component {
+class InterviewContainer extends Component {
   constructor(props) {
     super(props)
   }
@@ -71,7 +74,17 @@ export default class InterviewContainer extends Component {
       path =
         location.protocol + '//' + location.host + `/schedule/${scheduleId}`
       copyToClipboard(path)
-      alert('open message screen and paste the schedule URL to relevant seeker')
+      Swal.fire({
+        title: 'Schedule Page URL Copied',
+        text: 'This will open message screen and you can paste the schedule URL to relevant seeker',
+        type: 'success',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, go to chat'
+      }).then((result) => {
+        if (result.value) {
+          this.props.redirect('/chat')
+        }
+      })
     } else {
       // TODO work out what you want to do server-side...
       console.log('this is an SSR - or ERROR. find another way')
@@ -178,3 +191,4 @@ const StyledCard = styled(Card)`
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
 `
+export default withRedirect(InterviewContainer)

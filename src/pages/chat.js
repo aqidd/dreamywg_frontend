@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import DefaultHeader from '../components/common/defaultHeader'
-import CustomFooter from '../components/common/customFooter'
 import MainLayout from '../components/presentation/mainLayout'
 import ChatContainer from '../components/container/chatContainer'
 import Store from '../stores/chatStore'

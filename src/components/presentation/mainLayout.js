@@ -33,7 +33,12 @@ const MainLayout = ({ children }) => (
                         <span>My Flat Offer</span>
                     </Link>
                 </Menu.Item>
-                <Menu.Item key="3" style={rightMenu}>
+                <Menu.Item key="3">
+                    <Link to="/chat">
+                        <span>My Messages</span>
+                    </Link>
+                </Menu.Item>
+                <Menu.Item key="4" style={rightMenu}>
                     <Link to="/" refresh="true" onClick={() => localStorage.removeItem('token')}>
                         <span>Logout</span>
                     </Link>
