@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Provider } from 'mobx-react'
-import BaseLayout from '../components/presentation/baseLayout'
+import MainLayout from '../components/presentation/mainLayout'
 import ScheduleStore from "../stores/scheduleStore"
 import ScheduleContainer from "../components/container/scheduleContainer"
 
@@ -13,11 +13,12 @@ export default class Schedule extends React.Component {
 
   render() {
     return (
-      <BaseLayout>
+      <MainLayout>
+        <br/>
         <Provider store={this.store}>
           <ScheduleContainer />
         </Provider>
-      </BaseLayout>
+      </MainLayout>
     )
   }
 }

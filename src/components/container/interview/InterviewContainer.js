@@ -114,6 +114,8 @@ class InterviewContainer extends Component {
   }
 
   render() {
+    const formatDate = this.props.store.flatPresentationStore.formatDate
+    const formatDateTime = this.props.store.flatPresentationStore.formatDateTime
     return (
       <Container>
         <Row>
@@ -130,7 +132,7 @@ class InterviewContainer extends Component {
           <Col span={12}>
             <StyledCard title="Upcoming Interview">
               <Row>
-                <Col span={12}>
+                <Col span={16}>
                   <p>Select Schedule</p>
                   <Select
                     style={{ width: 200 }}
@@ -141,25 +143,36 @@ class InterviewContainer extends Component {
                       {
                         return (
                           <Option value={schedule._id} key={schedule._id}>
-                            {schedule.date}
+                            {formatDate(schedule.date)}
                           </Option>
                         )
                       }
                     })}
                   </Select>
-                  <Button onClick={this.shareSchedule}>SHARE SCHEDULE</Button>
-                </Col>
-                <Col span={8}>
-                  <p>Add Timeslot</p>
-                  <Provider store={this.props.store}>
-                    <AddTimeslotForm />
-                  </Provider>
+                  {
+                    this.props.store.interviewStore.currentSchedule._id ? (
+                      <Button onClick={this.shareSchedule} style={{marginLeft: '15px'}}>SHARE SCHEDULE</Button>
+                    ) : null
+                  }
                 </Col>
               </Row>
+              {
+                this.props.store.interviewStore.currentSchedule._id ? (
+                  <Row>
+                    <br/>
+                    <p>Add Timeslot</p>
+                    <Provider store={this.props.store}>
+                      <AddTimeslotForm />
+                    </Provider>
+                    <br/>
+                  </Row>
+                ) : null
+              }
               <ListContent
                 data={toJS(this.props.store.interviewStore.currentTimeslots)}
                 past={false}
                 onClick={type => onClickHandler(type)}
+                formatDateTime={formatDateTime}
               />
             </StyledCard>
           </Col>
@@ -169,6 +182,7 @@ class InterviewContainer extends Component {
                 data={toJS(this.props.store.interviewStore.pastTimeslots)}
                 past={true}
                 onClick={data => this.onClickHandler(data)}
+                formatDateTime={formatDateTime}
               />
             </StyledCard>
           </Col>

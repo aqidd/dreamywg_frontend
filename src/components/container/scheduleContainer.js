@@ -41,7 +41,7 @@ export default class ScheduleContainer extends Component {
                       {moment(timeslot.startTime).format('hh:mm')}
                     </Col>
                     <Col span={6}>{moment(timeslot.endTime).format('hh:mm')}</Col>
-                    <Col span={8}>
+                    <Col span={12}>
                       <Button
                         type="primary"
                         htmlType="submit"

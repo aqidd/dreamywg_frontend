@@ -1,7 +1,7 @@
 import React from 'react'
 import { List, Icon, Avatar, Button } from 'antd'
 
-const ListContent = ({ past, data, onClick }) =>
+const ListContent = ({ past, data, onClick, formatDateTime }) =>
   past ? (
     <List
       itemLayout="vertical"
@@ -39,7 +39,7 @@ const ListContent = ({ past, data, onClick }) =>
         >
           <List.Item.Meta
             avatar={<Avatar src={item.avatar} />}
-            title={item.startTime}
+            title={formatDateTime(item.startTime)}
             description={item.status}
           />
         </List.Item>
@@ -53,7 +53,7 @@ const ListContent = ({ past, data, onClick }) =>
         <List.Item
           onClick={console.log(item)}
           actions={[
-            <IconText type="calendar" text={item.startTime} />,
+            <IconText type="calendar" text={formatDateTime(item.startTime)} />,
             <IconText type="message" text={item.status} />
           ]}
         >
@@ -61,7 +61,7 @@ const ListContent = ({ past, data, onClick }) =>
             avatar={
               <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
             }
-            title={<a href="https://ant.design">Timeslot {item.startTime}</a>}
+            title={<a href="https://ant.design">Timeslot {formatDateTime(item.startTime)}</a>}
             description="No interviewee booked for this slot"
           />
         </List.Item>
