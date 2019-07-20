@@ -5,7 +5,13 @@ import Title from '../../../common/title'
 import Container from '../../../common/form/container'
 import WrappedSelection from '../../../common/form/wrappedSelection'
 import WrappedAnyInput from '../../../common/form/wrappedAnyInput'
-import { activities, cleaningSchedule, cleanliness, genderRestriction, stores } from '../../../../util/selections'
+import {
+  activities,
+  cleaningSchedule,
+  cleanliness,
+  genderRestriction,
+  stores
+} from '../../../../util/selections'
 import NumberRange from '../../../presentation/profile-setup/flatsharePreferences/numberRange'
 import SwitchGroup from '../../../presentation/profile-setup/FlatDetails/switchGroup'
 import {
@@ -13,6 +19,7 @@ import {
   TypeOfFlatshareSelection,
   TypeOfRentSelection
 } from '../../../presentation/profile-setup/flatsharePreferences/commonFields'
+import ControlButton from '../../../common/form/controlButtons'
 
 const Item = Form.Item
 const { RangePicker } = DatePicker
@@ -32,7 +39,6 @@ class FlatsharePreferences extends Component {
     })
   }
 
-
   render() {
     const decorator = this.props.form.getFieldDecorator
     const fieldValue = this.props.form.getFieldValue
@@ -43,32 +49,49 @@ class FlatsharePreferences extends Component {
         <Form layout={'vertical'}>
           <Row gutter={24}>
             <Col span={12}>
-              <RegionSelection decorator={decorator}/>
+              <RegionSelection decorator={decorator} />
             </Col>
             <Col span={6}>
-              <TypeOfRentSelection decorator={decorator}/>
+              <TypeOfRentSelection decorator={decorator} />
             </Col>
             <Col span={6}>
-              <TypeOfFlatshareSelection decorator={decorator}/>
+              <TypeOfFlatshareSelection decorator={decorator} />
             </Col>
           </Row>
 
           <Row gutter={24}>
             <Col span={8}>
-              <NumberRange decorator={decorator} itemLabel="Room size in m&sup2;"
-                           objName={'preferences.flat.room.size'}/>
+              <NumberRange
+                decorator={decorator}
+                itemLabel="Room size in m&sup2;"
+                objName={'preferences.flat.room.size'}
+              />
             </Col>
             <Col span={8}>
-              <NumberRange decorator={decorator} itemLabel={'Rent in €'} objName={'preferences.flat.room.rent'}/>
+              <NumberRange
+                decorator={decorator}
+                itemLabel={'Rent in €'}
+                objName={'preferences.flat.room.rent'}
+              />
             </Col>
             <Col span={8}>
               <Item label="Date available">
                 <WrappedAnyInput
                   required
-                  tag={fieldValue('preferences.flat.room.rentType') === 'limited' ? <RangePicker/> :
-                    <DatePicker style={{ width: '100%' }}/>}
+                  tag={
+                    fieldValue('preferences.flat.room.rentType') ===
+                    'limited' ? (
+                      <RangePicker />
+                    ) : (
+                      <DatePicker style={{ width: '100%' }} />
+                    )
+                  }
                   dec={decorator}
-                  objName={fieldValue('preferences.flat.room.rentType') === 'limited' ? 'preferences.flat.room.dateAvailableRange' : 'preferences.flat.room.dateAvailable'}
+                  objName={
+                    fieldValue('preferences.flat.room.rentType') === 'limited'
+                      ? 'preferences.flat.room.dateAvailableRange'
+                      : 'preferences.flat.room.dateAvailable'
+                  }
                 />
               </Item>
             </Col>
@@ -86,34 +109,40 @@ class FlatsharePreferences extends Component {
               </Item>
             </Col>
             <Col span={8}>
-              <NumberRange decorator={decorator} itemLabel="Flatmates age" objName={'preferences.flatmates.age.'}/>
+              <NumberRange
+                decorator={decorator}
+                itemLabel="Flatmates age"
+                objName={'preferences.flatmates.age.'}
+              />
             </Col>
 
             <Col span={8}>
-              <NumberRange decorator={decorator} itemLabel="Number of Flatmates"
-                           objName={'preferences.flatmates.amount'}/>
+              <NumberRange
+                decorator={decorator}
+                itemLabel="Number of Flatmates"
+                objName={'preferences.flatmates.amount'}
+              />
             </Col>
           </Row>
-          
-          <hr/>
-          <br/>
+
+          <hr />
+          <br />
 
           <Row gutter={24}>
             <Col span={12}>
               <Item label="Stations Nearby">
-                {
-                  decorator('preferences.flat.stations')(
-                    <Select
-                      mode="multiple"
-                      placeholder="Please select"
-                      filterOption={false}
-                      onSearch={this.props.store.search}
-                    >
-                      {this.props.store.filteredStations.map(d => (
-                        <Option key={d}>{d}</Option>
-                      ))}
-                    </Select>)
-                }
+                {decorator('preferences.flat.stations')(
+                  <Select
+                    mode="multiple"
+                    placeholder="Please select"
+                    filterOption={false}
+                    onSearch={this.props.store.search}
+                  >
+                    {this.props.store.filteredStations.map(d => (
+                      <Option key={d}>{d}</Option>
+                    ))}
+                  </Select>
+                )}
               </Item>
             </Col>
             <Col span={12}>
@@ -129,15 +158,18 @@ class FlatsharePreferences extends Component {
             </Col>
           </Row>
 
-          <hr/>
-          <br/>
+          <hr />
+          <br />
           <h2>Flat properties and Equipment</h2>
 
-          <SwitchGroup decorator={decorator} basePath={'preferences.flatEquipment'}
-                       funisheBasePath={'preferences.flat.room'}/>
+          <SwitchGroup
+            decorator={decorator}
+            basePath={'preferences.flatEquipment'}
+            funisheBasePath={'preferences.flat.room'}
+          />
 
-          <hr/>
-          <br/>
+          <hr />
+          <br />
           <h2>Flatshare living</h2>
           <Row gutter={24}>
             <Col span={8}>
@@ -151,7 +183,6 @@ class FlatsharePreferences extends Component {
               </Item>
             </Col>
             <Col span={8}>
-
               <Item label="Cleaning schedule">
                 <WrappedSelection
                   placeHolder="Please select"
@@ -178,7 +209,7 @@ class FlatsharePreferences extends Component {
             <Col span={12}>
               <Item label="Smokers">
                 <WrappedAnyInput
-                  tag={<Switch defaultChecked={false}/>}
+                  tag={<Switch defaultChecked={false} />}
                   dec={decorator}
                   objName="preferences.smokers"
                 />
@@ -187,28 +218,17 @@ class FlatsharePreferences extends Component {
             <Col span={12}>
               <Item label="Pets">
                 <WrappedAnyInput
-                  tag={<Switch defaultChecked={false}/>}
+                  tag={<Switch defaultChecked={false} />}
                   dec={decorator}
                   objName="preferences.pets"
                 />
               </Item>
             </Col>
           </Row>
-
-          <Button
-            style={{ float: 'right' }}
-            htmlType="submit"
+          <ControlButton
             onClick={result => this.handleResult('Next', result)}
-            type="primary"
-          >
-            Submit
-          </Button>
-          <Button
-            htmlType="submit"
-            onClick={result => this.handleResult('Back', result)}
-          >
-            Back
-          </Button>
+            next="Next"
+          />
         </Form>
       </Container>
     )

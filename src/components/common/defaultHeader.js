@@ -1,53 +1,45 @@
 import React from 'react'
 import { Col, Icon, Popover, Row, Button } from 'antd'
-import styled, { ThemeProvider } from 'styled-components'
-import theme from 'styled-theming'
+import styled from 'styled-components'
 import img from '../../resources/logo.png'
 import Image from './Image'
 import { Link } from 'react-router-dom'
-import LoginContainer from '../container/loginContainer'
 import withRedirect from './class/withRedirect'
 
-const DefaultHeader = ({ theme, redirect }) => (
-  <ThemeProvider theme={{ mode: theme }}>
-    <Container>
-      <Row type="flex" justify="center">
-        <Col xs={2} sm={2} md={2} lg={2} xl={5} />
-        <Col xs={10} sm={10} md={10} lg={10} xl={7}>
-          <div className="logo">
-            <Link to="/" refresh="true">
-              <Image img={img} style={{ width: 80 }} />
-            </Link>
-          </div>
-        </Col>
-        <Col xs={10} sm={10} md={10} lg={10} xl={7}>
-          {/*TODO: super ugly but works for now*/}
-          {localStorage.getItem('token') === null ? (
-            <Popover content={<Login redirect={url => redirect(url)} />}>
-              <Icon style={{ fontSize: 32, float: 'right' }} type="user" />
-            </Popover>
-          ) : (
-            <Popover
-              placement="bottomRight"
-              content={
-                <Link
-                  to="/"
-                  refresh="true"
-                  onClick={() => localStorage.clear()}
-                >
-                  <span>Logout</span>
-                </Link>
-              }
-              trigger="click"
-            >
-              <Icon style={{ fontSize: 32, float: 'right' }} type="user" />
-            </Popover>
-          )}
-        </Col>
-        <Col xs={2} sm={2} md={2} lg={2} xl={5} />
-      </Row>
-    </Container>
-  </ThemeProvider>
+const DefaultHeader = ({ redirect }) => (
+  <Container>
+    <Row type="flex" justify="center">
+      <Col xs={2} sm={2} md={2} lg={2} xl={5} />
+      <Col xs={10} sm={10} md={10} lg={10} xl={7}>
+        <div className="logo">
+          <Link to="/" refresh="true">
+            <Image img={img} style={{ width: 80 }} />
+          </Link>
+        </div>
+      </Col>
+      <Col xs={10} sm={10} md={10} lg={10} xl={7}>
+        {/*TODO: super ugly but works for now*/}
+        {localStorage.getItem('token') === null ? (
+          <Popover content={<Login redirect={url => redirect(url)} />}>
+            <Icon style={{ fontSize: 32, float: 'right' }} type="user" />
+          </Popover>
+        ) : (
+          <Popover
+            placement="bottomRight"
+            content={
+              <Link to="/" refresh="true" onClick={() => localStorage.clear()}>
+                <span>Logout</span>
+              </Link>
+            }
+            trigger="click"
+          >
+            <Icon style={{ fontSize: 32, float: 'right' }} type="user" />
+          </Popover>
+        )}
+      </Col>
+      <Col xs={2} sm={2} md={2} lg={2} xl={5} />
+    </Row>
+  </Container>
 )
 
 const Login = ({ redirect }) => (
@@ -72,30 +64,9 @@ const Login = ({ redirect }) => (
   </PopoverContainer>
 )
 
-const tempLogin = () => (
-  <Link to="/login" refresh="true">
-    <Icon style={{ fontSize: 32, float: 'right' }} type="user" />
-  </Link>
-)
-
 const StyledSection = styled.div`
   margin-bottom: 2vh;
 `
-
-const rightMenu = {
-  float: 'right',
-  paddingTop: '10px'
-}
-
-const backgroundColor = theme('mode', {
-  light: 'white',
-  dark: '#222'
-})
-
-const textColor = theme('mode', {
-  light: '#000',
-  dark: '#fff'
-})
 
 const PopoverContainer = styled.div`
   display: flex;
@@ -107,8 +78,7 @@ const PopoverContainer = styled.div`
 const Container = styled(Row)`
   padding-top: 2vh;
   height: 80px;
-  background-color: white; // ${backgroundColor} not working
-  color: ${textColor};
+  background-color: white;
 `
 const Title = styled.p`
   font-size: 1.5em;
