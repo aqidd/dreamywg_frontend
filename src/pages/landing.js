@@ -18,7 +18,11 @@ class LandingScreen extends Component {
     this.store = AuthStore()
   }
 
-  onGetStarted = () => this.props.history.push('/register')
+  onGetStarted = () => {
+    localStorage.getItem('token') ? 
+    this.props.history.push('/search') :
+    this.props.history.push('/register')
+  }
 
   onLogin = () => this.props.history.push('/login')
 
