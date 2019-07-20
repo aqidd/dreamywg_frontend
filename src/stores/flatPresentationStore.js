@@ -23,6 +23,11 @@ class FlatPresentationStore {
     const options = { day: '2-digit', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric' };
     return _date.toLocaleDateString('de-DE', options)
   }
+
+  @action formatDateAvailable = (dateAvailable, dateAvailableRange) => {
+    return dateAvailable ? this.formatDate(dateAvailable) : `${this.formatDate(dateAvailableRange[0])} - 
+                  ${this.formatDate(dateAvailableRange[1])}`;
+  }
 }
 
 export default FlatPresentationStore
