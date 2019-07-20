@@ -16,20 +16,22 @@ const FlatmateItem = ({index, decorator, fieldValue}) => (
     <Group>
       <Row gutter={16}>
         <Col span={12}>
-          <Item label="First Name">
+          <Item label="First Name*">
             <WrappedInput
               dec={decorator}
               objName={`flatmates[${index}].firstName`}
-              placeHolder="first name"
+              placeHolder="First Name"
+              required
             />
           </Item>
         </Col>
         <Col span={12}>
-          <Item label="Last Name">
+          <Item label="Last Name*">
             <WrappedInput
               dec={decorator}
               objName={`flatmates[${index}].lastName`}
-              placeHolder="last name"
+              placeHolder="Last Name"
+              required
             />
           </Item>
         </Col>
@@ -47,11 +49,12 @@ const FlatmateItem = ({index, decorator, fieldValue}) => (
           </Item>
         </Col>
         <Col span={8}>
-          <Item label="Age">
+          <Item label="Age*">
             <WrappedInput
               dec={decorator}
               objName={`flatmates[${index}].age`}
               type="number"
+              required
             />
           </Item>
         </Col>
@@ -69,8 +72,9 @@ const FlatmateItem = ({index, decorator, fieldValue}) => (
       </Row>
       <Row gutter={16}>
         <Col span={12}>
-          <Item label="Occupation">
+          <Item label="Occupation*">
             <WrappedSelection
+              required
               placeHolder="Please select"
               dec={decorator}
               objName={`flatmates[${index}].occupation`}

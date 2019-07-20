@@ -45,7 +45,6 @@ class Store {
         page: page
       }
     ))).data
-    console.log(result)
     this.data = result.data
     this.totalResults = result.totalResults
   }

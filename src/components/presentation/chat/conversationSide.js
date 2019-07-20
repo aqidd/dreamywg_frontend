@@ -58,7 +58,6 @@ export default class ConversationSide extends React.Component {
                 placeholder="input text"
                 value={this.state.currentMessage}
                 onChange={event => {
-                  console.log('things has changed')
                   this.setState({ currentMessage: event.target.value })
                 }}
                 onPressEnter={value => {

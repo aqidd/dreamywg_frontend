@@ -58,8 +58,9 @@ class PersonalInformation extends Component {
             <InputFormSection>
               <Row gutter={24}>
                 <Col span={12}>
-                  <Item label="Occupation">
+                  <Item label="Occupation*">
                     <WrappedSelection
+                      required
                       placeHolder="Please select"
                       dec={getFieldDecorator}
                       objName="personalInformation.occupation"
@@ -80,8 +81,9 @@ class PersonalInformation extends Component {
               </Row>
               <Row gutter={24}>
                 <Col span={12}>
-                  <Item label="Age">
+                  <Item label="Age*">
                     <WrappedInput
+                      required
                       dec={getFieldDecorator}
                       objName="personalInformation.age"
                       type="number"
@@ -89,8 +91,9 @@ class PersonalInformation extends Component {
                   </Item>
                 </Col>
                 <Col span={12}>
-                  <Item label="Flatshare experience">
+                  <Item label="Flatshare experience*">
                     <WrappedSelection
+                      required
                       placeHolder="Please select"
                       dec={getFieldDecorator}
                       objName="personalInformation.flatshareExperience"
@@ -146,8 +149,9 @@ class PersonalInformation extends Component {
               </Row>
 
               <Row>
-                <Item label="Short Self Description">
+                <Item label="Short Description*">
                   <WrappedAnyInput
+                    required
                     tag={
                       <TextArea
                         placeholder="Please tell us something about yourself..."
@@ -161,7 +165,7 @@ class PersonalInformation extends Component {
               </Row>
             </InputFormSection>
             <ExtendFormSection>
-              <Form.Item label="Profile picture">
+              <Form.Item label="Profile picture*">
                 <PictureUpload
                   onCancel={() => {
                     onPreviewCancel()

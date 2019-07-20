@@ -10,7 +10,7 @@ const LocationGroup = ({decorator}) => (
   <Input.Group>
     <Row gutter={16}>
     <Col span={12}>
-        <Item label="Region">
+        <Item label="Region*">
           <WrappedSelection
             required
             placeHolder="Please select"
@@ -21,12 +21,12 @@ const LocationGroup = ({decorator}) => (
         </Item>
       </Col>
       <Col span={8}>
-        <Item label="Street">
+        <Item label="Street*">
           <WrappedInput required dec={decorator} objName="street"/>
         </Item>
       </Col>
       <Col span={4}>
-        <Item label="House number">
+        <Item label="House number*">
           <WrappedInput
             required
             dec={decorator}
