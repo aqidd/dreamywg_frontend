@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import styled, { ThemeProvider } from 'styled-components'
+import styled from 'styled-components'
 import { inject, observer } from 'mobx-react'
-import theme from 'styled-theming'
 import { Card, Col, Layout, Row } from 'antd'
 import ConversationList from '../presentation/chat/conversationList'
 import ConversationSide from '../presentation/chat/conversationSide'
-import { toJS } from 'mobx'
 import Title from '../common/title'
 
 @inject('store')
@@ -57,7 +55,6 @@ export default class ChatContent extends Component {
     )
 
     return (
-      <ThemeProvider theme={{ mode: this.props.theme }}>
         <StyledContent>
           <Card>
             {Object.keys(this.props.store.chats).length > 0
@@ -65,24 +62,11 @@ export default class ChatContent extends Component {
               : noChats}
           </Card>
         </StyledContent>
-      </ThemeProvider>
     )
   }
 }
 
-const backgroundColor = theme('mode', {
-  light: 'white',
-  dark: '#222'
-})
-
-const textColor = theme('mode', {
-  light: '#000',
-  dark: '#fff'
-})
-
 const StyledContent = styled(Layout.Content)`
-  background-color: ${backgroundColor};
-  color: ${textColor};
   border-style: none;
 `
 

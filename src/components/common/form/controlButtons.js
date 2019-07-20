@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button} from 'antd'
+import { Button } from 'antd'
 
 const ControlButton = ({ onClick, next, back }) => (
   <div>
@@ -10,9 +10,6 @@ const ControlButton = ({ onClick, next, back }) => (
       type="primary"
     >
       {next}
-    </Button>
-    <Button htmlType="submit" onClick={result => onClick('Back', result)}>
-      {back}
     </Button>
   </div>
 )
