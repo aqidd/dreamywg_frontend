@@ -15,11 +15,10 @@ class ScheduleStore {
     this.scheduleId = id;
   }
 
-
   @action async getTimeslots() {
     let response = ''
     try {
-      const data = await network.timeslots(this.scheduleId);
+      const data = await network.schedule(this.scheduleId);
       this.schedule = data.data;
       response = '{status: success}'
     } catch (e) {
@@ -29,20 +28,39 @@ class ScheduleStore {
     return response
   }
 
-  @action async update(id){
+  @action async bookSchedule(id){
     let response = ''
     try{
       const data = {
         status: "BOOKED"
       }
       const response = await network.updatePastTimeslotStatus(id, data);
-      this.getTimeslots();
+      await this.getTimeslots();
       if(response) {
         console.log("response form update timeslot", response)
       }
     }catch (e){
 
     }
+    return response
+  }
+
+  @action async cancelSchedule(id){
+    let response = ''
+    try{
+      const response = await network.cancelTimeslot(id);
+      await this.getTimeslots();
+      if(response) {
+        console.log("response form update timeslot", response)
+      }
+    }catch (e){
+
+    }
+    return response
+  }
+
+  @action isTimeslotOwner(timeslot) {
+    return timeslot.userId === localStorage.getItem('userId')
   }
 
 }

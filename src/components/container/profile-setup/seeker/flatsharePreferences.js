@@ -15,7 +15,6 @@ import {
 } from '../../../presentation/profile-setup/flatsharePreferences/commonFields'
 
 const Item = Form.Item
-const InputGroup = Input.Group
 const { RangePicker } = DatePicker
 const { Option } = Select
 
@@ -26,16 +25,13 @@ class FlatsharePreferences extends Component {
     result.preventDefault()
     this.props.form.validateFields((error, values) => {
       error && type !== 'Back'
-        ? this.displayError(error)
+        ? this.props.displayError(error)
         : type === 'Next'
         ? this.props.onNext(values)
         : this.props.onBack(values)
     })
   }
-  displayError = obj => {
-    const errorValue = Object.keys(obj).reduce((a, b) => a + ' ' + b)
-    alert('Please complete the following field : ' + errorValue)
-  }
+
 
   render() {
     const decorator = this.props.form.getFieldDecorator
@@ -98,6 +94,7 @@ class FlatsharePreferences extends Component {
                            objName={'preferences.flatmates.amount'}/>
             </Col>
           </Row>
+          
           <hr/>
           <br/>
 

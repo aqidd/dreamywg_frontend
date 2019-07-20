@@ -1,10 +1,9 @@
 import React from 'react'
 import { Row, Col, Card } from 'antd'
-import RoomListContainer from '../../container/roomListContainer'
+import RoomListContainer from '../roomListContainer'
 import { inject, observer, Provider } from 'mobx-react'
-import style from './about-flat.css'
 import styled from 'styled-components'
-import FlatCard from './flatCard'
+import FlatCard from '../../presentation/flat-details/flatCard'
 
 const AboutFlat = inject('store')(
   observer(({ store }) => {
@@ -22,6 +21,7 @@ const AboutFlat = inject('store')(
                   equipment={store.flatStore.equipmentAsIcon()}
                   description={flat.longDescription}
                   station={flat.stations}
+                  address={flat.coordinate}
                 />
               </Col>
             </Row>

@@ -35,43 +35,43 @@ export default class App extends React.Component {
           exact
           path="/chat/:id"
           Comp={Chat}
-          isAuth={hasToken()}
+          isAuth={() => hasToken()}
         />
         <ProtectedRoute
           exact
           path="/setupofferer"
           Comp={ProfileSetupOfferer}
-          isAuth={hasToken()}
+          isAuth={() => hasToken()}
         />
         <ProtectedRoute
           exact
           path="/setupseeker"
           Comp={ProfileSetupSeeker}
-          isAuth={hasToken()}
+          isAuth={() => hasToken()}
         />
         <ProtectedRoute
           exact
           path="/roleselection"
           Comp={RoleSelection}
-          isAuth={hasToken()}
+          isAuth={() => hasToken()}
         />
         <ProtectedRoute
           exact
           path="/flat/:id"
           Comp={FlatDetails}
-          isAuth={hasToken()}
+          isAuth={() => hasToken()}
         />
         <ProtectedRoute
           exact
           path="/search"
           Comp={SearchScreen}
-          isAuth={hasToken()}
+          isAuth={() => hasToken()}
         />
         <ProtectedRoute
           exact
           path="/flat"
           Comp={FlatDetails}
-          isAuth={hasToken()}
+          isAuth={() => hasToken()}
         />
 
         <ProtectedRoute

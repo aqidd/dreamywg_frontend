@@ -26,7 +26,7 @@ const RoomListContainer = inject('store')(
                 title={`Room Price : ${room.rent} EUR`}
                 description={`Available during : ${new Date(
                   room.dateAvailableRange[0]
-                ).toDateString()} - 
+                ).toDateString()} -
                     ${new Date(room.dateAvailableRange[1]).toDateString()}`}
               />
               <p>

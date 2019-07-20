@@ -1,10 +1,10 @@
 import React from 'react'
 import { Tabs } from 'antd'
-import AboutFlat from '../presentation/flat-details/aboutFlat'
-import ResidentList from '../presentation/flat-details/residentList'
-import InterviewContainer from '../container/interview/InterviewContainer'
+import AboutFlat from './aboutFlat'
+import ResidentList from '../../presentation/flat-details/residentList'
+import InterviewContainer from '../interview/InterviewContainer'
 import { inject, observer, Provider } from 'mobx-react'
-import ChatContainer from '../container/chatContainer'
+import ChatContainer from '../chatContainer'
 
 const { TabPane } = Tabs
 
@@ -14,7 +14,7 @@ const FlatDetailsTab = inject('store')(
       <Tabs
         animated={false}
         tabBarStyle={{ textAlign: 'center' }}
-        defaultActiveKey="4"
+        defaultActiveKey="1"
       >
         <TabPane tab="About" key="1">
           <Provider store={store}>
@@ -32,7 +32,8 @@ const FlatDetailsTab = inject('store')(
           </Provider>
         </TabPane>
         <TabPane tab="Messages" key="4">
-          <ChatContainer />
+
+          <ChatContainer store ={store.chatStore}/>
         </TabPane>
       </Tabs>
     )

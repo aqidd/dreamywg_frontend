@@ -5,14 +5,13 @@ import styled from 'styled-components'
 import ListContent from './listContent'
 import { inject, observer, Provider } from 'mobx-react'
 import { toJS } from 'mobx'
-import AddScheduleForm from '../../presentation/flat-details/addScheduleForm';
-import AddTimeslotForm from '../../presentation/flat-details/addTimeslotForm';
-
+import AddScheduleForm from '../../presentation/flat-details/addScheduleForm'
+import AddTimeslotForm from '../../presentation/flat-details/addTimeslotForm'
+import { copyToClipboard } from '../../../util/clipboard'
 // TODO refactor logic in UI
 @inject('store')
 @observer
 export default class InterviewContainer extends Component {
-
   constructor(props) {
     super(props)
   }
@@ -23,45 +22,77 @@ export default class InterviewContainer extends Component {
   }
 
   getAllSchedules = () => {
-    this.props.store.interviewStore.fetchSchedules().then(response => {
-      // do something here
-      console.log(response, this.props.store.interviewStore.schedules, 'all schedules')
-    }).catch(error => {
-      console.log(error)
-    })
+    this.props.store.interviewStore
+      .fetchSchedules(this.props.store.flatStore.id)
+      .then(response => {
+        console.log(
+          response,
+          this.props.store.interviewStore.schedules,
+          'all schedules'
+        )
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
-
 
   getAllPastTimeslots = () => {
-    this.props.store.interviewStore.fetchPastTimeslots().then(response => {
-      // do something here
-      console.log(response, toJS(this.props.store.interviewStore.pastTimeslots), 'past timeslot')
-    }).catch(error => {
-      console.log(error)
-    })
+    this.props.store.interviewStore
+      .fetchPastTimeslots(this.props.store.flatStore.id)
+      .then(response => {
+        // do something here
+        console.log(
+          response,
+          toJS(this.props.store.interviewStore.pastTimeslots),
+          'past timeslot'
+        )
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
-  refreshTimeslots = (id) => {
-    const sch = toJS(this.props.store.interviewStore.schedules).filter(schedule => {
-      return schedule._id === id
-    })
-    this.props.store.interviewStore.setCurrentTimeslots(sch[0], sch[0].timeslots)
+  refreshTimeslots = id => {
+    const sch = toJS(this.props.store.interviewStore.schedules).filter(
+      schedule => {
+        return schedule._id === id
+      }
+    )
+    this.props.store.interviewStore.setCurrentTimeslots(
+      sch[0],
+      sch[0].timeslots
+    )
+  }
+
+  shareSchedule = () => {
+    let path = ''
+    const scheduleId = this.props.store.interviewStore.currentSchedule._id
+    if (typeof window !== 'undefined' && !!scheduleId) {
+      path =
+        location.protocol + '//' + location.host + `/schedule/${scheduleId}`
+      copyToClipboard(path)
+      alert('open message screen and paste the schedule URL to relevant seeker')
+    } else {
+      // TODO work out what you want to do server-side...
+      console.log('this is an SSR - or ERROR. find another way')
+      alert('please select schedule')
+    }
   }
 
   onClickHandler = data => {
     let status = ''
-    switch(data.type) {
+    switch (data.type) {
       case 'like':
         status = 'ACCEPTED'
-        break;
+        break
       case 'dislike':
         status = 'REJECTED'
-        break;
+        break
       case 'stop':
         status = 'NO_SHOW'
-        break;
+        break
       case 'message':
-        break;
+        break
       default:
         console.error('ERROR onClick')
     }
@@ -78,31 +109,37 @@ export default class InterviewContainer extends Component {
         <Row>
           <h3>Add Schedule</h3>
           <Provider store={this.props.store}>
-            <AddScheduleForm></AddScheduleForm>
+            <AddScheduleForm />
           </Provider>
-          <br/>
+          <br />
         </Row>
         <Row gutter={16}>
           <Col span={12}>
-            <StyledCard title="Upcoming Interview" >
+            <StyledCard title="Upcoming Interview">
               <Row>
                 <Col span={12}>
                   <p>Select Schedule</p>
-                  <Select style={{ width: 200 }} onChange={this.refreshTimeslots}>
-                    {
-                      this.props.store.interviewStore.schedules.map(schedule => {
-                        schedule = toJS(schedule)
-                        {
-                          return <Option value={schedule._id} key={schedule._id}>{schedule.date}</Option>
-                        }
-                      })
-                    }
+                  <Select
+                    style={{ width: 200 }}
+                    onChange={this.refreshTimeslots}
+                  >
+                    {this.props.store.interviewStore.schedules.map(schedule => {
+                      schedule = toJS(schedule)
+                      {
+                        return (
+                          <Option value={schedule._id} key={schedule._id}>
+                            {schedule.date}
+                          </Option>
+                        )
+                      }
+                    })}
                   </Select>
+                  <Button onClick={this.shareSchedule}>SHARE SCHEDULE</Button>
                 </Col>
-                <Col span={12}>
+                <Col span={8}>
                   <p>Add Timeslot</p>
                   <Provider store={this.props.store}>
-                    <AddTimeslotForm></AddTimeslotForm>
+                    <AddTimeslotForm />
                   </Provider>
                 </Col>
               </Row>
@@ -114,13 +151,11 @@ export default class InterviewContainer extends Component {
             </StyledCard>
           </Col>
           <Col span={12}>
-            <StyledCard
-              title="Past Interview"
-            >
+            <StyledCard title="Past Interview">
               <ListContent
                 data={toJS(this.props.store.interviewStore.pastTimeslots)}
                 past={true}
-                onClick={(data) => this.onClickHandler(data)}
+                onClick={data => this.onClickHandler(data)}
               />
             </StyledCard>
           </Col>

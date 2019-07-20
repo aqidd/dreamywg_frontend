@@ -1,16 +1,8 @@
 import React from 'react'
-import { Card, Input } from 'antd'
+import { Input } from 'antd'
 import styled from 'styled-components'
-import {
-  Message,
-  MessageGroup,
-  MessageList,
-  MessageText,
-  ThemeProvider,
-  Bubble
-} from '@livechat/ui-kit'
+import { Bubble, Message, MessageGroup, MessageList, MessageText, ThemeProvider } from '@livechat/ui-kit'
 import moment from 'moment'
-import { toJS } from 'mobx'
 
 const { Search } = Input
 
@@ -32,8 +24,8 @@ export default class ConversationSide extends React.Component {
               {chat.messages.map(msg => (
                 <MessageGroup
                   avatarLetter={(chat.user1.id === msg.senderId
-                    ? chat.user1
-                    : chat.user2
+                      ? chat.user1
+                      : chat.user2
                   ).fullName.slice(0, 1)}
                   isOwn={clientId === msg.senderId}
                   onlyFirstWithMeta
@@ -49,11 +41,11 @@ export default class ConversationSide extends React.Component {
                   >
                     <Bubble
                       style={
-                        chat.user1.id === msg.senderId
+                        clientId === msg.senderId
                           ? receiverBubble
                           : senderBubble
                       }
-                      isOwn={chat.user1.id == msg.sendId}
+                      isOwn={clientId === msg.senderId}
                     >
                       <MessageText>{msg.content}</MessageText>
                     </Bubble>

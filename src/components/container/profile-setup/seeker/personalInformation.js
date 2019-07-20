@@ -1,22 +1,26 @@
-import React, {Component} from 'react'
-import {inject, observer} from 'mobx-react'
-import {Col, Form, Input, Row, Select, Switch} from 'antd'
+import React, { Component } from 'react'
+import { inject, observer } from 'mobx-react'
+import { Col, Form, Input, Row, Select, Switch } from 'antd'
 import Title from '../../../common/title'
 import Container from '../../../common/form/container'
 import WrappedSelection from '../../../common/form/wrappedSelection'
 import WrappedAnyInput from '../../../common/form/wrappedAnyInput'
-import ControlButton from "../../../common/form/controlButtons";
-import PictureUpload from "../../../common/form/pictureUpload";
-import Languages from "../../../../util/languages"
-import styled from "styled-components";
-import {field, flatshareExperience, hobbies, occupation, practiceOfAbstaining} from "../../../../util/selections";
-import WrappedInput from "../../../common/form/wrappedInput";
+import ControlButton from '../../../common/form/controlButtons'
+import PictureUpload from '../../../common/form/pictureUpload'
+import Languages from '../../../../util/languages'
+import styled from 'styled-components'
+import {
+  field,
+  flatshareExperience,
+  hobbies,
+  occupation,
+  practiceOfAbstaining
+} from '../../../../util/selections'
+import WrappedInput from '../../../common/form/wrappedInput'
 
-const Item = Form.Item;
-const InputGroup = Input.Group;
-const TextArea = Input.TextArea;
+const Item = Form.Item
 
-const {Option} = Select;
+const TextArea = Input.TextArea
 
 @inject('store')
 @observer
@@ -26,36 +30,32 @@ class PersonalInformation extends Component {
   }
 
   handleResult = (type, result) => {
-    result.preventDefault();
+    result.preventDefault()
     this.props.form.validateFields((error, values) => {
       error && type !== 'Back'
-        ? this.displayError(error)
+        ? this.props.displayError(error)
         : type === 'Next'
         ? this.props.onNext(values)
         : this.props.onBack(values)
     })
-  };
-  displayError = obj => {
-    const errorValue = Object.keys(obj).reduce((a, b) => a + ' ' + b);
-    alert('Please complete the following field : ' + errorValue)
-  };
+  }
 
   render() {
-    const {getFieldDecorator} = this.props.form;
+    const { getFieldDecorator } = this.props.form
     const {
       images,
       imagePreview,
       setImages,
       toggleImagePreview,
       onPreviewCancel
-    } = this.props.store;
+    } = this.props.store
 
     return (
       <Container>
         <Title> Personal Information </Title>
         <Form layout={'vertical'}>
-          <div style={{width: '100%', float: "left"}}>
-            <div style={{width: '75%', float: "left"}}>
+          <FormContainer>
+            <InputFormSection>
               <Row gutter={24}>
                 <Col span={12}>
                   <Item label="Occupation">
@@ -139,7 +139,7 @@ class PersonalInformation extends Component {
                   <Item label="Link to social media profile">
                     <WrappedInput
                       dec={getFieldDecorator}
-                      objName={"personalInformation.socialMedia"}
+                      objName={'personalInformation.socialMedia'}
                     />
                   </Item>
                 </Col>
@@ -148,39 +148,42 @@ class PersonalInformation extends Component {
               <Row>
                 <Item label="Short Self Description">
                   <WrappedAnyInput
-                    tag={<TextArea
-                      placeholder="Please tell us something about yourself..."
-                      autosize={{minRows: 3, maxRows: 8}}
-                    />}
+                    tag={
+                      <TextArea
+                        placeholder="Please tell us something about yourself..."
+                        autosize={{ minRows: 3, maxRows: 8 }}
+                      />
+                    }
                     dec={getFieldDecorator}
                     objName="personalInformation.description"
                   />
                 </Item>
               </Row>
-            </div>
-            <div style={{width: "20%", float: "right"}}>
+            </InputFormSection>
+            <ExtendFormSection>
               <Form.Item label="Profile picture">
                 <PictureUpload
                   onCancel={() => {
-                    onPreviewCancel();
+                    onPreviewCancel()
                     this.forceUpdate()
                   }}
                   fileList={images}
                   preview={imagePreview}
                   handleChange={data => {
-                    setImages(data);
+                    setImages(data)
                     this.forceUpdate()
                   }}
                   handlePreview={file => {
-                    toggleImagePreview(file);
+                    toggleImagePreview(file)
                     this.forceUpdate()
                   }}
                   limit={1}
+                  beforeUpload={console.log}
                 />
               </Form.Item>
               <Item label="Smoker">
                 <WrappedAnyInput
-                  tag={<Switch defaultChecked={false}/>}
+                  tag={<Switch defaultChecked={false} />}
                   dec={getFieldDecorator}
                   objName="personalInformation.smoker"
                 />
@@ -188,7 +191,7 @@ class PersonalInformation extends Component {
 
               <Item label="Pets">
                 <WrappedAnyInput
-                  tag={<Switch defaultChecked={false}/>}
+                  tag={<Switch defaultChecked={false} />}
                   dec={getFieldDecorator}
                   objName="personalInformation.pets"
                 />
@@ -196,13 +199,13 @@ class PersonalInformation extends Component {
 
               <Item label="Weekend absent">
                 <WrappedAnyInput
-                  tag={<Switch defaultChecked={false}/>}
+                  tag={<Switch defaultChecked={false} />}
                   dec={getFieldDecorator}
                   objName="personalInformation.weekendAbsent"
                 />
               </Item>
-            </div>
-          </div>
+            </ExtendFormSection>
+          </FormContainer>
           <ControlButton
             onClick={(type, result) => this.handleResult(type, result)}
             next="Next"
@@ -216,9 +219,16 @@ class PersonalInformation extends Component {
 
 export default Form.create()(PersonalInformation)
 
-const Verficication = styled.div`
-  background-color: white;
-  margin:auto;
-  text-align: center;
-  padding: 30px;
-`;
+const FormContainer = styled.div`
+  width: 100%;
+  float: left;
+`
+const InputFormSection = styled.div`
+  width: 75%;
+  float: left;
+`
+
+const ExtendFormSection = styled.div`
+  width: 20%;
+  float: right;
+`
