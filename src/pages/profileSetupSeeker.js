@@ -5,7 +5,6 @@ import StepsContentContainer from '../components/container/profile-setup/StepsCo
 import BaseLayout from '../components/presentation/baseLayout'
 import PersonalInformation from "../components/container/profile-setup/seeker/personalInformation";
 import FlatsharePreferences from "../components/container/profile-setup/seeker/flatsharePreferences";
-import DefaultHeader from "../components/common/defaultHeader";
 import ProfileSetupStepStore from "../stores/profileSetupStepStore";
 
 export default class ProfileSetupSeeker extends Component {
@@ -16,12 +15,11 @@ export default class ProfileSetupSeeker extends Component {
 
   render() {
     return (
-      <Provider store={this.store}>
-        <BaseLayout>
-          <DefaultHeader/>
+      <BaseLayout>
+        <Provider store={this.store}>
           <StepsContentContainer data={steps}/>
-        </BaseLayout>
-      </Provider>
+        </Provider>
+      </BaseLayout>
     )
   }
 }

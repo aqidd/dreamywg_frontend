@@ -2,8 +2,6 @@ import React, { Component } from "react"
 import RegisterRootStore from "../stores/registerRootStore"
 import { Provider } from "mobx-react"
 import RegisterContainer from "../components/container/registerContainer"
-import DefaultHeader from "../components/common/defaultHeader"
-import CustomFooter from "../components/common/customFooter"
 import BaseLayout from "../components/presentation/baseLayout"
 
 export default class Register extends Component {
@@ -15,11 +13,9 @@ export default class Register extends Component {
      render() {
           return (
                <BaseLayout>
-                    <DefaultHeader />
                     <Provider store={this.store}>
                          <RegisterContainer />
                     </Provider>
-                    <CustomFooter />
                </BaseLayout>
           )
      }

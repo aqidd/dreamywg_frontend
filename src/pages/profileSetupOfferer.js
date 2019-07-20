@@ -7,7 +7,6 @@ import Flatmates from '../components/container/profile-setup/offerer/flatmates'
 import FlatmatePreferences from '../components/container/profile-setup/offerer/flatmatePreferences'
 import StepsContentContainer from '../components/container/profile-setup/StepsContainer'
 import BaseLayout from '../components/presentation/baseLayout'
-import DefaultHeader from "../components/common/defaultHeader";
 
 export default class ProfileSetupOfferer extends Component {
   constructor(props) {
@@ -17,12 +16,11 @@ export default class ProfileSetupOfferer extends Component {
 
   render() {
     return (
-      <Provider store={this.store}>
-        <BaseLayout>
-          <DefaultHeader/>
+      <BaseLayout>
+        <Provider store={this.store}>
           <StepsContentContainer data={steps} />
-        </BaseLayout>
-      </Provider>
+        </Provider>
+      </BaseLayout>
     )
   }
 }

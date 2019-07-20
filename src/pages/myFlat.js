@@ -2,6 +2,7 @@ import React from 'react'
 import FlatDetailsTab from  '../components/container/flatDetails/flatDetailsTabContainer'
 import { Provider } from 'mobx-react';
 import FlatDetailsRootStore from '../stores/flatDetailsRootStore'
+import MainLayout from '../components/presentation/mainLayout';
 
 export default class MyFlat extends React.Component {
     constructor(props) {
@@ -18,13 +19,21 @@ export default class MyFlat extends React.Component {
     }
 
   render() {
-    return this.error? (<h1>Error</h1>) :
-    (
-      <Provider store={this.flatDetailsRootStore}>
+    return (
+      <MainLayout>
         <div style={pageStyle}>
-          <FlatDetailsTab/>
+        {
+          this.error? (
+            <h1>You have no Flat Offered at the moment</h1>
+          ) :
+          (
+            <Provider store={this.flatDetailsRootStore}>
+              <FlatDetailsTab/>
+            </Provider>
+          )
+        }
         </div>
-      </Provider>
+      </MainLayout>
     )
   }
 }

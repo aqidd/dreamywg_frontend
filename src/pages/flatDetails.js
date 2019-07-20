@@ -2,11 +2,13 @@ import React from 'react'
 import FlatDetailsTab from  '../components/container/flatDetails/flatDetailsTabContainer'
 import { Provider } from 'mobx-react';
 import FlatDetailsRootStore from '../stores/flatDetailsRootStore'
+import MainLayout from '../components/presentation/mainLayout';
 
 export default class FlatDetails extends React.Component {
     constructor(props) {
         super(props)
         this.flatDetailsRootStore = new FlatDetailsRootStore(this.props.match.params.id);
+        this.flatDetailsRootStore.flatPresentationStore.hideInterview = true;
     }
 
     componentDidMount() {
@@ -15,11 +17,13 @@ export default class FlatDetails extends React.Component {
 
   render() {
     return (
-      <Provider store={this.flatDetailsRootStore}>
-        <div style={pageStyle}>
-          <FlatDetailsTab withInterview={false}/>
-        </div>
-      </Provider>
+      <MainLayout>
+        <Provider store={this.flatDetailsRootStore}>
+          <div style={pageStyle}>
+            <FlatDetailsTab />
+          </div>
+        </Provider>
+      </MainLayout>
     )
   }
 }
