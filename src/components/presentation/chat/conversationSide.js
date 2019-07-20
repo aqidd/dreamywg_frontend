@@ -7,6 +7,7 @@ import {
   MessageGroup,
   MessageList,
   MessageText,
+  ThemeProvider
 } from '@livechat/ui-kit'
 import moment from 'moment'
 
@@ -22,61 +23,65 @@ export default class ConversationSide extends React.Component {
     const chat = this.props.chat
     const clientId = this.props.clientId
     return (
-      <Container>
-        <ChatContainer>
-          <MessageList active style={{ background: '#fafafa' }}>
-            {/*render message based on store value*/}
-            {chat.messages.map(msg => (
-              <MessageGroup
-                avatarLetter={(chat.user1.id === msg.senderId
-                  ? chat.user1
-                  : chat.user2
-                ).fullName.slice(0, 1)}
-                isOwn={clientId === msg.senderId}
-                onlyFirstWithMeta
-              >
-                <Message
-                  date={moment(msg.timestamp).format('HH:mm')}
+      <ThemeProvider>
+        <Container>
+          <ChatContainer>
+            <MessageList active style={{ background: '#fafafa' }}>
+              {/*render message based on store value*/}
+              {chat.messages.map(msg => (
+                <MessageGroup
+                  avatarLetter={(chat.user1.id === msg.senderId
+                    ? chat.user1
+                    : chat.user2
+                  ).fullName.slice(0, 1)}
                   isOwn={clientId === msg.senderId}
-                  authorName={
-                    chat.user1.id === msg.senderId
-                      ? chat.user1.fullName
-                      : chat.user2.fullName
-                  }
+                  onlyFirstWithMeta
                 >
-                  <Bubble
-                    style={
-                      clientId === msg.senderId ? receiverBubble : senderBubble
-                    }
+                  <Message
+                    date={moment(msg.timestamp).format('HH:mm')}
                     isOwn={clientId === msg.senderId}
+                    authorName={
+                      chat.user1.id === msg.senderId
+                        ? chat.user1.fullName
+                        : chat.user2.fullName
+                    }
                   >
-                    <MessageText>{msg.content}</MessageText>
-                  </Bubble>
-                </Message>
-              </MessageGroup>
-            ))}
-          </MessageList>
-          <div className="card-footer">
-            <Search
-              placeholder="input text"
-              value={this.state.currentMessage}
-              onChange={event => {
-                console.log('things has changed')
-                this.setState({ currentMessage: event.target.value })
-              }}
-              onPressEnter={value => {
-                this.setState({ currentMessage: '' })
-                this.props.onSend(this.state.currentMessage)
-              }}
-              enterButton="Send"
-              onSearch={value => {
-                this.setState({ currentMessage: '' })
-                this.props.onSend(this.state.currentMessage)
-              }}
-            />
-          </div>
-        </ChatContainer>
-      </Container>
+                    <Bubble
+                      style={
+                        clientId === msg.senderId
+                          ? receiverBubble
+                          : senderBubble
+                      }
+                      isOwn={clientId === msg.senderId}
+                    >
+                      <MessageText>{msg.content}</MessageText>
+                    </Bubble>
+                  </Message>
+                </MessageGroup>
+              ))}
+            </MessageList>
+            <div className="card-footer">
+              <Search
+                placeholder="input text"
+                value={this.state.currentMessage}
+                onChange={event => {
+                  console.log('things has changed')
+                  this.setState({ currentMessage: event.target.value })
+                }}
+                onPressEnter={value => {
+                  this.setState({ currentMessage: '' })
+                  this.props.onSend(this.state.currentMessage)
+                }}
+                enterButton="Send"
+                onSearch={value => {
+                  this.setState({ currentMessage: '' })
+                  this.props.onSend(this.state.currentMessage)
+                }}
+              />
+            </div>
+          </ChatContainer>
+        </Container>
+      </ThemeProvider>
     )
   }
 }

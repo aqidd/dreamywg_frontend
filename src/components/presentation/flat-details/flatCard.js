@@ -4,7 +4,16 @@ import GoogleMap from '../../common/googleMap'
 import styled from 'styled-components'
 import * as network from '../../../util/network'
 
-const FlatCard = ({ title, description, images, type, store, station, equipment,address }) => (
+const FlatCard = ({
+  title,
+  description,
+  images,
+  type,
+  store,
+  station,
+  equipment,
+  address
+}) => (
   <StyledCard style={roundCorner}>
     <CardContainer>
       <Carousel
@@ -14,15 +23,13 @@ const FlatCard = ({ title, description, images, type, store, station, equipment,
         adaptiveHeight
         autoplay
       >
-        {
-          images.map(image => {
-            return (
-              <div>
-                <StyledImage src={`${network.serverUrl}/static/${image}`}/>
-              </div>
-            )
-          })
-        }
+        {images.map((image, index) => {
+          return (
+            <div key={index}>
+              <StyledImage src={`${network.serverUrl}/static/${image}`} />
+            </div>
+          )
+        })}
       </Carousel>
 
       <ContentContainer>
@@ -49,10 +56,7 @@ const FlatCard = ({ title, description, images, type, store, station, equipment,
         </StyledSection>
         <StyledSection>
           <Subtitle>Location</Subtitle>
-          <GoogleMap
-            center={address}
-            zoom={15}
-          />
+          <GoogleMap center={address} zoom={15} />
         </StyledSection>
         <StyledSection>
           <Row>
