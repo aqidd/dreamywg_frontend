@@ -6,13 +6,7 @@ import chatDemoImg from '../../../resources/chat-demo.png'
 import styled from 'styled-components'
 import simpleParallax from 'simple-parallax-js'
 
-class Showcase extends Component {
-  constructor(props) {
-    super(props)
-  }
-
-  render = () => {
-    return (
+const showCase = () => (
       <Container>
         <Row type="flex" style={{ alignItems: 'center' }} gutter={64}>
           <Col xs={2} sm={2} md={12} lg={12}>
@@ -38,8 +32,6 @@ class Showcase extends Component {
         </Row>
       </Container>
     )
-  }
-}
 
 const Container = styled.div`
   margin-top: 5vh;
