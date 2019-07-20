@@ -36,7 +36,7 @@ class Store {
   @action addMessage = data => {
     const senderId = data.senderId.toString()
     this.chats[senderId].messages = [...this.chats[senderId].messages, data]
-    this.updateChat =  !this.updateChat
+    this.updateChat = !this.updateChat
   }
 
   get currentChat() {
