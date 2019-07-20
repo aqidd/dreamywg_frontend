@@ -31,9 +31,6 @@ class Services extends Component {
   constructor(props) {
     super(props)
   }
-  componentDidMount() {
-    const left =  document.getElementsByClassName('left');
-  }
 
   render = () => {
     return (

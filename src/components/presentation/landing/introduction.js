@@ -22,10 +22,6 @@ class Introduction extends Component {
     });
   }
 
-  componentWillUnmount() {
-
-  }
-
   render = () => {
     return(
       <StyledContainer>

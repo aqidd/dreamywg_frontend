@@ -11,17 +11,6 @@ class Showcase extends Component {
     super(props)
   }
 
-  componentDidMount() {
-    //window.addEventListener('scroll', this.parallaxShift);
-    //window.addEventListener('scroll', this.parallaxShift);
-
-
-  }
-
-  componentWillUnmount() {
-
-  }
-
   render = () => {
     return (
       <Container>
