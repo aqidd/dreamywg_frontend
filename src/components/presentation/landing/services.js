@@ -36,8 +36,9 @@ const Services = () => (
         gutter={16}
         style={{ marginTop: '2vh' }}
       >
-        {dataService.map(data => (
+        {dataService.map((data, index) => (
           <ServiceCard
+            key={index}
             title={data.title}
             icon={data.icon}
             subtitle={data.content}
