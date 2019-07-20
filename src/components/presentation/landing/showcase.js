@@ -40,15 +40,8 @@ class Showcase extends Component {
               </Row>
               <Row>
                 <Paragraph style={{ fontSize: 16 }}>
-                  A mobile app landing page is important and essential for right
-                  amount of information about your product. Start increasing your
-                  user base upon the launch of your product.
+                  One of the best feature. Connecting matched flat seeker and landlord easily with no need of exchanging private information.
                 </Paragraph>
-              </Row>
-              <Row>
-                <Button size="large" type="primary" onClick={() => onGetStarted()}>
-                  Get Started for free
-                </Button>
               </Row>
             </RowScaler>
           </Col>

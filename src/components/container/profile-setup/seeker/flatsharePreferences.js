@@ -203,12 +203,6 @@ class FlatsharePreferences extends Component {
           >
             Submit
           </Button>
-          <Button
-            htmlType="submit"
-            onClick={result => this.handleResult('Back', result)}
-          >
-            Back
-          </Button>
         </Form>
       </Container>
     )

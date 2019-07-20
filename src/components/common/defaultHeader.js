@@ -58,7 +58,7 @@ const Login = ({ redirect }) => (
         <strong>Have not Registered</strong> yet? Get started!
       </p>
       <Button type="primary" onClick={() => redirect('/register')} block>
-        Registered
+        Register
       </Button>
     </StyledSection>
     <StyledSection>

@@ -18,9 +18,7 @@ export default class Login extends Component {
         <Provider store={this.store}>
           <BaseLayout>
             <DefaultHeader />
-
             <LoginContainer />
-
             <CustomFooter />
           </BaseLayout>
         </Provider>

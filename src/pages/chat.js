@@ -19,7 +19,6 @@ export default class ChatPage extends Component {
         <BaseLayout>
           <DefaultHeader />
           <ChatContainer />
-          <CustomFooter />
         </BaseLayout>
       </Provider>
     )
