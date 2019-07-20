@@ -1,13 +1,13 @@
-import React, {Component} from 'react'
-import {Col, Row, Steps} from 'antd'
-import {inject, observer, Provider} from 'mobx-react'
+import React, { Component } from 'react'
+import { Col, Row, Steps } from 'antd'
+import { inject, observer, Provider } from 'mobx-react'
 import GeneralInfo from '../presentation/authentication/generalInfo'
 import CredentialForm from '../presentation/authentication/credentialForm'
 import styled from 'styled-components'
-import oAuth from "../presentation/authentication/oAuth";
-import WrappedModal from "../common/form/wrappedModal";
+import oAuth from '../presentation/authentication/oAuth'
+import WrappedModal from '../common/form/wrappedModal'
 
-const {Step} = Steps
+const { Step } = Steps
 
 @inject('store')
 @observer
@@ -16,7 +16,7 @@ export default class RegisterContainer extends Component {
     super(props)
   }
 
-  updateFormResponse = (response) => {
+  updateFormResponse = response => {
     if (response.status === 200) {
       this.props.store.stepStore.nextStep()
     } else {
@@ -32,12 +32,12 @@ export default class RegisterContainer extends Component {
           password: data.password
         })
         this.props.store.stepStore.nextStep()
-        break;
+        break
       case 'general-info-form':
         this.props.store.authStore.saveUserData(data)
-        const response = await this.props.store.authStore.registerUser();
-        this.updateFormResponse(response);
-        break;
+        const response = await this.props.store.authStore.registerUser()
+        this.updateFormResponse(response)
+        break
       default:
         console.log('default')
     }
@@ -45,7 +45,7 @@ export default class RegisterContainer extends Component {
   }
 
   render = () => {
-    const {currentSteps} = this.props.store.stepStore
+    const { currentSteps } = this.props.store.stepStore
     const data = steps
     const Content = data[currentSteps].content
 
@@ -53,27 +53,29 @@ export default class RegisterContainer extends Component {
       <div>
         <StepContainer>
           <Row>
-            <Col xl={5} lg={2} md={2} sm={2} xs={2}/>
+            <Col xl={5} lg={2} md={2} sm={2} xs={2} />
             <Col xl={14} lg={20} md={20} sm={20} xs={20}>
               <Row>
                 <Steps progressDot current={currentSteps}>
                   {data.map((value, index) => (
-                    <Step key={index} title={value.title}/>
+                    <Step key={index} title={value.title} />
                   ))}
                 </Steps>
                 <div style={stepsContent}>
                   <Row>
                     <Provider store={this.props.store}>
                       <Content
-                        processData={(name, data) => this.handleClick(name, data)}
+                        processData={(name, data) =>
+                          this.handleClick(name, data)
+                        }
                       />
                     </Provider>
                   </Row>
                 </div>
               </Row>
-              <Row/>
+              <Row />
             </Col>
-            <Col xl={5} lg={2} md={2} sm={2} xs={2}/>
+            <Col xl={5} lg={2} md={2} sm={2} xs={2} />
           </Row>
         </StepContainer>
       </div>
@@ -83,11 +85,12 @@ export default class RegisterContainer extends Component {
 
 const stepsContent = {
   marginTop: '5vh'
-};
+}
 
 const StepContainer = styled.div`
   margin-top: 5vh;
-  margin-bottom: 5vh;`
+  margin-bottom: 5vh;
+`
 
 const steps = [
   {
@@ -104,6 +107,6 @@ const steps = [
   },
   {
     title: 'Verification',
-    content: oAuth,
+    content: oAuth
   }
 ]

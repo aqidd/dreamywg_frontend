@@ -1,215 +1,95 @@
-import {Card, Col, Icon, Row, Button} from 'antd'
+import { Card, Col, Icon, Row } from 'antd'
 import TitleContent from '../../common/titlecontent'
 import styled from 'styled-components'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import ProfileSetupSeeker from '../../../pages/profileSetupSeeker';
-import ProfileSetupOfferer from '../../../pages/profileSetupOfferer';
-import { Redirect } from 'react-router';
-import React, {Component} from 'react'
-import {withRouter} from 'react-router'
+import React from 'react'
+import withRedirect from '../../common/class/withRedirect'
 
-
-@withRouter
-export default class RoleSelection extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      redirectOfferer: false,
-      redirectSeeker: false
-    }
-  }
-
-
-  static setRedirectOfferer = () => {
-    this.setState({
-      redirectOfferer: true
-    })
-  }
-
-  static renderRedirectOfferer = () => {
-    if (this.state.redirectOfferer) {
-      return <Redirect to='/setupofferer' />
-    }
-  }
-
-  static setRedirectSeeker = () => {
-    this.setState({
-      redirectSeeker: true
-    })
-  }
-
-  static renderRedirectSeeker = () => {
-    if (this.state.redirectSeeker) {
-      return <Redirect to='/setupseeker' />
-    }
-  }
-  render() {
-    return(
-    <Container>
-      <TitleContent flex title="What would you like to do?"/>
-      <Col span={11}>
-        <SeekerCard/>
-      </Col>
-      <Col span={1}>
-      </Col>
-      <Col span={11}>
-        <OffererCard/>
-      </Col>
-    </Container>
-    )
-  }
-}
-
-const setRedirectSeeker = () => {
-  console.log('this is')
-  this.setState({
-    selectValue: event.target.value,
-    redirect: true
-  });
-  if(redirect){
-    return <Redirect to="/setupseeker"/>;
-  }
-
-   };
-
-const setRedirectOfferer = () => {
-  this.setState({
-    selectValue: event.target.value,
-    redirect: true
-  });
-  if(redirect) {
-    return <Redirect to="/setupofferer"/>;
-  }
-};
-
-class OffererCard extends Component{
-  constructor(props) {
-    super(props);
-  }
-  state = {
-    redirect: false
-  }
-  setRedirect = () => {
-    this.forceUpdate();
-  }
-
-  renderRedirect = () => {
-    //if (this.state.redirect) {
-      return <Redirect to='/setupofferer' />
-
-  }
-
-  render() {
-    return(
-      <div>
-        <StyledCard>
-          <Col span={5}>
-            <StyledIconOfferer type="team"/>
-          </Col>
-          <Col span={19}>
-            <Row>
-              <Title> Offer flatshare room</Title>
-            </Row>
-            <Row style={{marginBottom:"30px"}}>
-              <Description> You have an empty room in your flatshare and want to fill it quickly? Just click below. </Description>
-            </Row>
-            <Row>
-              <Link to={'/setupofferer'}>
-              <Button type="primary" block>
-                <p>OFFER ROOM</p>
-              </Button>
-              </Link>
-            </Row>
-          </Col>
-        </StyledCard>
-
-      </div>
-
-
-    )}
-}
-
-class SeekerCard extends Component{
-  constructor(props) {
-    super(props);
-
-  }
-  state = {
-    redirect: false
-
-  }
-
-  setRedirect = () => {
-    this.setState({
-      redirect: true
-    })
-  }
-
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to='/setupseeker' />
-    }
-  }
-  render() {
-    return(
-<div>
-  <StyledCard>
+const RoleSelection = ({ redirect }) => (
+  <Container>
     <Row>
-      <Col span={5}>
-        <StyledIconOfferer type="team"/>
+      <TitleContent title="What would you like to do?" />
+    </Row>
+    <Row type="flex" justify="space-between" gutter={64}>
+      <Col span={12}>
+        <SelectionCard
+          type="seeker"
+          icon="search"
+          title="Find Apartment"
+          description="You are looking for the most suitable place to live in Munich with a flatshare experiences"
+          click={() => redirect('/setupSeeker')}
+        />
       </Col>
-      <Col span={19}>
-        <Row>
-          <Title> Find flatshare</Title>
-        </Row>
-        <Row style={{marginBottom:"30px"}}>
-          <Description> You are looking for the perfect flatshare with the best flatmates for you? Just click below. </Description>
-        </Row>
-        <Row>
-          <Link to={'/setupseeker'}>
-          <Button type="primary" block onClick={this.setRedirect}>
-            <p>FIND ROOM</p>
-          </Button>
-          </Link>
-        </Row>
+      <Col span={12}>
+        <SelectionCard
+          type="offerer"
+          icon="select"
+          title="Find Roommate"
+          description="You are living in Munich and looking for a new roommate to share your place with"
+          click={() => redirect('/setupOfferer')}
+        />
       </Col>
     </Row>
+  </Container>
+)
+
+const SelectionCard = ({ type, icon, title, description, click }) => (
+  <StyledCard style={roundCorner} onClick={() => click()}>
+    <CardContainer className="custom-card-container">
+      <StyledIcon type={icon} twoToneColor="#1890ff" />
+      <CustomTitle> {title} </CustomTitle>
+      <CustomDescription> {description} </CustomDescription>
+    </CardContainer>
   </StyledCard>
-</div>
-    )}
-}
+)
 
 const Container = styled.div`
-  margin-top: 5vh;
   text-align: center;
-  height : 100vh;
-`;
+  margin-left: 15vh;
+  margin-right: 15vh;
+  margin-bottom: 5vh;
+`
 
-const StyledIcon = styled(Icon)`
-  font-size: 5em;
-`;
-
-const StyledIconOfferer = styled(StyledIcon)`
-  color: #096dd9;
-`;
-const StyledIconSeeker = styled(StyledIcon)`
-  color: #389e0d;
-`;
+const CardContainer = styled.div`
+  text-align: center;
+  margin-top: 5vh;
+  margin-left: 10vh;
+  margin-right: 10vh;
+  display: flex;
+  flex-direction: column;
+`
 
 const StyledCard = styled(Card)`
-  margin-bottom: 5vh;
-  height: 40vh;
-`;
+  min-height: 50vh;
+  transition: 0.2s;
+  &:hover ${StyledCard} {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+`
 
-const Title = styled.p`
-  text-align: left;
-  font-size: 2em;
+const StyledIcon = styled(Icon)`
+  transform: rotate(0deg);
+  transition: all 0.3s ease-out;
+  &:hover ${StyledIcon} {
+    transform: rotate(45deg);
+  }
+  font-size: 16vh;
+`
+
+const CustomTitle = styled.p`
+  margin-top: 2vh;
+  font-size: 2.5em;
   font-weight: bold;
-`;
+`
 
-const Description = styled.p`
-  text-align: left;
-  font-size: 1em;
-  font-weight: bold;
-`;
+const CustomDescription = styled.p`
+  font-size: 1.3em;
+  font-weight: 500;
+  line-height: 3.5vh;
+  text-align: justify;
+`
 
+const roundCorner = {
+  borderRadius: 30
+}
+
+export default withRedirect(RoleSelection)

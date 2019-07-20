@@ -42,6 +42,7 @@ class ScheduleStore {
     }catch (e){
 
     }
+    return response
   }
 
   @action async cancelSchedule(id){
@@ -55,6 +56,7 @@ class ScheduleStore {
     }catch (e){
 
     }
+    return response
   }
 
   @action isTimeslotOwner(timeslot) {

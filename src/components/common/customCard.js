@@ -1,23 +1,23 @@
 import React from 'react'
-import {Button, Skeleton} from 'antd'
+import { Button, Skeleton } from 'antd'
 import styled from 'styled-components'
 
 const CustomCard = ({
-  ready,
-  key,
-  sponsor,
-  id,
-  img,
-  title,
-  description,
-  matched,
-  location,
-  price,
-  roomSize,
-  dateAvailable
-}) =>
+                      ready,
+                      key,
+                      sponsor,
+                      id,
+                      img,
+                      title,
+                      description,
+                      matched,
+                      location,
+                      price,
+                      roomSize,
+                      dateAvailable
+                    }) =>
   ready ? (
-    <CardContainer onClick={() => alert(`Click on flat with id: ${id}`)}>
+    <CardContainer onClick={() => window.location.href = `http://localhost:3000/flat/${id}`}>
       <StyledImage alt="example" src={img}/>
 
       <ContentContainer>
@@ -92,16 +92,15 @@ const BodyContainer = styled.div`
 `
 
 const DescriptionContainer = styled.div`
-  float: left
-  width: 70%
+  float: left;
+  width: 70%;
 `
 
 const InfoContainer = styled.div`
-  float: right
-  text-align: right
-  width: 30%
+  float: right;
+  text-align: right;
+  width: 30%;
 `
-
 
 
 const FooterContainer = styled.div`

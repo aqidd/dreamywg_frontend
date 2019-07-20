@@ -1,70 +1,76 @@
-import React, {Component} from 'react'
-import {Col, Row, Steps} from 'antd'
-import {inject, observer} from 'mobx-react'
-import {Redirect} from "react-router-dom";
+import React, { Component } from 'react'
+import { Col, Row, Steps, message } from 'antd'
+import { inject, observer } from 'mobx-react'
+import { Redirect } from 'react-router-dom'
 import styled from 'styled-components'
+import withRedirect from '../../common/class/withRedirect'
 
-const {Step} = Steps
+const { Step } = Steps
 
 @inject('store')
 @observer
-export default class StepsContentContainer extends Component {
-  formRef = null
-
+class StepsContentContainer extends Component {
   constructor(props) {
     super(props)
   }
 
-  handleClick = (type, result) => {
+  handleClick = async (type, result) => {
     this.props.store.updateData(result)
     type === 'Next'
-      ? this.props.store.nextStep()
-      : this.props.store.prevStep()
+      ? await this.props.store.nextStep()
+      : await this.props.store.prevStep()
     this.forceUpdate()
   }
 
-  render = () => {
+  displayError = obj => {
+    const errorValue = Object.keys(obj).reduce((a, b) => a + ', ' + b)
+    message.error('Please complete the following field: ' + errorValue, 20)
+  }
 
-    const {currentSteps} = this.props.store
-    const {data} = this.props
+  render = () => {
+    const { currentSteps } = this.props.store
+    const { data } = this.props
     const Content = data[currentSteps].content
 
     if (this.props.store.status) {
       if (this.props.store.isSeeker) {
-        return <Redirect to={'/search'}/>
+        return <Redirect to="/search" push />
       } else {
-        //TODO: Aqid put your redirect path here
-        return (<Redirect to={'/'}/>)
+        return <Redirect to="/my-flat" push />
       }
     }
+
     return (
       <StepContainer>
         <Row>
-          <Col xl={5} lg={2} md={2} sm={2} xs={2}/>
+          <Col xl={5} lg={2} md={2} sm={2} xs={2} />
           <Col xl={14} lg={20} md={20} sm={20} xs={20}>
             <Row>
               <Steps current={currentSteps}>
                 {data.map((value, index) => (
-                  <Step key={index} title={value.title}/>
+                  <Step key={index} title={value.title} />
                 ))}
               </Steps>
               <div className="steps-content">
                 <Row>
                   <Content
+                    displayError={obj => this.displayError(obj)}
                     onNext={data => this.handleClick('Next', data)}
                     onBack={data => this.handleClick('Back', data)}
                   />
                 </Row>
               </div>
             </Row>
-            <Row/>
+            <Row />
           </Col>
-          <Col xl={5} lg={2} md={2} sm={2} xs={2}/>
+          <Col xl={5} lg={2} md={2} sm={2} xs={2} />
         </Row>
       </StepContainer>
     )
   }
 }
+
+export default withRedirect(StepsContentContainer)
 
 const StepContainer = styled.div`
   margin-top: 5vh;
