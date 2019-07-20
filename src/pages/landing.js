@@ -19,27 +19,22 @@ class LandingScreen extends Component {
   }
 
   onGetStarted = () => {
-    localStorage.getItem('token') ? 
-    this.props.history.push('/search') :
-    this.props.history.push('/register')
+    localStorage.getItem('token')
+      ? this.props.history.push('/search')
+      : this.props.history.push('/register')
   }
 
   onLogin = () => this.props.history.push('/login')
 
   render = () => {
     return (
-
-        <Layout>
-          <DefaultHeader theme={theme} />
-          <LandingContent
-            theme={theme}
-            onGetStarted={() => this.onGetStarted()}
-          />
-          <StyledFooter>
-            <CustomFooter />
-          </StyledFooter>
-        </Layout>
-
+      <Layout>
+        <DefaultHeader theme={theme} />
+        <LandingContent
+          theme={theme}
+          onGetStarted={() => this.onGetStarted()}
+        />
+      </Layout>
     )
   }
 }

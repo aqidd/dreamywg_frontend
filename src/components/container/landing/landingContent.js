@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Layout } from 'antd'
+import styled from 'styled-components'
 import Introduction from '../../presentation/landing/introduction'
 import Services from '../../presentation/landing/services'
 import Showcase from '../../presentation/landing/showcase'
@@ -19,5 +20,8 @@ const LandingContent = props => (
   </StyledContent>
 )
 
-const StyledContent = styled(Layout.Content)``
+const StyledContent = styled(Layout.Content)`
+  background-color: white;
+  padding-bottom: 10vh;
+`
 export default LandingContent
