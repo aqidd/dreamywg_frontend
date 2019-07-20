@@ -21,7 +21,9 @@ const DefaultHeader = ({ redirect }) => (
         {/*TODO: super ugly but works for now*/}
         {localStorage.getItem('token') === null ? (
           <Popover content={<Login redirect={url => redirect(url)} />}>
-            <Icon style={{ fontSize: 32, float: 'right' }} type="user" />
+            <Button type="primary" style={{ float: 'right', borderRadius: 30 }}>
+              Get started
+            </Button>
           </Popover>
         ) : (
           <Popover
