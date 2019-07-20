@@ -16,14 +16,15 @@ class FlatStore {
       coordinate: {},
       title: 'Some Flat dat ist very very Gut',
       flatshareType: 'Yearly',
+      images: [],
       rooms: [
         {
-          images: ['some url'],
+          image: '',
           rent: 1200,
           dateAvailableRange: ['some date']
         },
         {
-          images: ['some url'],
+          image: '',
           rent: 1200,
           dateAvailableRange: ['some date']
         }
@@ -100,6 +101,7 @@ class FlatStore {
 
   @action fetchOffererFlat = async () => {
     const response = await network.getMyFlat(this.id)
+    this.id = response.data._id
     this.flat = response.data
 
     this.flat.coordinate = await convertAddressToCoordinate(

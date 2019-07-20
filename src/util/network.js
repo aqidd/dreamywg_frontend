@@ -46,8 +46,8 @@ const Api = {
   loadSearchProperties: () => axios.get(`${serverUrl}/flatseekers/loadSearchProperties`, config()),
   flatseekerSearch: filters => axios.post(`${serverUrl}/flatseekers/search`, filters, config()),
   // flat
-  getFlat: id => axios.get(`${serverUrl}/flats/${id}`, {}, config()),
-  getMyFlat: id => axios.get(`${serverUrl}/flats/my-flat`, {}, config()),
+  getFlat: id => axios.get(`${serverUrl}/flats/${id}`, config()),
+  getMyFlat: () => axios.get(`${serverUrl}/flats/my-flat`, config()),
   // schedule
   schedule: (scheduleId) => axios.get(`${serverUrl}/schedules/${scheduleId}`),
   schedules: (flatId) => axios.get(`${serverUrl}/schedules/flat/${flatId}`),
