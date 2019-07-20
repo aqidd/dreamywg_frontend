@@ -50,7 +50,7 @@ const FlatCard = ({ title, description, type, store, station, equipment,address 
           <Subtitle>Location</Subtitle>
           <GoogleMap
             center={address}
-            zoom={11}
+            zoom={15}
           />
         </StyledSection>
         <StyledSection>

@@ -5,7 +5,6 @@ import { convertAddressToCoordinate } from '../util/location'
 class FlatStore {
   @observable id = ''
   @observable flat = null
-  @observable flatCoordinate = {}
 
   constructor(rootStore) {
     this.rootStore = rootStore
@@ -92,22 +91,22 @@ class FlatStore {
     const response = await network.getFlat(this.id)
     this.flat = response.data
 
-    this.flatCoordinate = await convertAddressToCoordinate(
+    this.flat.coordinate = await convertAddressToCoordinate(
       `${this.flat.region} ${this.flat.street}, ${this.flat.houseNr}`
     )
-    console.log(toJS(this.flatCoordinate))
-    return response.data
+    
+    return this.flat
   }
 
   @action fetchOffererFlat = async () => {
     const response = await network.getMyFlat(this.id)
     this.flat = response.data
 
-    this.flatCoordinate = await convertAddressToCoordinate(
+    this.flat.coordinate = await convertAddressToCoordinate(
       `${this.flat.region} ${this.flat.street}, ${this.flat.houseNr}`
     )
-    console.log(toJS(this.flatCoordinate))
-    return response.data
+
+    return this.flat
   }
 }
 
