@@ -55,14 +55,14 @@ class FlatsharePreferences extends Component {
 
           <Row gutter={24}>
             <Col span={8}>
-              <NumberRange decorator={decorator} itemLabel="Room size in m&sup2;"
+              <NumberRange decorator={decorator} itemLabel="Room size in m&sup2;*"
                            objName={'preferences.flat.room.size'}/>
             </Col>
             <Col span={8}>
-              <NumberRange decorator={decorator} itemLabel={'Rent in €'} objName={'preferences.flat.room.rent'}/>
+              <NumberRange decorator={decorator} itemLabel={'Rent in €*'} objName={'preferences.flat.room.rent'}/>
             </Col>
             <Col span={8}>
-              <Item label="Date available">
+              <Item label="Date available*">
                 <WrappedAnyInput
                   required
                   tag={fieldValue('preferences.flat.room.rentType') === 'limited' ? <RangePicker/> :
@@ -76,7 +76,7 @@ class FlatsharePreferences extends Component {
 
           <Row gutter={24}>
             <Col span={8}>
-              <Item label="Gender restrictions">
+              <Item label="Gender restrictions*">
                 <WrappedSelection
                   placeHolder="Please select"
                   dec={decorator}
@@ -86,11 +86,11 @@ class FlatsharePreferences extends Component {
               </Item>
             </Col>
             <Col span={8}>
-              <NumberRange decorator={decorator} itemLabel="Flatmates age" objName={'preferences.flatmates.age.'}/>
+              <NumberRange decorator={decorator} itemLabel="Flatmates age*" objName={'preferences.flatmates.age'}/>
             </Col>
 
             <Col span={8}>
-              <NumberRange decorator={decorator} itemLabel="Number of Flatmates"
+              <NumberRange decorator={decorator} itemLabel="Number of Flatmates*"
                            objName={'preferences.flatmates.amount'}/>
             </Col>
           </Row>
@@ -141,8 +141,9 @@ class FlatsharePreferences extends Component {
           <h2>Flatshare living</h2>
           <Row gutter={24}>
             <Col span={8}>
-              <Item label="Expected Cleanliness">
+              <Item label="Expected Cleanliness*">
                 <WrappedSelection
+                  required
                   placeHolder="Please select"
                   dec={decorator}
                   objName="preferences.cleanliness"
@@ -152,8 +153,9 @@ class FlatsharePreferences extends Component {
             </Col>
             <Col span={8}>
 
-              <Item label="Cleaning schedule">
+              <Item label="Cleaning schedule*">
                 <WrappedSelection
+                  required
                   placeHolder="Please select"
                   dec={decorator}
                   objName="preferences.cleaningSchedule"

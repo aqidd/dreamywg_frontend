@@ -10,7 +10,6 @@ import {
   cleaningSchedule,
   cleanliness,
   flatshareExperience, genderPreference,
-  genderRestriction,
   occupation,
   practiceOfAbstaining
 } from "../../../../util/selections";
@@ -54,11 +53,12 @@ class FlatmatePreferences extends Component {
               </Item>
             </Col>
             <Col span={8}>
-              <Item label="Age">
+              <Item label="Age*">
                 <InputGroup compact>
                   <WrappedAnyInput
                     tag={<InputNumber style={{width: "40%", textAlign: 'center'}}/>}
                     dec={getFieldDecorator}
+                    required
                     objName="flatmatePreferences.age.from"
                   />
                   <Input
@@ -74,31 +74,34 @@ class FlatmatePreferences extends Component {
                   <WrappedAnyInput
                     tag={<InputNumber style={{width: "40%", textAlign: 'center', borderLeft: 0}}/>}
                     dec={getFieldDecorator}
+                    required
                     objName="flatmatePreferences.age.to"
                   />
                 </InputGroup>
               </Item>
             </Col>
             <Col span={8}>
-              <Item label="Occupations">
+              <Item label="Occupations*">
                 <WrappedSelection
                   placeHolder="Please select"
                   type="multiple"
                   dec={getFieldDecorator}
                   objName="flatmatePreferences.occupations"
                   value={occupation}
+                  required
                 />
               </Item>
             </Col>
           </Row>
           <Row gutter={24}>
             <Col span={12}>
-              <Item label="Required flatshare experience">
+              <Item label="Required flatshare experience*">
                 <WrappedSelection
                   placeHolder="Please select"
                   dec={getFieldDecorator}
                   objName="flatmatePreferences.flatshareExperience"
                   value={flatshareExperience}
+                  required
                 />
               </Item>
             </Col>
@@ -116,18 +119,20 @@ class FlatmatePreferences extends Component {
           </Row>
           <Row gutter={24}>
             <Col span={8}>
-              <Item label="Expected Cleanliness">
+              <Item label="Expected Cleanliness*">
                 <WrappedSelection
                   placeHolder="Please select"
                   dec={getFieldDecorator}
                   objName="flatmatePreferences.cleanliness"
                   value={cleanliness}
+                  required
                 />
               </Item>
             </Col>
             <Col span={8}>
-              <Item label="Cleaning schedule">
+              <Item label="Cleaning schedule*">
                 <WrappedSelection
+                  required
                   placeHolder="Please select"
                   dec={getFieldDecorator}
                   objName="flatmatePreferences.cleaningSchedule"
