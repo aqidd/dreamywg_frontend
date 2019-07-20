@@ -8,7 +8,6 @@ import SearchStore from '../stores/searchStore'
 import MainLayout from '../components/presentation/mainLayout';
 
 const {Sider, Content} = Layout
-const theme = "light"
 
 export default class SearchScreen extends Component {
   constructor(props) {

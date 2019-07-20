@@ -5,6 +5,7 @@ import 'antd/dist/antd.css'
 import withRedirect from '../common/class/withRedirect'
 import { TYPE } from '../../stores/authStore'
 import { Redirect } from 'react-router'
+import styled from 'styled-components'
 
 @inject('store')
 @observer
@@ -41,10 +42,17 @@ class LoginContainer extends Component {
 
     return (
       <Provider store="store">
-        <CredentialForm processData={(name, data) => this.onSubmit(data)}/>
+        <Container>
+          <CredentialForm processData={(name, data) => this.onSubmit(data)} />
+        </Container>
       </Provider>
     )
   }
 }
+
+const Container = styled.div`
+  margin-top: 15vh;
+  margin-bottom: 15vh;
+`
 
 export default withRedirect(LoginContainer)
