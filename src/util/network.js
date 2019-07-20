@@ -1,5 +1,4 @@
 import axios from 'axios'
-import Swal from 'sweetalert2'
 
 export const serverUrl = 'http://localhost:4005'
 export const socketUrl = 'localhost:8080'
@@ -18,12 +17,6 @@ axios.interceptors.response.use(
   },
   error => {
     console.log(error.response)
-    Swal.fire({
-      title: 'Error occured during request, try again...',
-      text: error.response.message,
-      type: 'error',
-      confirmButtonText: 'OK'
-    })
     return Promise.reject(error)
   }
 )

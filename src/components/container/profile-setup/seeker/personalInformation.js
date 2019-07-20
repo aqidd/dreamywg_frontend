@@ -206,6 +206,10 @@ class PersonalInformation extends Component {
               </Item>
             </ExtendFormSection>
           </FormContainer>
+          <ControlButton
+            onClick={(type, result) => this.handleResult(type, result)}
+            next="Next"
+          />
         </Form>
       </Container>
     )
