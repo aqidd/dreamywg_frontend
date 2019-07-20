@@ -29,7 +29,7 @@ export default class SearchContainer extends Component {
                       key={index}
                       sponsor={element.sponsored}
                       id={element.id}
-                      img='https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'//{element.img}
+                      img={element.img}
                       title={element.title}
                       description={element.description}
                       matched={element.matched}

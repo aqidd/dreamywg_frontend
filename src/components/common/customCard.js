@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Skeleton } from 'antd'
 import styled from 'styled-components'
+import * as network from '../../util/network'
 
 const CustomCard = ({
                       ready,
@@ -18,7 +19,7 @@ const CustomCard = ({
                     }) =>
   ready ? (
     <CardContainer onClick={() => window.location.href = `http://localhost:3000/flat/${id}`}>
-      <StyledImage alt="example" src={img}/>
+      <StyledImage alt="flatimage" src={`${network.serverUrl}/static/${img}`}/>
 
       <ContentContainer>
         <TitleContainer>

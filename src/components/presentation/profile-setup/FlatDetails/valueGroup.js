@@ -8,8 +8,9 @@ const ValueGroup = ({ decorator }) => (
   <Input.Group>
     <Row gutter={16}>
       <Col span={8}>
-        <Item label="Flatsize">
+        <Item label="Flatsize*">
           <WrappedInput
+            required
             dec={decorator}
             objName="flatSize"
             suffix="m&sup2;"
@@ -18,8 +19,9 @@ const ValueGroup = ({ decorator }) => (
         </Item>
       </Col>
       <Col span={8}>
-        <Item label="Roomsize">
+        <Item label="Roomsize*">
           <WrappedInput
+            required
             dec={decorator}
             objName="rooms[0].roomSize"
             suffix="m&sup2;"
@@ -28,8 +30,9 @@ const ValueGroup = ({ decorator }) => (
         </Item>
       </Col>
       <Col span={8}>
-        <Item label="Rent">
+        <Item label="Rent*">
           <WrappedInput
+            required
             dec={decorator}
             objName="rooms[0].rent"
             suffix=" ‎€/Month"

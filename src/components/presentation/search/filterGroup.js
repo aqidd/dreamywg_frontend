@@ -41,7 +41,7 @@ class FilterGroup extends Component {
         'YYYY-MM-DD'
       )
     ])
-
+    
     setFieldsValue({
       preferences: {
         flat: {

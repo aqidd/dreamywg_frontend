@@ -8,8 +8,9 @@ import {flatshareType, rentType} from "../../../../util/selections";
 const Item = Form.Item;
 
 export const RegionSelection = ({decorator}) => (
-  <Item label="Regions">
+  <Item label="Regions*">
     <WrappedSelection
+      required
       placeHolder="Please select"
       type="multiple"
       dec={decorator}
@@ -20,8 +21,9 @@ export const RegionSelection = ({decorator}) => (
 );
 
 export const TypeOfRentSelection = ({decorator}) => (
-  <Item label="Type of rent">
+  <Item label="Type of rent*">
     <WrappedSelection
+      required
       placeHolder="Please select"
       dec={decorator}
       objName="preferences.flat.room.rentType"
@@ -31,8 +33,9 @@ export const TypeOfRentSelection = ({decorator}) => (
 );
 
 export const TypeOfFlatshareSelection = ({decorator}) => (
-  <Item label="Type of flatshare">
+  <Item label="Type of flatshare*">
     <WrappedSelection
+      required
       tag="multiple"
       placeHolder="Please select"
       dec={decorator}
