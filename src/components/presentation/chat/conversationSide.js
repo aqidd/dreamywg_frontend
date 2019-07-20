@@ -1,7 +1,14 @@
 import React from 'react'
 import { Input } from 'antd'
 import styled from 'styled-components'
-import { Bubble, Message, MessageGroup, MessageList, MessageText, ThemeProvider } from '@livechat/ui-kit'
+import {
+  Bubble,
+  Message,
+  MessageGroup,
+  MessageList,
+  MessageText,
+  ThemeProvider
+} from '@livechat/ui-kit'
 import moment from 'moment'
 
 const { Search } = Input
@@ -16,16 +23,16 @@ export default class ConversationSide extends React.Component {
     const chat = this.props.chat
     const clientId = this.props.clientId
     return (
-      <Container>
-        <ThemeProvider>
+      <ThemeProvider>
+        <Container>
           <ChatContainer>
             <MessageList active style={{ background: '#fafafa' }}>
               {/*render message based on store value*/}
               {chat.messages.map(msg => (
                 <MessageGroup
                   avatarLetter={(chat.user1.id === msg.senderId
-                      ? chat.user1
-                      : chat.user2
+                    ? chat.user1
+                    : chat.user2
                   ).fullName.slice(0, 1)}
                   isOwn={clientId === msg.senderId}
                   onlyFirstWithMeta
@@ -72,8 +79,8 @@ export default class ConversationSide extends React.Component {
               />
             </div>
           </ChatContainer>
-        </ThemeProvider>
-      </Container>
+        </Container>
+      </ThemeProvider>
     )
   }
 }

@@ -23,13 +23,17 @@ export default class App extends React.Component {
     const { hasToken } = store()
     return (
       <BrowserRouter>
-        <Route exact path="/" component={LandingScreen}/>
-        <Route exact path="/register" component={Register}/>
-        <Route exact path="/login" component={Login}/>
+        <Route exact path="/" render={props => <LandingScreen {...props} />} />
+        <Route
+          exact
+          path="/register"
+          render={props => <Register {...props} />}
+        />
+        <Route exact path="/login" render={props => <Login {...props} />} />
         <Route
           exact
           path="/confirmation/:token"
-          component={ConfirmationScreen}
+          render={props => <ConfirmationScreen {...props} />}
         />
         <ProtectedRoute
           exact
@@ -83,7 +87,7 @@ export default class App extends React.Component {
         <ProtectedRoute
           exact
           path="/schedule/:id"
-          component={Schedule}
+          Comp={Schedule}
           isAuth={hasToken()}
         />
       </BrowserRouter>
@@ -95,7 +99,7 @@ const ProtectedRoute = ({ isAuth, Comp, ...others }) => (
   <Route
     {...others}
     render={props =>
-      isAuth() ? <Comp {...props} /> : <Redirect to="/login"/>
+      isAuth() ? <Comp {...props} /> : <Redirect to="/login" />
     }
   />
 )

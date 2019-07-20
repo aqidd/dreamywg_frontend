@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
-import { Row, Col, Typography, Card, Icon } from 'antd'
+import React from 'react'
+import { Row, Col, Card, Icon } from 'antd'
 import TitleContent from '../../common/titlecontent'
-import styled, { ThemeProvider } from 'styled-components'
-import theme from 'styled-theming'
-const { Meta } = Card
+import styled from 'styled-components'
 
 const dataService = [
   {
@@ -38,8 +36,9 @@ const Services = () => (
         gutter={16}
         style={{ marginTop: '2vh' }}
       >
-        {dataService.map(data => (
+        {dataService.map((data, index) => (
           <ServiceCard
+            key={index}
             title={data.title}
             icon={data.icon}
             subtitle={data.content}
@@ -67,16 +66,6 @@ const ServiceCard = ({ title, subtitle, icon }) => (
 )
 export default Services
 
-const cardColor = theme('mode', {
-  light: '#FFF',
-  dark: '#111'
-})
-
-const textColor = theme('mode', {
-  light: '#000',
-  dark: '#DDD'
-})
-
 const Title = styled.p`
   font-weight: bold;
 `
@@ -84,14 +73,7 @@ const Subtitle = styled.p`
   font-weight: normal;
 `
 
-const CardContainer = styled(Card)`
-  background-color: ${cardColor};
-  color: ${textColor};
-`
-
-const StyledMeta = styled(Meta)`
-  color: ${textColor};
-`
+const CardContainer = styled(Card)``
 
 const Container = styled.div`
   text-align: center;

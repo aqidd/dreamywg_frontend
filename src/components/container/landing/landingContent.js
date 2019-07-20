@@ -1,40 +1,27 @@
 import React, { Component } from 'react'
 import { Layout } from 'antd'
+import styled from 'styled-components'
 import Introduction from '../../presentation/landing/introduction'
 import Services from '../../presentation/landing/services'
 import Showcase from '../../presentation/landing/showcase'
-import styled, { ThemeProvider } from 'styled-components'
 import RiseupSection from '../../common/RiseupSection'
-import theme from 'styled-theming'
 
 const LandingContent = props => (
-  <ThemeProvider theme={{ mode: props.theme }}>
-    <StyledContent>
-      <RiseupSection>
-        <Introduction onGetStarted={props.onGetStarted} />
-      </RiseupSection>
-      <RiseupSection>
-        <Services />
-      </RiseupSection>
-      <RiseupSection>
-        <Showcase onGetStarted={props.onGetStarted} />
-      </RiseupSection>
-    </StyledContent>
-  </ThemeProvider>
+  <StyledContent>
+    <RiseupSection>
+      <Introduction onGetStarted={props.onGetStarted} />
+    </RiseupSection>
+    <RiseupSection>
+      <Services />
+    </RiseupSection>
+    <RiseupSection>
+      <Showcase onGetStarted={props.onGetStarted} />
+    </RiseupSection>
+  </StyledContent>
 )
 
-const backgroundColor = theme('mode', {
-  light: 'white',
-  dark: '#222'
-})
-
-const textColor = theme('mode', {
-  light: '#000',
-  dark: '#fff'
-})
-
 const StyledContent = styled(Layout.Content)`
-  background-color: ${backgroundColor};
-  color: ${textColor};
+  background-color: white;
+  padding-bottom: 10vh;
 `
 export default LandingContent
