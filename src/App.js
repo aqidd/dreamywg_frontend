@@ -86,7 +86,6 @@ export default class App extends React.Component {
           component={Schedule}
           isAuth={hasToken()}
         />
-
       </BrowserRouter>
     )
   }
@@ -95,6 +94,8 @@ export default class App extends React.Component {
 const ProtectedRoute = ({ isAuth, Comp, ...others }) => (
   <Route
     {...others}
-    render={props => (isAuth ? <Comp {...props} /> : <Redirect to="/login" />)}
+    render={props =>
+      isAuth() ? <Comp {...props} /> : <Redirect to="/login" />
+    }
   />
 )
