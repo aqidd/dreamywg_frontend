@@ -17,12 +17,16 @@ axios.interceptors.response.use(
     return response
   },
   error => {
-    console.log(error.response)
+    let title = 'Sorry, something went wrong...'
+    if (!error.response)
+      title = 'Server unavailable'
+    else if (error.response.data)
+      title = error.response.data
+
     Swal.fire({
-      title: 'Some error occured during request...',
-      text: error.response.message,
+      title: title,
       type: 'error',
-      position: 'top-end',
+      position: 'center',
       showConfirmButton: false,
       toast: true
     })
@@ -34,12 +38,8 @@ const Api = {
   // auth
   login: credentials => axios.post(`${serverUrl}/users/login`, credentials, config()),
   register: userData => axios.post(`${serverUrl}/users`, userData, config()),
-  getProfile: userId => axios.get(`${serverUrl}/users/${userId}`, config()),
-  registerWithSocialMedia: userData => axios.patch(`${serverUrl}/users/${userData._id}`, userData, config),
   confirmation: token => axios.get(`${serverUrl}/confirmation/${token}`),
   // user
-  profileOffer: data => axios.post(`${serverUrl}/flatofferer/`, data, config()),
-  profileSeeker: data => axios.post(`${serverUrl}/flatseeker/`, data, config()),
   createFlatofferer: data => axios.post(`${serverUrl}/flatofferers`, data, config()),
   createFlatseeker: data => axios.post(`${serverUrl}/flatseekers`, data, config()),
   // search

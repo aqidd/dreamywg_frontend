@@ -2,6 +2,11 @@ import { action, observable } from 'mobx'
 import network from '../util/network'
 import { merge } from 'lodash'
 
+export const TYPE = {
+  SEEKER: 'SEEKER',
+  OFFERER: 'OFFERER'
+}
+
 class Store {
   @observable credentials = {
     email: '',
@@ -14,67 +19,43 @@ class Store {
   @observable token
 
   constructor() {
-    if (!this.loginResponse) this.initData()
-  }
-
-  initData() {
-    this.loginResponse = {
-      success: false,
-      completed: false,
-      errorMessage: '',
-      type: undefined
-    }
-  }
-
-  setUserId = id => {
-    localStorage.setItem('userId', id)
-  }
-
-  setToken = token => {
-    localStorage.setItem('token', token)
   }
 
   getToken() {
     return localStorage.getItem('token')
   }
 
+  setToken = token => {
+    localStorage.setItem('token', token)
+  }
+
   getUserId() {
     return localStorage.getItem('userId')
   }
 
+  setUserId = id => {
+    localStorage.setItem('userId', id)
+  }
+
+  getUserType() {
+    return localStorage.getItem('userType')
+  }
+
+  setUserType = type => {
+    localStorage.setItem('userType', type)
+  }
+
+
   @action login = async credentials => {
-    return network
-      .login(credentials)
-      .then(response => {
-        const token = response.data.token
-        console.log(response.data)
-        this.user = response.data.user
-        this.setToken(token)
-        this.setUserId(this.user._id)
-        this.loginResponse = {
-          success: true,
-          completed: true,
-          errorMessage: '',
-          type: this.user.type ? this.user.type : null,
-          token: token
-        }
-      })
-      .catch(error => {
-        if (error.response) {
-          this.loginResponse = {
-            success: false,
-            completed: true,
-            errorMessage: error.response.data
-          }
-        } else {
-          console.log(error)
-          this.loginResponse = {
-            success: false,
-            completed: true,
-            errorMessage: 'Sorry, something went wrong. Please try it again.'
-          }
-        }
-      })
+    const response = await network.login(credentials)
+
+    if (response) {
+      const token = response.data.token
+      this.user = response.data.user
+      this.setUserId(this.user._id)
+      this.setUserType(this.user.type)
+      this.setToken(token)
+    }
   }
 
   hasToken = () => {

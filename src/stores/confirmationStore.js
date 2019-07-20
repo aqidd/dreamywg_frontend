@@ -1,12 +1,12 @@
-import {action, observable} from "mobx"
-import network from '../util/network';
+import { action, observable } from 'mobx'
+import network from '../util/network'
 
-import React from 'react';
+import React from 'react'
 
-const serverUnavailable = "Server unavailable. Maybe try it later";
+const serverUnavailable = 'Server unavailable. Maybe try it later'
 
 class Store {
-  @observable result;
+  @observable result
 
   constructor() {
     this.result = undefined
@@ -14,15 +14,15 @@ class Store {
 
   @action verify = (token) => {
     network.confirmation(token)
-      .then((response) => {
-        this.result = {state: true, data: response.data}
+      .then(() => {
+        this.result = { state: true }
       })
       .catch((err) => {
-        this.result = {state: false, data: err ? serverUnavailable : err.loginResponse.data};
+        this.result = { state: false, data: !err.response ? serverUnavailable : err.response.data }
       })
   }
 }
 
-const ConfirmationStore = () => new Store();
+const ConfirmationStore = () => new Store()
 
 export default ConfirmationStore
