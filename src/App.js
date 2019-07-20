@@ -23,9 +23,9 @@ export default class App extends React.Component {
     const { hasToken } = store()
     return (
       <BrowserRouter>
-        <Route exact path="/" component={LandingScreen} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/" component={LandingScreen}/>
+        <Route exact path="/register" component={Register}/>
+        <Route exact path="/login" component={Login}/>
         <Route
           exact
           path="/confirmation/:token"
@@ -95,7 +95,7 @@ const ProtectedRoute = ({ isAuth, Comp, ...others }) => (
   <Route
     {...others}
     render={props =>
-      isAuth() ? <Comp {...props} /> : <Redirect to="/login" />
+      isAuth() ? <Comp {...props} /> : <Redirect to="/login"/>
     }
   />
 )
