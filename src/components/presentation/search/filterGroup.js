@@ -33,8 +33,6 @@ class FilterGroup extends Component {
     await this.props.store.initData()
     const filterValues = this.props.store.filterValues
 
-    console.log([moment(filterValues.preferences.flat.room.dateAvailableRange[0]).format('YYYY-MM-DD'), moment(filterValues.preferences.flat.room.dateAvailableRange[0]).format('YYYY-MM-DD')])
-
     setFieldsValue({
       preferences: {
         flat: {

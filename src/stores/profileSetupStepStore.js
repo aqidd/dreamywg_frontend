@@ -46,7 +46,6 @@ class Store {
   }
 
   @action onPreviewCancel = () => {
-    console.log('triggered')
     this.imagePreview.show = false
   }
 

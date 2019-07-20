@@ -22,9 +22,7 @@ const InputGroup = Input.Group;
 class FlatmatePreferences extends Component {
   handleResult = (type, result) => {
     result.preventDefault();
-    console.log('halo')
     this.props.form.validateFields((error, values) => {
-      console.log('go')
       error && type !== 'Back'
         ? this.props.displayError(error)
         : type === 'Next'
