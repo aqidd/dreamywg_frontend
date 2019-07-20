@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import CredentialForm from './../presentation/authentication/credentialForm'
 import { inject, observer, Provider } from 'mobx-react'
 import 'antd/dist/antd.css'
-import { Redirect } from 'react-router-dom'
-import WrappedModal from '../common/form/wrappedModal'
 import withRedirect from '../common/class/withRedirect'
+import { TYPE } from '../../stores/authStore'
+import { Redirect } from 'react-router'
 
 @inject('store')
 @observer
@@ -15,34 +15,33 @@ class LoginContainer extends Component {
 
   onSubmit = async data => {
     await this.props.store.login(data)
-    if (this.props.store.loginResponse.success) {
-      console.log(
-        'successful: ' +
-          this.props.store.loginResponse.success +
-          ' ' +
-          !this.props.store.loginResponse.type
-      )
-      if (this.props.store.loginResponse.type === 'SEEKER') {
+    if (this.props.store.hasToken()) {
+      const type = this.props.store.getUserType()
+      if (type === TYPE.SEEKER) {
         return this.props.redirect('/search')
-      } else if (this.props.store.loginResponse.type === 'OFFERER') {
+      } else if (type === TYPE.OFFERER) {
         return this.props.redirect('/my-flat')
       } else {
         return this.props.redirect('/roleSelection')
       }
-    } else if (
-      this.props.store.loginResponse.completed &&
-      !this.props.store.loginResponse.success
-    ) {
-      WrappedModal(this.props.store.loginResponse.errorMessage)
-    } else if (this.props.store.hasToken()) {
-      return this.props.redirect('/')
     }
   }
 
   render() {
+    if (this.props.store.hasToken()) {
+      const type = this.props.store.getUserType()
+      if (type === TYPE.SEEKER) {
+        return <Redirect to={'/search'} />
+      } else if (type === TYPE.OFFERER) {
+        return <Redirect to={'/my-flat'} />
+      } else {
+        return <Redirect to={'/roleSelection'} />
+      }
+    }
+
     return (
       <Provider store="store">
-        <CredentialForm processData={(name, data) => this.onSubmit(data)} />
+        <CredentialForm processData={(name, data) => this.onSubmit(data)}/>
       </Provider>
     )
   }
