@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import DefaultHeader from '../components/common/defaultHeader'
-import CustomFooter from '../components/common/customFooter'
-import BaseLayout from '../components/presentation/baseLayout'
+import MainLayout from '../components/presentation/mainLayout'
 import ChatContainer from '../components/container/chatContainer'
 import Store from '../stores/chatStore'
 import 'antd/dist/antd.css'
 import { Provider } from 'mobx-react'
+import DefaultHeader from '../components/common/defaultHeader'
 
 export default class ChatPage extends Component {
   constructor(props) {
@@ -16,10 +15,10 @@ export default class ChatPage extends Component {
   render() {
     return (
       <Provider store={this.store}>
-        <BaseLayout>
-          <DefaultHeader />
+        <MainLayout>
+          <DefaultHeader/>
           <ChatContainer />
-        </BaseLayout>
+        </MainLayout>
       </Provider>
     )
   }

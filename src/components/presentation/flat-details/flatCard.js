@@ -2,8 +2,9 @@ import React from 'react'
 import { Row, Col, Card, Carousel, Icon, Tag } from 'antd'
 import GoogleMap from '../../common/googleMap'
 import styled from 'styled-components'
+import * as network from '../../../util/network'
 
-const FlatCard = ({ title, description, type, store, station, equipment,address }) => (
+const FlatCard = ({ title, description, images, type, store, station, equipment,address }) => (
   <StyledCard style={roundCorner}>
     <CardContainer>
       <Carousel
@@ -13,15 +14,15 @@ const FlatCard = ({ title, description, type, store, station, equipment,address 
         adaptiveHeight
         autoplay
       >
-        <div>
-          <StyledImage src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Best_House_in_fall.JPG/1200px-Best_House_in_fall.JPG" />
-        </div>
-        <div>
-          <StyledImage src="http://images.mentalfloss.com/sites/default/files/styles/article_640x430/public/up_house.jpg" />
-        </div>
-        <div>
-          <StyledImage src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Best_House_in_fall.JPG/1200px-Best_House_in_fall.JPG" />
-        </div>
+        {
+          images.map(image => {
+            return (
+              <div>
+                <StyledImage src={`${network.serverUrl}/static/${image}`}/>
+              </div>
+            )
+          })
+        }
       </Carousel>
 
       <ContentContainer>
@@ -50,7 +51,7 @@ const FlatCard = ({ title, description, type, store, station, equipment,address 
           <Subtitle>Location</Subtitle>
           <GoogleMap
             center={address}
-            zoom={11}
+            zoom={15}
           />
         </StyledSection>
         <StyledSection>

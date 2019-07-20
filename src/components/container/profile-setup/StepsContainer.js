@@ -36,8 +36,7 @@ class StepsContentContainer extends Component {
       if (this.props.store.isSeeker) {
         return <Redirect to="/search" push />
       } else {
-        //TODO: Aqid put your redirect path here: -> retrieve flat ID and view flat offerview
-        return <Redirect to="/flat" push />
+        return <Redirect to="/my-flat" push />
       }
     }
 

@@ -16,7 +16,19 @@ axios.interceptors.response.use(
     return response
   },
   error => {
-    console.log(error.response)
+    let title = 'Sorry, something went wrong...'
+    if (!error.response)
+      title = 'Server unavailable'
+    else if (error.response.data)
+      title = error.response.data
+
+    Swal.fire({
+      title: title,
+      type: 'error',
+      position: 'center',
+      showConfirmButton: false,
+      toast: true
+    })
     return Promise.reject(error)
   }
 )
@@ -25,6 +37,7 @@ const Api = {
   // auth
   login: credentials => axios.post(`${serverUrl}/users/login`, credentials, config()),
   register: userData => axios.post(`${serverUrl}/users`, userData, config()),
+  getProfile: userId => axios.get(`${serverUrl}/users/${userId}`, config()),
   registerWithSocialMedia: userData => axios.patch(`${serverUrl}/users/${userData._id}`, userData, config),
   confirmation: token => axios.get(`${serverUrl}/confirmation/${token}`),
   // user
@@ -36,7 +49,8 @@ const Api = {
   loadSearchProperties: () => axios.get(`${serverUrl}/flatseekers/loadSearchProperties`, config()),
   flatseekerSearch: filters => axios.post(`${serverUrl}/flatseekers/search`, filters, config()),
   // flat
-  getFlat: id => axios.get(`${serverUrl}/flats/${id}`),
+  getFlat: id => axios.get(`${serverUrl}/flats/${id}`, config()),
+  getMyFlat: () => axios.get(`${serverUrl}/flats/my-flat`, config()),
   // schedule
   schedule: (scheduleId) => axios.get(`${serverUrl}/schedules/${scheduleId}`),
   schedules: (flatId) => axios.get(`${serverUrl}/schedules/flat/${flatId}`),

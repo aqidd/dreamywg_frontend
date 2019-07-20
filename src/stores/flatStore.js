@@ -5,7 +5,6 @@ import { convertAddressToCoordinate } from '../util/location'
 class FlatStore {
   @observable id = ''
   @observable flat = null
-  @observable flatCoordinate = {}
 
   constructor(rootStore) {
     this.rootStore = rootStore
@@ -17,14 +16,15 @@ class FlatStore {
       coordinate: {},
       title: 'Some Flat dat ist very very Gut',
       flatshareType: 'Yearly',
+      images: [],
       rooms: [
         {
-          images: ['some url'],
+          image: '',
           rent: 1200,
           dateAvailableRange: ['some date']
         },
         {
-          images: ['some url'],
+          image: '',
           rent: 1200,
           dateAvailableRange: ['some date']
         }
@@ -92,12 +92,23 @@ class FlatStore {
     const response = await network.getFlat(this.id)
     this.flat = response.data
 
-    // TODO (Q) configure geocoding with gmaps or other provider
-    this.flatCoordinate = await convertAddressToCoordinate(
+    this.flat.coordinate = await convertAddressToCoordinate(
       `${this.flat.region} ${this.flat.street}, ${this.flat.houseNr}`
     )
-    console.log(toJS(this.flatCoordinate))
-    return response.data
+    
+    return this.flat
+  }
+
+  @action fetchOffererFlat = async () => {
+    const response = await network.getMyFlat(this.id)
+    this.id = response.data._id
+    this.flat = response.data
+
+    this.flat.coordinate = await convertAddressToCoordinate(
+      `${this.flat.region} ${this.flat.street}, ${this.flat.houseNr}`
+    )
+
+    return this.flat
   }
 }
 

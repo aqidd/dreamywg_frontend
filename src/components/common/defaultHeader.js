@@ -82,6 +82,11 @@ const StyledSection = styled.div`
   margin-bottom: 2vh;
 `
 
+const rightMenu = {
+  float: 'right',
+  paddingTop: '10px'
+}
+
 const backgroundColor = theme('mode', {
   light: 'white',
   dark: '#222'
@@ -99,10 +104,10 @@ const PopoverContainer = styled.div`
   text-align: center;
 `
 
-const Container = styled.div`
+const Container = styled(Row)`
+  padding-top: 2vh;
   height: 80px;
-  margin-top: 2vh;
-  background-color: ${backgroundColor};
+  background-color: white; // ${backgroundColor} not working
   color: ${textColor};
 `
 const Title = styled.p`

@@ -2,32 +2,18 @@ import React from "react"
 import { Layout, Menu, Breadcrumb } from "antd"
 import styled from "styled-components"
 import "antd/dist/antd.css"
+import DefaultHeader from "../common/defaultHeader";
 
 const { Header, Content, Footer } = Layout
 
 const BaseLayout = ({ children }) => (
-     <Layout className="layout">
+     <Layout>
+          <DefaultHeader/>
           <StyledContent>{children}</StyledContent>
+          <Footer style={{ textAlign: "center" }}>DreamyWG - 2019</Footer>
      </Layout>
 )
 
-const TempBread = () => (
-     <Breadcrumb style={{ margin: "16px 0" }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-     </Breadcrumb>
-)
-const Temp = () => (
-     <StyledHeader>
-          <div className="logo" />
-     </StyledHeader>
-)
-
-const StyledHeader = styled(Header)`
-     color: white;
-     background-color: white;
-`
 const StyledContent = styled(Content)`
      background-color: white;
      padding: 0 50px;

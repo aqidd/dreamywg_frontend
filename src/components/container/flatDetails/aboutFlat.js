@@ -17,6 +17,7 @@ const AboutFlat = inject('store')(
                 <FlatCard
                   title={flat.title}
                   type={flat.flatshareType}
+                  images={flat.images}
                   store={flat.stores}
                   equipment={store.flatStore.equipmentAsIcon()}
                   description={flat.longDescription}

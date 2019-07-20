@@ -11,8 +11,8 @@ import Schedule from './pages/schedule'
 import SearchScreen from './pages/search'
 import Login from './pages/login'
 import store from './stores/authStore'
-import Interview from './pages/interview'
 import FlatDetails from './pages/flatDetails'
+import MyFlat from './pages/myFlat'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -57,6 +57,12 @@ export default class App extends React.Component {
         />
         <ProtectedRoute
           exact
+          path="/my-flat"
+          Comp={MyFlat}
+          isAuth={() => hasToken()}
+        />
+        <ProtectedRoute
+          exact
           path="/flat/:id"
           Comp={FlatDetails}
           isAuth={() => hasToken()}
@@ -80,7 +86,6 @@ export default class App extends React.Component {
           component={Schedule}
           isAuth={hasToken()}
         />
-
       </BrowserRouter>
     )
   }
@@ -89,6 +94,8 @@ export default class App extends React.Component {
 const ProtectedRoute = ({ isAuth, Comp, ...others }) => (
   <Route
     {...others}
-    render={props => (isAuth ? <Comp {...props} /> : <Redirect to="/login" />)}
+    render={props =>
+      isAuth() ? <Comp {...props} /> : <Redirect to="/login" />
+    }
   />
 )

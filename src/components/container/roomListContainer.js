@@ -1,7 +1,6 @@
 import React from 'react'
-import { List, Avatar, Button, Skeleton, Icon, Carousel } from 'antd'
+import { List, Button} from 'antd'
 import { inject, observer } from 'mobx-react'
-import { toJS } from 'mobx'
 import { Link } from 'react-router-dom'
 
 const RoomListContainer = inject('store')(
@@ -9,6 +8,7 @@ const RoomListContainer = inject('store')(
     return (
       <div>
         <h2> Available Rooms </h2>
+        <hr/>
         <List
           itemLayout="vertical"
           dataSource={store.flatStore.flat.rooms}
@@ -24,10 +24,7 @@ const RoomListContainer = inject('store')(
             >
               <List.Item.Meta
                 title={`Room Price : ${room.rent} EUR`}
-                description={`Available during : ${new Date(
-                  room.dateAvailableRange[0]
-                ).toDateString()} -
-                    ${new Date(room.dateAvailableRange[1]).toDateString()}`}
+                description={`Available from ${store.flatPresentationStore.formatDateAvailable(room.dateAvailable, room.dateAvailableRange)}`}
               />
               <p>
                 This room is {room.furnished ? '' : `not`} furnished. The room

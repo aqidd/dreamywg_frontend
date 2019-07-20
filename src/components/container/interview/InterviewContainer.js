@@ -8,10 +8,13 @@ import { toJS } from 'mobx'
 import AddScheduleForm from '../../presentation/flat-details/addScheduleForm'
 import AddTimeslotForm from '../../presentation/flat-details/addTimeslotForm'
 import { copyToClipboard } from '../../../util/clipboard'
+import Swal from 'sweetalert2'
+import withRedirect from '../../common/class/withRedirect'
+
 // TODO refactor logic in UI
 @inject('store')
 @observer
-export default class InterviewContainer extends Component {
+class InterviewContainer extends Component {
   constructor(props) {
     super(props)
   }
@@ -71,7 +74,17 @@ export default class InterviewContainer extends Component {
       path =
         location.protocol + '//' + location.host + `/schedule/${scheduleId}`
       copyToClipboard(path)
-      alert('open message screen and paste the schedule URL to relevant seeker')
+      Swal.fire({
+        title: 'Schedule Page URL Copied',
+        text: 'This will open message screen and you can paste the schedule URL to relevant seeker',
+        type: 'success',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, go to chat'
+      }).then((result) => {
+        if (result.value) {
+          this.props.redirect('/chat')
+        }
+      })
     } else {
       // TODO work out what you want to do server-side...
       console.log('this is an SSR - or ERROR. find another way')
@@ -101,6 +114,8 @@ export default class InterviewContainer extends Component {
   }
 
   render() {
+    const formatDate = this.props.store.flatPresentationStore.formatDate
+    const formatDateTime = this.props.store.flatPresentationStore.formatDateTime
     return (
       <Container>
         <Row>
@@ -117,7 +132,7 @@ export default class InterviewContainer extends Component {
           <Col span={12}>
             <StyledCard title="Upcoming Interview">
               <Row>
-                <Col span={12}>
+                <Col span={16}>
                   <p>Select Schedule</p>
                   <Select
                     style={{ width: 200 }}
@@ -128,25 +143,36 @@ export default class InterviewContainer extends Component {
                       {
                         return (
                           <Option value={schedule._id} key={schedule._id}>
-                            {schedule.date}
+                            {formatDate(schedule.date)}
                           </Option>
                         )
                       }
                     })}
                   </Select>
-                  <Button onClick={this.shareSchedule}>SHARE SCHEDULE</Button>
-                </Col>
-                <Col span={8}>
-                  <p>Add Timeslot</p>
-                  <Provider store={this.props.store}>
-                    <AddTimeslotForm />
-                  </Provider>
+                  {
+                    this.props.store.interviewStore.currentSchedule._id ? (
+                      <Button onClick={this.shareSchedule} style={{marginLeft: '15px'}}>SHARE SCHEDULE</Button>
+                    ) : null
+                  }
                 </Col>
               </Row>
+              {
+                this.props.store.interviewStore.currentSchedule._id ? (
+                  <Row>
+                    <br/>
+                    <p>Add Timeslot</p>
+                    <Provider store={this.props.store}>
+                      <AddTimeslotForm />
+                    </Provider>
+                    <br/>
+                  </Row>
+                ) : null
+              }
               <ListContent
                 data={toJS(this.props.store.interviewStore.currentTimeslots)}
                 past={false}
                 onClick={type => onClickHandler(type)}
+                formatDateTime={formatDateTime}
               />
             </StyledCard>
           </Col>
@@ -156,6 +182,7 @@ export default class InterviewContainer extends Component {
                 data={toJS(this.props.store.interviewStore.pastTimeslots)}
                 past={true}
                 onClick={data => this.onClickHandler(data)}
+                formatDateTime={formatDateTime}
               />
             </StyledCard>
           </Col>
@@ -178,3 +205,4 @@ const StyledCard = styled(Card)`
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
 `
+export default withRedirect(InterviewContainer)

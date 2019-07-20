@@ -34,12 +34,10 @@ class ConfirmationContent extends Component {
       ) : null
 
     return (
-      <BaseLayout>
-        <Container>
-          <Title>Account Confirmation</Title>
-          {content}
-        </Container>
-      </BaseLayout>
+      <Container>
+        <Title>Account Confirmation</Title>
+        {content}
+      </Container>
     )
   }
 }
