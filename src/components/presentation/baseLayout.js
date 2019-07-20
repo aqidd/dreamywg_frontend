@@ -8,7 +8,6 @@ const { Header, Content, Footer } = Layout
 const BaseLayout = ({ children }) => (
      <Layout className="layout">
           <StyledContent>{children}</StyledContent>
-          <Footer style={{ textAlign: "center" }}>Custom Footer Here</Footer>
      </Layout>
 )
 
