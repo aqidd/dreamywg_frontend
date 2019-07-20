@@ -25,7 +25,7 @@ class LoginContainer extends Component {
       if (this.props.store.loginResponse.type === 'SEEKER') {
         return this.props.redirect('/search')
       } else if (this.props.store.loginResponse.type === 'OFFERER') {
-        return this.props.redirect('/') // TODO: AQID CHANGE HERE!
+        return this.props.redirect('/my-flat')
       } else {
         return this.props.redirect('/roleSelection')
       }

@@ -3,21 +3,26 @@ import FlatDetailsTab from  '../components/container/flatDetails/flatDetailsTabC
 import { Provider } from 'mobx-react';
 import FlatDetailsRootStore from '../stores/flatDetailsRootStore'
 
-export default class FlatDetails extends React.Component {
+export default class MyFlat extends React.Component {
     constructor(props) {
         super(props)
         this.flatDetailsRootStore = new FlatDetailsRootStore(this.props.match.params.id);
+        this.flatDetailsRootStore.flatPresentationStore.hideInterview = false
+        this.error = false;
     }
 
     componentDidMount() {
-        this.flatDetailsRootStore.flatStore.fetchFlat().catch(console.error)
+        this.flatDetailsRootStore.flatStore.fetchOffererFlat().catch( e =>
+          this.error = true
+        )
     }
 
   render() {
-    return (
+    return this.error? (<h1>Error</h1>) :
+    (
       <Provider store={this.flatDetailsRootStore}>
         <div style={pageStyle}>
-          <FlatDetailsTab withInterview={false}/>
+          <FlatDetailsTab/>
         </div>
       </Provider>
     )

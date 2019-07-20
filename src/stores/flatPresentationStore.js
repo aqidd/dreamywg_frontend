@@ -2,6 +2,7 @@ import { action, observable } from 'mobx'
 
 class FlatPresentationStore {
   @observable showModal = false
+  @observable hideInterview = true
 
   constructor(rootStore) {
     this.rootStore = rootStore

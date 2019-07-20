@@ -92,7 +92,17 @@ class FlatStore {
     const response = await network.getFlat(this.id)
     this.flat = response.data
 
-    // TODO (Q) configure geocoding with gmaps or other provider
+    this.flatCoordinate = await convertAddressToCoordinate(
+      `${this.flat.region} ${this.flat.street}, ${this.flat.houseNr}`
+    )
+    console.log(toJS(this.flatCoordinate))
+    return response.data
+  }
+
+  @action fetchOffererFlat = async () => {
+    const response = await network.getMyFlat(this.id)
+    this.flat = response.data
+
     this.flatCoordinate = await convertAddressToCoordinate(
       `${this.flat.region} ${this.flat.street}, ${this.flat.houseNr}`
     )

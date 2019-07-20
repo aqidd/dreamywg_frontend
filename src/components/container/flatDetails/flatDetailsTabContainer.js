@@ -8,7 +8,7 @@ import ChatContainer from '../chatContainer'
 
 const { TabPane } = Tabs
 
-const FlatDetailsTab = inject('store')(
+const FlatDetailsTab = inject('store') (
   observer(({ store }) => {
     return (
       <Tabs
@@ -26,15 +26,18 @@ const FlatDetailsTab = inject('store')(
             <ResidentList />
           </Provider>
         </TabPane>
-        <TabPane tab="Interviews" key="3">
-          <Provider store={store}>
-            <InterviewContainer />
-          </Provider>
-        </TabPane>
-        <TabPane tab="Messages" key="4">
-
+        <TabPane tab="Messages" key="3">
           <ChatContainer store ={store.chatStore}/>
         </TabPane>
+        {
+          store.flatPresentationStore.hideInterview ? null : (
+            <TabPane tab="Interviews" key="4">
+              <Provider store={store}>
+                <InterviewContainer />
+              </Provider>
+            </TabPane>    
+          )
+        }
       </Tabs>
     )
   })

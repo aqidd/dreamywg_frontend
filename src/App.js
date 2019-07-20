@@ -11,8 +11,8 @@ import Schedule from './pages/schedule'
 import SearchScreen from './pages/search'
 import Login from './pages/login'
 import store from './stores/authStore'
-import Interview from './pages/interview'
 import FlatDetails from './pages/flatDetails'
+import MyFlat from './pages/myFlat'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -53,6 +53,12 @@ export default class App extends React.Component {
           exact
           path="/roleselection"
           Comp={RoleSelection}
+          isAuth={() => hasToken()}
+        />
+        <ProtectedRoute
+          exact
+          path="/my-flat"
+          Comp={MyFlat}
           isAuth={() => hasToken()}
         />
         <ProtectedRoute
