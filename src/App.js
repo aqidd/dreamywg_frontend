@@ -94,7 +94,7 @@ export default class App extends React.Component {
           exact
           path="/schedule/:id"
           Comp={Schedule}
-          isAuth={hasToken()}
+          isAuth={() => hasToken()}
         />
       </BrowserRouter>
     )
