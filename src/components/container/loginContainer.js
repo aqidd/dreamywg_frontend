@@ -43,7 +43,7 @@ class LoginContainer extends Component {
     return (
       <Provider store="store">
         <Container>
-          <CredentialForm processData={(name, data) => this.onSubmit(data)} />
+          <CredentialForm type ="Login" processData={(name, data) => this.onSubmit(data)} />
         </Container>
       </Provider>
     )

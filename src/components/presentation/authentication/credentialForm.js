@@ -62,7 +62,7 @@ class CredentialForm extends React.Component {
                 className="credential-form-button"
                 block
               >
-                Login
+                {this.props.type == 'Login' ? 'Login' : 'Register'}
               </Button>
             </Row>
           </Item>
