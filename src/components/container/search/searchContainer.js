@@ -71,6 +71,7 @@ const Container = styled.div`
   margin-bottom: 10vh;
   display: flex;
   flex-direction: column;
+  background-color: white;
 `
 
 const CardContainer = styled.div`
