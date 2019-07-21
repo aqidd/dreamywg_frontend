@@ -1,6 +1,8 @@
 import React from 'react'
 import { List, Icon, Avatar, Button } from 'antd'
 
+const md5 = require('md5');
+
 const ListContent = ({ past, data, onClick, formatDateTime }) =>
   past ? (
     <List
@@ -38,8 +40,10 @@ const ListContent = ({ past, data, onClick, formatDateTime }) =>
           ]}
         >
           <List.Item.Meta
-            avatar={<Avatar src={item.avatar} />}
-            title={formatDateTime(item.startTime)}
+            avatar={
+              <Avatar src={`https://www.gravatar.com/avatar/${md5(item.userId.email)}?f=y&d=mp`}/>
+            }
+            title={`${item.userId.firstName} : ${formatDateTime(item.startTime)}`}
             description={item.status}
           />
         </List.Item>
@@ -59,10 +63,18 @@ const ListContent = ({ past, data, onClick, formatDateTime }) =>
         >
           <List.Item.Meta
             avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+              item.userId ? 
+                <Avatar src={`https://www.gravatar.com/avatar/${md5(item.userId.email)}?f=y&d=mp`}/> :
+                <Avatar src={`https://www.gravatar.com/avatar/willReturnDefault?f=y&d=mp`}/>
             }
-            title={<a href="https://ant.design">Timeslot {formatDateTime(item.startTime)}</a>}
-            description="No interviewee booked for this slot"
+            title={<span>Timeslot {formatDateTime(item.startTime)}</span>}
+            description={
+              item.userId ? 
+              <span>
+                  Booked by {item.userId.firstName} {item.userId.lastName} 
+              </span>
+              : <span>No interviewee booked for this slot</span>
+            }
           />
         </List.Item>
       )}
