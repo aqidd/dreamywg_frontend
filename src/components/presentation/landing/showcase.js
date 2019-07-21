@@ -4,9 +4,8 @@ import Image from '../../common/Image'
 import TitleContent from '../../common/titlecontent'
 import chatDemoImg from '../../../resources/chat-demo.png'
 import styled from 'styled-components'
-import simpleParallax from 'simple-parallax-js'
 
-const showCase = () => (
+const ShowCase = () => (
       <Container>
         <Row type="flex" style={{ alignItems: 'center' }} gutter={64}>
           <Col xs={2} sm={2} md={12} lg={12}>
@@ -45,4 +44,4 @@ const Paragraph = styled.p`
   font-weight: normal;
 `
 
-export default Showcase
+export default ShowCase

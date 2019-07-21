@@ -80,35 +80,12 @@ const Subtitle = styled.p`
 
 const CardContainer = styled(Card)``
 
-const StyledContainer = styled.div`
+const Container = styled.div`
   text-align: center;
   margin-top: 10vh;
   margin-bottom: 16vh;
-
 `
 
 const CardRow = styled(Row)`
   margin-top: 2vh;
-
 `
-
-const ParallaxWrapper = styled.div`
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  perspective: 2px;
-`
-
-const AnimatedCardRow = styled.div`
-  -webkit-animation: fade-in-right 2s;
-@keyframes fade-in-right {
-  from {
-    opacity: 0;
-    transform: translateZ(-5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
- `

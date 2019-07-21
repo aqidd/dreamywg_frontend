@@ -6,7 +6,24 @@ import VersionCard from './versionCard'
 import styled from 'styled-components'
 import simpleParallax from 'simple-parallax-js'
 
-const Introduction = ({ onGetStarted }) => (
+class Introduction extends React.Component {
+  constructor(props) {
+    super(props)
+    this.myRef = React.createRef();
+  }
+
+  componentDidMount() {
+    const image =  document.querySelectorAll('Img');
+    new simpleParallax(image, {
+      overflow: true,
+      orientation: 'right',
+      delay: .6,
+      transition: 'cubic-bezier(0,0,0,1)'
+    });
+  }
+
+  render = () => {
+    return(
   <StyledContainer>
     <Row>
       <Col xs={2} sm={2} md={2} lg={2} xl={5} />
@@ -48,7 +65,9 @@ const Introduction = ({ onGetStarted }) => (
       </Col>
     </Row>
   </StyledContainer>
-)
+)}
+
+}
 
 const StyledContainer = styled.div`
   margin: auto;
