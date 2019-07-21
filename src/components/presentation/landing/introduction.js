@@ -35,9 +35,7 @@ class Introduction extends React.Component {
           </Row>
           <Row>
             <Paragraph>
-              A mobile app landing page is important and essential for right
-              amount of information about your product. Start increasing your
-              user base upon the launch of your product.
+              Helping people in looking for a comfortable and perfect flat. Start increase your chance in searching a better candidate to fill out your room and perfect flatmate for you.
             </Paragraph>
           </Row>
           <CenteredRow type="flex">
