@@ -213,7 +213,6 @@ class PersonalInformation extends Component {
           <ControlButton
             onClick={(type, result) => this.handleResult(type, result)}
             next="Next"
-            back="Back"
           />
         </Form>
       </Container>

@@ -4,6 +4,7 @@ import ChatContainer from '../components/container/chatContainer'
 import Store from '../stores/chatStore'
 import 'antd/dist/antd.css'
 import { Provider } from 'mobx-react'
+import DefaultHeader from '../components/common/defaultHeader'
 
 export default class ChatPage extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class ChatPage extends Component {
     return (
       <Provider store={this.store}>
         <MainLayout>
+          <DefaultHeader/>
           <ChatContainer />
         </MainLayout>
       </Provider>

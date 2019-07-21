@@ -23,6 +23,7 @@
     "socket.io-client": "^2.2.0",
     "styled-components": "^4.2.0",
     "styled-theming": "^2.2.0",
+    "simple-parallax-js": "^5.1.0",
     "sweetalert2": "^8.13.6"
   },
   "devDependencies": {

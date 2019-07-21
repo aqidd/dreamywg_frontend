@@ -3,6 +3,7 @@ import { Provider } from 'mobx-react'
 import MainLayout from '../components/presentation/mainLayout'
 import ScheduleStore from "../stores/scheduleStore"
 import ScheduleContainer from "../components/container/scheduleContainer"
+import DefaultHeader from '../components/common/defaultHeader'
 
 export default class Schedule extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ export default class Schedule extends React.Component {
       <MainLayout>
         <br/>
         <Provider store={this.store}>
+          <DefaultHeader/>
           <ScheduleContainer />
         </Provider>
       </MainLayout>

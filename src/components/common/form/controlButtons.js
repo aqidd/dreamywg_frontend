@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from 'antd'
 
-const ControlButton = ({ onClick, next, back }) => (
+const ControlButton = ({ onClick, next }) => (
   <div>
     <Button
       style={{ float: 'right' }}

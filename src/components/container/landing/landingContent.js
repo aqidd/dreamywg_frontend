@@ -24,4 +24,5 @@ const StyledContent = styled(Layout.Content)`
   background-color: white;
   padding-bottom: 10vh;
 `
+
 export default LandingContent

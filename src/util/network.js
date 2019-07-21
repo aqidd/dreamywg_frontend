@@ -1,5 +1,4 @@
 import axios from 'axios'
-import Swal from 'sweetalert2'
 
 export const serverUrl = 'http://localhost:4005'
 export const socketUrl = 'localhost:8080'

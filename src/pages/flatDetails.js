@@ -2,6 +2,7 @@ import React from 'react'
 import FlatDetailsTab from  '../components/container/flatDetails/flatDetailsTabContainer'
 import { Provider } from 'mobx-react';
 import FlatDetailsRootStore from '../stores/flatDetailsRootStore'
+import DefaultHeader from '../components/common/defaultHeader'
 import MainLayout from '../components/presentation/mainLayout';
 
 export default class FlatDetails extends React.Component {
@@ -22,6 +23,7 @@ export default class FlatDetails extends React.Component {
   render() {
     return (
       <MainLayout>
+        <DefaultHeader/>
         <div style={pageStyle}>
         {
           this.error ? (

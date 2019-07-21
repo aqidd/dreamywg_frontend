@@ -6,20 +6,24 @@ import styled from 'styled-components'
 const dataService = [
   {
     title: 'Intelligence Recommendation',
-    content: 'Very provide very very Gut Services',
-    icon: 'file-search'
+    content: 'Our algorithm will match you with the best candidate of flat and person',
+    icon: 'file-search',
+    position: 'left'
   },
   {
     title: 'Instant Communication',
-    content: 'Very provide very very Gut Services',
-    icon: 'wechat'
+    content: 'In platform instant messaging without hurdle',
+    icon: 'wechat',
+    position: 'center'
   },
   {
     title: 'Interview Scheduling',
-    content: 'Very provide very very Gut Services',
-    icon: 'contacts'
+    content: 'Book your meeting schedule with your future flatmate',
+    icon: 'contacts',
+    position: 'right'
   }
 ]
+
 
 const Services = () => (
   <Container>
@@ -48,6 +52,7 @@ const Services = () => (
     </Row>
   </Container>
 )
+
 
 const ServiceCard = ({ title, subtitle, icon }) => (
   <Col span={5}>
