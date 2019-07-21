@@ -1,7 +1,6 @@
 import React from 'react'
 import { List, Icon, Avatar, Button } from 'antd'
-
-const md5 = require('md5');
+import md5 from 'md5'
 
 const ListContent = ({ past, data, onClick, formatDateTime }) =>
   past ? (
@@ -63,17 +62,17 @@ const ListContent = ({ past, data, onClick, formatDateTime }) =>
         >
           <List.Item.Meta
             avatar={
-              item.userId ? 
+              item.userId ?
                 <Avatar src={`https://www.gravatar.com/avatar/${md5(item.userId.email)}?f=y&d=mp`}/> :
                 <Avatar src={`https://www.gravatar.com/avatar/willReturnDefault?f=y&d=mp`}/>
             }
             title={<span>Timeslot {formatDateTime(item.startTime)}</span>}
             description={
-              item.userId ? 
-              <span>
+              item.userId ?
+                <span>
                   Booked by {item.userId.firstName} {item.userId.lastName} 
               </span>
-              : <span>No interviewee booked for this slot</span>
+                : <span>No interviewee booked for this slot</span>
             }
           />
         </List.Item>
@@ -96,7 +95,7 @@ const IconText = ({ type, text, item, onClickCallback }) => (
       })
     }
   >
-    <Icon theme="twoTone" type={type} style={{ marginRight: 8 }} />
+    <Icon theme="twoTone" type={type} style={{ marginRight: 8 }}/>
     {text}
   </span>
 )
