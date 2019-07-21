@@ -14,8 +14,8 @@ const RoleSelection = ({ redirect }) => (
         <SelectionCard
           type="seeker"
           icon="search"
-          title="Find Apartment"
-          description="You are looking for the most suitable place to live in Munich with a flatshare experiences"
+          title="Find flatshare"
+          description="You are looking for the most suitable place to live in Munich within a flatshare"
           click={() => redirect('/setupSeeker')}
         />
       </Col>
@@ -23,8 +23,8 @@ const RoleSelection = ({ redirect }) => (
         <SelectionCard
           type="offerer"
           icon="select"
-          title="Find Roommate"
-          description="You are living in Munich and looking for a new roommate to share your place with"
+          title="Offer flatshare"
+          description="You live in Munich and looking for a new flatmate to share your place with"
           click={() => redirect('/setupOfferer')}
         />
       </Col>

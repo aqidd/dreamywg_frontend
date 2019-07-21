@@ -23,7 +23,6 @@ export default class FlatDetails extends React.Component {
   render() {
     return (
       <MainLayout>
-        <DefaultHeader/>
         <div style={pageStyle}>
         {
           this.error ? (
