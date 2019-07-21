@@ -11,7 +11,7 @@ const AboutFlat = inject('store')(
     return (
       <BaseContainer>
         <Row gutter={46}>
-          <Col span={18}>
+          <Col span={16}>
             <Row gutter={16}>
               <Col span={24}>
                 <FlatCard
@@ -27,9 +27,9 @@ const AboutFlat = inject('store')(
               </Col>
             </Row>
           </Col>
-          <Col span={6}>
+          <Col span={8}>
             <Provider store={store}>
-              <StyledCard style={{ ...roundCorner, marginRight: '2vh' }}>
+              <StyledCard style={{ ...roundCorner, marginRight: '2vh', marginBottom: '1vh' }}>
                 <RoomListContainer />
               </StyledCard>
             </Provider>
