@@ -19,7 +19,7 @@ export default class ScheduleContainer extends Component {
     return (
       <div style={{marginBottom: '2vh'}}>
         <Row>
-          <Col span={4}></Col>
+          <Col span={4}/>
           <Col span={10}>
           <h2 style={{ textAlign: 'center' }}>
             Viewing Schedule on &nbsp;

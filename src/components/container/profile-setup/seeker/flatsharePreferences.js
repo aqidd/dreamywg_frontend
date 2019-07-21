@@ -61,7 +61,6 @@ class FlatsharePreferences extends Component {
 
           <Row gutter={24}>
             <Col span={8}>
-
               <NumberRange decorator={decorator} itemLabel="Room size in m&sup2;*"
                            objName={'preferences.flat.room.size'}/>
             </Col>
@@ -103,14 +102,12 @@ class FlatsharePreferences extends Component {
               </Item>
             </Col>
             <Col span={8}>
-
               <NumberRange decorator={decorator} itemLabel="Flatmates age*" objName={'preferences.flatmates.age'}/>
             </Col>
 
             <Col span={8}>
               <NumberRange decorator={decorator} itemLabel="Number of Flatmates*"
                            objName={'preferences.flatmates.amount'}/>
-
             </Col>
           </Row>
 
@@ -173,6 +170,7 @@ class FlatsharePreferences extends Component {
               </Item>
             </Col>
             <Col span={8}>
+
               <Item label="Cleaning schedule*">
                 <WrappedSelection
                   required

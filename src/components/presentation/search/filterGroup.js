@@ -33,15 +33,6 @@ class FilterGroup extends Component {
     await this.props.store.initData()
     const filterValues = this.props.store.filterValues
 
-    console.log([
-      moment(filterValues.preferences.flat.room.dateAvailableRange[0]).format(
-        'YYYY-MM-DD'
-      ),
-      moment(filterValues.preferences.flat.room.dateAvailableRange[0]).format(
-        'YYYY-MM-DD'
-      )
-    ])
-    
     setFieldsValue({
       preferences: {
         flat: {
@@ -56,17 +47,8 @@ class FilterGroup extends Component {
               to: filterValues.preferences.flat.room.rent.to
             },
             rentType: filterValues.preferences.flat.room.rentType,
-            dateAvailable: moment(
-              filterValues.preferences.flat.room.dateAvailable
-            ),
-            dateAvailableRange: [
-              moment(
-                filterValues.preferences.flat.room.dateAvailableRange[0]
-              ).format('YYYY-MM-DD'),
-              moment(
-                filterValues.preferences.flat.room.dateAvailableRange[1]
-              ).format('YYYY-MM-DD')
-            ]
+            dateAvailable: moment(filterValues.preferences.flat.room.dateAvailable),
+            dateAvailableRange: [(moment(filterValues.preferences.flat.room.dateAvailableRange[0]).format('YYYY-MM-DD')), (moment(filterValues.preferences.flat.room.dateAvailableRange[1]).format('YYYY-MM-DD'))]
           },
           flatshareType: filterValues.preferences.flat.flatshareType
         },

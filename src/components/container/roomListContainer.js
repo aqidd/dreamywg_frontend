@@ -1,7 +1,8 @@
 import React from 'react'
-import { List, Button} from 'antd'
+import { List, Button } from 'antd'
 import { inject, observer } from 'mobx-react'
 import { Link } from 'react-router-dom'
+import { TYPE } from '../../stores/authStore'
 
 const RoomListContainer = inject('store')(
   observer(({ store }) => {
@@ -14,13 +15,14 @@ const RoomListContainer = inject('store')(
           dataSource={store.flatStore.flat.rooms}
           renderItem={room => (
             <List.Item
-              actions={[
-                <Link to={`/chat/${store.flatStore.flat._id}`}>
-                  <Button type="primary" icon="message">
-                    Interested
-                  </Button>
-                </Link>
-              ]}
+              actions={
+                (localStorage.getItem('userType') === TYPE.SEEKER) ? (
+                  [<Link to={`/chat/${store.flatStore.flat._id}`}>
+                    <Button type="primary" icon="message">
+                      Interested
+                    </Button>
+                  </Link>]) : []
+              }
             >
               <List.Item.Meta
                 title={`Room Price : ${room.rent} EUR`}

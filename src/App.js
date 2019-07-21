@@ -37,6 +37,12 @@ export default class App extends React.Component {
         />
         <ProtectedRoute
           exact
+          path="/chat"
+          Comp={Chat}
+          isAuth={() => hasToken()}
+        />
+        <ProtectedRoute
+          exact
           path="/chat/:id"
           Comp={Chat}
           isAuth={() => hasToken()}
