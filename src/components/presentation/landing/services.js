@@ -5,20 +5,20 @@ import styled from 'styled-components'
 
 const dataService = [
   {
-    title: 'Intelligence Recommendation',
-    content: 'Our algorithm will match you with the best candidate of flat and person',
+    title: 'Intelligent Recommendations',
+    content: 'Our algorithm will find the perfect match for you according to your preferences',
     icon: 'file-search',
     position: 'left'
   },
   {
     title: 'Instant Communication',
-    content: 'In platform instant messaging without hurdle',
+    content: 'In platform realtime messaging without any delay',
     icon: 'wechat',
     position: 'center'
   },
   {
     title: 'Interview Scheduling',
-    content: 'Book your meeting schedule with your future flatmate',
+    content: 'Manage interviewing sessions easily in DreamyWG',
     icon: 'contacts',
     position: 'right'
   }
@@ -31,7 +31,7 @@ const Services = () => (
       <Row>
         <TitleContent
           subtitle="Our Services"
-          title=" Featured Service that We Provide"
+          title=" Featured Services We Provide"
         />
       </Row>
       <CardRow

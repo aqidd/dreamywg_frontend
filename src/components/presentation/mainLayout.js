@@ -36,7 +36,7 @@ const MainLayout = ({ children }) => {
             </Link>
           </Menu.Item>)}
         <Menu.Item key="4" style={rightMenu}>
-          <Link to="/" refresh="true" onClick={() => localStorage.removeItem('token')}>
+          <Link to="/" refresh="true" onClick={() => localStorage.clear()}>
             <span>Logout</span>
           </Link>
         </Menu.Item>

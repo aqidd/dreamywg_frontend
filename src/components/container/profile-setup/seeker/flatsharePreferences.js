@@ -214,10 +214,16 @@ class FlatsharePreferences extends Component {
               </Item>
             </Col>
           </Row>
-          <ControlButton
-            onClick={result => this.handleResult('Next', result)}
-            next="Next"
-          />
+          <div>
+            <Button
+              style={{ float: 'right' }}
+              htmlType="submit"
+              onClick={result => this.handleResult('Next', result)}
+              type="primary"
+            >
+              Next
+            </Button>
+          </div>
         </Form>
       </Container>
     )

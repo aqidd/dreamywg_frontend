@@ -22,7 +22,7 @@ const ShowCase = () => (
               </Row>
               <Row>
                 <Paragraph style={{ fontSize: 16 }}>
-                  One of the best feature. Connecting matched flat seeker and landlord easily with no need of exchanging private information.
+                  One of the best feature. Connecting matched flatshare seeker and offerer easily with no need of exchanging private information.
                 </Paragraph>
               </Row>
             </RowScaler>
