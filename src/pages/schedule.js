@@ -17,7 +17,6 @@ export default class Schedule extends React.Component {
       <MainLayout>
         <br/>
         <Provider store={this.store}>
-          <DefaultHeader/>
           <ScheduleContainer />
         </Provider>
       </MainLayout>

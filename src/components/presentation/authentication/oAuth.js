@@ -25,8 +25,8 @@ class OAuth extends Component {
           <Provider store={this.props.store.authStore}>
             <SocialMediaContent/>
           </Provider>
+          <br />
           <LoginContainer>
-            <hr />
             <h2>Login</h2>
             <h3>You can of course also directly proceed to login.</h3>
             <Col span={12} offset={6}>

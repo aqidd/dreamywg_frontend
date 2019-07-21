@@ -51,8 +51,8 @@ class LoginContainer extends Component {
 }
 
 const Container = styled.div`
-  margin-top: 15vh;
-  margin-bottom: 15vh;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
 `
 
 export default withRedirect(LoginContainer)
