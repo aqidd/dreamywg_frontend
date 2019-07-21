@@ -45,7 +45,7 @@ class Introduction extends React.Component {
                     block
                     size={'large'}
                     type={'primary'}
-                    onClick={() => onGetStarted()}
+                    onClick={this.props.onGetStarted}
                   >
                     Get Started
                   </Button>

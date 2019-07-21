@@ -171,7 +171,7 @@ class InterviewContainer extends Component {
               <ListContent
                 data={toJS(this.props.store.interviewStore.currentTimeslots)}
                 past={false}
-                onClick={type => onClickHandler(type)}
+                onClick={console.log}
                 formatDateTime={formatDateTime}
               />
             </StyledCard>

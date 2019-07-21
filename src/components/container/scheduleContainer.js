@@ -28,20 +28,18 @@ export default class ScheduleContainer extends Component {
           <br/>
           <div>
             <Row>
-              <Col span={6}><h3>Start Time</h3></Col>
-              <Col span={6}><h3>End Time</h3></Col>
+              <Col span={5}><h3>Start Time</h3></Col>
+              <Col span={5}><h3>End Time</h3></Col>
             </Row>
             {this.props.store.schedule.timeslots.map(timeslot => {
               return (
-                <StyledCard style={cardStyle}>
-                  <Row
-                    key={timeslot._id}
-                  >
-                    <Col span={6}>
+                <StyledCard style={cardStyle} key={timeslot._id}>
+                  <Row>
+                    <Col span={5}>
                       {moment(timeslot.startTime).format('hh:mm')}
                     </Col>
-                    <Col span={6}>{moment(timeslot.endTime).format('hh:mm')}</Col>
-                    <Col span={12}>
+                    <Col span={5}>{moment(timeslot.endTime).format('hh:mm')}</Col>
+                    <Col span={14}>
                       <Button
                         type="primary"
                         htmlType="submit"

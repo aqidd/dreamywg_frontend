@@ -56,8 +56,8 @@ const ListContent = ({ past, data, onClick, formatDateTime }) =>
         <List.Item
           onClick={console.log(item)}
           actions={[
-            <IconText type="calendar" text={formatDateTime(item.startTime)}/>,
-            <IconText type="message" text={item.status}/>
+            <IconText type="calendar" text={formatDateTime(item.startTime)} onClickCallback={onClick}/>,
+            <IconText type="message" text={item.status} onClickCallback={onClick}/>
           ]}
         >
           <List.Item.Meta

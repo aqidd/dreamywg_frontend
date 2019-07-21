@@ -36,16 +36,18 @@ const FlatCard = ({
         <StyledSection>
           <ContentDescription>
             <CardTitle>
-              {title} <Tag color="purple"> {type} </Tag>
+              {title}
             </CardTitle>
+            <Tag color="purple"> {type} </Tag>
+            <br/><br/>
+            <p>{description}</p>
           </ContentDescription>
-          <p>{description}</p>
         </StyledSection>
         <StyledSection>
           <Subtitle>Equipments</Subtitle>
           <Row style={{ marginTop: '2vh' }}>
             {Object.keys(equipment).map(each => (
-              <Col span={8}>
+              <Col span={8} key={each}>
                 <EquipmentContainer>
                   <StyledIcon type={equipment[each]} />
                   <p> {each}</p>
@@ -141,7 +143,7 @@ const StyledImage = styled.img`
 
 const CardTitle = styled.p`
   font-size: 2.5em;
-  margin-bottom: 16px;
+  margin-bottom: -5px;
   font-weight: bold;
 `
 const Subtitle = styled.p`

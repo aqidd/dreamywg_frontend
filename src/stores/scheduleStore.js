@@ -60,7 +60,10 @@ class ScheduleStore {
   }
 
   @action isTimeslotOwner(timeslot) {
-    return timeslot.userId === localStorage.getItem('userId')
+    if(timeslot.userId)
+      return timeslot.userId._id === localStorage.getItem('userId')
+    else
+      return false
   }
 
 }
