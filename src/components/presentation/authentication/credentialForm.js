@@ -20,7 +20,7 @@ class CredentialForm extends React.Component {
     const { getFieldDecorator } = this.props.form
     return (
       <Container>
-        <LoginTitle>dreamyWG</LoginTitle>
+        <LoginTitle>DreamyWG</LoginTitle>
         <Form
           name="credential-form"
           onSubmit={this.handleSubmit}
@@ -62,7 +62,7 @@ class CredentialForm extends React.Component {
                 className="credential-form-button"
                 block
               >
-                {this.props.type == 'Login' ? 'Login' : 'Register'}
+                {this.props.type === 'Login' ? 'Login' : 'Register'}
               </Button>
             </Row>
           </Item>

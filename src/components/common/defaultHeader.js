@@ -18,7 +18,6 @@ const DefaultHeader = ({ redirect }) => (
         </div>
       </Col>
       <Col xs={10} sm={10} md={10} lg={10} xl={7}>
-        {/*TODO: super ugly but works for now*/}
         {localStorage.getItem('token') === null ? (
           <Popover content={<Login redirect={url => redirect(url)} />}>
             <Button type="primary" style={{ float: 'right', borderRadius: 30 }}>
