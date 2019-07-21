@@ -9,12 +9,13 @@ const NumberRange = ({decorator, itemLabel, objName}) => (
     <Input.Group compact>
       <WrappedAnyInput
         tag={<InputNumber style={{width: "40%", textAlign: 'center'}}/>}
+        required
         dec={decorator}
         objName={`${objName}.from`}
       />
       <Input
         style={{
-          width: "20px",
+          width: "20%",
           borderLeft: 0,
           pointerEvents: 'none',
           backgroundColor: '#fff'
@@ -24,6 +25,7 @@ const NumberRange = ({decorator, itemLabel, objName}) => (
       />
       <WrappedAnyInput
         tag={<InputNumber style={{width: "40%", textAlign: 'center', borderLeft: 0}}/>}
+        required
         dec={decorator}
         objName={`${objName}.to`}
       />

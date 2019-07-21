@@ -1,10 +1,7 @@
-import React, { Component } from 'react'
-import { Row, Col, Typography, Card, Icon } from 'antd'
+import React from 'react'
+import { Row, Col, Card, Icon } from 'antd'
 import TitleContent from '../../common/titlecontent'
-import styled, { ThemeProvider } from 'styled-components'
-import theme from 'styled-theming'
-import simpleParallax from 'simple-parallax-js'
-const { Meta } = Card
+import styled from 'styled-components'
 
 const dataService = [
   {
@@ -27,46 +24,35 @@ const dataService = [
   }
 ]
 
-class Services extends Component {
-  constructor(props) {
-    super(props)
-  }
 
-  render = () => {
-    return (
-      <ParallaxWrapper>
-        <StyledContainer >
-          <Row>
-            <Row>
-              <TitleContent
-                subtitle="Our Services"
-                title=" Featured Service that We Provide"
-              />
-            </Row>
+const Services = () => (
+  <Container>
+    <Row>
+      <Row>
+        <TitleContent
+          subtitle="Our Services"
+          title=" Featured Service that We Provide"
+        />
+      </Row>
+      <CardRow
+        type="flex"
+        justify="center"
+        gutter={16}
+        style={{ marginTop: '2vh' }}
+      >
+        {dataService.map((data, index) => (
+          <ServiceCard
+            key={index}
+            title={data.title}
+            icon={data.icon}
+            subtitle={data.content}
+          />
+        ))}
+      </CardRow>
+    </Row>
+  </Container>
+)
 
-              <CardRow
-                type="flex"
-                justify="center"
-                gutter={16}
-                style={{ marginTop: '2vh' }}
-              >
-                {dataService.map(data => (
-
-                    <ServiceCard
-                      title={data.title}
-                      icon={data.icon}
-                      subtitle={data.content}
-                    />
-
-                ))}
-              </CardRow>
-
-          </Row>
-        </StyledContainer>
-      </ParallaxWrapper>
-    )
-  }
-}
 
 const ServiceCard = ({ title, subtitle, icon }) => (
   <Col span={5}>
@@ -85,16 +71,6 @@ const ServiceCard = ({ title, subtitle, icon }) => (
 )
 export default Services
 
-const cardColor = theme('mode', {
-  light: '#FFF',
-  dark: '#111'
-})
-
-const textColor = theme('mode', {
-  light: '#000',
-  dark: '#DDD'
-})
-
 const Title = styled.p`
   font-weight: bold;
 `
@@ -102,14 +78,7 @@ const Subtitle = styled.p`
   font-weight: normal;
 `
 
-const CardContainer = styled(Card)`
-  background-color: ${cardColor};
-  color: ${textColor};
-`
-
-const StyledMeta = styled(Meta)`
-  color: ${textColor};
-`
+const CardContainer = styled(Card)``
 
 const StyledContainer = styled.div`
   text-align: center;

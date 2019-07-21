@@ -4,6 +4,8 @@ import { inject, observer } from 'mobx-react'
 import { Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 import withRedirect from '../../common/class/withRedirect'
+import { flatten } from 'flat'
+import { union, startCase } from 'lodash'
 
 const { Step } = Steps
 
@@ -22,8 +24,12 @@ class StepsContentContainer extends Component {
     this.forceUpdate()
   }
 
-  displayError = obj => {
-    const errorValue = Object.keys(obj).reduce((a, b) => a + ', ' + b)
+  displayError = errors => {
+    const errorValue = union(Object.keys(flatten(errors)).map(e => {
+      const arr = e.split('.')
+      return startCase(arr[arr.length - 4])
+    })).reduce((a, b) => a + ', ' + b)
+
     message.error('Please complete the following field: ' + errorValue, 20)
   }
 
@@ -34,21 +40,21 @@ class StepsContentContainer extends Component {
 
     if (this.props.store.status) {
       if (this.props.store.isSeeker) {
-        return <Redirect to="/search" push />
+        return <Redirect to="/search" push/>
       } else {
-        return <Redirect to="/my-flat" push />
+        return <Redirect to="/my-flat" push/>
       }
     }
 
     return (
       <StepContainer>
         <Row>
-          <Col xl={5} lg={2} md={2} sm={2} xs={2} />
+          <Col xl={5} lg={2} md={2} sm={2} xs={2}/>
           <Col xl={14} lg={20} md={20} sm={20} xs={20}>
             <Row>
               <Steps current={currentSteps}>
                 {data.map((value, index) => (
-                  <Step key={index} title={value.title} />
+                  <Step key={index} title={value.title}/>
                 ))}
               </Steps>
               <div className="steps-content">
@@ -61,9 +67,9 @@ class StepsContentContainer extends Component {
                 </Row>
               </div>
             </Row>
-            <Row />
+            <Row/>
           </Col>
-          <Col xl={5} lg={2} md={2} sm={2} xs={2} />
+          <Col xl={5} lg={2} md={2} sm={2} xs={2}/>
         </Row>
       </StepContainer>
     )

@@ -5,7 +5,6 @@ import { Button, Card, Col, Row } from 'antd'
 import styled from 'styled-components'
 import SocialMediaContent from '../../container/socialMediaAuthContainer'
 
-const theme = 'light'
 
 @inject('store')
 @observer
@@ -24,7 +23,7 @@ class OAuth extends Component {
           </SocialContainer>
           <hr />
           <Provider store={this.props.store.authStore}>
-            <SocialMediaContent theme={theme} />
+            <SocialMediaContent/>
           </Provider>
           <LoginContainer>
             <hr />

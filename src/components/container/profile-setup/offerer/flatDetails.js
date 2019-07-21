@@ -49,8 +49,8 @@ class FlatDetails extends Component {
       <Container>
         <Title>Your Flat details</Title>
         <Form layout="vertical">
-          <LocationGroup decorator={getFieldDecorator} />
-          <ValueGroup decorator={getFieldDecorator} />
+          <LocationGroup decorator={getFieldDecorator}/>
+          <ValueGroup decorator={getFieldDecorator}/>
           <SelectGroup
             decorator={getFieldDecorator}
             fieldValue={getFieldValue}
@@ -85,18 +85,18 @@ class FlatDetails extends Component {
               </Item>
             </Col>
           </Row>
-          <hr />
-          <br />
+          <hr/>
+          <br/>
           <h2>Flat properties and Equipment</h2>
           <SwitchGroup
             decorator={getFieldDecorator}
             basePath={'flatEquipment'}
             funisheBasePath={'rooms[0]'}
           />
-          <hr />
-          <br />
+          <hr/>
+          <br/>
           <h2>Images and Descriptions</h2>
-          <Item label="Images">
+          <Item label="Images*">
             <PictureUpload
               onCancel={() => {
                 onPreviewCancel()
@@ -113,17 +113,16 @@ class FlatDetails extends Component {
                 this.forceUpdate()
               }}
               limit={10}
-              onCancel={console.log}
               beforeUpload={console.log}
             />
           </Item>
           <Row>
-            <Item label="Flatshare headline">
-              <WrappedInput dec={getFieldDecorator} objName="title" />
+            <Item label="Flatshare headline*">
+              <WrappedInput dec={getFieldDecorator} required objName="title"/>
             </Item>
           </Row>
           <Row>
-            <Item label="Short description of your flatshare">
+            <Item label="Short description of your flatshare*">
               <WrappedAnyInput
                 tag={
                   <TextArea
@@ -131,8 +130,24 @@ class FlatDetails extends Component {
                     autosize={{ minRows: 2, maxRows: 2 }}
                   />
                 }
+                required
                 dec={getFieldDecorator}
                 objName="shortDescription"
+              />
+            </Item>
+          </Row>
+          <Row>
+            <Item label="Full description of your flatshare*">
+              <WrappedAnyInput
+                tag={
+                  <TextArea
+                    placeholder="Please describe your flatshare in full details"
+                    autosize={{ minRows: 2, maxRows: 10 }}
+                  />
+                }
+                required
+                dec={getFieldDecorator}
+                objName="longDescription"
               />
             </Item>
           </Row>

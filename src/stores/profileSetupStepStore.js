@@ -2,7 +2,7 @@ import { action, observable, toJS } from 'mobx'
 
 import Api from '../util/network'
 import { debounce, merge } from 'lodash'
-import stations from '../util/shortStations'
+import stations from '../util/stations'
 
 class Store {
   @observable currentSteps = 0
@@ -46,7 +46,6 @@ class Store {
   }
 
   @action onPreviewCancel = () => {
-    console.log('triggered')
     this.imagePreview.show = false
   }
 
