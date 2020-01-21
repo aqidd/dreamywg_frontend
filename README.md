@@ -5,7 +5,7 @@ For the detailed description see [here in the parent repository](https://github.
 
 ## Usage
 Feel free to use this code.
-1. Clone the repository ```git clone https://github.com/StefanDenn3r/dreamywg_backend.git```
+1. Clone the repository ```git clone https://github.com/aqidd/dreamywg_frontend.git```
 2. Run one of the below available scripts.
 
 ## Available Scripts
